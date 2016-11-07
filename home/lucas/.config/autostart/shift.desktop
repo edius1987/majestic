@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/lib/vino/vino-server
+Hidden=false
+X-MATE-Autostart-enabled=true
+Name[pt_BR]=Vino
+Name=HeartBeat
+Comment[pt_BR]=
+Comment=Inibe a proteção de tela se houver algum som

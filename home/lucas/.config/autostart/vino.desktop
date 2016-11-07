@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=bash /home/lucas/bin/heartbeat.sh
+Hidden=false
+X-MATE-Autostart-enabled=true
+Name[pt_BR]=HeartBeat
+Name=HeartBeat
+Comment[pt_BR]=Inibe a proteção de tela se houver algum som
+Comment=Inibe a proteção de tela se houver algum som
