@@ -1,6 +1,6 @@
-Hefesto Dotfiles(Debian GNU/Linux 8.1 (jessie))
+Hefesto Dotfiles(Arch Linux 64 Bits)
 
-Arquivos da minha pasta pessoal(/home/lucas) da máquina hefesto.
+Arquivos da minha pasta pessoal(/home/lucas, e outras pastas...) da máquina hefesto.
 Sinta-se livre para usar, alterar, divulgar e comentar.
 
 Como usar?

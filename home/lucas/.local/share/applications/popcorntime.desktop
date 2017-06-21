@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Popcorn-Time
+Exec=/opt/popcorntime/Popcorn-Time
+Icon=popcorntime
+Type=Application
+Categories=AudioVideo;Audio;Video;Network;

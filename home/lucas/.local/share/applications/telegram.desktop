@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Telegram
+Comment=Official desktop version of Telegram messaging app
+Exec=telegram
+Icon=telegram
+Terminal=false
+#StartupWMClass=telegram-desktop
+Type=Application
+Categories=Network;
+MimeType=x-scheme-handler/tg;
+Name[pt_BR]=Telegram
