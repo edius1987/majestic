@@ -9,6 +9,8 @@ alias ls='ls --color=auto'
 alias e='exit'
 alias s='sudo su'
 alias pacman='sudo pacman'
+alias mkdir='mkdir -pv'
+
 PS1='[\u@\h \W]\$ '
 
 if [ -f /etc/cores.inc ]; then
