@@ -10,3 +10,12 @@ alias e='exit'
 alias s='sudo su'
 alias pacman='sudo pacman'
 PS1='[\u@\h \W]\$ '
+
+if [ -f /etc/cores.inc ]; then
+        . /etc/cores.inc
+fi
+
+if [ -f /usr/share/doc/pkgfile/command-not-found.bash ]; then
+        . /usr/share/doc/pkgfile/command-not-found.bash
+fi
+

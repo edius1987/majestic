@@ -10,7 +10,7 @@ foreground      = #bac8db
 foreground_bold = #bac8db
 cursor          = #bac8db
 #background      = #0c1117
-background = rgba(12, 17, 23, 0.95)
+background = rgba(12, 17, 23, 0.50)
 
 # black
 color0  = #161c24
