@@ -44,7 +44,7 @@ command=date '+%d/%m/%y'
 interval=600
 
 [time]
-label=HORA
+label=
 command=date '+%H:%M'
 interval=5
 
@@ -59,8 +59,8 @@ signal=10
 #interval=once
 #signal=11
 
-[keyindicator]
-label=
-instance=NUM
-interval=once
-signal=11
+#[keyindicator]
+#label=
+#instance=NUM
+#interval=once
+#signal=11

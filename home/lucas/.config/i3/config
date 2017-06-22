@@ -1,6 +1,9 @@
 set $mod Mod4
 font pango:monospace 8
 
+gaps inner 5
+gaps outer 5
+
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -111,8 +114,10 @@ for_window [title="Biblioteca"] floating enable
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
+assign [class="Sublime_text"] $workspace3
 assign [class="^Thunar"] $workspace4
 assign [class="^Gimp-2.8"] $workspace5
+assign [class="^Lxappearance"] $workspace5
 assign [class="^Deluge"] $workspace7
 assign [class="^Telegram"] $workspace9
 
@@ -152,6 +157,7 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 exec --no-startup-id compton
 exec_always --no-startup-id feh --bg-fill $(shuf -n1 -e ~/img/wallpapers/macos/*)
+exec --no-startup-id volwheel
 exec --no-startup-id numlockx
 exec --no-startup-id dunst -config ~/.config/i3/dunstrc
 exec --no-startup-id parcellite
