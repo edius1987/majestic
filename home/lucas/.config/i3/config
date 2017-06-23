@@ -158,7 +158,6 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 exec --no-startup-id compton
 exec --no-startup-id pulseaudio --start
 exec_always --no-startup-id feh --bg-fill $(shuf -n1 -e ~/img/wallpapers/macos/*)
-exec --no-startup-id volwheel
 exec --no-startup-id numlockx
 exec --no-startup-id dunst -config ~/.config/i3/dunstrc
 exec --no-startup-id parcellite
