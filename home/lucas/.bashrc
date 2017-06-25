@@ -21,3 +21,7 @@ if [ -f /usr/share/doc/pkgfile/command-not-found.bash ]; then
         . /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
+if [[ $TERM == xterm-termite ]]; then
+    . /etc/profile.d/vte.sh
+    __vte_prompt_command
+fi

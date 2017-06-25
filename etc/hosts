@@ -1,0 +1,12 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+104.244.154.45 artemis
+172.97.66.117 hera
+
+#<ip-address>	<hostname.domain.org>	<hostname>
+127.0.0.1	localhost.localdomain	localhost
+::1		localhost.localdomain	localhost
+
+# End of file
