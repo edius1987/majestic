@@ -18,14 +18,16 @@ client.urgent           $urgent-bg-color     $urgent-bg-color   $text-color     
 
 floating_modifier $mod
 
-# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+x exec i3lock -i ~/img/lock.png
+
+bindsym Print exec ~/bin/screenshot.sh
+
 bindsym $mod+Shift+e exec "i3-nagbar -t error -m 'O que deseja fazer?' \
 -b 'Sair' 'i3-msg exit' \
 -b 'Suspender' 'systemctl suspend' \
 -b 'Reiniciar' 'systemctl reboot' \
 -b 'Desligar' 'systemctl poweroff'"
 
-# Editar configs
 bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 -b 'config' 'i3-sensible-editor ~/.config/i3/config' \
 -b 'i3blocks' 'i3-sensible-editor ~/.config/i3/blocks' \
@@ -74,6 +76,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 set $workspace1 "1 "
 set $workspace2 "2 "
