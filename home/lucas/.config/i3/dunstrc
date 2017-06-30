@@ -1,9 +1,10 @@
 [global]
-    font = "Monospace 9"
+    font = "Monospace 10"
     allow_markup = yes
     format = "<b>%s %p</b>\n%b"
     sort = yes
     indicate_hidden = true
+	show_indicators = false
     # geometry = "x5"
     idle_threshold = 0
     geometry = "300x5-20+20"
@@ -16,10 +17,9 @@
     padding = 10
     horizontal_padding = 10
     separator_color = frame
-    startup_notification = true
+    startup_notification = false
     dmenu = "/usr/bin/dmenu -p dunst: -nb #FFFFFF -nf #000000 -sb #94DBFF -sf #000000"
     browser = chromium
-	startup_notification = false
 
 [frame]
     width = 3
