@@ -11,6 +11,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+if [ -d "$HOME/bin" ] ; then
+    #PATH="$HOME/bin:$PATH"
+    export PATH=$PATH:$HOME/bin
+fi
+
 export TERMINAL=termite
 export EDITOR=pluma
 export BROWSER=chromium
