@@ -127,6 +127,7 @@ for_window [class="Tilda"] floating enable; border 1pixel
 #for_window [con_id="1c00417"] move scratchpad
 for_window [title="^DownThemAll"] floating enable
 for_window [title="DownThemAll!$"] move window to scratchpad
+for_window [urgent="latest"] focus
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
