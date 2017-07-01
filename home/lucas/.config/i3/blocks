@@ -44,8 +44,7 @@ command=date '+%d/%m/%y'
 interval=600
 
 [time]
-label=\f017
-markup=pango
+label=
 command=date '+%H:%M'
 interval=5
 

@@ -1,9 +1,12 @@
 set $mod Mod4
-font pango:monospace 8
-font xft:Droid Sans Mono, FontAwesome 10
+#font pango:monospace 8
+font xft:Droid Sans Mono 9, FontAwesome 9
 
 gaps inner 5
 gaps outer 5
+
+hide_edge_borders both
+new_window none
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
@@ -30,15 +33,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t error -m 'O que deseja fazer?' \
 -b 'Desligar' 'systemctl poweroff'"
 
 bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
--B 'config' 'i3-sensible-editor ~/.config/i3/config' \
--B 'i3blocks' 'i3-sensible-editor ~/.config/i3/blocks' \
--B 'dunst' 'i3-sensible-editor ~/.config/i3/dunstrc' \
--B 'compton' 'i3-sensible-editor ~/.config/compton.conf'"
+-b 'config' 'i3-sensible-editor ~/.config/i3/config' \
+-b 'i3blocks' 'i3-sensible-editor ~/.config/i3/blocks' \
+-b 'dunst' 'i3-sensible-editor ~/.config/i3/dunstrc' \
+-b 'compton' 'i3-sensible-editor ~/.config/compton.conf'"
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+d exec dmenu_run
 bindsym $mod+Shift+t exec thunar
-bindsym $mod+Shift+w exec chromium --process-per-site
+bindsym $mod+Shift+w exec firefox
 bindsym $mod+Shift+m exec thunderbird
 
 bindsym $mod+j focus left
@@ -120,11 +123,15 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 for_window [title="Biblioteca"] floating enable
 for_window [class="^mpv"] floating enable
 for_window [class="^Engrampa"] floating enable
-for_window [title="DownThemAll"] floating enable
 for_window [class="Tilda"] floating enable; border 1pixel
+#for_window [con_id="1c00417"] move scratchpad
+for_window [title="^DownThemAll"] floating enable
+for_window [title="DownThemAll!$"] move window to scratchpad
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
+assign [class="Termite"] $workspace2
+assign [class="Pluma"] $workspace3
 assign [class="Sublime_text"] $workspace3
 assign [class="^Thunar"] $workspace4
 assign [class="^Gimp-2.8"] $workspace5
@@ -192,6 +199,7 @@ exec --no-startup-id sudo headsetcontrol 32
 exec --no-startup-id compton -b 
 
 bar {
+	#font xft:Droid Sans Mono 8, FontAwesome 10
 	status_command i3blocks -c ~/.config/i3/blocks
 	colors {
 		background $bg-color

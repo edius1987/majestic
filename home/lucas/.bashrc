@@ -5,11 +5,33 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-if [ -d "$HOME/bin" ] ; then
-    #PATH="$HOME/bin:$PATH"
-	export PATH=$PATH:$HOME/bin
+##################
+#### Opções  #####
+##################
+# Checa o tamanho da janela e redimensiona
+shopt -s checkwinsize
+
+# Muda de diretório sem o cd
+shopt -s autocd
+
+# Adiciona ao histórico
+shopt -s histappend
+
+# After each command, save and reload history
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+##################
+##### ENV ########
+##################
+if [ -d "$HOME/bin/" ] ; then
+	export PATH="$HOME/bin/:$PATH"
 fi
 
+##################
+#### Aliases #####
+##################
+# Cria um arquivo de 1GB
+alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
 alias rm='rm -Iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
@@ -19,19 +41,39 @@ alias e='exit'
 alias s='sudo su'
 alias pacman='sudo pacman'
 alias mkdir='mkdir -pv'
+
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
+alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}'
 
-PS1='[\u@\h \W]\$ '
-
+##################
+##### Sources ####
+##################
 if [ -f /etc/cores.inc ]; then
-        . /etc/cores.inc
+	source /etc/cores.inc
 fi
 
 if [ -f /usr/share/doc/pkgfile/command-not-found.bash ]; then
-        . /usr/share/doc/pkgfile/command-not-found.bash
+	source /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
-if [[ $TERM == xterm-termite ]]; then
-    . /etc/profile.d/vte.sh
-    __vte_prompt_command
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+	source /usr/share/git/completion/git-prompt.sh
 fi
+
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
+if [[ $TERM == xterm-termite ]]; then
+	. /etc/profile.d/vte.sh
+	__vte_prompt_command
+fi
+
+##################
+##### Prompt #####
+##################
+# Sem cor
+# PS1='[\u@\h \W]\$ '
+
+# Com cor
+PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
