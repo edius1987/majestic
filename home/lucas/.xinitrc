@@ -18,7 +18,7 @@ fi
 
 export TERMINAL=termite
 export EDITOR=pluma
-export BROWSER=chromium
+export BROWSER=firefox
 
 # Start a D-Bus session
 #source /etc/X11/xinit/xinitrc.d/30-dbus

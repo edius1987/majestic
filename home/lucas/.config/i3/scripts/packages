@@ -1,0 +1,11 @@
+#!/bin/bash
+
+URGENT_VALUE=10
+PACKAGE_COUNT=$(checkupdates | wc -l)
+
+echo "${PACKAGE_COUNT}" # full-text
+echo "${PACKAGE_COUNT}" # short-text
+echo ""
+if [[ "${PACKAGE_COUNT}" -gt "${URGENT_VALUE}" ]]; then
+  exit 33
+fi

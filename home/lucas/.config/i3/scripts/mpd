@@ -1,0 +1,25 @@
+#!/bin/bash 
+
+#NCMP=$(mpc | grep "^\[playing\]" | awk '{print $1}')
+#NUM_NCMP=$(mpc | head -1 | wc -c )
+#S_NCMP=$(mpc | head -1 | head -c 30)
+
+
+filter() {
+	if [ "$(mpc | grep "^\[playing\]" | awk '{print $1}')" = "[playing]" ];then 
+    	if [ "$(mpc | head -1 | wc -c )" -lt 30 ];then 
+        	echo -e " : $(mpc current) "
+    	else
+        	echo -e " : $(mpc | head -1 | head -c 30)..."
+	    fi
+	else
+    	echo -e " : Pausado "
+	fi
+}
+
+case $BLOCK_BUTTON in
+    3) mpc toggle  | filter ;;  # right click, pause/unpause
+    4) mpc prev    | filter ;;  # scroll up, previous
+    5) mpc next    | filter ;;  # scroll down, next
+    *) mpc current | filter ;;
+esac
