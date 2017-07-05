@@ -13,7 +13,7 @@ extensao="mp4"
 preset="fast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 caminho="${HOME}/video"
 data=$(date +%Y-%m-%d_%H-%M-%S)
-icone="/usr/share/icons/Arc/devices/48@2x/video-display.png"
+icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 arquivo="${caminho}/${nome}-${data}.${extensao}"
 resolucao=$(xrandr | grep '*' | awk 'NR==1{print $1}')
 # alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo.monitor

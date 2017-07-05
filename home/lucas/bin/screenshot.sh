@@ -4,7 +4,7 @@ dir="${HOME}/img/shots/"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"
 extensao=".png"
-icone="/usr/share/icons/Arc/devices/48@2x/video-display.png"
+icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 
 if [ ! -d $dir ]; then
 	mkdir -p $dir
@@ -26,6 +26,6 @@ if [ $(pwd) != $dir ]; then
 	mv $arquivo $dir
 fi
 
-xclip -selection clipboard -t image/png -i $dir$nome
-
 notify-send -i $icone "ScreenShot" "A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
+
+xclip -selection clipboard -t image/png -i $dir$nome

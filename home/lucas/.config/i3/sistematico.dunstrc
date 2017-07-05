@@ -1,5 +1,5 @@
 [global]
-    font = "Monospace 10"
+    font = "Monospace 9"
 	#transparency = 95
     allow_markup = yes
     format = "<b>%s %p</b>\n%b"
@@ -8,7 +8,7 @@
 	show_indicators = false
     # geometry = "x5"
     idle_threshold = 0
-    geometry = "300x5-20+20"
+    geometry = "400x5-20+20"
     alignment = center
     show_age_threshold = 60
     sticky_history = yes
