@@ -1,0 +1,49 @@
+[options]
+#font pango:monospace 8
+font DejaVu Sans Mono 8
+#font = Consolas 10
+
+[colors]
+
+# special
+foreground      = #bac8db
+foreground_bold = #bac8db
+cursor          = #bac8db
+#background		= #0c1117
+#background		= rgba(12, 17, 23, 0.5)
+#background		= rgba(0, 0, 0, 0.5)
+#background		= #1b1b1b
+background		= #000000
+#background      = rgba(27, 27, 27, 0.8)
+
+# black
+color0  = #161c24
+color8  = #9fddd7
+
+# red
+color1  = #1d252e
+color9  = #65b6b0
+
+# green
+color2  = #2c3643
+color10 = #74ca64
+
+# yellow
+color3  = #404e5e
+color11 = #91c2bd
+
+# blue
+color4  = #596b81
+color12 = #90b9e9
+
+# magenta
+color5  = #778eab
+color13 = #90e0d9
+
+# cyan
+color6  = #a3b6d0
+color14 = #dec4e1
+
+# white
+color7  = #dde3ed
+color15 = #91d9d3

@@ -54,6 +54,7 @@ command=date '+%H:%M'
 interval=5
 
 [volume]
+command=~/.config/i3/scripts/volume
 label=
 instance=Master
 interval=once
