@@ -21,7 +21,7 @@ status=0
 URL='http://www.accuweather.com/pt/br/campo-grande/33738/weather-forecast/33738'
 SITE="$(curl -s "$URL")"
 
-weather="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $13 }'| head -1)"
+weather="$(echo "$SITE" | sed -nr '/campo grande/Is/.*text:("[^"]*")[^"]*/\1/p')"
 temp="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }'| head -1)"
 
 if [[ $weather == *thunder* || $weather == *Thunder* ]]; then

@@ -28,4 +28,4 @@ fi
 
 notify-send -i $icone "ScreenShot" "A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 
-xclip -selection clipboard -t image/png -i $dir$nome
+xclip -selection c -t image/png -i $dir$arquivo

@@ -27,6 +27,6 @@ echo "${TRASH_COUNT}"
 echo "${TRASH_COUNT}"
 echo ""
 
-if [[ "${TRASH_COUNT}" -ge "${URGENT_VALUE}" ]]; then
-  exit 33
-fi
+#if [[ "${TRASH_COUNT}" -ge "${URGENT_VALUE}" ]]; then
+#  exit 33
+#fi

@@ -178,6 +178,7 @@ for_window [title="DownThemAll!$"] move window to scratchpad
 for_window [urgent="latest"] focus
 for_window [class="^Galculator"] floating enable
 for_window [class="^Pavucontrol"] floating enable
+for_window [class="^Viewnior"] floating enable
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
@@ -251,7 +252,7 @@ exec --no-startup-id sudo headsetcontrol 32
 #exec --no-startup-id compton -b 
 
 bar {
-	tray_output none	
+	#tray_output none	
 	status_command i3blocks -c ~/.config/i3/blocks
 	colors {
 		background	$fundo-inativo

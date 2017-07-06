@@ -23,7 +23,7 @@
     browser = firefox
 	# Align icons left/right/off
     icon_position = left
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_folders = /usr/share/icons/gnome/24x24/status/:/usr/share/icons/gnome/24x24/devices/
 
 [frame]
     width = 3

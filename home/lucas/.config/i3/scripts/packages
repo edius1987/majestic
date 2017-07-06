@@ -13,7 +13,8 @@ if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
 		notify-send "Aviso" "Nenhum pacote para atualizar!"
 	fi
 # Right click
-#elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+	pamac-manager
 fi
 
 echo "${PACKAGE_COUNT}" # full-text

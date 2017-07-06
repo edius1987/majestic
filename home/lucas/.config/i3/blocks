@@ -22,6 +22,7 @@ command=~/.config/i3/scripts/mem -m
 interval=10
 
 [disk]
+command=~/.config/i3/scripts/disk
 label=
 interval=30
 
