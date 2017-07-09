@@ -36,13 +36,16 @@ alias rm='rm -Iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias ls='ls --color=auto --group-directories-first'
+alias copiar='xclip -sel clip <'
 
 alias e='exit'
 #alias s='sudo su'
 alias pacman='sudo pacman'
 alias mkdir='mkdir -pv'
 
+alias neofetch='neofetch --config ~/.neofetch.conf'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
+alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias fullsync='rsync -aAXvz --exclude={"*.mp3","*.MP3","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}'
 
 ##################

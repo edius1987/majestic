@@ -252,8 +252,8 @@ exec --no-startup-id sudo headsetcontrol 32
 #exec --no-startup-id compton -b 
 
 bar {
-	#tray_output none	
-	status_command i3blocks -c ~/.config/i3/blocks
+	tray_output none	
+	status_command i3blocks -v -c ~/.config/i3/blocks
 	colors {
 		background	$fundo-inativo
 		separator	$separador

@@ -37,4 +37,9 @@ export OOO_FORCE_DESKTOP=gnome
 eval $(dbus-launch --sh-syntax)
 export XDG_CURRENT_DESKTOP=GNOME
 
-exec i3
+session=${1:-i3}
+
+case $session in
+  i3|i3wm           ) exec i3;;
+  *                 ) exec $1;;
+esac

@@ -8,6 +8,12 @@ interval=5
 command=~/.config/i3/scripts/mpd
 interval=5
 
+[network]
+label=
+command=~/.config/i3/scripts/network
+signal=eth0
+interval=once
+
 [load_average]
 label=
 interval=10
@@ -43,6 +49,11 @@ interval=600
 command=~/.config/i3/scripts/trash
 label=
 interval=10
+
+[uptime]
+command=~/.config/i3/scripts/uptime
+label=
+interval=60
 
 [date]
 label=
