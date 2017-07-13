@@ -36,10 +36,11 @@ alias rm='rm -Iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias ls='ls --color=auto --group-directories-first'
+alias els='els --els-icons=fontawesome'
 alias copiar='xclip -sel clip <'
 
 alias e='exit'
-#alias s='sudo su'
+alias s='sudo su'
 alias pacman='sudo pacman'
 alias mkdir='mkdir -pv'
 
@@ -80,3 +81,7 @@ fi
 
 # Com cor
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+
+echo
+fortune vimtips
+echo

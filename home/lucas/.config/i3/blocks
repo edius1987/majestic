@@ -2,17 +2,11 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 
 [focus]
 command=~/.config/i3/scripts/focus
-interval=5
+interval=2
 
 [mpd]
 command=~/.config/i3/scripts/mpd
 interval=5
-
-[network]
-label=
-command=~/.config/i3/scripts/network
-signal=eth0
-interval=once
 
 [load_average]
 label=
@@ -69,8 +63,23 @@ interval=5
 command=~/.config/i3/scripts/volume
 label=
 instance=Master
-interval=once
+interval=5
 signal=10
+
+#[netled]
+#command=sleep 0.1; ~/.config/i3/scripts/netled
+#markup=pango
+#interval=repeat
+
+#[leds]
+#command=~/.config/i3/scripts/leds
+#instance=num
+#interval=1
+
+#[note]
+#label=
+#command=~/.config/i3/scripts/pad
+#interval=once
 
 #[keyindicator]
 #instance=CAPS

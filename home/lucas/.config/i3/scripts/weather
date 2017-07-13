@@ -27,7 +27,7 @@ temp="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }
 if [[ $weather == *thunder* || $weather == *Thunder* ]]; then
     icon=""
 else
-    if [[ $weather == *rain* || $weather == *Rain* ]]; then
+    if [[ $weather == *nublado* || $weather == *Nublado* ]]; then
         icon=""
     else
         if [[ $weather == *snow* || $weather == *Snow* ]]; then

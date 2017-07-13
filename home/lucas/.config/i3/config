@@ -1,5 +1,7 @@
 set $mod Mod4
-font xft:Droid Sans Mono 9, FontAwesome 9
+
+font xft:DejaVu Sans Mono 9
+#font FontAwesome 9, Droid Sans Mono 9
 
 gaps inner 10
 gaps outer 0
@@ -8,33 +10,6 @@ gaps outer 0
 #new_window none
 new_window pixel 2
 
-#        background #222222
-#        statusline #477AB3 #that neon blue
-#        separator #666666
-							# borda fundo texto
-#        focused_workspace  #477AB3 #477ab3 #ffffff
-#        active_workspace   #477AB3 #477AB3 #ffffff
-#        inactive_workspace #222222 #222222 #888888
-#urgent_workspace #2f343a #900000 #ffffff
-
-
-#set $fundo					#2f343f
-#set $fundo-inativo			#2f343f
-#set $texto					#f3f4f5
-#set $texto-inativo	#676E7D
-#set $fundo-urgente			#E53935
-#set $indicador				#00ff00
-
-#set $fundo					#cfcfcf
-#set $fundo-inativo			#1b1b1b
-#set $texto					#f3f4f5
-#set $texto-inativo			#f3f4f5
-#set $texto-inativo	#676E7D
-#set $fundo-urgente			#E53935
-#set $indicador				#00ff00
-#set $separador				#757575
-
-#set $fundo                 #477ab3
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
 set $texto                  #ffffff
@@ -43,12 +18,6 @@ set $fundo-urgente          #900000
 set $indicador              #00ff00
 set $separador              #666666
 set $borda					#5b6365
-
-# classe				borda				fundo			texto					indicador				borda_filha
-#client.focused			$fundo-inativo		$fundo-inativo	$texto					$fundo-inativo
-#client.unfocused		$fundo-inativo		$fundo-inativo	$texto-inativo	$fundo-inativo
-#client.focused_inactive $fundo-inativo		$fundo-inativo	$texto-inativo	$fundo-inativo
-#client.urgent			$fundo-inativo		$fundo-inativo	$fundo-urgente			$fundo-inativo
 
 # classe                borda               fundo           texto                   indicador               borda_filha
 client.focused          $borda				$fundo-inativo  $texto                  $borda					$borda
@@ -71,11 +40,14 @@ bindsym F9 exec telegram
 bindsym F11 exec ~/bin/screencast.sh
 bindsym F12 exec ~/bin/screencast.sh -s
 
-bindsym $mod+Shift+e exec "i3-nagbar -t error -m 'O que deseja fazer?' \
--b 'Sair' 'i3-msg exit' \
--b 'Suspender' 'systemctl suspend' \
--b 'Reiniciar' 'systemctl reboot' \
--b 'Desligar' 'systemctl poweroff'"
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 1%+ unmute 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 1%- unmute 
+
+#bindsym $mod+Shift+e exec "i3-nagbar -t error -m 'O que deseja fazer?' \
+#-b 'Sair' 'i3-msg exit' \
+#-b 'Suspender' 'systemctl suspend' \
+#-b 'Reiniciar' 'systemctl reboot' \
+#-b 'Desligar' 'systemctl poweroff'"
 
 bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 -b 'config' 'i3-sensible-editor ~/.config/i3/config' \
@@ -91,6 +63,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+Shift+t exec thunar
 bindsym $mod+Shift+w exec firefox
 bindsym $mod+Shift+m exec thunderbird
+bindsym $mod+Shift+i exec ristretto
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -172,13 +145,13 @@ for_window [title="Biblioteca"] floating enable
 for_window [class="^mpv"] floating enable
 for_window [class="^Engrampa"] floating enable
 for_window [class="Tilda"] floating enable; border 1pixel
-#for_window [con_id="1c00417"] move scratchpad
 for_window [title="^DownThemAll"] floating enable
 for_window [title="DownThemAll!$"] move window to scratchpad
 for_window [urgent="latest"] focus
 for_window [class="^Galculator"] floating enable
 for_window [class="^Pavucontrol"] floating enable
 for_window [class="^Viewnior"] floating enable
+for_window [class="^Agave"] floating enable
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
@@ -207,6 +180,17 @@ mode "apps" {
 	bindsym Escape mode "default"
 }
 bindsym $mod+Shift+a mode "apps"
+
+mode "[s]air, [d]esligar, [r]einiciar, s[u]spender" {
+	bindsym s i3-msg exit
+	bindsym u exec systemctl suspend
+	bindsym r exec systemctl reboot
+	bindsym d exec systemctl poweroff
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "[s]air, [d]esligar, [r]einiciar, s[u]spender"
 
 mode "resize" {
 	bindsym j resize shrink width 10 px or 10 ppt
@@ -252,6 +236,7 @@ exec --no-startup-id sudo headsetcontrol 32
 #exec --no-startup-id compton -b 
 
 bar {
+	font xft:FontAwesome 9
 	tray_output none	
 	status_command i3blocks -v -c ~/.config/i3/blocks
 	colors {

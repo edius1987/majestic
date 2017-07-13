@@ -1,9 +1,14 @@
 [options]
+#font = pango:FontAwesome 10
+font = DejaVu Sans Mono 10
+#font = Ionicons 10
+#font = Droid Sans Mono 8
+#font = Inconsolata 9
+use_xft = true
 #allow_bold = true
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = Monospace 9
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
