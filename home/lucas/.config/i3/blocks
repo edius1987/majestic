@@ -1,8 +1,8 @@
 command=/usr/lib/i3blocks/$BLOCK_NAME
 
-[focus]
-command=~/.config/i3/scripts/focus
-interval=2
+#[focus]
+#command=~/.config/i3/scripts/focus
+#interval=2
 
 [mpd]
 command=~/.config/i3/scripts/mpd

@@ -11,7 +11,8 @@ SAVEHIST=5000
 # Default
 #WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 
-WORDCHARS=$WORDCHARS:s:/:
+WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
+#WORDCHARS=$WORDCHARS:s:/:
 #WORDCHARS=${WORDCHARS/\/}
 #WORDCHARS=${WORDCHARS//[\/]}
 
@@ -53,6 +54,7 @@ alias autogit="git add . && git commit -m 'Alterações automáticas...' && git 
 alias g930='sudo G930Sidetone'
 alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
+alias fullsync='rsync -aAXvz --exclude={"*.mp3","*.MP3","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}'
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/git/completion/git-prompt.sh
