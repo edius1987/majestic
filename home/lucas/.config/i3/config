@@ -27,12 +27,13 @@ client.urgent           $borda				$fundo-inativo  $fundo-urgente          $fundo
 
 floating_modifier $mod
 
-bindsym $mod+Shift+x exec i3lock -i ~/img/lock.png
+#bindsym $mod+Shift+x exec i3lock -i ~/img/lock.png
+bindsym $mod+Shift+x exec i3lock-fancy -f Iosevka-Thin -t "Tela Bloqueada" -p -- scrot -z
 
 bindsym Print exec ~/bin/screenshot.sh
 
 #bindsym F5 exec i3-sensible-terminal
-bindsym F5 exec app.live termite ~/.config/termite.cfg
+bindsym F5 exec termite
 bindsym F6 exec thunar
 bindsym F7 exec pluma
 bindsym F8 exec firefox

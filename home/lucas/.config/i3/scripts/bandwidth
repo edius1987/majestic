@@ -67,19 +67,19 @@ if [[ "${PREV_IN}" != "" ]] && [[ "${PREV_OUT}" != "" ]]; then
   USAGE_OUT=$(FormatNumber "${DIFF_OUT}")
 
   if [[ "${DISPLAY}" = "both" ]]; then
-    echo "${USAGE_IN} : ${USAGE_OUT}"
-    echo "${USAGE_IN} : ${USAGE_OUT}"
+    echo "in ${USAGE_IN} / out ${USAGE_OUT}"
+    echo "in ${USAGE_IN} / out ${USAGE_OUT}"
     echo ""
     DIFF_TOTAL=$((DIFF_TOTAL+DIFF_IN))
     DIFF_TOTAL=$((DIFF_TOTAL+DIFF_OUT))
   elif [[ "${DISPLAY}" = "in" ]]; then
-    echo "${USAGE_IN}"
-    echo "${USAGE_IN}"
+    echo "in ${USAGE_IN}"
+    echo "in ${USAGE_IN}"
     echo ""
     DIFF_TOTAL=$((DIFF_TOTAL+DIFF_IN))
   elif [[ "${DISPLAY}" = "out" ]]; then
-    echo "${USAGE_OUT}"
-    echo "${USAGE_OUT}"
+    echo "out ${USAGE_OUT}"
+    echo "out ${USAGE_OUT}"
     echo ""
     DIFF_TOTAL=$((DIFF_TOTAL+DIFF_OUT))
   fi
@@ -93,6 +93,8 @@ fi
 echo "${BYTES_IN}" > "${PREV_FILE}"
 echo "${BYTES_OUT}" >> "${PREV_FILE}"
 
-if [[ "${DIFF_TOTAL}" -ge "${URGENT_VALUE}" ]]; then
-  exit 33
-fi
+#if [[ "${DIFF_TOTAL}" -ge "${URGENT_VALUE}" ]]; then
+#  exit 33
+#fi
+
+exit 0

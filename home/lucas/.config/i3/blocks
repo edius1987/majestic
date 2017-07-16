@@ -26,6 +26,11 @@ command=~/.config/i3/scripts/disk
 label=
 interval=30
 
+#[bandwidth]
+#command=~/.config/i3/scripts/bandwidth
+#label=
+#interval=1
+
 [temperature]
 label=
 interval=10

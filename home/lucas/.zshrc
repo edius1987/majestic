@@ -8,8 +8,14 @@ zstyle :compinstall filename '/home/lucas/.zshrc'
 HISTFILE=~/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
+# Default
+#WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 
-setopt appendhistory autocd extendedglob notify autocd nohashdirs no_auto_remove_slash
+WORDCHARS=$WORDCHARS:s:/:
+#WORDCHARS=${WORDCHARS/\/}
+#WORDCHARS=${WORDCHARS//[\/]}
+
+setopt appendhistory extendedglob notify autocd nohashdirs no_auto_remove_slash
 
 bindkey -e
 bindkey "^[[1;5C"	forward-word
