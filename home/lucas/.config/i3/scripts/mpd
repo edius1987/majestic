@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #NCMP=$(mpc | grep "^\[playing\]" | awk '{print $1}')
 #NUM_NCMP=$(mpc | head -1 | wc -c )
@@ -8,12 +8,12 @@
 filter() {
 	if [ "$(mpc | grep "^\[playing\]" | awk '{print $1}')" = "[playing]" ];then
     	if [ "$(mpc | head -1 | wc -c )" -lt 30 ];then
-        	echo -e " : $(mpc current) "
+        	echo -e "$(mpc current)"
     	else
-        	echo -e " : $(mpc | head -1 | head -c 30)..."
+        	echo -e "$(mpc | head -1 | head -c 30)..."
 	    fi
 	else
-    	echo -e " : Pausado "
+    	echo -e "Pausado "
 	fi
 }
 

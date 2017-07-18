@@ -1,10 +1,22 @@
 command=/usr/lib/i3blocks/$BLOCK_NAME
 
 #[focus]
+#label=
 #command=~/.config/i3/scripts/focus
-#interval=2
+#interval=5
+
+#[focus]
+#label= 
+#command=xtitle -s | iconv -c
+#interval=5
+
+#[focus]
+#label= 
+#command=xdotool getactivewindow getwindowname 2>/dev/null | head -c 35 || echo "None"
+#interval=5
 
 [mpd]
+label=
 command=~/.config/i3/scripts/mpd
 interval=5
 

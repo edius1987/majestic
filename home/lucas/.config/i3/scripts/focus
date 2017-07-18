@@ -1,22 +1,31 @@
 #!/bin/bash
 
-focus=$(xdotool getactivewindow getwindowname | iconv -c)
-focus_Number=$(xdotool getactivewindow getwindowname | wc -c)
-Focus_N=$(xdotool getactivewindow getwindowname | head -c 40 )
-
-if [ "$focus" = "" ];then
-   	echo -e " : Arch Linux "
-else
-   	if [ "$focus_Number" -gt "40" ];then
-		echo -e " : $Focus_N ..."
-   	else
-       	echo -e " : $focus"
-   	fi
-fi
+titulo=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Arch Linux")
+tamanho=$(xdotool getactivewindow getwindowname 2>/dev/null | wc -c)
+max=35
+truncado=$(echo $titulo | head -c $max)
 
 if [[ $BLOCK_BUTTON -eq 1 ]]; then
-   	echo -e "$focus" | xclip -rmlastnl -selection c
-	#echo -e "$focus"
+    xdotool getactivewindow getwindowname 2>/dev/null | xclip -rmlastnl -selection c
 fi
 
-exit 0
+if [ "$tamanho" -gt "$max" ];then
+	echo "$truncado ..."
+	echo "$truncado ..."
+	echo ""
+else
+	echo "$titulo"
+	echo "$titulo"
+	echo ""
+fi
+
+#case $BLOCK_BUTTON in
+#    1) echo -ne "$titulo" | xclip -selection c ;;
+#    3) echo -ne "$titulo" | xclip -selection c ;;
+#    *) echo -ne "$titulo" | xclip -selection c ;;
+#esac
+
+#echo -e $saida
+#echo -e $saida
+
+#exit 0
