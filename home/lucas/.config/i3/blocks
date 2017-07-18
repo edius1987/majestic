@@ -1,9 +1,9 @@
 command=/usr/lib/i3blocks/$BLOCK_NAME
 
-#[focus]
-#label=
-#command=~/.config/i3/scripts/focus
-#interval=5
+[focus]
+label=
+command=~/.config/i3/scripts/focus
+interval=5
 
 #[focus]
 #label= 

@@ -3,7 +3,8 @@
 titulo=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Arch Linux")
 tamanho=$(xdotool getactivewindow getwindowname 2>/dev/null | wc -c)
 max=35
-truncado=$(echo $titulo | head -c $max)
+#truncado=$(echo $titulo | head -c $max)
+truncado=$(echo $titulo | /usr/local/bin/strcut.py)
 
 if [[ $BLOCK_BUTTON -eq 1 ]]; then
     xdotool getactivewindow getwindowname 2>/dev/null | xclip -rmlastnl -selection c
