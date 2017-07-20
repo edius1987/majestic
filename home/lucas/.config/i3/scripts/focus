@@ -11,8 +11,8 @@ if [[ $BLOCK_BUTTON -eq 1 ]]; then
 fi
 
 if [ "$tamanho" -gt "$max" ];then
-	echo "$truncado ..."
-	echo "$truncado ..."
+	echo "$truncado"
+	echo "$truncado"
 	echo ""
 else
 	echo "$titulo"

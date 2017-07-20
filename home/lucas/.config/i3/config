@@ -237,7 +237,7 @@ exec_always --no-startup-id hsetroot -solid "#1b1b1b"
 exec --no-startup-id numlockx
 exec --no-startup-id dunst -config ~/.config/i3/dunstrc
 exec --no-startup-id parcellite
-exec --no-startup-id deluge
+#exec --no-startup-id deluge
 #exec --no-startup-id pamac-tray
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id compton -b 
