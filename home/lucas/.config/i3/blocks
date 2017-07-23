@@ -1,5 +1,28 @@
 command=/usr/lib/i3blocks/$BLOCK_NAME
 
+#[chromium]
+#command=bash -c 'echo chromium; if [ -n "$BLOCK_BUTTON" ]; then chromium > /dev/null; fi'
+#command=bash -c 'echo www; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec chromium &> /dev/null; fi'
+#interval=once
+#label=
+
+[firefox]
+full_text=
+command=bash -c 'if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec firefox &> /dev/null; fi'
+interval=once
+separator=false
+
+[terminal]
+full_text=
+command=bash -c 'if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec termite &> /dev/null; fi'
+interval=once
+separator=false
+
+[fm]
+full_text=
+command=bash -c 'if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunar &> /dev/null; fi'
+interval=once 
+
 [focus]
 label=
 command=~/.config/i3/scripts/focus
@@ -114,3 +137,8 @@ signal=10
 #instance=NUM
 #interval=once
 #signal=11
+
+[shutdown]
+full_text= 
+command=~/.config/i3/scripts/shutdown -c
+interval=once

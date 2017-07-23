@@ -44,7 +44,7 @@ bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-bac
 bindsym $mod+Control+d exec rofi -show keys
 
 #bindsym $mod+Shift+x exec i3lock -i ~/img/lock.png
-bindsym $mod+Shift+x exec i3lock-fancy -f Iosevka-Thin -t "Tela Bloqueada" -p -- scrot -z
+bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
 
 bindsym Print exec ~/bin/screenshot.sh
 bindsym --release $mod+Print exec scrot -s | xargs -a xclip -selection c -t image/png -i
