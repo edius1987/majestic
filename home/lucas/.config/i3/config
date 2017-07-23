@@ -260,6 +260,7 @@ exec --no-startup-id parcellite
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id compton -b 
 exec --no-startup-id /usr/local/bin/xautolock.sh
+exec --no-startup-id /usr/lib/vino/vino-server
 
 bar {
 	font xft:FontAwesome 9

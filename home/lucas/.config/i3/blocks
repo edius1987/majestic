@@ -142,4 +142,4 @@ interval=1
 [shutdown]
 full_text= 
 command=~/.config/i3/scripts/shutdown -c
-interval=once
+#interval=once
