@@ -5,7 +5,16 @@
 # Make sure that the script will "exit 0" on success or any other
 # value on error.
 
-rm -f /usr/share/backgrounds/default
-ln -s $(find /usr/share/backgrounds/ | shuf -n1) /usr/share/backgrounds/default
+#rm -f /usr/share/backgrounds/default
+#ln -s $(find /usr/share/backgrounds/ | shuf -n1) /usr/share/backgrounds/default
+
+if [ -f "/usr/share/xsessions/i3-with-shmlog.desktop" ]; then
+    if [ ! -d "/usr/share/xsessions-disabled/" ]; then
+        mkdir -p /usr/share/xsessions-disabled/
+    fi
+    mv /usr/share/xsessions/i3-with-shmlog.desktop /usr/share/xsessions-disabled/
+fi
+
+/usr/local/sbin/wireless.sh
 
 exit 0
