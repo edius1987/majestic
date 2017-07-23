@@ -2,7 +2,8 @@
 Description=Lock the screen automatically after a timeout
 
 [Service]
-Type=simple
+Type=forking
+#Type=simple
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/xautolock -time 5 -locker 'i3lock-fancy -f Iosevka-Thin -t "Tela Bloqueada" -p -- scrot -z' -detectsleep
 

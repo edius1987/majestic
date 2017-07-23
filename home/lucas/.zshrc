@@ -55,10 +55,11 @@ alias g930='sudo G930Sidetone'
 alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias fullsync='rsync -aAXvz --exclude={"*.mp3","*.MP3","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}'
+alias neofetch="neofetch --config ${HOME}/.neofetch.conf"
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/git/completion/git-prompt.sh
 
 PS1="[%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~%{$reset_color%}]:%% "
 
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+#. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh

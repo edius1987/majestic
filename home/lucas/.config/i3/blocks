@@ -4,6 +4,7 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 label=
 command=~/.config/i3/scripts/focus
 interval=5
+#interval=persist
 
 #[focus]
 #label= 
@@ -34,14 +35,19 @@ command=~/.config/i3/scripts/mem -m
 interval=10
 
 [disk]
-command=~/.config/i3/scripts/disk
 label=
+command=~/.config/i3/scripts/disk
 interval=30
 
-#[bandwidth]
-#command=~/.config/i3/scripts/bandwidth
-#label=
-#interval=1
+[wifi]
+label=
+command=~/.config/i3/scripts/wifi
+interval=10
+
+[bandwidth]
+command=~/.config/i3/scripts/bandwidth
+label=
+interval=1
 
 [temperature]
 label=
