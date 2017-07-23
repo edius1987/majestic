@@ -16,7 +16,7 @@ if [ "$1" == "-a" ]; then
 elif [ "$1" == "-w" ]; then
 	arquivo="${nome}-window${extensao}"
 	scrot -u -m ${arquivo}
-elif [ "$1" == "-w" ]; then
+elif [ "$1" == "-s" ]; then
     arquivo="${nome}-rec${extensao}"
     scrot -s ${arquivo}
 else

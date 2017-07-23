@@ -1,7 +1,6 @@
 set $mod Mod4
 
 font xft:DejaVu Sans Mono 9
-#font FontAwesome 9, Droid Sans Mono 9
 
 gaps inner 10
 gaps outer 0
@@ -43,11 +42,10 @@ bindsym $mod+d exec rofi -show run -fullscreen -fake-transparency -fake-backgrou
 bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
 bindsym $mod+Control+d exec rofi -show keys
 
-#bindsym $mod+Shift+x exec i3lock -i ~/img/lock.png
 bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
 
-bindsym Print exec ~/bin/screenshot.sh
-bindsym --release $mod+Print exec scrot -s | xargs -a xclip -selection c -t image/png -i
+bindsym Print exec --no-startup-id ~/bin/screenshot.sh
+bindsym --release Mod1+Sys_Req exec ~/bin/screenshot.sh -s
 
 #bindsym F5 exec i3-sensible-terminal
 bindsym F5 exec termite
