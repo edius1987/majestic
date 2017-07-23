@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $(pgrep xautolock) ]]; then
+	echo ""
+	echo ""
+	echo "#60da11"
+	if [[ $BLOCK_BUTTON -eq 1 ]]; then
+		pkill -9 xautolock
+	fi
+else
+	echo ""
+	echo ""
+	echo ""
+	if [[ $BLOCK_BUTTON -eq 1 ]]; then
+		/usr/bin/xautolock -time 3 -locker 'i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z' -detect &
+	fi
+fi
