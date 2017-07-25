@@ -1,0 +1,15 @@
+#!/bin/bash
+
+WALL="${HOME}/img/wallpapers/porn"
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+	/usr/bin/feh --no-fehbg --bg-fill --randomize ${WALL}/*
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+	feh --no-fehbg --bg-fill --randomize ${WALL}/*
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+	hsetroot -solid "#1b1b1b" &
+fi
+
+echo ""
+echo ""
+echo ""

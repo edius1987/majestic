@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ "${BLOCK_INSTANCE}" = "firefox" ]]; then
+	if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+		exec firefox
+	fi
+elif [[ "${BLOCK_INSTANCE}" = "thunar" ]]; then
+	if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+		exec thunar
+	fi
+elif [[ "${BLOCK_INSTANCE}" = "termite" ]]; then
+	if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+		exec termite
+	fi
+fi
+

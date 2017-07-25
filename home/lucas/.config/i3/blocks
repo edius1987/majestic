@@ -8,36 +8,22 @@ command=~/.config/i3/scripts/$BLOCK_NAME
 #label=
 
 [firefox]
-full_text=
-command=bash -c 'if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec firefox &> /dev/null; fi'
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec firefox &> /dev/null; fi'
 interval=once
 separator=false
 
-[terminal]
-full_text=
-command=bash -c 'if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec termite &> /dev/null; fi'
+[termite]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec termite &> /dev/null; fi'
 interval=once
 separator=false
 
-[fm]
-full_text=
-command=bash -c 'if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunar &> /dev/null; fi'
-interval=once 
+[thunar]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunar &> /dev/null; fi'
+interval=once
 
 [focus]
 label=
 interval=5
-#interval=persist
-
-#[focus]
-#label= 
-#command=xtitle -s | iconv -c
-#interval=5
-
-#[focus]
-#label= 
-#command=xdotool getactivewindow getwindowname 2>/dev/null | head -c 35 || echo "None"
-#interval=5
 
 [mpd]
 label=
@@ -110,36 +96,23 @@ signal=10
 #command=~/.config/i3/scripts/pad
 #interval=once
 
+[wallpaper]
+interval=once
+
 [blank]
 interval=5
 
 [firewall]
 interval=10
 
-#[keyindicator]
-#instance=CAPS
-#interval=once
-#signal=11
-
-#[keyindicator]
-#label=
-#instance=NUM
-#interval=once
-#signal=11
-
 [keystate]
-#label=
-command=~/.config/i3/scripts/keystate
 instance=caps
 interval=1
 
 [keystate]
-#label=
-command=~/.config/i3/scripts/keystate
 instance=num
 interval=1
 
 [shutdown]
 full_text= 
 command=~/.config/i3/scripts/shutdown -c
-#interval=once

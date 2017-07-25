@@ -203,7 +203,8 @@ mode "apps" {
 }
 bindsym $mod+Shift+a mode "apps"
 
-mode "[s]air, [d]esligar, [r]einiciar, s[u]spender" {
+mode "[t]ravar, [s]air, [d]esligar, [r]einiciar, s[u]spender" {
+	bindsym t exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
 	bindsym s exec i3-msg exit
 	bindsym u exec systemctl suspend
 	bindsym r exec systemctl reboot
@@ -212,7 +213,7 @@ mode "[s]air, [d]esligar, [r]einiciar, s[u]spender" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode "[s]air, [d]esligar, [r]einiciar, s[u]spender"
+bindsym $mod+Shift+e mode "[t]ravar, [s]air, [d]esligar, [r]einiciar, s[u]spender"
 
 mode "resize" {
 	bindsym j resize shrink width 10 px or 10 ppt
@@ -256,7 +257,7 @@ exec --no-startup-id parcellite
 #exec --no-startup-id deluge
 #exec --no-startup-id pamac-tray
 exec --no-startup-id sudo headsetcontrol 64
-exec --no-startup-id compton -b 
+exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id /usr/local/bin/xautolock.sh
 exec --no-startup-id /usr/lib/vino/vino-server
 
