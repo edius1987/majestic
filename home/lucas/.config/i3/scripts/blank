@@ -1,9 +1,11 @@
 #!/bin/bash
 
+. ~/.config/i3/cores.conf
+
 if [[ $(pgrep xautolock) ]]; then
 	echo ""
 	echo ""
-	echo "#60da11"
+	echo $ativo
 	if [[ $BLOCK_BUTTON -eq 1 ]]; then
 		pkill -9 xautolock
 	fi

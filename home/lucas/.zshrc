@@ -36,7 +36,7 @@ fi
 
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
 alias cp='cp -iv'
-alias rm='rm -Iv'
+alias rm='rm -iv'
 alias mv='mv -iv' 
 alias ls='ls --color=auto --group-directories-first'
 alias e='exit'

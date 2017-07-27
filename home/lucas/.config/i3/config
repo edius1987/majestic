@@ -12,7 +12,9 @@ new_window pixel 2
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
 set $texto                  #ffffff
+set $texto-ativo            #3465a4
 set $texto-inativo          #888888
+set $texto-urgente          #cc5252
 set $fundo-urgente          #900000
 set $indicador              #00ff00
 set $separador              #666666
@@ -22,7 +24,8 @@ set $borda					#5b6365
 client.focused          $borda				$fundo-inativo  $texto                  $borda					$borda
 client.unfocused        $borda				$fundo-inativo  $texto-inativo			$fundo-inativo			$borda
 client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$fundo-inativo			$borda
-client.urgent           $borda				$fundo-inativo  $fundo-urgente          $fundo-inativo			$borda
+#client.urgent           $borda				$fundo-inativo  $fundo-urgente          $fundo-inativo			$borda
+client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
 
 floating_modifier $mod
 
@@ -52,7 +55,7 @@ bindsym F5 exec termite
 bindsym F6 exec thunar
 bindsym F7 exec pluma
 bindsym F8 exec firefox
-bindsym F9 exec telegram-desktop
+bindsym F9 exec telegram
 bindsym F11 exec ~/bin/screencast.sh
 bindsym F12 exec ~/bin/screencast.sh -s
 
@@ -156,6 +159,7 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+for_window [class="^etcher-electron"] floating enable
 for_window [class="^Skype"] floating enable
 for_window [title="^Governo do Estado de Mato Grosso do Sul"] floating enable
 for_window [title="^Mail do iCloud - Enc"] floating enable
@@ -196,7 +200,7 @@ mode "apps" {
 	bindsym m exec --no-startup-id thunderbird
 	bindsym p exec --no-startup-id pluma
 	bindsym t exec --no-startup-id thunar
-	bindsym g exec --no-startup-id telegram-desktop
+	bindsym g exec --no-startup-id telegram
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -207,8 +211,8 @@ mode "[t]ravar, [s]air, [d]esligar, [r]einiciar, s[u]spender" {
 	bindsym t exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
 	bindsym s exec i3-msg exit
 	bindsym u exec systemctl suspend
-	bindsym r exec systemctl reboot
-	bindsym d exec systemctl poweroff
+	bindsym r exec systemct reboot
+	bindsym d exec systemctl poweroff 
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -270,8 +274,8 @@ bar {
 		background	$fundo-inativo
 		separator	$separador
 		#					borda			fundo			texto
-		focused_workspace	$borda			$fundo			$texto
+		focused_workspace	$fundo-inativo	$fundo-inativo	$texto-ativo
 		inactive_workspace	$fundo-inativo	$fundo-inativo	$texto-inativo
-		urgent_workspace	$fundo-urgente	$fundo-urgente	$texto
+		urgent_workspace	$fundo-inativo	$fundo-inativo	$texto-urgente
     }
 }
