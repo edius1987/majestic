@@ -10,41 +10,38 @@
 # @return {Number(degrees Fahrenheit)}: Current temperature in Cincinnati
 ################################
 
-dir=$(dirname $0)
-source $dir/util.sh
-
-full=""
-short=""
+full="Recebendo..."
+short="Recebendo..."
 status=0
 
-#URL='http://www.accuweather.com/en/us/cincinnati-oh/45212/weather-forecast/350126'
-URL='http://www.accuweather.com/pt/br/campo-grande/33738/weather-forecast/33738'
-SITE="$(curl -s "$URL")"
+aeroporto="${BLOCK_INSTANCE:-sbcg}"
 
-weather="$(echo "$SITE" | sed -nr '/campo grande/Is/.*text:("[^"]*")[^"]*/\1/p')"
-temp="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }'| head -1)"
-vento=$(echo "${SITE}" | grep "id33738" | cut -d "\"" -f 18)
+hora="$(date +'%H')"
+temperatura="$(weather-report -q -m $aeroporto | grep Temp | awk -F: '{print $2}')"
+vento="$(weather-report -q -m $aeroporto | grep Wind | awk -F' ' '{print $4}')"
+velocidade="$(weather-report -q -m $aeroporto | grep Wind | awk -F' ' '{print $8}')"
+humidade="$(weather-report -q -m $aeroporto | grep Humid | awk -F' ' '{print $3}')"
 
-if [[ $weather == *thunder* || $weather == *Thunder* ]]; then
+if [[ ${humidade::2} -gt 80 ]]; then
     icon=""
 else
-    if [[ $weather == *nublado* || $weather == *Nublado* ]]; then
+    if [[ ${humidade::2} -gt 70 ]]; then
         icon=""
     else
-        if [[ $weather == *snow* || $weather == *Snow* ]]; then
-                icon="❄"
+    	if [[ ${humidade::2} -gt 60 ]]; then
+        	icon=""
         else
-            if [[ $weather == *cloud* || $weather == *Cloud* ]]; then
-                icon=""
-            else
-                icon=""
-            fi
+			if [[ $hora -ge 06 && $hora -le 18 ]]; then
+            	icon=""
+			else
+            	icon=""
+			fi
         fi
     fi
 fi
 
-full="$icon $temp° / $vento"
-short="$temp° / $vento"
+full="$icon $temperatura° / $vento - $velocidade KM/h"
+short="$temperatura° / $vento - $velocidade KM/h"
 
 echo $full
 echo $short

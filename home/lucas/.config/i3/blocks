@@ -25,6 +25,11 @@ separator=false
 [lxtask]
 command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec lxtask &> /dev/null; fi'
 interval=once
+separator=false
+
+[telegram]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec ~/.local/share/TelegramDesktop/Telegram &> /dev/null; fi'
+interval=once
 
 [focus]
 label=
@@ -67,6 +72,7 @@ interval=10
 
 [weather]
 interval=300
+instance=sbcg
 
 [packages]
 label=

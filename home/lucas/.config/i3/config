@@ -55,7 +55,7 @@ bindsym F5 exec termite
 bindsym F6 exec thunar
 bindsym F7 exec pluma
 bindsym F8 exec firefox
-bindsym F9 exec telegram
+bindsym F9 exec ~/.local/share/TelegramDesktop/Telegram
 bindsym F11 exec ~/bin/screencast.sh
 bindsym F12 exec ~/bin/screencast.sh -s
 
@@ -200,7 +200,7 @@ mode "apps" {
 	bindsym m exec --no-startup-id thunderbird
 	bindsym p exec --no-startup-id pluma
 	bindsym t exec --no-startup-id thunar
-	bindsym g exec --no-startup-id telegram
+	bindsym g exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
