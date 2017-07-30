@@ -47,10 +47,11 @@ cursor_shape = block
 
 #foreground = #dcdccc
 #foreground_bold = #ffffff
-background = #1b1b1b
+#background = #1b1b1b
 
 # 20% background transparency (requires a compositor)
 #background = rgba(63, 63, 63, 0.8)
+background = rgba(27, 27, 27, 0.8)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
