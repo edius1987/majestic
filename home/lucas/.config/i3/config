@@ -42,6 +42,7 @@ floating_modifier $mod
 #		 -kb-row-select "Tab" -kb-row-tab ""
 #bindsym $mod+d exec rofi -show combi -modi combi -combi-modi run,fm:fm.sh
 bindsym $mod+d exec rofi -show run -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
+bindsym $mod+Shift+f exec rofi -show find -modi find:~/.config/rofi/scripts/finder.sh
 bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
 bindsym $mod+Control+d exec rofi -show keys
 

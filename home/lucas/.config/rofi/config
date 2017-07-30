@@ -16,6 +16,7 @@ rofi.separator-style:                dash
 
 
 !rofi.modi:                          combi,fm:fm.sh,calc:qalc -t
-rofi.modi:                           combi,fm:~/.config/rofi/scripts/fm.sh
-rofi.combi-modi:                     window,run,ssh
+rofi.modi:                           combi,fm:~/.config/rofi/scripts/fm.sh,find:~/.config/rofi/scripts/finder.sh
+!rofi.combi-modi:                    window,run,ssh
+rofi.combi-modi:                     window,run
 rofi.scroll-method:					 1
