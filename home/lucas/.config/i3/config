@@ -29,18 +29,6 @@ client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo
 
 floating_modifier $mod
 
-#bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec rofi -show run -modi run -location 1 -width 100 \
-#		 -lines 2 -line-margin 0 -line-padding 1 \
-#		 -separator-style none -font "mono 10" -columns 9 -bw 0 \
-#		 -disable-history \
-#		 -hide-scrollbar \
-#		 -color-window "#222222, #222222, #b1b4b3" \
-#		 -color-normal "#222222, #b1b4b3, #222222, #005577, #b1b4b3" \
-#		 -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
-#		 -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
-#		 -kb-row-select "Tab" -kb-row-tab ""
-#bindsym $mod+d exec rofi -show combi -modi combi -combi-modi run,fm:fm.sh
 bindsym $mod+d exec rofi -show run -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
 bindsym $mod+Shift+f exec rofi -show find -modi find:~/.config/rofi/scripts/finder.sh
 bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
@@ -50,6 +38,7 @@ bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" 
 
 bindsym Print exec --no-startup-id ~/bin/screenshot.sh
 bindsym --release Mod1+Sys_Req exec ~/bin/screenshot.sh -s
+bindsym $mod+Print exec ~/bin/screenshot.sh -d
 
 #bindsym F5 exec i3-sensible-terminal
 bindsym F5 exec termite
@@ -63,20 +52,14 @@ bindsym F12 exec ~/bin/screencast.sh -s
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 1%+ unmute 
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 1%- unmute 
 
-#bindsym $mod+Shift+e exec "i3-nagbar -t error -m 'O que deseja fazer?' \
-#-b 'Sair' 'exec i3-msg exit' \
-#-b 'Suspender' 'systemctl suspend' \
-#-b 'Reiniciar' 'systemctl reboot' \
-#-b 'Desligar' 'systemctl poweroff'"
-
 bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
--b 'config' 'i3-sensible-editor ~/.config/i3/config' \
--b 'i3blocks' 'i3-sensible-editor ~/.config/i3/blocks' \
--b 'dunst' 'i3-sensible-editor ~/.config/i3/dunstrc' \
--b 'compton' 'i3-sensible-editor ~/.config/compton.conf' \
--b '.Xresources' 'i3-sensible-editor ~/.Xresources' \
--b '.xinitrc' 'i3-sensible-editor ~/.config/.xinitrc' \
--b '.Xdefaults' 'i3-sensible-editor ~/.config/.Xdefaults'"
+-b 'config' 'i3-msg exec i3-sensible-editor ~/.config/i3/config' \
+-b 'i3blocks' 'i3-msg exec i3-sensible-editor ~/.config/i3/blocks' \
+-b 'dunst' 'i3-msg exec i3-sensible-editor ~/.config/i3/dunstrc' \
+-b 'compton' 'i3-msg exec i3-sensible-editor ~/.config/compton.conf' \
+-b '.Xresources' 'i3-msg exec i3-sensible-editor ~/.Xresources' \
+-b '.xinitrc' 'i3-msg exec i3-sensible-editor ~/.config/.xinitrc' \
+-b '.Xdefaults' 'i3-msg exec i3-sensible-editor ~/.config/.Xdefaults'"
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+t exec thunar
@@ -127,7 +110,8 @@ bindsym $mod+minus scratchpad show
 
 set $workspace1 "1 "
 set $workspace2 "2 "
-set $workspace3 "3 "
+#set $workspace3 "3 "
+set $workspace3 "3 "
 set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 "
@@ -160,6 +144,7 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+# move position center
 for_window [class="^etcher-electron"] floating enable
 for_window [class="^Skype"] floating enable
 for_window [title="^Governo do Estado de Mato Grosso do Sul"] floating enable
@@ -176,7 +161,7 @@ for_window [urgent="latest"] focus
 for_window [class="^Galculator"] floating enable
 for_window [class="^Pavucontrol"] floating enable
 for_window [class="^Viewnior"] floating enable
-for_window [class="^Agave"] floating enable
+for_window [class="^Agave"] floating enable 
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
@@ -189,24 +174,38 @@ assign [class="^Inkscape"] $workspace5
 assign [class="^Lxappearance"] $workspace5
 assign [class="^Steam"] $workspace6
 assign [class="^Deluge"] $workspace7
+assign [class="^Thunderbird"] $workspace8
 assign [class="^Telegram"] $workspace9
+assign [class="^Whatsie"] $workspace9
 assign [class="^Gtkman"] $workspace10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 mode "apps" {
-	bindsym w exec --no-startup-id hsetroot -solid "#1b1b1b"
-	bindsym c exec --no-startup-id chromium --process-per-site
-	bindsym m exec --no-startup-id thunderbird
-	bindsym p exec --no-startup-id pluma
-	bindsym t exec --no-startup-id thunar
-	bindsym g exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram
+	bindsym w exec --no-startup-id hsetroot -solid "#1b1b1b" , mode "default"
+	bindsym c exec --no-startup-id chromium --process-per-site , mode "default"
+	bindsym m exec --no-startup-id thunderbird , mode "default"
+	bindsym p exec --no-startup-id pluma , mode "default"
+	bindsym t exec --no-startup-id thunar , mode "default"
+	bindsym g exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram , mode "default"
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 bindsym $mod+Shift+a mode "apps"
+
+mode "[c]onfig, i3[b]locks, [d]unst, c[o]mpton, [x]initrc" {
+	bindsym c exec i3-sensible-editor ~/.config/i3/config , mode "default"
+	bindsym b exec i3-sensible-editor ~/.config/i3/blocks , mode "default"
+	bindsym d exec i3-sensible-editor ~/.config/i3/dunstrc , mode "default"
+	bindsym o exec i3-sensible-editor ~/.config/compton.conf , mode "default"
+	bindsym x exec i3-sensible-editor ~/.xinitrc , mode "default"
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+Control+c mode "[c]onfig, i3[b]locks, [d]unst, c[o]mpton, [x]initrc"
 
 mode "[t]ravar, [s]air, [d]esligar, [r]einiciar, s[u]spender" {
 	bindsym t exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
@@ -236,8 +235,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+#bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+#bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 # Rate do Cursor
 exec --no-startup-id xset r rate 300 75 &
@@ -255,7 +254,8 @@ exec --no-startup-id xset r rate 300 75 &
 
 #exec_always --no-startup-id /usr/local/bin/feh_wallpaper.sh 'Jenna Ashley'
 #exec_always --no-startup-id feh --bg-fill \"$(shuf -n1 -e ~/img/wallpapers/macos/*)\"
-exec_always --no-startup-id hsetroot -solid "#1b1b1b"
+exec_always --no-startup-id feh --bg-fill ~/img/wallpapers/arch/arch-vintage.png
+#exec_always --no-startup-id hsetroot -solid "#1b1b1b"
 exec --no-startup-id numlockx
 exec --no-startup-id dunst -config ~/.config/i3/dunstrc
 exec --no-startup-id parcellite
@@ -265,11 +265,11 @@ exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id /usr/local/bin/xautolock.sh
 exec --no-startup-id /usr/lib/vino/vino-server
+exec --no-startup-id sudo /usr/local/sbin/wireless.sh
 
 bar {
 	font xft:FontAwesome 9
 	tray_output none	
-	#status_command i3blocks -v -v -v -c ~/.config/i3/blocks
 	status_command i3blocks -c ~/.config/i3/blocks
 	colors {
 		background	$fundo-inativo

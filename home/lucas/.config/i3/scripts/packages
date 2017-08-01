@@ -12,6 +12,9 @@ if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
 	else
 		notify-send "Aviso" "Nenhum pacote para atualizar!"
 	fi
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    pamac-updater
 # Right click
 elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
 	pamac-manager

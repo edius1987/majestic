@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALL="${HOME}/img/wallpapers/porn"
+WALL="${HOME}/img/wallpapers/arch"
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
 	/usr/bin/feh --no-fehbg --bg-fill --randomize ${WALL}/*

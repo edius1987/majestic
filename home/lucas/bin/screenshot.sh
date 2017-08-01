@@ -4,6 +4,7 @@ dir="${HOME}/img/shots/"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"
 extensao=".png"
+atraso=10
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 
 if [ ! -d $dir ]; then
@@ -19,7 +20,11 @@ elif [ "$1" == "-w" ]; then
 elif [ "$1" == "-s" ]; then
     arquivo="${nome}-rec${extensao}"
     scrot -s ${arquivo}
+elif [ "$1" == "-d" ]; then
+    arquivo="${nome}-delay${extensao}"
+    scrot -d $atraso ${arquivo}
 else
+
 	arquivo="${nome}-crop${extensao}"
 	scrot -m ${arquivo}
 	mogrify -crop 1920x1080+0+0 +repage ${arquivo}

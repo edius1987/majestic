@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ~/.config/i3/cores.conf
+
+noticia=$(curl "http://feeds.feedburner.com/labnol?format=xml" 2>/dev/null | grep "<title>" | sed -e "s/<title>\(.*\)<\/title>/ \1/g" | egrep -vi "site xmlns|Digital Inspiration Technology Blog" | shuf -n 1 | iconv -c | sed -e 's/^[[:space:]]*//' | /usr/local/bin/strcut.py)
+
+#if [[ $BLOCK_BUTTON -eq 1 ]]; then
+#fi
+
+echo " $noticia"
+echo " $noticia"
+echo ""

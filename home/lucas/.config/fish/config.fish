@@ -78,7 +78,8 @@ alias pacmir='sudo pacman -Syy'                    # Force refresh of all packag
 #################
 function fish_greeting
     echo
-    fortune brasil
+	fortune vimtips    
+	#fortune brasil
     echo
 end
 

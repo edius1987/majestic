@@ -28,6 +28,21 @@ MIXER="pulse"
 [ -n "$(lsmod | grep jack)" ] && MIXER="jackplug"
 MIXER="${2:-$MIXER}"
 
+
+if [ $MIXER = "pulse" ]; then
+	SINK_INDEX1=0
+	SINK_INDEX2=1
+	ACTIVE_SINK=$(pacmd list-sinks | grep '* index:' | grep -o '[0-9]*')
+
+	if [ "$ACTIVE_SINK" = $SINK_INDEX2 ] ; then
+		ICONE=
+		ICONE_DUNST="/usr/share/icons/Arc/devices/24@2x/audio-speakers.png"
+	else
+		ICONE=
+		ICONE_DUNST="/usr/share/icons/Arc/devices/24@2x/audio-headphones.png"
+	fi
+fi
+
 # The instance option sets the control to report and configure
 # This defaults to the first control of your selected mixer
 # For a list of the available, use `amixer -D $Your_Mixer scontrols`
@@ -39,7 +54,7 @@ SCONTROL="${BLOCK_INSTANCE:-$(amixer -D $MIXER scontrols |
 
 # The first parameter sets the step to change the volume by (and units to display)
 # This may be in in % or dB (eg. 5% or 3dB)
-STEP="${1:-1%}"
+STEP="${1:-5%}"
 
 #------------------------------------------------------------------------
 
@@ -54,7 +69,7 @@ volume() {
 
 format() {
   perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
-  perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'
+  perl_filter+='{CORE::say $4 eq "off" ? "MUDO" : "'
   # If dB was selected, print that instead
   perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
   perl_filter+='"; exit}'
@@ -64,10 +79,24 @@ format() {
 #------------------------------------------------------------------------
 
 case $BLOCK_BUTTON in
-  1) pavucontrol ;;
-  3) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
-  4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
-  5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
+	1)
+		if [ $MIXER = "pulse" ]; then
+			if [ "$ACTIVE_SINK" = $SINK_INDEX1 ] ; then
+   				pacmd set-default-sink $SINK_INDEX2
+    			pacmd list-sink-inputs | awk '/index:/{print $2}' | xargs -r -I{} pacmd move-sink-input {} $SINK_INDEX2
+				notify-send -i $ICONE_DUNST "Audio" "Audio alterado para o <b>HeadFone</b>..."
+			else
+   				pacmd set-default-sink $SINK_INDEX1
+    			pacmd list-sink-inputs | awk '/index:/{print $2}' | xargs -r -I{} pacmd move-sink-input {} $SINK_INDEX1
+				notify-send -i $ICONE_DUNST "Audio" "Audio alterado para o <b>Alto-Falante</b>..."
+			fi
+		fi
+	;;
+	3) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
+	4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
+	5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-volume | format
+echo "$ICONE $(volume | format)"
+echo "$(volume | format)"
+echo ""

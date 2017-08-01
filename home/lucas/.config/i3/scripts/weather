@@ -1,19 +1,7 @@
 #!/bin/bash
 
-################################
-# Shows info about the weather (in Cincinnati) from accuweather.com
-#
-# TODO: completely rewrite, probably using openweather APIs
-# TODO: make location configurable
-# TODO: make temperature unit configurable
-#
-# @return {Number(degrees Fahrenheit)}: Current temperature in Cincinnati
-################################
-
 full="Recebendo..."
 short="Recebendo..."
-status=0
-
 aeroporto="${BLOCK_INSTANCE:-sbcg}"
 
 hora="$(date +'%H')"
@@ -40,9 +28,11 @@ else
     fi
 fi
 
-full="$icon $temperatura° / $vento - $velocidade KM/h"
-short="$temperatura° / $vento - $velocidade KM/h"
+#full="$icon $temperatura° / $vento - $velocidade KM/h"
+#short="$temperatura° / $vento - $velocidade KM/h"
+full="$icon $temperatura°"
+short="$temperatura°"
 
 echo $full
 echo $short
-exit $status
+exit 0

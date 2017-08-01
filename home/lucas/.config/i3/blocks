@@ -12,23 +12,43 @@ command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec firefox
 interval=once
 separator=false
 
+[thunderbird]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunderbird &> /dev/null; fi'
+interval=once
+separator=false
+
 [termite]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec termite &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termite &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall termite; fi'
+interval=once
+separator=false
+
+[pluma]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec pluma &> /dev/null; fi'
+interval=once
+separator=false
+
+[sublime]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec subl &> /dev/null; fi'
 interval=once
 separator=false
 
 [thunar]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunar &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
 interval=once
 separator=false
 
 [lxtask]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec lxtask &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec lxtask &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall lxtask; fi'
 interval=once
 separator=false
 
 [telegram]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec ~/.local/share/TelegramDesktop/Telegram &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec ~/.local/share/TelegramDesktop/Telegram &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall Telegram; fi'
+interval=once
+separator=false
+
+[whatsapp]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec whatsie &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall whatsie; fi'
 interval=once
 
 [focus]
@@ -59,7 +79,7 @@ label=
 interval=30
 
 [wifi]
-label=
+label=
 interval=10
 
 [bandwidth]
@@ -97,7 +117,6 @@ command=date '+%H:%M'
 interval=5
 
 [volume]
-label=
 instance=Master
 interval=5
 signal=10
