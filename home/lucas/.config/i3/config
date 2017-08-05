@@ -161,7 +161,8 @@ for_window [urgent="latest"] focus
 for_window [class="^Galculator"] floating enable
 for_window [class="^Pavucontrol"] floating enable
 for_window [class="^Viewnior"] floating enable
-for_window [class="^Agave"] floating enable 
+for_window [class="^Agave"] floating enable
+for_window [title="Mail do iCloud - Chromium"] floating enable, move position center
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
@@ -211,7 +212,7 @@ mode "[t]ravar, [s]air, [d]esligar, [r]einiciar, s[u]spender" {
 	bindsym t exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
 	bindsym s exec i3-msg exit
 	bindsym u exec systemctl suspend
-	bindsym r exec systemct reboot
+	bindsym r exec systemctl reboot
 	bindsym d exec systemctl poweroff 
 
     bindsym Return mode "default"

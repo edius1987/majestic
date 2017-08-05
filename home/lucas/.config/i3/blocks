@@ -8,22 +8,22 @@ command=~/.config/i3/scripts/$BLOCK_NAME
 #label=
 
 [firefox]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec firefox &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
 interval=once
 separator=false
 
 [chromium]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec chromium &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec chromium &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall chromium; fi'
 interval=once
 separator=false
 
 [opera]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec opera &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec opera &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall opera; fi'
 interval=once
 separator=false
 
 [thunderbird]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunderbird &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunderbird &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunderbird; fi'
 interval=once
 separator=false
 
@@ -33,12 +33,12 @@ interval=once
 separator=false
 
 [pluma]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec pluma &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec pluma &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall pluma; fi'
 interval=once
 separator=false
 
 [sublime]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec subl &> /dev/null; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec subl &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall subl; fi'
 interval=once
 separator=false
 
@@ -63,7 +63,7 @@ interval=once
 separator=false
 
 [whatsapp]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec deluge &> /dev/null; fi'
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec deluge &> /dev/null; fi'
 interval=once
 
 [focus]
