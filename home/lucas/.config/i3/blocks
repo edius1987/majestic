@@ -12,6 +12,16 @@ command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec firefox
 interval=once
 separator=false
 
+[chromium]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec chromium &> /dev/null; fi'
+interval=once
+separator=false
+
+[opera]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec opera &> /dev/null; fi'
+interval=once
+separator=false
+
 [thunderbird]
 command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec thunderbird &> /dev/null; fi'
 interval=once
@@ -49,6 +59,11 @@ separator=false
 
 [whatsapp]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec whatsie &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall whatsie; fi'
+interval=once
+separator=false
+
+[whatsapp]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec deluge &> /dev/null; fi'
 interval=once
 
 [focus]
@@ -110,6 +125,7 @@ interval=60
 label=
 command=date '+%d/%m/%y'
 interval=300
+separator=false
 
 [time]
 label=
@@ -120,11 +136,6 @@ interval=5
 instance=Master
 interval=5
 signal=10
-
-#[note]
-#label=
-#command=~/.config/i3/scripts/pad
-#interval=once
 
 [wallpaper]
 interval=once

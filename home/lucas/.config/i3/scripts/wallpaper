@@ -3,11 +3,14 @@
 WALL="${HOME}/img/wallpapers/arch"
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-	/usr/bin/feh --no-fehbg --bg-fill --randomize ${WALL}/*
+	#/usr/bin/feh --no-fehbg --bg-fill --randomize ${WALL}/*
+	~/bin/wallpaper.sh ~/img/wallpapers/arch/i3wm/1920x1080/
 elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
-	feh --no-fehbg --bg-fill --randomize ${WALL}/*
+	#feh --no-fehbg --bg-fill --randomize ${WALL}/*
+	~/bin/wallpaper.sh -r
 elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
-	hsetroot -solid "#1b1b1b" &
+	#hsetroot -solid "#1b1b1b" &
+	~/bin/wallpaper.sh -c
 fi
 
 echo ""
