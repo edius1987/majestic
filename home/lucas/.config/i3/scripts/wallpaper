@@ -1,10 +1,10 @@
 #!/bin/bash
 
-WALL="${HOME}/img/wallpapers/arch"
+. ${HOME}/bin/config.conf
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
 	#/usr/bin/feh --no-fehbg --bg-fill --randomize ${WALL}/*
-	~/bin/wallpaper.sh ~/img/wallpapers/arch/i3wm/1920x1080/
+	~/bin/wallpaper.sh ~/img/wallpapers/arch-logo/2560x1600/
 elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
 	#feh --no-fehbg --bg-fill --randomize ${WALL}/*
 	~/bin/wallpaper.sh -r

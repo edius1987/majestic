@@ -11,13 +11,12 @@
 #feh --bg-fill \"$(shuf -n1 -e ~/img/wallpapers/arch/*)\"
 #feh --bg-fill ~/img/wallpapers/arch/arch-vintage.png
 
-DIR="${HOME}/img/wallpapers/arch/i3wm/1920x1080/"
-COR="#1b1b1b"
-DEFAULT="/usr/share/backgrounds/default"
+. ${HOME}/bin/config.conf
+
 #TIMESTAMP=$(date +"%T")
 
-if [ ! -d "$DIR" ]; then
-	echo "O diretório $DIR não existe, abortando..."
+if [ ! -d "$WALL" ]; then
+	echo "O diretório $WALL não existe, abortando..."
 	exit 1
 fi
 
@@ -30,7 +29,6 @@ if [ "$1" ]; then
 			exit 1
 		fi
 	elif [ "$1" = "-d" ]; then
-		
 		if [ -f $DEFAULT ]; then
 			WALLPAPER=$DEFAULT
 		else
@@ -42,14 +40,21 @@ if [ "$1" ]; then
 		viewnior $WALLPAPER
 	elif [ "$1" = "-c" ]; then
 		hsetroot -solid $COR
-	elif [ "$1" != "-r" ] && [ "$1" != "-d" ] && [ "$1" != "-o" ] && [ "$1" != "-c" ] && [ -d "$1" ]; then
-		WALLPAPER=$(find $1 -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \) | shuf -n1)
+	elif [ "$1" != "-r" ] || [ "$1" != "-d" ] || [ "$1" != "-o" ] || [ "$1" != "-c" ] || [ -d "$1" ]; then
+		if [ -d $1 ]; then
+			WALLPAPER=$(find $1 -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \) | shuf -n1)
+		elif [ -f $1 ]; then
+			WALLPAPER=$1
+		else
+			echo "Imagem: $1 não identificada, abortando..."
+			exit 1
+		fi
 	else
 		WALL=$(echo $@ | tr ' ' '*')
-		WALLPAPER=$(find $DIR -iname "*${WALL}*" | shuf -n1)
+		WALLPAPER=$(find $WALL -iname "*${WALL}*" | shuf -n1)
 	fi
 else
-	WALLPAPER="$(find $DIR | shuf -n1)"
+	WALLPAPER="$(find $WALL | shuf -n1)"
 fi
 
 if [ -f "$WALLPAPER" ]; then
