@@ -30,9 +30,9 @@ set fish_greeting ""
 #################
 # Cria um arquivo de 1GB
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
-alias cp='cp -iv'
+alias cp='acp -ivg'
 alias rm='rm -Iv'
-alias mv='mv -iv' 
+alias mv='amv -ivg' 
 alias ls='ls --color=auto --group-directories-first'
 alias e='exit'
 alias s='sudo su'
@@ -107,3 +107,13 @@ end
 function bitly
 	curl 'http://api.bit.ly/v3/shorten?login=sistematico&apiKey=R_45aedce35bf656b5cd65510d2043dc5a&longURL={$argv}&format=txt'
 end
+
+function mma
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$argv"
+end
+
+function mm
+    mpv ytdl://ytsearch10:"$argv"
+end
+
+

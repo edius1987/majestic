@@ -12,12 +12,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 if [ -d "$HOME/bin" ] ; then
-    #PATH="$HOME/bin:$PATH"
     export PATH=$PATH:$HOME/bin
 fi
 
 export TERMINAL=termite
-export EDITOR=pluma
+#export EDITOR=pluma
+export EDITOR=nano
 export BROWSER=firefox
 
 # Start a D-Bus session
@@ -41,6 +41,16 @@ session=${1:-i3}
 
 case $session in
 	i3|i3wm)
+		~/bin/wallpaper.sh ~/img/wallpapers/arch-logo/2560x1600/dark.jpg &
+		numlockx &
+		dunst -config ~/.config/i3/dunstrc &
+		parcellite &
+		headsetcontrol 64 &
+		compton -b --config ~/.config/compton.conf &
+		/usr/local/bin/xautolock.sh &
+		/usr/lib/vino/vino-server &
+		sudo /usr/local/sbin/wireless.sh &
+		unclutter &
 		exec i3
 	;;
 	*)
