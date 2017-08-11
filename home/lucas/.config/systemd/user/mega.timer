@@ -1,0 +1,10 @@
+[Unit]
+Description=Mega Sync Timer (runs every hour)
+
+[Timer]
+OnUnitActiveSec=1h
+Persistent=true
+Unit=mega.service
+
+[Install]
+WantedBy=timers.target

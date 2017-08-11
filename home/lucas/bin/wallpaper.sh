@@ -1,19 +1,14 @@
 #!/bin/bash
-# 
+#
 # wallpaper.sh - Programa para alterar o papel de parede.
 # Funciona no i3, OpenBox e outros.
-# 
+#
 # Criador por Lucas Saliés Brum a.k.a. sistematico, <lucas at archlinux dot com dot br>
 #
-# Criado em: 17/06/2016 13:13:58 
-# Última alteração: 05/08/2017 01:07:53 
-
-#feh --bg-fill \"$(shuf -n1 -e ~/img/wallpapers/arch/*)\"
-#feh --bg-fill ~/img/wallpapers/arch/arch-vintage.png
+# Criado em: 17/06/2016 13:13:58
+# Última alteração: 05/08/2017 01:07:53
 
 . ${HOME}/bin/config.conf
-
-#TIMESTAMP=$(date +"%T")
 
 if [ ! -d "$WALL" ]; then
 	echo "O diretório $WALL não existe, abortando..."
@@ -21,8 +16,11 @@ if [ ! -d "$WALL" ]; then
 fi
 
 if [ "$1" ]; then
-	if [ "$1" = "-r" ]; then
-		if [ -f "${HOME}/.wall" ]; then 
+
+	if [ "$1" = "-day" ]; then
+		feh --bg-fill \"$(shuf -n1 -e ${DIA_PATH}/$(date +\"%A\")*)\"
+	elif [ "$1" = "-r" ]; then
+		if [ -f "${HOME}/.wall" ]; then
 			feh --bg-fill $(cat ${HOME}/.wall)
 		else
 			echo "O arquivo ${HOME}/.wall não existe."

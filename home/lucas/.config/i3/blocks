@@ -12,15 +12,15 @@ command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firef
 interval=once
 separator=false
 
-[chromium]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec chromium &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall chromium; fi'
-interval=once
-separator=false
+#[chromium]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec chromium &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall chromium; fi'
+#interval=once
+#separator=false
 
-[opera]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec opera &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall opera; fi'
-interval=once
-separator=false
+#[opera]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec opera &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall opera; fi'
+#interval=once
+#separator=false
 
 [thunderbird]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunderbird &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunderbird; fi'
@@ -32,15 +32,15 @@ command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termi
 interval=once
 separator=false
 
-[pluma]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec pluma &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall pluma; fi'
-interval=once
-separator=false
+#[pluma]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec pluma &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall pluma; fi'
+#interval=once
+#separator=false
 
-[sublime]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec subl &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall subl; fi'
-interval=once
-separator=false
+#[sublime]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec subl &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall subl; fi'
+#interval=once
+#separator=false
 
 [thunar]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
@@ -62,9 +62,13 @@ command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec whats
 interval=once
 separator=false
 
-[deluge]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec deluge &> /dev/null; fi'
+[hexchat]
+command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec hexchat &> /dev/null; fi'
 interval=once
+
+#[deluge]
+#command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec deluge &> /dev/null; fi'
+#interval=once
 
 [focus]
 label=

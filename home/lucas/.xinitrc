@@ -34,6 +34,8 @@ export OOO_FORCE_DESKTOP=gnome
 #export LANGUAGE="en_US.UTF-8"
 #export LC_CTYPE="en_US.UTF-8"
 
+export LIBVA_DRIVER_NAME="vdpau"
+
 eval $(dbus-launch --sh-syntax)
 export XDG_CURRENT_DESKTOP=GNOME
 
@@ -41,16 +43,16 @@ session=${1:-i3}
 
 case $session in
 	i3|i3wm)
-		~/bin/wallpaper.sh ~/img/wallpapers/arch-logo/2560x1600/dark.jpg &
-		numlockx &
-		dunst -config ~/.config/i3/dunstrc &
-		parcellite &
-		headsetcontrol 64 &
-		compton -b --config ~/.config/compton.conf &
-		/usr/local/bin/xautolock.sh &
-		/usr/lib/vino/vino-server &
-		sudo /usr/local/sbin/wireless.sh &
-		unclutter &
+		#~/bin/wallpaper.sh ~/img/wallpapers/arch-logo/2560x1600/dark.jpg &
+		#numlockx &
+		#dunst -config ~/.config/i3/dunstrc &
+		#parcellite &
+		#headsetcontrol 64 &
+		#compton -b --config ~/.config/compton.conf &
+		#/usr/local/bin/xautolock.sh &
+		#/usr/lib/vino/vino-server &
+		#sudo /usr/local/sbin/wireless.sh &
+		#unclutter &
 		exec i3
 	;;
 	*)
