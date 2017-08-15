@@ -1,13 +1,13 @@
 set $mod Mod4
-
 font xft:DejaVu Sans Mono 9
-
 gaps inner 10
 gaps outer 0
 
 #hide_edge_borders both
 #new_window none
 new_window pixel 2
+
+set $wallpaper				"~/img/wallpapers/apple/sierra.png"
 
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
@@ -29,9 +29,9 @@ client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo
 
 floating_modifier $mod
 
-bindsym $mod+d exec rofi -show run -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
+bindsym $mod+d exec rofi -show run -fullscreen -fake-transparency -fake-background $wallpaper
 bindsym $mod+Shift+f exec rofi -show find -modi find:~/.config/rofi/scripts/finder.sh
-bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-background ~/img/apple/yosemite.png
+bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-background $wallpaper
 bindsym $mod+Control+d exec rofi -show keys
 
 bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
@@ -57,6 +57,7 @@ bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 -b 'i3blocks' 'i3-msg exec pluma ~/.config/i3/blocks' \
 -b 'dunst' 'i3-msg exec pluma ~/.config/i3/dunstrc' \
 -b 'compton' 'i3-msg exec pluma ~/.config/compton.conf' \
+-b 'rofi' 'i3-msg exec pluma ~/.config/rofi/config' \
 -b '.Xresources' 'i3-msg exec pluma ~/.Xresources' \
 -b '.xinitrc' 'i3-msg exec pluma ~/.config/.xinitrc' \
 -b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults'"
@@ -64,7 +65,6 @@ bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+t exec --no-startup-id thunar
 bindsym $mod+Shift+w exec --no-startup-id firefox
-bindsym $mod+Shift+m exec --no-startup-id thunderbird
 bindsym $mod+Shift+i exec --no-startup-id ristretto
 
 bindsym $mod+j focus left
@@ -170,6 +170,7 @@ assign [class="Firefox"] $workspace1
 assign [class="Termite"] $workspace2
 assign [class="Pluma"] $workspace3
 assign [class="Sublime_text"] $workspace3
+assign [class="^Atom"] $workspace3
 assign [class="^Thunar"] $workspace4
 assign [class="^Gimp"] $workspace5
 assign [class="^Inkscape"] $workspace5
@@ -184,18 +185,28 @@ assign [class="^Gtkman"] $workspace10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-mode "apps" {
-	bindsym w exec --no-startup-id hsetroot -solid "#1b1b1b" , mode "default"
-	bindsym c exec --no-startup-id chromium --process-per-site , mode "default"
-	bindsym m exec --no-startup-id thunderbird , mode "default"
-	bindsym p exec --no-startup-id pluma , mode "default"
-	bindsym t exec --no-startup-id thunar , mode "default"
-	bindsym g exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram , mode "default"
+mode "[p]opcorntime, [s]tremio, [d]eadbeef" {
+	bindsym p exec --no-startup-id ~/.local/share/popcorntime/Popcorn-Time , mode "default"
+	bindsym s exec --no-startup-id ~/.local/share/stremio/Stremio-runtime , mode "default"
+	bindsym d exec --no-startup-id deadbeef , mode "default"
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-bindsym $mod+Shift+a mode "apps"
+bindsym $mod+Shift+m mode "[p]opcorntime, [s]tremio, [d]eadbeef"
+
+mode "[c]hromium, [t]hunderbird, [p]luma, t[h]unar, t[e]legram, [a]tom" {
+	bindsym c exec --no-startup-id chromium --process-per-site , mode "default"
+	bindsym t exec --no-startup-id thunderbird , mode "default"
+	bindsym p exec --no-startup-id pluma , mode "default"
+	bindsym h exec --no-startup-id thunar , mode "default"
+	bindsym e exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram , mode "default"
+	bindsym a exec --no-startup-id atom , mode "default"
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+Shift+a mode "[c]hromium, [t]hunderbird, [p]luma, t[h]unar, t[e]legram, [a]tom"
 
 mode "[c]onfig, i3[b]locks, [d]unst, c[o]mpton, [x]initrc" {
 	bindsym c exec --no-startup-id pluma ~/.config/i3/config , mode "default"

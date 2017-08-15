@@ -121,12 +121,13 @@ menu=(
   [Sair]="i3-msg exit"
   [Reiniciar]="systemctl reboot"
   [Desligar]="systemctl poweroff"
+  [Programado]="bash ~/.config/rofi/scripts/desligar"
   [Cancelar]=""
 )
 menu_nrows=${#menu[@]}
 
 # Menu entries that may trigger a confirmation message
-menu_confirm="Suspender Parar Travar Sair Reiniciar Desligar"
+menu_confirm="Suspender Parar Travar Sair Reiniciar Desligar Programado"
 
 launcher_exe=""
 launcher_options=""

@@ -22,7 +22,7 @@ ativo=$(tmux ls 2> /dev/null | grep $nome | cut -d ':' -f 1)
 ativo2=$(ps -A | grep ffmpeg 2>&1)
 
 if [ "$1" == "-s" ]; then
-	if [ "$ativo" == "screencast" ]; then
+	if [ "$ativo" == "$nome" ]; then
 		tmux kill-session -t $nome
 		killall ffmpeg
 		notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi terminado."

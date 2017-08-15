@@ -38,13 +38,13 @@ alias e='exit'
 alias s='sudo su'
 alias p='sudo pacman'
 alias pacman='sudo pacman'
-#alias systemctl='sudo systemctl'
 alias sc='sudo systemctl'
 alias rsync="rsync --exclude-from=$HOME/.rsync"
 alias mkdir='mkdir -pv'
 alias clamscan="clamscan --max-filesize=50M --exclude-dir='^/sys|^/proc|^/dev'"
 alias mtn="mtn -w 900 -s 90 -c 4 -h 100 -f /usr/share/fonts/TTF/Ubuntu-L.ttf -T 'Acesse: http://ultratorrent.com.br' -o ' - Thumbs.jpg'"
-alias pacman-clean='sudo pacman -Qdtq | pacman -Rs -'
+alias pacman-clean="sudo pacman -Rns (pacman -Qtdq)"
+alias paclean="sudo pacman -Rns (pacman -Qtdq)"
 alias copiar='xclip -sel clip <'
 alias autogit="git add . ; git commit -m 'Alterações automáticas...' ; git push origin master"
 alias g930='sudo G930Sidetone'
@@ -73,6 +73,15 @@ alias pacimpl="pacman -D --asdep"	# Mark one or more installed packages as non e
 alias pacupd='sudo pacman -Sy ; sudo abs'         # Update and refresh the local package and ABS databases against repositories
 alias pacinsd='sudo pacman -S --asdeps'            # Install given package(s) as dependencies
 alias pacmir='sudo pacman -Syy'                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
+
+# Yaourt
+alias yupdate='yaourt -Syu --aur --noconfirm'
+
+# Orfãos
+alias orfaos='sudo lostfiles strict | egrep -vi "^/etc/ca-certificates|^/etc/ssl/certs|^/usr/share/mime|^/var/cache|/usr/share/fonts|/usr/share/icons|/usr/lib/python3.6|/usr/lib/python2.7|/etc/X11|/etc/systemd/user|^/default|^/boot|^/usr/share/locale"'
+
+# SystemD
+alias systemd-failed='systemctl list-units --state=failed'
 
 #################
 ### FUNCTIONS ###

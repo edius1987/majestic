@@ -1,9 +1,14 @@
-GRUB_DEFAULT=saved
-GRUB_TIMEOUT=5
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR="Arch"
+
+# Disable Ipv6
 #ipv6.disable=1
 #ipv6.disable_ipv6=1
-GRUB_CMDLINE_LINUX_DEFAULT="quiet nowatchdog net.ifnames=0"
+
+# SystemD Debug
+GRUB_CMDLINE_LINUX_DEFAULT="systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on enforcing=0"
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet net.ifnames=0"
 GRUB_CMDLINE_LINUX=""
 
 # Preload both GPT and MBR modules so that they are not missed

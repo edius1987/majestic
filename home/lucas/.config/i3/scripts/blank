@@ -13,10 +13,12 @@ if [[ $(pgrep xautolock) ]]; then
 	echo $ativo
 else
 	if [[ $BLOCK_BUTTON -eq 1 ]]; then
+		sleep 1
 		/usr/bin/xautolock -time 3 -locker 'i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z' -detect &
 	fi
 
 	if [[ $BLOCK_BUTTON -gt 1 ]]; then
+		sleep 1
 		i3-msg -q exec 'i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z'
 	fi
 

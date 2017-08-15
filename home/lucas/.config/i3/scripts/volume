@@ -28,7 +28,8 @@ MIXER="pulse"
 [ -n "$(lsmod | grep jack)" ] && MIXER="jackplug"
 MIXER="${2:-$MIXER}"
 
-SINKS=$(pacmd list-sinks | grep '* index:' | wc -l)
+#SINKS=$(pacmd list-sinks | grep '* index:' | wc -l)
+SINKS=$(pacmd list-sinks | grep 'index:' | wc -l)
 
 if [ "$SINKS" -gt 1 ]; then
 	if [ $MIXER = "pulse" ]; then
