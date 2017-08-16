@@ -47,10 +47,10 @@ command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thuna
 interval=once
 separator=false
 
-[lxtask]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec lxtask &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall lxtask; fi'
-interval=once
-separator=false
+#[lxtask]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec lxtask &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall lxtask; fi'
+#interval=once
+#separator=false
 
 [telegram]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec ~/.local/share/TelegramDesktop/Telegram &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall Telegram; fi'
