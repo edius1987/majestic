@@ -47,7 +47,7 @@ alias mkdir='mkdir -pv'
 alias neofetch='neofetch --config ~/.neofetch.conf'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
-alias fullsync='rsync -aAXvz --exclude={"*.mp3","*.MP3","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}'
+alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
 
 ##################
 ##### Sources ####

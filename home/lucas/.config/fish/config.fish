@@ -50,7 +50,7 @@ alias autogit="git add . ; git commit -m 'Alterações automáticas...' ; git pu
 alias g930='sudo G930Sidetone'
 alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
-alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}'
+alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
 
 # Pacman alias examples
 alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.

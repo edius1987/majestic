@@ -35,24 +35,25 @@ TabTimeout = 0
 #   - %u gets replaced with the whole URL ("http://www.google.com")
 #   - %s gets replaced with "//www.google.com".  This is useful for URL-s
 #     like "man:printf" --> %s will get replaced with "printf"
-URL_google = ${Browser} http://www.google.com/search?q="%s"
-URL_g = ${Browser} http://www.google.com/search?q="%s"
-URL_busca = ${Browser} http://www.google.com/search?q="%s"
-URL_img = ${Browser} https://www.google.com.br/search?q="%s"&biw=1600&bih=795&source=lnms&tbm=isch&sa=X
+URL_google 	= ${Browser} http://www.google.com/search?q="%s"
+URL_g 		= ${Browser} http://www.google.com/search?q="%s"
+URL_busca 	= ${Browser} http://www.google.com/search?q="%s"
+URL_img 	= ${Browser} https://www.google.com.br/search?q="%s"&biw=1600&bih=795&source=lnms&tbm=isch&sa=X
 URL_traduzir = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#en/pt/"%s"
 URL_tanslate = ${Browser} https://translate.google.com.br/?hl=pt-BR&tab=wT#pt/en/"%s"
-URL_http = ${Browser} %u
-URL_https = ${Browser} %u
-URL_mailto = thunderbird -remote "mailto(%s)"
-URL_man = gtkman %s
-URL_info = ${TermExec} 'info %s'
-URL_pd = ${TermExec} 'perldoc %s'
-URL_file = thunar %s
-URL_readme = ${Editor} /usr/doc/%s/README
-URL_info = ${TermExec} 'info %s'
-URL_sh = sh -c '%s'
-URL_aur = ${Browser} https://aur.archlinux.org/packages/?O=0&SeB=nd&K="%s"&outdated=&SB=n&SO=a&PP=50&do_Search=Go
-URL_imgur = ${Browser} http://imgur.com/search?q='%s'
+URL_http 	= ${Browser} %u
+URL_https 	= ${Browser} %u
+URL_mailto 	= thunderbird -remote "mailto(%s)"
+URL_man 	= gtkman %s
+URL_info 	= ${TermExec} 'info %s'
+URL_pd 		= ${TermExec} 'perldoc %s'
+URL_file 	= thunar %s
+URL_readme 	= ${Editor} /usr/doc/%s/README
+URL_info 	= ${TermExec} 'info %s'
+URL_sh 		= sh -c '%s'
+URL_aur 	= ${Browser} https://aur.archlinux.org/packages/?O=0&SeB=nd&K="%s"&outdated=&SB=n&SO=a&PP=50&do_Search=Go
+URL_imgur 	= ${Browser} http://imgur.com/search?q='%s'
+URL_pkg 	= ${Browser} https://www.archlinux.org/packages/?sort=&q='%s'&maintainer=&flagged=
 
 # extension handlers
 EXT:avi,mp4,wmv,mpg = mpv %s

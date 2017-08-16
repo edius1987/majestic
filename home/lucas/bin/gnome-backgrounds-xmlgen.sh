@@ -10,7 +10,7 @@
 # note: only looks for .JPG and .jpg files
 
 # output file
-FILENAME=backgrounds.xml
+FILENAME="$(basename $(pwd)).xml"
 
 # start time (any time in the past works)
 YEAR=2009

@@ -55,7 +55,7 @@ alias g930='sudo G930Sidetone'
 alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias neofetch="neofetch --config ${HOME}/.neofetch.conf"
-alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
+alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/git/completion/git-prompt.sh
