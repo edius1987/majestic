@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.config/i3/cores.conf
+
 URGENT_VALUE=10
 PACKAGE_COUNT=$(checkupdates | wc -l)
 
@@ -18,6 +20,16 @@ elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
 	pamac-manager
 fi
 
+if [[ ${PACKAGE_COUNT} -gt 5 ]]; then
+	cor=$cormin
+elif [[ ${PACKAGE_COUNT} -gt 10 ]]; then
+	cor=$cormed
+elif [[ ${PACKAGE_COUNT} -gt 20 ]]; then
+	cor=$cormax
+else
+	cor=""
+fi
+
 echo "${PACKAGE_COUNT}" # full-text
 echo "${PACKAGE_COUNT}" # short-text
-echo ""
+echo $cor

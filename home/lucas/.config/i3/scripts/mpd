@@ -4,22 +4,31 @@
 #NUM_NCMP=$(mpc | head -1 | wc -c )
 #S_NCMP=$(mpc | head -1 | head -c 30)
 
+slash=$(echo $(mpc current) | awk -F'/' '{print $2}')
+
+if [[ -n "$slash" ]]; then
+    saida="$slash"
+else
+    saida="$(mpc current)"
+fi
+
 
 filter() {
-	if [ "$(mpc | grep "^\[playing\]" | awk '{print $1}')" = "[playing]" ];then
-    	if [ "$(mpc | head -1 | wc -c )" -lt 30 ];then
-        	echo -e "$(mpc current)"
-    	else
-        	echo -e "$(mpc | head -1 | head -c 30)..."
-	    fi
-	else
-    	echo -e "Pausado "
-	fi
+    if [ "$(mpc | grep "^\[playing\]" | awk '{print $1}')" = "[playing]" ];then
+        if [ "$(mpc | head -1 | wc -c )" -lt 30 ];then
+            echo -e "$saida"
+        else
+            echo -e "$(echo $saida | head -1 | head -c 30)..."
+        fi
+    else
+        echo -e "MPD "
+    fi
 }
 
 case $BLOCK_BUTTON in
 	1) mpc toggle | filter ;;  # left click, pause/unpause
-	3) i3-msg exec gmpc | filter ;;  # right click, pause/unpause
+	2) notify-send "MPD" "$saida" | filter ;;  # middle click, show info
+	3) i3-msg exec gmpc | filter ;;  # right click, gmpc
     4) mpc prev | filter ;;  # scroll up, previous
     5) mpc next | filter ;;  # scroll down, next
     *) mpc current | filter ;;

@@ -1,11 +1,4 @@
-#command=/usr/lib/i3blocks/$BLOCK_NAME
 command=~/.config/i3/scripts/$BLOCK_NAME
-
-#[chromium]
-#command=bash -c 'echo chromium; if [ -n "$BLOCK_BUTTON" ]; then chromium > /dev/null; fi'
-#command=bash -c 'echo www; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec chromium &> /dev/null; fi'
-#interval=once
-#label=
 
 [firefox]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
@@ -22,10 +15,10 @@ separator=false
 #interval=once
 #separator=false
 
-[thunderbird]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunderbird &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunderbird; fi'
-interval=once
-separator=false
+#[thunderbird]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunderbird &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunderbird; fi'
+#interval=once
+#separator=false
 
 [termite]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termite &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall termite; fi'
@@ -57,14 +50,14 @@ command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec ~/.lo
 interval=once
 separator=false
 
-[whatsapp]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec whatsie &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall whatsie; fi'
-interval=once
-separator=false
+#[whatsapp]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec whatsie &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall whatsie; fi'
+#interval=once
+#separator=false
 
-[hexchat]
-command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec hexchat &> /dev/null; fi'
-interval=once
+#[hexchat]
+#command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec hexchat &> /dev/null; fi'
+#interval=once
 
 #[deluge]
 #command=bash -c 'echo ""; if [ -n "$BLOCK_BUTTON" ]; then i3-msg exec deluge &> /dev/null; fi'
@@ -83,18 +76,25 @@ label=
 command=/usr/lib/i3blocks/load_average
 interval=10
 
-[cpu_usage]
+#[cpu_usage]
+#label=
+#command=/usr/lib/i3blocks/cpu_usage
+#interval=10
+#min_width=100.00%
+
+[stats]
 label=
-command=/usr/lib/i3blocks/cpu_usage
-interval=10
-min_width=100.00%
-
-[mem]
-command=~/.config/i3/scripts/mem -m
+instance=cpu
 interval=10
 
-[disk]
+[stats]
+label=
+instance=mem
+interval=10
+
+[stats]
 label=
+instance=disk
 interval=30
 
 [wifi]
@@ -121,9 +121,9 @@ interval=600
 label=
 interval=60
 
-[uptime]
-label=
-interval=60
+#[uptime]
+#label=
+#interval=60
 
 [date]
 label=
@@ -150,13 +150,13 @@ interval=5
 [firewall]
 interval=10
 
-[keystate]
-instance=caps
-interval=1
+#[keystate]
+#instance=caps
+#interval=1
 
-[keystate]
-instance=num
-interval=1
+#[keystate]
+#instance=num
+#interval=1
 
 [shutdown]
 full_text= 

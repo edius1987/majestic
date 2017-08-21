@@ -5,7 +5,8 @@ short="Recebendo..."
 aeroporto="${BLOCK_INSTANCE:-sbcg}"
 
 hora="$(date +'%H')"
-temperatura="$(weather-report -q -m $aeroporto | grep Temp | awk -F: '{print $2}')"
+#temperatura="$(weather-report -q -m $aeroporto | grep Temp | awk -F: '{print $2}')"
+temperatura="$(weather-report -q -m sbcg | grep Temp | awk -F: '{print $2}' | sed -e 's/[^0-9]/ /g' | tr -d ' ')"
 vento="$(weather-report -q -m $aeroporto | grep Wind | awk -F' ' '{print $4}')"
 velocidade="$(weather-report -q -m $aeroporto | grep Wind | awk -F' ' '{print $8}')"
 humidade="$(weather-report -q -m $aeroporto | grep Humid | awk -F' ' '{print $3}')"
@@ -30,7 +31,7 @@ fi
 
 #full="$icon $temperatura° / $vento - $velocidade KM/h"
 #short="$temperatura° / $vento - $velocidade KM/h"
-full="$icon $temperatura°"
+full="$icon $temperatura°C"
 short="$temperatura°"
 
 echo $full

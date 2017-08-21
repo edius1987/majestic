@@ -83,6 +83,9 @@ alias orfaos='sudo lostfiles strict | egrep -vi "^/etc/ca-certificates|^/etc/ssl
 # SystemD
 alias systemd-failed='systemctl list-units --state=failed'
 
+# LibTrash
+alias mc='env LD_PRELOAD=/usr/lib/libtrash.so.3.3 mc'
+
 #################
 ### FUNCTIONS ###
 #################
