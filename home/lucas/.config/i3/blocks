@@ -48,7 +48,7 @@ separator=false
 [telegram]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec ~/.local/share/TelegramDesktop/Telegram &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall Telegram; fi'
 interval=once
-separator=false
+#separator=false
 
 #[whatsapp]
 #command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec whatsie &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall whatsie; fi'
@@ -96,6 +96,22 @@ interval=10
 label=
 instance=disk
 interval=30
+
+[btc]
+label=BTC
+#command=echo "$(curl 'https://api.coinmarketcap.com/v1/ticker/bitcoin/' -s | jq '.[0]["price_usd"]' | sed 's/"//g') \$"
+command=echo "R\$ $(curl 'https://blockchain.info/ticker' -s | jq '.["BRL"]["last"]')"
+interval=60
+
+#[eth]
+#label=ETH
+#command=echo "$(curl 'https://api.coinmarketcap.com/v1/ticker/ethereum/' -s | jq '.[0]["price_usd"]' | sed 's/"//g') \$"
+#interval=60
+
+#[steem]
+#label=STEEM
+#command=echo "$(curl 'https://api.coinmarketcap.com/v1/ticker/steem/' -s | jq '.[0]["price_usd"]' | sed 's/"//g') \$"
+#interval=60
 
 [wifi]
 label=

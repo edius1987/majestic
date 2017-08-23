@@ -46,13 +46,11 @@ BYTES_OUT=$(echo "${BANDWIDTH}" | awk -F ' ' '{print $2}')
 function FormatNumber() {
 	saida=$(echo "scale=0;${1}/1024" | bc -l)
 
-	#if [[ "$saida" -ge "1000" ]]; then
-	echo $saida"kb"
-	#elif [[ "$saida" -ge "100" ]]; then
-	#	echo "0"$saida"kb"
-	#else
-	#	echo "00"$saida"kb"
-	#fi
+	if [[ "$saida" -ge "10" ]]; then
+		echo "0"$saida"kb"
+	else
+		echo "00"$saida"kb"
+	fi
 }
 
 if [[ "${PREV_IN}" != "" ]] && [[ "${PREV_OUT}" != "" ]]; then

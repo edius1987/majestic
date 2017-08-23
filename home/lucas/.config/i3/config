@@ -40,6 +40,8 @@ bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" 
 bindsym Print exec --no-startup-id ~/bin/screenshot.sh
 bindsym --release Mod1+Sys_Req exec ~/bin/screenshot.sh -s
 bindsym $mod+Print exec ~/bin/screenshot.sh -d
+bindsym Control+Print exec imgur-screenshot
+bindsym Control+Mod1+Sys_Req exec imgur-screenshot
 
 #bindsym F5 exec --no-startup-id i3-sensible-terminal
 bindsym F5 exec --no-startup-id termite
@@ -47,11 +49,11 @@ bindsym F6 exec --no-startup-id thunar
 bindsym F7 exec --no-startup-id pluma
 bindsym F8 exec --no-startup-id firefox
 bindsym F9 exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram
-bindsym F11 exec --no-startup-id ~/bin/screencast.sh
+bindsym Control+F11 exec --no-startup-id ~/bin/screencast.sh
 bindsym Control+F12 exec --no-startup-id ~/bin/screencast.sh -s
 
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 1%+ unmute 
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 1%- unmute 
+bindsym XF86AudioRaiseVolume exec (amixer -q -D pulse sset Master 5%+ unmute && notify-send "Volume" "$(amixer -D pulse get Master | awk 'NR==6{print $5}')")
+bindsym XF86AudioLowerVolume exec (amixer -q -D pulse sset Master 5%- unmute && notify-send "Volume" "$(amixer -D pulse get Master | awk 'NR==6{print $5}')")
 
 bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 -b 'config' 'i3-msg exec pluma ~/.config/i3/config' \
@@ -275,13 +277,13 @@ exec --no-startup-id /usr/lib/vino/vino-server
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 bar {
-	font xft:FontAwesome 10
+	font xft:FontAwesome 9
 	tray_output none	
 	i3bar_command i3bar -t
 	status_command i3blocks -c ~/.config/i3/blocks
 	
 	colors {
-		background 		$transparente
+		background		$transparente
 		#background		$fundo-inativo
 		separator		$separador
 

@@ -35,10 +35,17 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 
 #------------------------------------------------------------------------
 
-#echo "${SSID_NAME}: ${QUALITY}%" # full text
-#echo "${SSID_NAME}: ${QUALITY}%" # short text
-echo "${QUALITY}%" # full text
-echo "${QUALITY}%" # short text
+if [ $QUALITY -lt 100 ]; then
+	zero="0"
+elif [ $QUALITY -lt 10 ]; then
+	zero="00"
+else
+	zero=""
+
+#echo "${SSID_NAME}: ${zero}${QUALITY}%" # full text
+#echo "${SSID_NAME}: ${zero}${QUALITY}%" # short text
+echo "${zero}${QUALITY}%" # full text
+echo "${zero}${QUALITY}%" # short text
 
 
 # color
