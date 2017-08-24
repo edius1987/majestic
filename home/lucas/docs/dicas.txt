@@ -1,2 +1,12 @@
 # Git sem senha
 git remote set-url origin git@github.com:usuario/repositorio.git
+
+# VirtualBox
+# Iniciar VM
+VBoxManage startvm "OS"
+
+# Iniciar VM HeadLess
+VBoxManage startvm --type headless "OS"
+
+# Salvar e desligar
+VBoxManage controlvm "OS" savestate 
