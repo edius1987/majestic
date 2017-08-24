@@ -41,6 +41,7 @@ elif [ $QUALITY -lt 10 ]; then
 	zero="00"
 else
 	zero=""
+fi
 
 #echo "${SSID_NAME}: ${zero}${QUALITY}%" # full text
 #echo "${SSID_NAME}: ${zero}${QUALITY}%" # short text

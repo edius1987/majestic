@@ -1,11 +1,13 @@
 set $mod Mod4
 font xft:DejaVu Sans Mono 9
+#font xft:Droid Sans Mono 10
+#font pango:Anonymous Pro 9
 gaps inner 10
 gaps outer 0
 
-#hide_edge_borders both
-#new_window none
-new_window pixel 3
+hide_edge_borders both
+new_window none
+#new_window pixel 3
 
 set $wallpaper				"~/img/wallpapers/apple/sierra.png"
 
@@ -41,7 +43,7 @@ set $fundo-urgente          #900000
 set $indicador              #00ff00
 set $separador              #666666
 set $borda					#5b6365
-set $transparente			#80000000
+set $transparente			#000000BF
 
 # classe                borda               fundo           texto                   indicador               borda_filha
 client.focused          $borda				$fundo-inativo  $texto                  $borda					$borda
@@ -57,7 +59,7 @@ bindsym $mod+Shift+f exec rofi -show find -modi find:~/.config/rofi/scripts/find
 bindsym $mod+Shift+d exec rofi -show fm -fullscreen -fake-transparency -fake-background $wallpaper
 bindsym $mod+Control+d exec rofi -show keys
 
-bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
+bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Arch Linux" -p -g -- scrot -z
 
 bindsym Print exec --no-startup-id ~/bin/screenshot.sh
 bindsym --release Mod1+Sys_Req exec ~/bin/screenshot.sh -s
@@ -205,6 +207,7 @@ assign [class="^Deluge"] $workspace7
 assign [class="^Thunderbird"] $workspace8
 assign [class="^Telegram"] $workspace9
 assign [class="^Whatsie"] $workspace9
+assign [class="^Hexchat"] $workspace9
 assign [class="^Gtkman"] $workspace10
 
 bindsym $mod+Shift+c reload
@@ -220,18 +223,22 @@ mode "[p]opcorntime, [s]tremio, [d]eadbeef" {
 }
 bindsym $mod+Shift+m mode "[p]opcorntime, [s]tremio, [d]eadbeef"
 
-mode "[c]hromium, [t]hunderbird, [p]luma, t[h]unar, t[e]legram, [a]tom" {
+mode "[f]firefox, [c]hromium, t[h]underbird, [t]ermite, [p]luma, t[h]unar, t[e]legram, [w]hatsie, [a]tom, [s]ublime" {
+	bindsym f exec --no-startup-id firefox , mode "default"
 	bindsym c exec --no-startup-id chromium --process-per-site , mode "default"
-	bindsym t exec --no-startup-id thunderbird , mode "default"
+	bindsym h exec --no-startup-id thunderbird , mode "default"
+	bindsym t exec --no-startup-id termite , mode "default"
 	bindsym p exec --no-startup-id pluma , mode "default"
 	bindsym h exec --no-startup-id thunar , mode "default"
 	bindsym e exec --no-startup-id ~/.local/share/TelegramDesktop/Telegram , mode "default"
+	bindsym w exec --no-startup-id whatsie , mode "default"
 	bindsym a exec --no-startup-id atom , mode "default"
+	bindsym s exec --no-startup-id subl , mode "default"
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-bindsym $mod+Shift+a mode "[c]hromium, [t]hunderbird, [p]luma, t[h]unar, t[e]legram, [a]tom"
+bindsym $mod+Shift+a mode "[f]firefox, [c]hromium, t[h]underbird, [t]ermite, [p]luma, t[h]unar, t[e]legram, [w]hatsie, [a]tom, [s]ublime"
 
 mode "[c]onfig, i3[b]locks, [d]unst, c[o]mpton, [x]initrc" {
 	bindsym c exec --no-startup-id pluma ~/.config/i3/config , mode "default"
@@ -246,7 +253,7 @@ mode "[c]onfig, i3[b]locks, [d]unst, c[o]mpton, [x]initrc" {
 bindsym $mod+Control+c mode "[c]onfig, i3[b]locks, [d]unst, c[o]mpton, [x]initrc"
 
 mode "[t]ravar, [s]air, [d]esligar, [r]einiciar, s[u]spender" {
-	bindsym t exec --no-startup-id i3lock-fancy -f "Droid-Sans-Mono" -t "Tela Bloqueada" -p -g -- scrot -z
+	bindsym t exec --no-startup-id i3lock-fancy -f "Droid-Sans-Mono" -t "Arch Linux" -p -g -- scrot -z
 	bindsym s exec i3-msg exit
 	bindsym u exec systemctl suspend
 	bindsym r exec systemctl reboot
@@ -299,19 +306,19 @@ exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id xautolock.sh
 
 bar {
-	font xft:FontAwesome 9
+	font xft:DejaVu Sans Mono 9,FontAwesome 9
 	tray_output none	
-	i3bar_command i3bar -t
+	#i3bar_command i3bar -t
 	status_command i3blocks -c ~/.config/i3/blocks
 	
 	colors {
-		background		$transparente
-		#background		$fundo-inativo
+		#background		$transparente
+		background		$fundo-inativo
 		separator		$separador
 
 		#					borda			fundo			texto
-		focused_workspace	$transparente	$transparente	$texto-ativo
-		inactive_workspace	$transparente	$transparente	$texto-inativo
-		urgent_workspace	$transparente	$transparente	$texto-urgente
+		focused_workspace	$borda			$fundo-inativo	$texto-ativo
+		inactive_workspace	$fundo-inativo	$fundo-inativo	$texto-inativo
+		urgent_workspace	$fundo-inativo	$fundo-inativo	$texto-urgente
     }
 }

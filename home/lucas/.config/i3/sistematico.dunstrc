@@ -1,6 +1,6 @@
 [global]
     font = "Monospace 9"
-	#transparency = 95
+	transparency = 95
     allow_markup = yes
     format = "<b>%s %p</b>\n%b"
     sort = yes
@@ -24,6 +24,7 @@
 	# Align icons left/right/off
     icon_position = left
     icon_folders = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
+	#icon_folders = /usr/share/icons/Arc/status/32/:/usr/share/icons/Arc/devices/32/:/usr/share/icons/Arc/apps/32/
 
 [frame]
     width = 3
@@ -41,7 +42,9 @@
     timeout = 5
 
 [urgency_normal]
-    background = "#94DBFF"
+    #background = "#94DBFF"
+	#background = "#2e3436"
+	background = "#555753"
     foreground = "#000000"
     timeout = 10
 
