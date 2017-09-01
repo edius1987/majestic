@@ -1,94 +1,52 @@
 command=~/.config/i3/scripts/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[firefox]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
+interval=once
+separator_block_width=10
+separator=false
+
+[termite]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termite &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall termite; fi'
+interval=once
+separator_block_width=10
+separator=false
+
+[thunar]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
+interval=once
 
 [focus]
+command=~/.config/i3/scripts/focus
 label=
 interval=5
 
-#[mpd]
-#label=
-#interval=5
+[cpu]
+label=
+interval=1
+#min_width=100.00%
 
-[load_average]
-label=
-command=/usr/lib/i3blocks/load_average
-interval=10
-
-#[stats]
-#label=
-#instance=cpu
-#interval=10
-
-#[stats]
-#label=
-#instance=mem
-#interval=10
-
-#[stats]
-#label=
-#instance=disk
-#interval=30
-
-[wifi]
-label=
-interval=10
-
-[bandwidth]
-label=
+[mem]
+label=
 interval=1
 
-[temperature]
-label=
-interval=10
-
-#[weather]
-#interval=300
-#instance=sbcg
-
-#[packages]
-#label=
-#interval=600
-
-#[trash]
-#label=
-#interval=60
-
-#[uptime]
-#label=
-#interval=60
+[disk]
+label=
+interval=30
 
 [date]
 label=
-command=date '+%d/%m/%y'
-interval=300
-separator=false
+command=date '+%d/%m/%Y'
+interval=5
 
 [time]
-label= 
+label=
 command=date '+%H:%M'
 interval=5
 
 [volume]
 instance=Master
-interval=5
+interval=1
 signal=10
-
-#[wallpaper]
-#interval=once
-
-#[blank]
-#interval=5
-
-#[firewall]
-#interval=10
-
-#[keystate]
-#instance=caps
-#interval=1
-
-#[keystate]
-#instance=num
-#interval=1
-
-[shutdown]
-full_text=  
-interval=once

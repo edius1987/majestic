@@ -30,24 +30,9 @@ fi
 ##################
 #### Aliases #####
 ##################
-# Cria um arquivo de 1GB
-alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
-alias rm='rm -Iv'
-alias mv='mv -iv'
-alias cp='cp -iv'
-alias ls='ls --color=auto --group-directories-first'
-alias els='els --els-icons=fontawesome'
-alias copiar='xclip -sel clip <'
-
-alias e='exit'
-alias s='sudo su'
-alias pacman='sudo pacman'
-alias mkdir='mkdir -pv'
-
-alias neofetch='neofetch --config ~/.neofetch.conf'
-alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
-alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
-alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
+if [ -f .bash_aliases ]; then
+    source .bash_aliases
+fi
 
 ##################
 ##### Sources ####

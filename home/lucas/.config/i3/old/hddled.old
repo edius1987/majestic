@@ -1,9 +1,0 @@
-#!/bin/sh
-
-valor=$(printf "%.0f" $(iostat -x /dev/sda | awk '/sda/ { print $14}'))
-
-if [ $valor -gt 1 ]; then
-	echo "Ativo"
-else
-	echo "Inativo"
-fi

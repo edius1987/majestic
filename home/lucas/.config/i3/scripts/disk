@@ -14,14 +14,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-tipo="${BLOCK_INSTANCE:-Mem}"
+dir="${BLOCK_INSTANCE:-$HOME}"
+alerta="${1:-10}" 
+uso=$(df -h -P -l "$dir" | awk 'NR==2{print $5}' | tr -dc '0-9')
 
-total=$(free -m | grep $tipo | awk '{print $2}')
-usada=$(free -m | grep $tipo | awk '{print $3}')
-por=$(echo "scale=2;(${usada}/${total})*100" | bc)
-porc=$(echo "scale=0;$por/1" | bc)
+# Full
+echo "${uso}%"
+# Short
+echo "${uso}%"
 
-echo "${porc}%"
-echo "${porc}%"
-echo ""
-
+if [ "$uso" -gt "$alerta" ]; then
+	echo "#FF0000"
+else
+	echo ""
+fi

@@ -14,36 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DIR="${BLOCK_INSTANCE:-$HOME}"
-ALERT_LOW="${1:-5}" # color will turn red under this value (default: 10%)
+tipo="${BLOCK_INSTANCE:-Mem}"
 
-case $BLOCK_BUTTON in
-	1) thunar ;;  # left click
-#	3) mpc toggle  | filter ;;  # right click
-#    4) mpc prev    | filter ;;  # scroll up
-#    5) mpc next    | filter ;;  # scroll down
-#    *) mpc current | filter ;;
-esac
+uso=$(grep 'cpu' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')
+usada=$(echo "scale=0;${uso}/1" | bc)
 
-df -h -P -l "$DIR" | awk -v alert_low=$ALERT_LOW '
-/\/.*/ {
-	# full text
-	print $4
+echo "${usada}%"
+echo "${usada}%"
+echo ""
 
-	# short text
-	print $4
-
-	use=$5
-
-	# no need to continue parsing
-	exit 0
-}
-
-END {
-	gsub(/%$/,"",use)
-	if (100 - use < alert_low) {
-		# color
-		print "#FF0000"
-	}
-}
-'
