@@ -1,0 +1,17 @@
+#!/bin/bash
+
+res=$(echo "firefox;termite;thunar;telegram;atom;deluge;popcorntime" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 6 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+
+if [ ! -z $res ]; then
+	case $res in
+		telegram)
+			i3-msg -q exec ~/.local/share/TelegramDesktop/Telegram
+		;;
+		popcorntime)
+			i3-msg -q exec ~/.local/share/popcorntime/Popcorn-Time
+		;;
+		*)
+			i3-msg -q "exec $res"
+		;;
+	esac
+fi

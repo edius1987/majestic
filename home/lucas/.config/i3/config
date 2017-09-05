@@ -29,11 +29,12 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+Shift+x exec i3lock-fancy -f "Droid-Sans-Mono" -t "Arch Linux" -p -g -- scrot -z
+bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z
 
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute
@@ -115,6 +116,9 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # move position center
@@ -165,29 +169,32 @@ bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 -b 'rofi' 'i3-msg exec pluma ~/.config/rofi/config' \
 -b '.Xresources' 'i3-msg exec pluma ~/.Xresources' \
 -b '.xinitrc' 'i3-msg exec pluma ~/.config/.xinitrc' \
--b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults'"
+-b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults' \
+-b 'apps' 'i3-msg exec pluma ~/.config/rofi/scripts/apps'"
 
-mode "[f]irefox, [t]hunar, t[e]legram, [p]opcorntime" {
-    bindsym f exec firefox , mode "default"
-    bindsym t exec thunar , mode "default"
-    bindsym e exec ~/.local/share/TelegramDesktop/Telegram , mode "default"
-    bindsym p exec ~/.local/share/popcorntime/Popcorn-Time , mode "default"
+#mode "[f]irefox, [t]hunar, t[e]legram, [p]opcorntime" {
+#    bindsym f exec firefox , mode "default"
+#    bindsym t exec thunar , mode "default"
+#    bindsym e exec ~/.local/share/TelegramDesktop/Telegram , mode "default"
+#    bindsym p exec ~/.local/share/popcorntime/Popcorn-Time , mode "default"
+#
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+#bindsym $mod+Shift+a mode "[f]irefox, [t]hunar, t[e]legram, [p]opcorntime"
+bindsym $mod+Shift+a exec ~/.config/rofi/scripts/apps
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+a mode "[f]irefox, [t]hunar, t[e]legram, [p]opcorntime"
-
-mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
-	bindsym s exec i3-msg exit
-	bindsym d exec systemctl poweroff
-	bindsym r exec systemctl reboot
-	bindsym s exec systemctl suspend
-
-	bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+e mode "[s]air, [d]esligar, [r]einiciar, [s]uspender"
+#mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
+#	bindsym s exec i3-msg exit
+#	bindsym d exec systemctl poweroff
+#	bindsym r exec systemctl reboot
+#	bindsym s exec systemctl suspend
+#
+#	bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+#bindsym $mod+Shift+e mode "[s]air, [d]esligar, [r]einiciar, [s]uspender"
+bindsym $mod+Shift+e exec ~/.config/rofi/scripts/power
 
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
@@ -211,6 +218,8 @@ exec --no-startup-id dunst -config ~/.config/i3/dunstrc
 exec --no-startup-id parcellite
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id /usr/local/bin/xautolock.sh
+exec --no-startup-id /usr/lib/vino/vino-server
+exec --no-startup-id /usr/bin/xautolock -time 5 -locker 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z' -detect
 
 bar {
     font xft:FontAwesome 9,DejaVu Sans Mono 9

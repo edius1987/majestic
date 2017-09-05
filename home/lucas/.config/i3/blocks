@@ -2,26 +2,24 @@ command=~/.config/i3/scripts/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[firefox]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
-interval=once
-separator_block_width=10
-separator=false
+#[firefox]
+#command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
+#interval=once
+#separator_block_width=10
+#separator=false
 
-[termite]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termite &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall termite; fi'
-interval=once
-separator_block_width=10
-separator=false
-
-[thunar]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
+[apps]
+command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/apps &> /dev/null; fi'
 interval=once
 
 [focus]
 command=~/.config/i3/scripts/focus
 label=
 interval=5
+
+[wifi]
+label=
+interval=10
 
 [cpu]
 label=
@@ -35,6 +33,22 @@ interval=1
 [disk]
 label=
 interval=30
+
+[temperature]
+label=
+interval=10
+
+[packages]
+label=
+interval=600
+
+[trash]
+label=
+interval=30
+
+[uptime]
+label=
+interval=60
 
 [date]
 label=
@@ -50,3 +64,7 @@ interval=5
 instance=Master
 interval=1
 signal=10
+
+[shutdown]
+command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
+interval=once

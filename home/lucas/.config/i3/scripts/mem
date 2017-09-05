@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. ~/.config/i3/cores.conf
+
 tipo="${BLOCK_INSTANCE:-Mem}"
 
 total=$(free -m | grep $tipo | awk '{print $2}')
@@ -21,7 +23,17 @@ usada=$(free -m | grep $tipo | awk '{print $3}')
 por=$(echo "scale=2;(${usada}/${total})*100" | bc)
 porc=$(echo "scale=0;$por/1" | bc)
 
+if [[ ${porc} -gt 75 ]]; then
+	cor=$cormax
+elif [[ ${porc} -gt 50 ]]; then
+	cor=$cormed2
+elif [[ ${porc} -gt 30 ]]; then
+	cor=$cormed
+else
+	cor=""
+fi
+
 echo "${porc}%"
 echo "${porc}%"
-echo ""
+echo "$cor"
 

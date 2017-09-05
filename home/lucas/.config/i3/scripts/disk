@@ -14,17 +14,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. ~/.config/i3/cores.conf
+
 dir="${BLOCK_INSTANCE:-$HOME}"
-alerta="${1:-10}" 
 uso=$(df -h -P -l "$dir" | awk 'NR==2{print $5}' | tr -dc '0-9')
 
-# Full
-echo "${uso}%"
-# Short
-echo "${uso}%"
-
-if [ "$uso" -gt "$alerta" ]; then
-	echo "#FF0000"
+if [[ ${uso} -gt 75 ]]; then
+	cor=$cormax
+elif [[ ${uso} -gt 50 ]]; then
+	cor=$cormed
+elif [[ ${uso} -gt 25 ]]; then
+	cor=$cormin
 else
-	echo ""
+	cor=""
 fi
+
+echo "${uso}%"
+echo "${uso}%"
+echo "$cor"

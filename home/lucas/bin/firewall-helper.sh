@@ -7,8 +7,8 @@
 #
 # Script por Lucas Saliés Brum, a.k.a. sistematico, <lucas AT archlinux DOT com DOT br>.
 #
-# Criado em 03/08/16 13:43:16 AMT 
-# Alterado em 24-08-2016 12:50:22 AMT   
+# Criado em 03/08/16 13:43:16 AMT
+# Alterado em 24-08-2016 12:50:22 AMT
 
 # Mode 0 (normal) | Mode 1 (Bloqueia Torrents)
 mode=0
@@ -112,8 +112,8 @@ if [ "$1" = "--block" ]; then
 			ufw reload
 		else
 			iptables -I INPUT -p tcp --dport 80 -m string --string \"Host: ${dom}\" --algo bm -j DROP
-			iptables -I OUTPUT -p tcp --dport 80 -m string --string \"Host: ${dom}\" --algo bm -j DROP		
-		fi		
+			iptables -I OUTPUT -p tcp --dport 80 -m string --string \"Host: ${dom}\" --algo bm -j DROP
+		fi
 		echo "IP: $dom bloqueado."
 	done < $tmp
 elif [ "$1" = "--unblock" ]; then
@@ -122,7 +122,7 @@ elif [ "$1" = "--unblock" ]; then
 			ufw delete deny from $dom
 			ufw delete deny to $dom
 			ufw reload
-		else 
+		else
 			iptables -D INPUT -p tcp --dport 80 -m string --string \"Host: ${dom}\" --algo bm -j DROP
 			iptables -D OUTPUT -p tcp --dport 80 -m string --string \"Host: ${dom}\" --algo bm -j DROP
 		fi

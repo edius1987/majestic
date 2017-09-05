@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Colors: FG (foreground), BG (background), HL (highlighted)
+FG_COLOR="#bbbbbb"
+BG_COLOR="#111111"
+HLFG_COLOR="#111111"
+HLBG_COLOR="#bbbbbb"
+BORDER_COLOR="#222222"
+ROFI_TEXT="Rofi Shutdown"
+ROFI_OPTIONS=(-width -11 -location 3 -hide-scrollbar -bw 2)
+
+#######################################################################
+#                             END CONFIG                              #
+#######################################################################
+
+enable_confirmation=false
+
+function programado() {
+	opcao=$(echo -e "15 minutos\n30 minutos\n1h\n2h\n3h\n4h\n5h" | rofi -dmenu -i -p "${selection}?")
+
+	if [ ! -z ${selection} ]; then
+		#i3-msg -q "exec ${menu[${selection}]}"
+		notify-send "Programado" "Desligando em $opcao"
+	fi
+}
+
+# menu defined as an associative array
+typeset -A menu
+
+# Menu with keys/commands
+menu=(
+  [Shutdown]="systemctl poweroff"
+  [Reboot]="systemctl reboot"
+  [Hibernate]="systemctl hibernate"
+  [Suspend]="systemctl suspend"
+  [Halt]="systemctl halt"
+  [Programado]="systemctl halt"
+  [Lock]="i3lock-fancy -f Iosevka-Thin -t 'Tela Bloqueada' -p -- scrot -z"
+  [Logout]="i3-msg exit"
+  [Cancel]=""
+)
+
+menu_confirm="Shutdown Reboot Hibernate Suspend Halt Programado Logout"
+launcher=(rofi -dmenu -i -lines "${#menu[@]}" -p "Rofi Shutdown" -width -11 -location 3 -hide-scrollbar -bw 2)
+selection="$(printf '%s\n' "${!menu[@]}" | sort | "${launcher[@]}")"
+
+function ask_confirmation() {
+    confirmed=$(echo -e "Sim\nNão" | rofi -dmenu -i -lines 2 -p "${selection}?")
+    [ "${confirmed}" == "Sim" ] && confirmed=0
+
+	if [ "${confirmed}" == 0 ]; then
+		i3-msg -q "exec ${menu[${selection}]}"
+	fi
+}
+
+if [[ $? -eq 0 && ! -z ${selection} ]]; then
+	if [[ "${enable_confirmation}" = true && ${menu_confirm} =~ (^|[[:space:]])"${selection}"($|[[:space:]]) ]]; then
+		ask_confirmation
+	elif [ ${selection} == "Programado" ]; then
+		programado
+	else
+		i3-msg -q "exec ${menu[${selection}]}"
+	fi
+fi

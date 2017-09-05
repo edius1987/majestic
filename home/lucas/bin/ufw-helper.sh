@@ -3,8 +3,8 @@
 # ufw_helper.sh: Programa feito em dialog para administração do UFW Firewall.
 #
 # Criado por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
-# Em 		14/09/2016 18:12:13 AMT 
-# Alterado: 14/09/2016 18:34:36 AMT 
+# Em 		14/09/2016 18:12:13 AMT
+# Alterado: 14/09/2016 18:34:36 AMT
 
 if [ "$(id -u)" != "0" ]; then
    echo "Este script precisa ser usado como root." 1>&2

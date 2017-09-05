@@ -1,22 +1,8 @@
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
-! User: milouse
-! Copyright: Étienne Deparis
 ! ------------------------------------------------------------------------------
-! "Color scheme for normal row" Set from: File
-rofi.color-normal:                   argb:00272822, #f8f8f2, argb:00272822, #141411, #f8f8f2
-! "Color scheme for urgent row" Set from: File
-rofi.color-urgent:                   argb:00272822, #f92672, argb:00272822, #f92672, #f8f8f2
-! "Color scheme for active row" Set from: File
-rofi.color-active:                   argb:00272822, #a6e22a, argb:00272822, #141411, #a6e22a
-! "Color scheme window" Set from: File
-rofi.color-window:                   argb:e6272822, #002b36, #e6db74
-! "Separator style (none, dash, solid)" Set from: File
-rofi.separator-style:                dash
-
-
-!rofi.modi:                          combi,fm:fm.sh,calc:qalc -t
-rofi.modi:                           combi,fm:~/.config/rofi/scripts/fm.sh,find:~/.config/rofi/scripts/finder.sh
-!rofi.combi-modi:                    window,run,ssh
-rofi.combi-modi:                     window,run
-rofi.scroll-method:					 1
+rofi.color-enabled: true
+rofi.color-window: #5c5c5c, argb:0002b36, #5c5c5c
+rofi.color-normal: argb:05c5c5c, #929292, #5c5c5c, #5c5c5c, #ffffff
+rofi.color-active: #5c5c5c, #929292, #5c5c5c, #5c5c5c, #ffffff
+rofi.color-urgent: #5c5c5c, #929292, #5c5c5c, #5c5c5c, #ffffff
