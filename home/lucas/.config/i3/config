@@ -19,6 +19,7 @@ set $separador              #666666
 set $borda					#5b6365
 set $transparente			#000000BF
 
+#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
 client.focused          $borda				$fundo-inativo  $texto                  $borda					$borda
 client.unfocused        $borda				$fundo-inativo  $texto-inativo			$fundo-inativo			$borda
 client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$fundo-inativo			$borda
@@ -78,16 +79,16 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
-set $workspace1 "1"
-set $workspace2 "2"
-set $workspace3 "3"
-set $workspace4 "4"
-set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7"
-set $workspace8 "8"
-set $workspace9 "9"
-set $workspace10 "10"
+set $workspace1  "1:  "
+set $workspace2  "2:  "
+set $workspace3  "3:  "
+set $workspace4  "4:  "
+set $workspace5  "5:  "
+set $workspace6  "6:  "
+set $workspace7  "7:  "
+set $workspace8  "8:  "
+set $workspace9  "9:  "
+set $workspace10 "10:  "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -172,28 +173,19 @@ bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 -b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults' \
 -b 'apps' 'i3-msg exec pluma ~/.config/rofi/scripts/apps'"
 
-#mode "[f]irefox, [t]hunar, t[e]legram, [p]opcorntime" {
-#    bindsym f exec firefox , mode "default"
-#    bindsym t exec thunar , mode "default"
-#    bindsym e exec ~/.local/share/TelegramDesktop/Telegram , mode "default"
-#    bindsym p exec ~/.local/share/popcorntime/Popcorn-Time , mode "default"
-#
-#    bindsym Return mode "default"
-#    bindsym Escape mode "default"
-#}
-#bindsym $mod+Shift+a mode "[f]irefox, [t]hunar, t[e]legram, [p]opcorntime"
 bindsym $mod+Shift+a exec ~/.config/rofi/scripts/apps
 
-#mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
-#	bindsym s exec i3-msg exit
-#	bindsym d exec systemctl poweroff
-#	bindsym r exec systemctl reboot
-#	bindsym s exec systemctl suspend
-#
-#	bindsym Return mode "default"
-#    bindsym Escape mode "default"
-#}
-#bindsym $mod+Shift+e mode "[s]air, [d]esligar, [r]einiciar, [s]uspender"
+mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
+	bindsym s exec i3-msg exit
+	bindsym d exec systemctl poweroff
+	bindsym r exec systemctl reboot
+	bindsym s exec systemctl suspend
+
+	bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Mod1+e mode "[s]air, [d]esligar, [r]einiciar, [s]uspender"
+
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/power
 
 mode "resize" {
@@ -212,20 +204,12 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id hsetroot -solid "#1b1b1b"
-exec --no-startup-id numlockx
-exec --no-startup-id dunst -config ~/.config/i3/dunstrc
-exec --no-startup-id parcellite
-exec --no-startup-id sudo headsetcontrol 64
-exec --no-startup-id /usr/local/bin/xautolock.sh
-exec --no-startup-id /usr/lib/vino/vino-server
-exec --no-startup-id /usr/bin/xautolock -time 5 -locker 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z' -detect
-
 bar {
-    font xft:FontAwesome 9,DejaVu Sans Mono 9
-    tray_output none
-	status_command i3blocks -c ~/.config/i3/blocks
-
+	tray_output none
+    status_command i3blocks -c ~/.config/i3/blocks
+    #position top
+    font pango:Hack, FontAwesome 10
+    strip_workspace_numbers yes
 	colors {
 		background		$fundo-inativo
 		separator		$separador
@@ -236,3 +220,12 @@ bar {
 		urgent_workspace	$fundo-inativo	$fundo-inativo	$texto-urgente
     }
 }
+
+exec_always --no-startup-id hsetroot -solid "#1b1b1b"
+exec --no-startup-id numlockx
+exec --no-startup-id dunst -config ~/.config/i3/dunstrc
+exec --no-startup-id parcellite
+exec --no-startup-id sudo headsetcontrol 64
+exec --no-startup-id /usr/local/bin/xautolock.sh
+exec --no-startup-id /usr/lib/vino/vino-server
+exec --no-startup-id /usr/bin/xautolock -time 5 -locker 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z' -detect

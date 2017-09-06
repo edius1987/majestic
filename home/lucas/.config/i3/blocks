@@ -1,6 +1,7 @@
 command=~/.config/i3/scripts/$BLOCK_NAME
 separator_block_width=15
 markup=none
+#separator=false
 
 #[firefox]
 #command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
@@ -24,7 +25,6 @@ interval=10
 [cpu]
 label=
 interval=1
-#min_width=100.00%
 
 [mem]
 label=
@@ -37,6 +37,10 @@ interval=30
 [temperature]
 label=
 interval=10
+
+[weather]
+instance="SAM|BR|BR010|CAMPO+GRANDE"
+interval=300
 
 [packages]
 label=
