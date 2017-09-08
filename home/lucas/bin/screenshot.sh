@@ -1,5 +1,6 @@
 #!/bin/sh
 
+app="maim"
 dir="${HOME}/img/shots/"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"
@@ -13,20 +14,20 @@ fi
 
 if [ "$1" == "-a" ]; then
 	arquivo="${nome}-full${extensao}"
-	scrot -m ${arquivo}
+	$app ${arquivo}
 elif [ "$1" == "-w" ]; then
 	arquivo="${nome}-window${extensao}"
-	scrot -u -m ${arquivo}
+	$app -i $(xdotool getactivewindow) ${arquivo}
 elif [ "$1" == "-s" ]; then
-    arquivo="${nome}-rec${extensao}"
-    scrot -s ${arquivo}
+	arquivo="${nome}-rec${extensao}"
+    $app -s ${arquivo}
 elif [ "$1" == "-d" ]; then
     arquivo="${nome}-delay${extensao}"
-    scrot -d $atraso ${arquivo}
+    $app -d $atraso ${arquivo}
 else
 
 	arquivo="${nome}-crop${extensao}"
-	scrot -m ${arquivo}
+	$app -m ${arquivo}
 	mogrify -crop 1920x1080+0+0 +repage ${arquivo}
 fi
 

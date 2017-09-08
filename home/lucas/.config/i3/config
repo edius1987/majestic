@@ -33,7 +33,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 bindsym $mod+d exec dmenu_run
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+g exec echo "" | rofi -dmenu -p "Google:" | xargs -I{} xdg-open https://www.google.com.br/search?q={}
+bindsym $mod+Shift+g exec echo "" | rofi -dmenu -p "DDG:" | xargs -I{} xdg-open https://duckduckgo.com/?q={}
 
 bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z
 
@@ -41,6 +42,7 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute
 
 bindsym Print exec --no-startup-id ~/bin/screenshot.sh
+bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
 bindsym --release Mod1+Sys_Req exec ~/bin/screenshot.sh -s
 bindsym $mod+Print exec ~/bin/screenshot.sh -d
 
