@@ -14,9 +14,8 @@ COR="#1b1b1b"
 DIA_PATH="${HOME}/img/modelos"
 
 if [ ! -f "$DEFAULT" ]; then
-	curl www > $DEFAULT
+	curl https://github.com/sistematico/majestic/raw/master/home/lucas/.wallpaper-default.jpg > $DEFAULT
 fi
-
 
 if [ ! -d "$WALL" ]; then
 	echo "O diretório $WALL não existe, abortando..."
@@ -29,17 +28,12 @@ if [ "$1" ]; then
 		feh --bg-fill \"$(shuf -n1 -e ${DIA_PATH}/$(date +\"%A\")*)\"
 	elif [ "$1" = "-r" ]; then
 		if [ -f "${HOME}/.wall" ]; then
-			feh --bg-fill $(cat ${HOME}/.wall)
+			WALLPAPER=$(cat ${HOME}/.wall)
 		else
-			feh --bg-fill $DEFAULT
+			WALLPAPER=$DEFAULT
 		fi
 	elif [ "$1" = "-d" ]; then
-		if [ -f $DEFAULT ]; then
-			WALLPAPER=$DEFAULT
-		else
-			echo "O wallpaper padrão $DEFAULT não existe..."
-			exit 1
-		fi
+		WALLPAPER=$DEFAULT
 	elif [ "$1" = "-o" ]; then
 		WALLPAPER=$(cat ${HOME}/.wall)
 		viewnior $WALLPAPER

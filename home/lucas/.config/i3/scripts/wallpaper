@@ -3,7 +3,7 @@
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
 	~/bin/wallpaper.sh ~/img/wallpapers/i3wm/2560x1600/
 elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
-	~/bin/wallpaper.sh -r
+	~/bin/wallpaper.sh -d
 elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
 	#hsetroot -solid "#1b1b1b" &
 	~/bin/wallpaper.sh -c
