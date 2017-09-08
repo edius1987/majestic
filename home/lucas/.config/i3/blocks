@@ -69,6 +69,9 @@ instance=Master
 interval=1
 signal=10
 
+[wallpaper]
+interval=once
+
 [shutdown]
 command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
 interval=once

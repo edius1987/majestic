@@ -8,7 +8,15 @@
 # Criado em: 17/06/2016 13:13:58
 # Última alteração: 05/08/2017 01:07:53
 
-. ${HOME}/bin/config.conf
+WALL="${HOME}/img/wallpapers/arch-logo/2560x1600/"
+DEFAULT="${HOME}/.wallpaper-default.jpg"
+COR="#1b1b1b"
+DIA_PATH="${HOME}/img/modelos"
+
+if [ ! -f "$DEFAULT" ]; then
+	curl www > $DEFAULT
+fi
+
 
 if [ ! -d "$WALL" ]; then
 	echo "O diretório $WALL não existe, abortando..."
@@ -23,8 +31,7 @@ if [ "$1" ]; then
 		if [ -f "${HOME}/.wall" ]; then
 			feh --bg-fill $(cat ${HOME}/.wall)
 		else
-			echo "O arquivo ${HOME}/.wall não existe."
-			exit 1
+			feh --bg-fill $DEFAULT
 		fi
 	elif [ "$1" = "-d" ]; then
 		if [ -f $DEFAULT ]; then
