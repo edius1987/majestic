@@ -23,7 +23,7 @@ elif [ "$cond" = "*Windy*" ]; then
 elif [ "$cond" = "*Flurries*" ]; then
 	icone=""
 else
-	if [ ${hora} -ge ${dia} -a ${hora} -le ${noite} ]; then
+	if [ ${hora} -ge ${dia} ] && [ ${hora} -le ${noite} ]; then
 		icone=""
 	else
    		icone=""

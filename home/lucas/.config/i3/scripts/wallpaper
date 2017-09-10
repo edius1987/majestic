@@ -1,11 +1,21 @@
 #!/bin/bash
 
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-	~/bin/wallpaper.sh ~/img/wallpapers/i3wm/2560x1600/
-elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+wallp=""
+
+if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
+	for i in "${HOME}/img/wallpaper/*"; do
+		w+=$(printf '%s\n' "$i")
+	done
+	opt=$(yad --title="i3 Wallpaper" --width="350" --height="220" --separator="" --list --column "Selecione o diretório..." --search-column 1 $w)
+	if [[ ! -z $opt ]]; then
+		sed -i "s|^\(wallp=\).*|\1\"${opt}\"|" ${HOME}/.config/i3/scripts/wallpaper
+		~/bin/wallpaper.sh "$opt"
+	fi
+elif [[ ${BLOCK_BUTTON} -eq 4 ]] || [[ ${BLOCK_BUTTON} -eq 5 ]]; then
+	~/bin/wallpaper.sh "$wallp"
+elif [[ ${BLOCK_BUTTON} -eq 2 ]]; then
 	~/bin/wallpaper.sh -d
-elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
-	#hsetroot -solid "#1b1b1b" &
+elif [[ ${BLOCK_BUTTON} -eq 3 ]]; then
 	~/bin/wallpaper.sh -c
 fi
 

@@ -148,6 +148,7 @@ for_window [class="^Pavucontrol"] floating enable
 for_window [class="^Viewnior"] floating enable
 for_window [class="^Agave"] floating enable
 for_window [title="Mail do iCloud - Chromium"] floating enable, move position center
+for_window [title="i3 Wallpaper"] floating enable, move position center
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
@@ -160,25 +161,27 @@ assign [class="^Gimp"] $workspace5
 assign [class="^Inkscape"] $workspace5
 assign [class="^Lxappearance"] $workspace5
 assign [class="^Steam"] $workspace6
-assign [class="^mpv"] $workspace6
+#assign [class="^mpv"] $workspace6
 assign [class="^Deluge"] $workspace7
 assign [class="^Thunderbird"] $workspace8
 assign [class="^Telegram"] $workspace9
 assign [class="^Whatsie"] $workspace9
 assign [class="^Hexchat"] $workspace9
 assign [class="^Gtkman"] $workspace10
+assign [class="^Mate-disk-usage-analyzer"] $workspace10
 
-bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
--b 'config' 'i3-msg exec pluma ~/.config/i3/config' \
--b 'i3blocks' 'i3-msg exec pluma ~/.config/i3/blocks' \
--b 'dunst' 'i3-msg exec pluma ~/.config/i3/dunstrc' \
--b 'compton' 'i3-msg exec pluma ~/.config/compton.conf' \
--b 'rofi' 'i3-msg exec pluma ~/.config/rofi/config' \
--b '.Xresources' 'i3-msg exec pluma ~/.Xresources' \
--b '.xinitrc' 'i3-msg exec pluma ~/.config/.xinitrc' \
--b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults' \
--b 'apps' 'i3-msg exec pluma ~/.config/rofi/scripts/apps'"
+#bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
+#-b 'config' 'i3-msg exec pluma ~/.config/i3/config' \
+#-b 'i3blocks' 'i3-msg exec pluma ~/.config/i3/blocks' \
+#-b 'dunst' 'i3-msg exec pluma ~/.config/i3/dunstrc' \
+#-b 'compton' 'i3-msg exec pluma ~/.config/compton.conf' \
+#-b 'rofi' 'i3-msg exec pluma ~/.config/rofi/config' \
+#-b '.Xresources' 'i3-msg exec pluma ~/.Xresources' \
+#-b '.xinitrc' 'i3-msg exec pluma ~/.config/.xinitrc' \
+#-b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults' \
+#-b 'apps' 'i3-msg exec pluma ~/.config/rofi/scripts/apps'"
 
+bindsym $mod+c exec ~/.config/rofi/scripts/configs
 bindsym $mod+Shift+a exec ~/.config/rofi/scripts/apps
 
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
@@ -227,11 +230,14 @@ bar {
     }
 }
 
-exec_always --no-startup-id hsetroot -solid "#1b1b1b"
+#exec_always --no-startup-id hsetroot -solid "#1b1b1b"
+exec --no-startup-id /home/lucas/bin/wallpaper.sh -r
+exec --no-startup-id compton -b
 exec --no-startup-id numlockx
-exec --no-startup-id dunst -config ~/.config/i3/dunstrc
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id parcellite
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id /usr/local/bin/xautolock.sh
 exec --no-startup-id /usr/lib/vino/vino-server
-exec --no-startup-id /usr/bin/xautolock -time 5 -locker 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z' -detect
+exec --no-startup-id xset r rate 300 75
+exec --no-startup-id thunar --daemon

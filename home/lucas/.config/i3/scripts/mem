@@ -23,14 +23,18 @@ usada=$(free -m | grep $tipo | awk '{print $3}')
 por=$(echo "scale=2;(${usada}/${total})*100" | bc)
 porc=$(echo "scale=0;$por/1" | bc)
 
-if [[ ${porc} -gt 75 ]]; then
+if [[ ${porc} -gt 80 ]]; then
 	cor=$cormax
-elif [[ ${porc} -gt 50 ]]; then
+elif [[ ${porc} -gt 60 ]]; then
 	cor=$cormed2
-elif [[ ${porc} -gt 30 ]]; then
+elif [[ ${porc} -gt 50 ]]; then
 	cor=$cormed
 else
 	cor=""
+fi
+
+if [[ $BLOCK_BUTTON -eq 1 ]]; then
+    lxtask
 fi
 
 echo "${porc}%"

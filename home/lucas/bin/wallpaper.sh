@@ -14,7 +14,7 @@ COR="#1b1b1b"
 DIA_PATH="${HOME}/img/modelos"
 
 if [ ! -f "$DEFAULT" ]; then
-	curl https://github.com/sistematico/majestic/raw/master/home/lucas/.wallpaper-default.jpg > $DEFAULT
+	curl https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.wallpaper-default.jpg > $DEFAULT
 fi
 
 if [ ! -d "$WALL" ]; then
@@ -40,9 +40,9 @@ if [ "$1" ]; then
 	elif [ "$1" = "-c" ]; then
 		hsetroot -solid $COR
 	elif [ "$1" != "-r" ] || [ "$1" != "-d" ] || [ "$1" != "-o" ] || [ "$1" != "-c" ] || [ -d "$1" ]; then
-		if [ -d $1 ]; then
-			WALLPAPER=$(find $1 -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \) | shuf -n1)
-		elif [ -f $1 ]; then
+		if [ -d "$1" ]; then
+			WALLPAPER="$(find "$1" -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \) | shuf -n1)"
+		elif [ -f "$1" ]; then
 			WALLPAPER=$1
 		else
 			echo "Imagem: $1 não identificada, abortando..."

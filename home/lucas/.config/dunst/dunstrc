@@ -1,7 +1,7 @@
 [global]
     font = "Monospace 9"
 	transparency = 95
-    allow_markup = yes
+    markup = yes
     format = "<b>%s %p</b>\n%b"
     sort = yes
     indicate_hidden = true
@@ -25,15 +25,13 @@
     icon_position = left
     icon_folders = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
 	#icon_folders = /usr/share/icons/Arc/status/32/:/usr/share/icons/Arc/devices/32/:/usr/share/icons/Arc/apps/32/
-
-[frame]
-    width = 3
-    color = "#000000"
+	frame_width = 3
+	frame_color = "#000000"
 
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
-    history = ctrl+grave
+    history = ctrl+period
     context = ctrl+shift+period
 
 [urgency_low]

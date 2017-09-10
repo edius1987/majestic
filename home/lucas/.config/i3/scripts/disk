@@ -29,6 +29,10 @@ else
 	cor=""
 fi
 
+if [[ $BLOCK_BUTTON -eq 1 ]]; then
+    mate-disk-usage-analyzer
+fi
+
 echo "${uso}%"
 echo "${uso}%"
 echo "$cor"

@@ -25,10 +25,9 @@ elif [ "$1" == "-d" ]; then
     arquivo="${nome}-delay${extensao}"
     $app -d $atraso ${arquivo}
 else
-
 	arquivo="${nome}-crop${extensao}"
-	$app -m ${arquivo}
-	mogrify -crop 1920x1080+0+0 +repage ${arquivo}
+	$app ${arquivo}
+	#mogrify -crop 1920x1080+0+0 +repage ${arquivo}
 fi
 
 if [ $(pwd) != $dir ]; then
