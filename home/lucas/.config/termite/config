@@ -1,14 +1,10 @@
 [options]
-#font = pango:FontAwesome 10
 font = DejaVu Sans Mono 10
-#font = Ionicons 10
-#font = Droid Sans Mono 8
-#font = Inconsolata 9
 use_xft = true
-#allow_bold = true
+allow_bold = true
 #audible_bell = false
-#clickable_url = true
-#dynamic_title = true
+clickable_url = true
+dynamic_title = true
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
@@ -17,9 +13,9 @@ use_xft = true
 #scroll_on_keystroke = true
 # Length of the scrollback buffer, 0 disabled the scrollback buffer
 # and setting it to a negative value means "infinite scrollback"
-scrollback_lines = 10000
+scrollback_lines = 999999
 #search_wrap = true
-#urgent_on_bell = true
+urgent_on_bell = true
 
 # $BROWSER is used by default if set, with xdg-open as a fallback
 browser = firefox
@@ -75,14 +71,14 @@ color14 = #93e0e3
 color15 = #ffffff
 
 [hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+font = Monospace 12
+foreground = #dcdccc
+background = #3f3f3f
+active_foreground = #e68080
+active_background = #3f3f3f
+padding = 2
+border = #3f3f3f
+border_width = 0.5
+roundness = 2.0
 
 # vim: ft=dosini cms=#%s

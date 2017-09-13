@@ -1,12 +1,15 @@
 set $mod Mod4
 gaps inner 10
 hide_edge_borders both
+force_display_urgency_hint 0
+workspace_auto_back_and_forth yes
 #new_window none
 new_window pixel 3
 font pango:DejaVu Sans Mono 8
 
 #100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
 
+set $branco                 #ffffff
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
 set $texto                  #ffffff
@@ -17,7 +20,8 @@ set $fundo-urgente          #900000
 set $indicador              #00ff00
 set $separador              #666666
 set $borda					#5b6365
-set $transparente			#000000BF
+set $semitransparente		#0000004D
+set $transparente			#00000000
 
 #                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
 client.focused          $borda				$fundo-inativo  $texto                  $borda					$borda
@@ -127,6 +131,8 @@ bindsym $mod+minus scratchpad show
 
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+for_window [urgent="latest"] focus
+
 # move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 for_window [class="^Catfish"] floating enable
@@ -142,7 +148,6 @@ for_window [class="^Engrampa"] floating enable
 for_window [class="Tilda"] floating enable; border 1pixel
 for_window [title="^DownThemAll"] floating enable
 for_window [title="DownThemAll!$"] move window to scratchpad
-for_window [urgent="latest"] focus
 for_window [class="^Galculator"] floating enable
 for_window [class="^Pavucontrol"] floating enable
 for_window [class="^Viewnior"] floating enable
@@ -216,17 +221,19 @@ bindsym $mod+r mode "resize"
 bar {
 	tray_output none
     status_command i3blocks -c ~/.config/i3/blocks
+	i3bar_command i3bar -t
     #position top
     font pango:Hack, FontAwesome 10
     strip_workspace_numbers yes
 	colors {
-		background		$fundo-inativo
+		statusline 		$branco
+		background		$transparente
 		separator		$separador
 
 		#					borda			fundo			texto
-		focused_workspace	$fundo-inativo	$fundo-inativo	$texto-ativo
-		inactive_workspace	$fundo-inativo	$fundo-inativo	$texto-inativo
-		urgent_workspace	$fundo-inativo	$fundo-inativo	$texto-urgente
+		focused_workspace	$transparente	$transparente	$texto-ativo
+		inactive_workspace	$transparente	$transparente	$texto-inativo
+		urgent_workspace	$transparente	$transparente	$texto-urgente
     }
 }
 

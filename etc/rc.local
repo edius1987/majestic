@@ -15,6 +15,4 @@ if [ -f "/usr/share/xsessions/i3-with-shmlog.desktop" ]; then
     mv /usr/share/xsessions/i3-with-shmlog.desktop /usr/share/xsessions-disabled/
 fi
 
-/usr/local/sbin/wireless.sh
-
 exit 0

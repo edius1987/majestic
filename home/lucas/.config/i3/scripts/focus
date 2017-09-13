@@ -16,9 +16,14 @@ else
 	echo ""
 fi
 
-#if [[ $BLOCK_BUTTON -eq 1 ]]; then
-#    xdotool getactivewindow getwindowname 2>/dev/null | xclip -rmlastnl -selection c
-#fi
+if [[ $BLOCK_BUTTON -eq 1 ]]; then
+    xdotool getactivewindow getwindowname 2>/dev/null | xclip -rmlastnl -selection c
+elif [[ $BLOCK_BUTTON -eq 2 ]]; then
+	focused_window_id=$(xdotool getwindowfocus)
+	active_window_id=$(xdotool getactivewindow)
+	active_window_pid=$(xdotool getwindowpid "$active_window_id")
+	kill -9 $active_window_pid
+fi
 
 #case $BLOCK_BUTTON in
   #1) i3-msg floating toggle ;;

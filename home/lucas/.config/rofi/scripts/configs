@@ -1,23 +1,31 @@
 #!/bin/bash
 
-res=$(echo "i3 Config;i3 Blocks;i3Blocks Apps;Dunst;Compton;Rofi;.Xresources;.xinitrc;.Xdefaults;Rofi Apps;Rofi Power" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 11 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+apps=(
+'i3 Config'
+'i3 Blocks'
+'Dunst'
+'Compton'
+'Rofi'
+'.Xresources'
+'.xinitrc'
+'.Xdefaults'
+'Rofi Apps'
+'Rofi Power'
+)
 
-if [ ! -z $res ]; then
-	case "$res" in
-		i3 Config) exec pluma ~/.config/i3/config	;;
-		'i3 Blocks') exec pluma ~/.config/i3/blocks ;;
-		"i3 Blocks Apps") exec pluma ~/.config/i3/scripts/* ;;
-		"Dunst") exec pluma ~/.config/dunst/dunstrc ;;
-		"Compton") exec pluma ~/.config/compton.conf ;;
-		"Rofi") exec pluma ~/.config/rofi/config ;;
-		".Xresources") exec pluma ~/.Xresources ;;
-		".xinitrc") exec pluma ~/.xinitrc ;;
-		".Xdefaults") exec pluma ~/.Xdefaults ;;
-		"Rofi Apps") exec pluma ~/.config/i3/blocks ;;
-		"Rofi Power") exec pluma ~/.config/i3/blocks ;;
+res=$( printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 11 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 
-		#*)
-		#	i3-msg -q "exec $res"
-		#;;
+if [ "$res" ]; then
+	case $res in
+		'i3 Config') i3-msg exec pluma ~/.config/i3/config	;;
+		'i3 Blocks') i3-msg exec pluma ~/.config/i3/blocks ;;
+		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;
+		'Compton') i3-msg exec pluma ~/.config/compton.conf ;;
+		'Rofi') i3-msg exec pluma ~/.config/rofi/config ;;
+		'.Xresources') i3-msg exec pluma ~/.Xresources ;;
+		'.xinitrc') i3-msg exec pluma ~/.xinitrc ;;
+		'.Xdefaults') i3-msg exec pluma ~/.Xdefaults ;;
+		'Rofi Apps') i3-msg exec pluma ~/.config/i3/blocks ;;
+		'Rofi Power') i3-msg exec pluma ~/.config/i3/blocks ;;
 	esac
 fi

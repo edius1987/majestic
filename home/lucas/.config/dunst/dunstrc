@@ -1,6 +1,6 @@
 [global]
     font = "Monospace 9"
-	transparency = 95
+	#transparency = 95
     markup = yes
     format = "<b>%s %p</b>\n%b"
     sort = yes

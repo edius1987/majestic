@@ -8,6 +8,9 @@
 ##################
 #### Opções  #####
 ##################
+# Ignora a caixa e alguns erros ao trocar de diretório
+shopt -s cdspell
+
 # Checa o tamanho da janela e redimensiona
 shopt -s checkwinsize
 
@@ -62,7 +65,7 @@ fi
 #### Funções #####
 ##################
 function mm() {
-    mpv ytdl://ytsearch10:"$@"
+    mpv --profile=youtube ytdl://ytsearch10:"$@"
 }
 
 function mma() {

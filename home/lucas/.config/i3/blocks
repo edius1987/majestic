@@ -13,8 +13,12 @@ markup=none
 command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/apps &> /dev/null; fi'
 interval=once
 
+[rss]
+label=
+interval=60
+
 [focus]
-command=~/.config/i3/scripts/focus
+#command=~/.config/i3/scripts/focus
 label=
 interval=5
 
