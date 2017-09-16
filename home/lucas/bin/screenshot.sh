@@ -1,6 +1,6 @@
 #!/bin/sh
 
-app="maim"
+app="scrot"
 dir="${HOME}/img/shots/"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"

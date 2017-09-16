@@ -36,6 +36,18 @@ export OOO_FORCE_DESKTOP=gnome
 eval $(dbus-launch --sh-syntax)
 #export XDG_CURRENT_DESKTOP=GNOME
 
+# Autostart
+${HOME}/bin/wallpaper.sh -r &
+compton &
+#numlockx
+dunst &
+parcellite &
+sudo headsetcontrol 64 &
+/usr/local/bin/xautolock.sh &
+/usr/lib/vino/vino-server &
+xset r rate 300 75 &
+thunar --daemon &
+
 session=${1:-i3}
 
 case $session in

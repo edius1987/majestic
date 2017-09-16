@@ -1,12 +1,12 @@
 #!/bin/bash
-# 
+#
 # chwall.sh - Programa para alterar o papel de parede.
 # Funciona no i3, OpenBox e outros.
-# 
+#
 # Criador por Lucas Saliés Brum a.k.a. sistematico, <lucas at archlinux dot com dot br>
 #
-# Criado em: 17-06-2016 13:13:58 
-# Última alteração: 18-06-2016 04:03:48 
+# Criado em: 17-06-2016 13:13:58
+# Última alteração: 18-06-2016 04:03:48
 
 PASTA="${HOME}/img/elementary/luna"
 IMAGEM="${PASTA_PADRAO}/nuvens.jpg"

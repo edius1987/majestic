@@ -4,8 +4,8 @@
 #
 # Criado por Lucas Saliés Brum a.k.a. sistematico <lucas@archlinux.com.br>
 #
-# Criado em: 15/05/2015 15:08:14 
-# Última alteração: 15/05/2015 15:08:18 
+# Criado em: 15/05/2015 15:08:14
+# Última alteração: 15/05/2015 15:08:18
 
 
 if [ $(whoami) != "root" ]; then

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 declare -A diretorios
 
 diretorios[Desktop]=desk

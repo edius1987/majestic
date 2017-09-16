@@ -1,13 +1,13 @@
 #!/bin/sh
-# 
+#
 # earth_bg.sh - Papel de parede com luz do sol e nuvens sobre a terra em tempo real.
 #
-# Criado em: 			30-08-2016 16:02:20 AMT  
-# Última alteração:		30-08-2016 16:02:43 AMT 
+# Criado em: 			30-08-2016 16:02:20 AMT
+# Última alteração:		30-08-2016 16:02:43 AMT
 #
-# Por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br> 
+# Por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 #
-# Cron: 
+# Cron:
 # 10 */1 * * * /bin/sh /home/lucas/bin/earth_bg.sh
 #
 

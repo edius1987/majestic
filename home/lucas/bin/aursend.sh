@@ -1,4 +1,3 @@
-#!/bin/sh
 #!/bin/bash
 #
 # Script para o envios de pacotes para o AUR.

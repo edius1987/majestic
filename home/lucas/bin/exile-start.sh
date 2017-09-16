@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ARMA3 Exile Mod Server Start Script
-# 
+#
 # Created by sistematico.
 #
 

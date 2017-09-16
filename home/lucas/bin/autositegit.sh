@@ -3,8 +3,8 @@
 # AutoSite_Git.sh
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
-# Criado em:           06-03-2016 21:15:28 
-# Última alteração em: 06-03-2016 21:15:28 
+# Criado em:           06-03-2016 21:15:28
+# Última alteração em: 06-03-2016 21:15:28
 
 nome="sistematico"
 dir="${HOME}/github"
