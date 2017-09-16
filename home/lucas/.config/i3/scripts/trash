@@ -6,7 +6,7 @@ TRASH_DIRECTORY="${BLOCK_INSTANCE}"
 TRASH_TEMP="/tmp/lixo"
 
 if [[ "${TRASH_DIRECTORY}" = "" ]]; then
-  TRASH_DIRECTORY=${XDG_DATA_HOME:-'${HOME}/.local/share/Trash'}
+  TRASH_DIRECTORY=${XDG_DATA_HOME:-"${HOME}/.local/share/Trash"}
 fi
 
 # Left click

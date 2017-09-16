@@ -8,7 +8,7 @@ cond=$(echo $info | cut -d ":" -f1)
 temp=$(echo $info | cut -d ":" -f2)
 hora=$(date +"%H")
 dia=6
-noite=7
+noite=19
 
 # Mostly Cloudy / Cloudy / Dreary (Overcast) / Fog
 if [ "$cond" = "*Cloudy*" ] || [ "$cond" = "*Mostly Cloudy*" ] || [ "$cond" = "*Dreary (Overcast)*" ] || [ "$cond" = "*Fog*" ]; then
