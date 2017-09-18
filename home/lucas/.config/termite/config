@@ -1,5 +1,6 @@
 [options]
-font = DejaVu Sans Mono 10
+#DejaVu Sans Mono 10
+font = Hack 10
 use_xft = true
 allow_bold = true
 #audible_bell = false

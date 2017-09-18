@@ -1,15 +1,11 @@
 #!/bin/bash
 
-#NCMP=$(mpc | grep "^\[playing\]" | awk '{print $1}')
-#NUM_NCMP=$(mpc | head -1 | wc -c )
-#S_NCMP=$(mpc | head -1 | head -c 30)
-
 slash=$(echo $(mpc current) | awk -F'/' '{print $2}')
 
 if [[ -n "$slash" ]]; then
-    saida="$slash"
+    saida=$(echo "$slash" | sed 'y/ãāáǎàçēêéěèīíǐìōóǒòūúǔùǖǘǚǜÃĀÁǍÀĒÉĚÈĪÍǏÌŌÓǑÒŪÚǓÙǕǗǙǛ/aaaaaceeeeeiiiioooouuuuuuuuAAAAAEEEEIIIIOOOOUUUUUUUU/')
 else
-    saida="$(mpc current)"
+    saida=$(echo "$(mpc current)" | sed 'y/ãāáǎàçēêéěèīíǐìōóǒòūúǔùǖǘǚǜÃĀÁǍÀĒÉĚÈĪÍǏÌŌÓǑÒŪÚǓÙǕǗǙǛ/aaaaaceeeeeiiiioooouuuuuuuuAAAAAEEEEIIIIOOOOUUUUUUUU/')
 fi
 
 
