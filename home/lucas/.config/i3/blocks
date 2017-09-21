@@ -80,6 +80,12 @@ signal=10
 [wallpaper]
 interval=once
 
+[blank]
+interval=5
+
+#[firewall]
+#interval=10
+
 [shutdown]
 command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
 interval=once

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+. ~/.config/i3/cores.conf
+
+status=$(sudo ufw status 2>/dev/null)
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+	if [[ "${status}" != *inactive* ]]; then
+  		sudo ufw disable
+	else
+		sudo ufw enable
+	fi
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+  sudo ufw reload
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+    if [[ "${status}" != *inactive* ]]; then
+        sudo ufw disable
+    else
+        sudo ufw enable
+    fi
+fi
+
+if [[ $? -gt 0 ]]; then
+  exit
+fi
+
+if [[ "${status}" != *inactive* ]]; then
+  echo ""
+  echo ""
+  echo $ativo
+else
+  echo ""
+  echo ""
+  echo ""
+fi

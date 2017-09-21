@@ -1,44 +1,30 @@
-header_visibility = "yes"
-titles_visibility = "yes"
-statusbar_visibility = "yes"
+##############################################################################
 
-now_playing_prefix = "$b"
-now_playing_suffix = "$/b"
-jump_to_now_playing_song_at_start = "yes"
-song_window_title_format = "ncmpcpp"
-playlist_display_mode = "columns"
-autocenter_mode = "yes"
-discard_colors_if_item_is_selected = "no"
-#progressbar_look = "───"
-ignore_leading_the = "yes"
-display_bitrate = "no"
-display_remaining_time = "no"
-
-#song_list_format = "$4%a$9 $8»$9 $1%t$9"
+# Display ..
+execute_on_song_change="~/.config/ncmpcpp/art.sh"
 song_list_format = " $0%n $1• $8%t $R$0%a "
+song_columns_list_format = "(3)[]{}(65)[white]{t} (1)[blue]{a}"
+#song_status_format = "$b$7♫ $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
+#song_status_format = "$b$7♫ $2%a $4⟫ $8%t $4⟫ $5%b "
+song_status_format = "$b$7♫ $2%a $4⟫ $8%t "
+#song_status_format = " $3%t $0 $1%a "
+playlist_display_mode = "classic" (classic/columns)
 
-song_columns_list_format = "(30)[white]{t} (1)[blue]{a}"
-song_status_format = " $3%t $0 $1%a "
+# Now Playing ..
+now_playing_prefix = "$3>"
+now_playing_suffix = "$8$/b"
 
-#song_columns_list_format = "(20)[red]{a} (30)[white]{b} (45)[red]{t} (1)[white]{l}"
-#song_status_format = "$b$2%a $2♥ $8%t $2♥ $8%b "
+# Playlist ..
+browser_playlist_prefix = "$2 ♥ $0 "
+
+# Delays .. 
+playlist_disable_highlight_delay = "1"
+message_delay_time= "1"
 
 # Progress Bar ..
 progressbar_look = "━━─"
-progressbar_boldness = "yes"
 progressbar_color = "black"
 progressbar_elapsed_color = "green"
-
-#progressbar_color = "red"
-#progressbar_elapsed_color = "white"
-#statusbar_color = "white"
-
-visualizer_fifo_path = "/tmp/mpd.fifo"
-visualizer_output_name = "my_fifo"
-visualizer_in_stereo = "no"
-visualizer_type = "wave" (spectrum/wave)
-visualizer_look = "∙▋"
-visualizer_color = "green"
 
 # Colors ..
 colors_enabled = "yes"
@@ -48,17 +34,17 @@ state_line_color = "black"
 state_flags_color = "green"
 main_window_color = "green" 
 header_window_color = "black"
-main_window_highlight_color = "blue"
+#main_window_highlight_color = "blue"
 
-
-color1 = "black"
-color2 = "white"
-volume_color = "white"
-
-
-statusbar_time_color = "white"
-player_state_color = "white"
-
+# Misc ..   
+display_bitrate = "yes"
+autocenter_mode = "yes"
 centered_cursor = "yes"
-cyclic_scrolling = "no"
-clock_display_seconds = "no"
+titles_visibility = "yes"
+header_visibility = "yes"
+statusbar_visibility = "yes"
+empty_tag_marker=" -- NENHUMA TAG -- " 
+mouse_support = "yes"
+display_remaining_time = "no"
+ask_before_clearing_playlists = "yes"
+discard_colors_if_item_is_selected = "yes"
