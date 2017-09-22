@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wallp="/home/lucas/img/modelos/Dahlia Sky"
+wallp="/home/lucas/img/modelos/Shane Dos Santos"
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
 	for i in "${HOME}/img/modelos/*"; do
