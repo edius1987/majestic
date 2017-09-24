@@ -21,34 +21,35 @@ shopt -s autocd
 shopt -s histappend
 
 # After each command, save and reload history
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+#export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND'\n'};history -a;history -c;history -r"
+export PROMPT_COMMAND="history -a; history -n"
 
 ##################
 ##### ENV ########
 ##################
-if [ -d "$HOME/bin/" ] ; then
+if [[ -d "$HOME/bin/" ]]; then
 	export PATH="$HOME/bin/:$PATH"
 fi
 
 ##################
 #### Aliases #####
 ##################
-if [ -f ~/.bash_aliases ]; then
+if [[ -f ~/.bash_aliases ]]; then
     source ~/.bash_aliases
 fi
 
 ##################
 ##### Sources ####
 ##################
-if [ -f /etc/cores.inc ]; then
+if [[ -f /etc/cores.inc ]]; then
 	source /etc/cores.inc
 fi
 
-if [ -f /usr/share/doc/pkgfile/command-not-found.bash ]; then
+if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
 	source /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
 	source /usr/share/git/completion/git-prompt.sh
 fi
 
@@ -76,7 +77,7 @@ function mma() {
 ##### Prompt #####
 ##################
 # Sem cor
-# PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
 
 # Com cor
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
