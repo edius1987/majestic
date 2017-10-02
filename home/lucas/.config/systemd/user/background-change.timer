@@ -1,0 +1,10 @@
+[Unit]
+Description=Rotate Wallpaper Timer
+ 
+[Timer]
+OnCalendar=*:0/5
+Persistent=true
+Unit=background-change.service
+ 
+[Install]
+WantedBy=background-change.service

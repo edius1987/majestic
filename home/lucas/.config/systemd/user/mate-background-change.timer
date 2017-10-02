@@ -1,0 +1,10 @@
+[Unit]
+Description=Rotate MATE wallpaper timer
+ 
+[Timer]
+OnCalendar=*:0/5
+Persistent=true
+Unit=mate-background-change.service
+ 
+[Install]
+WantedBy=mate-background-change.service

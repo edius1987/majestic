@@ -9,17 +9,13 @@ markup=none
 #separator_block_width=10
 #separator=false
 
-[apps]
-command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/apps &> /dev/null; fi'
-interval=once
-
 #[rss]
 #label=
 #interval=60
 
 [focus]
 #command=~/.config/i3/scripts/focus
-label=
+label=
 interval=5
 
 [mpd]
@@ -77,15 +73,34 @@ instance=Master
 interval=1
 signal=10
 
+[apps]
+command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/apps &> /dev/null; fi'
+interval=once
+separator=false
+separator_block_width=5
+
+[config]
+command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/configs &> /dev/null; fi'
+interval=once
+separator=false
+separator_block_width=5
+
 [wallpaper]
 interval=once
+separator=false
+separator_block_width=5
 
 [blank]
 interval=5
+separator=false
+separator_block_width=5
 
 #[firewall]
 #interval=10
+#separator=false
+#separator_block_width=5
 
 [shutdown]
 command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
 interval=once
+separator_block_width=5

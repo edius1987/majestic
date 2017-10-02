@@ -60,6 +60,10 @@ alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/r
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/git/completion/git-prompt.sh
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+	source /etc/profile.d/vte.sh
+fi
+
 PS1="[%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~%{$reset_color%}]:%% "
 
 #. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh

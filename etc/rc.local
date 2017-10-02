@@ -8,11 +8,22 @@
 #rm -f /usr/share/backgrounds/default
 #ln -s $(find /usr/share/backgrounds/ | shuf -n1) /usr/share/backgrounds/default
 
-if [ -f "/usr/share/xsessions/i3-with-shmlog.desktop" ]; then
-    if [ ! -d "/usr/share/xsessions-disabled/" ]; then
-        mkdir -p /usr/share/xsessions-disabled/
-    fi
-    mv /usr/share/xsessions/i3-with-shmlog.desktop /usr/share/xsessions-disabled/
+disabled="/usr/share/xsessions-disabled/"
+
+wms=(
+	"i3-with-shmlog"
+	"cinnamon2d"
+)
+
+if [ ! -d "$disabled" ]; then
+	mkdir -p $disabled
 fi
+
+for wm in ${wms[@]} ; do
+	caminho="/usr/share/xsessions/${wm}.desktop"
+	if [ -f "$caminho" ]; then
+    	mv $caminho $disabled
+	fi
+done
 
 exit 0

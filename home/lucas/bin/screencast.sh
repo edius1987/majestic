@@ -10,7 +10,7 @@
 
 nome="screencast"
 extensao="mp4"
-preset="veryfast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
+preset="superfast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 caminho="${HOME}/video"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
@@ -48,10 +48,13 @@ else
 			# tmux new-session -d -s $nome "ffmpeg -f pulse -i $audio -f x11grab -r 30 -s $resolucao -i :0.0 -acodec pcm_s16le -vcodec libx264 -preset $preset -crf 0 -threads 0 $arquivo"
 			if [ "$2" == "-t" ]; then
 				#tmux new-session -d -s $nome "ffmpeg -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -threads 0 -probesize 10M $arquivo"
-				tmux new-session -d -s $nome "ffmpeg -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -threads 0 -c:v libx264 -b:v 464k -c:a aac -b:a 128k -probesize 10M $arquivo"
+				#tmux new-session -d -s $nome "ffmpeg -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -c:v libx264 -b:v 464k -c:a aac -b:a 128k -thread_queue_size 16 -probesize 50M $arquivo"
+				tmux new-session -d -s $nome "ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo"
 			else
 				#ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -threads 0 -probesize 10M $arquivo
-				ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 30M $arquivo
+				#ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
+				#ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
+				ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
 			fi
 		else
 			notify-send -i $icone "ScreenCast" "Uma sessão já está ativa, digite <b>$0 -s</b> para parar!"

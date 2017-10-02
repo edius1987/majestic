@@ -1,0 +1,10 @@
+[Unit]
+Description=Muda o Wallpaper a cada hora e depois de 10 minutos do Boot
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1h
+Unit=wallpaper.service
+
+[Install]
+WantedBy=timers.target

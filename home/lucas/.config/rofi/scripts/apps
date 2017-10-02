@@ -1,20 +1,12 @@
 #!/bin/bash
 
-res=$(echo "firefox;termite;thunar;telegram;whatsie;atom;lxtask;deluge;popcorntime;stremio" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 10 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+res=$(echo "firefox-beta;firefox-developer;firefox;termite;thunar;telegram;whatsie;atom;lxtask;deluge;popcorntime;stremio" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 12 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 
 if [ ! -z $res ]; then
 	case $res in
-		telegram)
-			i3-msg -q exec ~/.local/share/TelegramDesktop/Telegram
-		;;
-		popcorntime)
-			i3-msg -q exec ~/.local/share/popcorntime/Popcorn-Time
-		;;
-        stremio)
-            i3-msg -q exec ~/.local/share/stremio/Stremio-runtime
-        ;;
-		*)
-			i3-msg -q "exec $res"
-		;;
+		telegram) i3-msg -q exec ~/.local/share/TelegramDesktop/Telegram ;;
+		popcorntime) i3-msg -q exec ~/.local/share/popcorntime/Popcorn-Time	;;
+        stremio) i3-msg -q exec ~/.local/share/stremio/Stremio-runtime ;;
+		*) i3-msg -q "exec $res" ;;
 	esac
 fi

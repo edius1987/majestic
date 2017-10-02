@@ -20,7 +20,7 @@ else
 
 	if [[ $BLOCK_BUTTON -gt 2 ]]; then
 		sleep 1
-		i3-msg -q exec 'i3lock-fancy -f "Droid-Sans-Mono" -t "Arch Linux" -p -g -- scrot -z'
+		i3-msg -q exec 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -g -- scrot -z'
 	fi
 
 	echo ""

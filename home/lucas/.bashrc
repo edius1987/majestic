@@ -5,6 +5,19 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Powerline
+if [[ -f /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh ]]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    . /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
+    #. /usr/lib/python2.7/site-packages/powerline/bindings/shell/powerline.sh
+fi
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+	source /etc/profile.d/vte.sh
+fi
+
 ##################
 #### Opções  #####
 ##################
@@ -61,6 +74,8 @@ if [[ $TERM == xterm-termite ]]; then
 	. /etc/profile.d/vte.sh
 	__vte_prompt_command
 fi
+
+source /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
 ##################
 #### Funções #####

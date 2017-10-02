@@ -15,6 +15,10 @@ if [ -d "$HOME/bin" ] ; then
     export PATH=$PATH:$HOME/bin
 fi
 
+if [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services" ] ; then
+	mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
+fi
+
 export TERMINAL=termite
 export EDITOR=nano
 export BROWSER=firefox
@@ -25,34 +29,20 @@ export GPG_AGENT_INFO
 export GNOME_KEYRING_CONTROL
 export GNOME_KEYRING_PID
 export OOO_FORCE_DESKTOP=gnome
-#export LANG="en_US.UTF-8"
-#export LC_ALL="en_US.UTF-8"
-#export LANGUAGE="en_US.UTF-8"
-#export LC_CTYPE="en_US.UTF-8"
-
-#export LIBVA_DRIVER_NAME="vdpau"
-#export VDPAU_DRIVER="nvidia"
 
 eval $(dbus-launch --sh-syntax)
 #export XDG_CURRENT_DESKTOP=GNOME
-
-# Autostart
-#${HOME}/bin/wallpaper.sh -r &
-#compton &
-#numlockx
-#dunst &
-#parcellite &
-#sudo headsetcontrol 64 &
-#/usr/local/bin/xautolock.sh &
-#/usr/lib/vino/vino-server &
-#xset r rate 300 75 &
-#thunar --daemon &
 
 session=${1:-i3}
 
 case $session in
 	i3|i3wm)
+		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec i3
+	;;
+    cinnamon|cinnamon-session)
+		ln -sfT "/usr/share/dbus-1/services/org.freedesktop.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+		exec cinnamon-session
 	;;
 	*)
 		exec $1

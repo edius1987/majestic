@@ -4,6 +4,13 @@
 # Créditos: https://stackoverflow.com/a/7253786
 #
 
+if [ -z $1 ]; then
+	echo "Utilize uma cor Hexadecimal como entrada."
+	echo "Exemplo: $(basename $0) '#1d1f21'"
+	echo
+	exit 1
+fi
+
 if [[ ${1:0:1} == "#" ]]; then
 	hexinput=$(echo "$1" | cut -c 2- | tr "[:lower:]" "[:upper:]")
 else
