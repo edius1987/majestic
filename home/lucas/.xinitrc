@@ -28,10 +28,15 @@ export SSH_AUTH_SOCK
 export GPG_AGENT_INFO
 export GNOME_KEYRING_CONTROL
 export GNOME_KEYRING_PID
-export OOO_FORCE_DESKTOP=gnome
+#export OOO_FORCE_DESKTOP=gnome
+#export XDG_CURRENT_DESKTOP=GNOME
+#export GTK_IM_MODULE=ibus
+#export XMODIFIERS=@im=ibus
+#export QT_IM_MODULE=ibus
+#ibus-daemon -drx
+
 
 eval $(dbus-launch --sh-syntax)
-#export XDG_CURRENT_DESKTOP=GNOME
 
 session=${1:-i3}
 

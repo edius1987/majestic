@@ -1,4 +1,7 @@
 #!/bin/sh
 
-pacman -Syyu --noconfirm
-yaourt -Syu --aur --noconfirm
+if [ $(ping -q -c3 google.com > /dev/null 2> /dev/null) ]; then
+	echo "Conexão: OK"
+else
+	echo "Conexão: FALHOU"
+fi

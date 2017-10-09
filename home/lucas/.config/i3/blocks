@@ -14,7 +14,6 @@ markup=none
 #interval=60
 
 [focus]
-#command=~/.config/i3/scripts/focus
 label=
 interval=5
 

@@ -3,7 +3,7 @@ Encoding=UTF-8
 Version=1.0
 Name=Telegram
 Comment=Official desktop version of Telegram messaging app
-Exec=telegram
+Exec=env QT_IM_MODULE=xim telegram
 Icon=telegram
 Terminal=false
 #StartupWMClass=telegram-desktop

@@ -9,12 +9,13 @@
 # Última alteração: 05/08/2017 01:07:53
 
 WALL="${HOME}/img/wallpapers/arch-logo/2560x1600/"
-DEFAULT="${HOME}/.wallpaper-default.jpg"
+#DEFAULT="${HOME}/.wallpaper-default.jpg"
+DEFAULT="/usr/share/backgrounds/default"
 COR="#1b1b1b"
 DIA_PATH="${HOME}/img/modelos"
 
 if [ ! -f "$DEFAULT" ]; then
-	curl https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.wallpaper-default.jpg > $DEFAULT
+	curl https://raw.githubusercontent.com/sistematico/majestic/master/usr/share/backgrounds/default > $DEFAULT
 fi
 
 if [ ! -d "$WALL" ]; then

@@ -75,8 +75,6 @@ if [[ $TERM == xterm-termite ]]; then
 	__vte_prompt_command
 fi
 
-source /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-
 ##################
 #### Funções #####
 ##################
@@ -95,27 +93,27 @@ function mma() {
 #PS1='[\u@\h \W]\$ '
 
 # Com cor
-#PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 
 # PS1 Setup
-PROMPT_COMMAND=__prompt_command
+#PROMPT_COMMAND=__prompt_command
 
-__prompt_command() {
-    local EXITCODE="$?"
-
-    local HOSTCOLOR="5"
-    local USERCOLOR="3"
-    local PATHCOLOR="4"
-
-    #PS1="\e[3${HOSTCOLOR}m \h  \e[3${USERCOLOR}m \u  \e[3${PATHCOLOR}m \w  \n";
-    PS1="\e[3${HOSTCOLOR}m \h  \e[3${USERCOLOR}m \u  \e[3${PATHCOLOR}m \w  ";
-
-    if [ $EXITCODE == 0 ]; then
-        PS1+="\e[32m\$ \e[0m";
-    else
-        PS1+="\e[31m\$ \e[0m";
-    fi
-}
+#__prompt_command() {
+#    local EXITCODE="$?"
+#
+#    local HOSTCOLOR="5"
+#    local USERCOLOR="3"
+#    local PATHCOLOR="4"
+#
+#    #PS1="\e[3${HOSTCOLOR}m \h  \e[3${USERCOLOR}m \u  \e[3${PATHCOLOR}m \w  \n";
+#    PS1="\e[3${HOSTCOLOR}m \h  \e[3${USERCOLOR}m \u  \e[3${PATHCOLOR}m \w  ";
+#
+#    if [ $EXITCODE == 0 ]; then
+#        PS1+="\e[32m\$ \e[0m";
+#    else
+#        PS1+="\e[31m\$ \e[0m";
+#    fi
+#}
 
 echo
 fortune vimtips

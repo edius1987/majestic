@@ -4,6 +4,7 @@ res=$(echo "firefox-beta;firefox-dev;firefox;termite;thunar;telegram;whatsie;ato
 
 if [ ! -z $res ]; then
 	case $res in
+		firefox-dev) i3-msg -q exec firefox-developer ;;
 		telegram) i3-msg -q exec ~/.local/share/TelegramDesktop/Telegram ;;
 		sublime) i3-msg -q exec subl ;;
 		popcorntime) i3-msg -q exec ~/.local/share/popcorntime/Popcorn-Time	;;
