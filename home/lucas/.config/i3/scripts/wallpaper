@@ -1,9 +1,10 @@
 #!/bin/bash
 
-wallp="/home/lucas/img/modelos/Foxy Di"
+default="/home/lucas/img/wallpapers"
+wallp="/home/lucas/img/wallpapers/gaming"
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
-	for i in "${HOME}/img/modelos/*"; do
+	for i in "${default}/*"; do
 		w+=$(printf '%s\n' "$i")
 	done
 	opt=$(yad --title="i3 Wallpaper" --width="350" --height="220" --separator="" --list --column "Selecione o diretório..." --search-column 1 $w)

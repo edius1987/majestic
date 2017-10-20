@@ -11,16 +11,16 @@ dia=6
 noite=19
 
 # Mostly Cloudy / Cloudy / Dreary (Overcast) / Fog
-if [ "$cond" = "*Cloudy*" ] || [ "$cond" = "*Mostly Cloudy*" ] || [ "$cond" = "*Dreary (Overcast)*" ] || [ "$cond" = "*Fog*" ]; then
+if [[ "$cond" = *Cloudy* ]] || [[ "$cond" = *Dreary* ]] || [[ "$cond" = *Fog* ]]; then
 	icone=""
 # Showers / Mostly Cloudy w/ Showers / Partly Sunny w/ Showers / T-Storms / Mostly Cloudy w/ T-Storms / Partly Sunny w/ T-Storms / Rain
-elif [ "$cond" = "*Showers*" ] || [ "$cond" = "*Mostly Cloudy*Showers*" ] || [ "$cond" = "*Partly Sunny*Showers*" ] || [ "$cond" = "*T-Storms*" ] || [ "$cond" = "*Mostly Cloudy*T-Storms*" ] || [ "$cond" = "*Partly Sunny*T-Storms*" ] || [ "$cond" = "*Rain*" ]; then
+elif [[ "$cond" == *Showers* ]] || [[ "$cond" = *T-Storms* ]] || [[ "$cond" = *Rain* ]]; then
 	icone=""
 # Windy
-elif [ "$cond" = "*Windy*" ]; then
+elif [[ "$cond" = *Windy* ]]; then
 	icone=""
 # Flurries / Mostly Cloudy w/ Flurries / Partly Sunny w/ Flurries / Snow / Mostly Cloudy w/ Snow / Ice / Sleet / Freezing Rain / Rain and Snow / Cold
-elif [ "$cond" = "*Flurries*" ]; then
+elif [[ "$cond" = *Flurries* ]]; then
 	icone=""
 else
 	if [ ${hora} -ge ${dia} ] && [ ${hora} -le ${noite} ]; then

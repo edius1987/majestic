@@ -94,10 +94,10 @@ interval=5
 separator=false
 separator_block_width=5
 
-#[firewall]
-#interval=10
-#separator=false
-#separator_block_width=5
+[firewall]
+interval=10
+separator=false
+separator_block_width=5
 
 [shutdown]
 command=bash -c 'echo " "; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'

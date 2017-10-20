@@ -1,29 +1,32 @@
 #!/bin/bash
 
 icone="/usr/share/icons/Faience/actions/64/gnome-lockscreen.png"
+PID=$(ps ax | grep -v grep | grep xautolock)
 
-if [[ $(pgrep xautolock) ]]; then
-	if [[ $BLOCK_BUTTON -eq 1 ]]; then
+
+if [[ $BLOCK_BUTTON -eq 1 ]]; then
+	if [[ ! -z "$PID" ]]; then
 		pkill -9 xautolock
 		pkill -9 i3lock
+	else
+		xautolock -time 5 -locker "i3lock-fancy -f Iosevka-Thin -t 'Arch Linux' -p -- scrot -z" -detect -notify 30 -notifier "notify-send -i $icone --urgency=critical 'TRAVANDO a tela em 30 segundos'"
 	fi
+fi
 
+if [[ $BLOCK_BUTTON -ge 2 ]]; then
+	if [[ -z "$PID" ]]; then
+		sleep 1
+		exec i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -g -- scrot -z
+	fi
+fi	
+
+if [[ ! -z "$PID" ]]; then
 	echo ""
 	echo ""
 	echo "#3465a4"
 else
-	if [[ $BLOCK_BUTTON -eq 1 ]]; then
-		sleep 1
-		#/usr/bin/xautolock -time 3 -locker 'i3lock-fancy -f "Droid-Sans-Mono" -t "Arch Linux" -p -g -- scrot -z' -detect &
-		/usr/bin/xautolock -time 5 -locker 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z' -detect -notify 30 -notifier "notify-send -i $icone --urgency=critical 'TRAVANDO a tela em 30 segundos'"
-	fi
-
-	if [[ $BLOCK_BUTTON -gt 2 ]]; then
-		sleep 1
-		i3-msg -q exec 'i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -g -- scrot -z'
-	fi
-
 	echo ""
 	echo ""
 	echo ""
 fi
+
