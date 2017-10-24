@@ -16,28 +16,28 @@ function programado() {
 	sudo shutdown -P "$quando"
 }
 
-res=$(echo "desligar;reiniciar;programado;travar;sair;cancelar" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 20 -hide-scrollbar -padding 5)
+res=$(echo "desligar;reiniciar;programado;travar;sair;cancelar" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 if [ ! -z $res ]; then
 	case $res in
 		desligar)
-			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 50 -hide-scrollbar -padding 5)
+			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 			[ $confirma = "Sim" ] && systemctl poweroff
 		;;
 		reiniciar)
-			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 50 -hide-scrollbar -padding 5)
+			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 			[ $confirma = "Sim" ] && systemctl reboot
 		;;
 		programado)
-			tempo=$(echo "5 minutos;15 minutos;30 minutos;1 hora;2 horas;3 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 20 -hide-scrollbar -padding 5)
-			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 50 -hide-scrollbar -padding 5)
+			tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 			[ $confirma = "Sim" ] && programado "$tempo"
 		;;
 		travar)
 			i3-msg -q 'exec i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z'
 		;;
 		sair)
-			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 50 -hide-scrollbar -padding 5)
+			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 			[ $confirma = "Sim" ] && i3-msg exit
 		;;
 		*)

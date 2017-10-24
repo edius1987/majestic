@@ -11,7 +11,7 @@ font pango:DejaVu Sans Mono 8
 
 set $branco                 #ffffff
 set $preto					#000000
-set $cinza					#666565
+set $cinza					#8c8b8b
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
 set $texto                  #ffffff
@@ -37,13 +37,16 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
+#bindsym --release Mod2+button2 kill
+#bindsym --release button2 kill
 
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec --no-startup-id "rofi -show drun"
 #bindsym $mod+d exec --no-startup-id "rofi -show combi"
 #bindsym $mod+d exec --no-startup-id "rofi -show run"
 #bindsym $mod+d exec --no-startup-id rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
-bindsym $mod+d exec --no-startup-id rofi -show run -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
+#bindsym $mod+d exec --no-startup-id rofi -show run -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
+bindsym $mod+d exec --no-startup-id rofi -show drun -bw 4 -eh 1 -font "Noto Mono Regular 10" -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
 #bindsym $mod+d exec --no-startup-id "rofi -show run -lines 5 -eh 2 -hide-scrollbar"
 bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google:" -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://www.google.com.br/search?q={}
 bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -dmenu -p "DuckDuckGo:" -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
@@ -92,8 +95,8 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+a focus parent
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus parent
+bindsym $mod+Shift+d focus child
 
 # Icones:             
 set $workspace1  "1:  "
@@ -145,6 +148,8 @@ bindsym $mod+minus scratchpad show
 
 for_window [urgent="latest"] focus
 
+# move [absolute] position <pos_x> [px] <pos_y> [px]
+# 1920 x 1080
 # move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 for_window [class="^Catfish"] floating enable
@@ -170,6 +175,7 @@ for_window [title="i3 Wallpaper"] floating enable, move position center
 for_window [title="About Mozilla Firefox"] floating enable, move position center
 for_window [title="Sobre o Mozilla Firefox"] floating enable, move position center
 for_window [class="File-roller"] floating enable, move position center
+for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
 
 assign [class="^Chromium"] $workspace1
 assign [class="Firefox"] $workspace1
@@ -208,7 +214,7 @@ assign [class="^Pamac*"] $workspace10
 #-b 'apps' 'i3-msg exec pluma ~/.config/rofi/scripts/apps'"
 
 bindsym $mod+c exec ~/.config/rofi/scripts/configs
-bindsym $mod+Shift+a exec ~/.config/rofi/scripts/apps
+bindsym $mod+a exec ~/.config/rofi/scripts/apps
 
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
 	bindsym s exec i3-msg exit
@@ -249,14 +255,14 @@ bar {
 	colors {
 		statusline		$branco
 		background		$transparente
-		separator		$branco
+		separator		$cinza
 
 		#					borda			fundo			texto
 		#focused_workspace	$transparente	$transparente	$texto-ativo
 		#inactive_workspace	$transparente	$transparente	$texto-inativo
 		#urgent_workspace	$transparente	$transparente	$texto-urgente
-		focused_workspace	$transparente	$transparente	$cinza
-		inactive_workspace	$transparente	$transparente	$branco
+		focused_workspace	$transparente	$transparente	$preto
+		inactive_workspace	$transparente	$transparente	$cinza
 		urgent_workspace	$transparente	$transparente	$texto-urgente		
     }
 }

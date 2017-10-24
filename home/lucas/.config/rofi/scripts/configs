@@ -10,13 +10,15 @@ apps=(
 'Rofi Apps'
 'Rofi Power'
 'Rofi Configs'
+'LightDM'
+'LightDM Greeter'
 '.Xresources'
 '.xinitrc'
 '.xprofile'
 '.Xdefaults'
 )
 
-res=$( printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 13 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+res=$( printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 15 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
@@ -25,10 +27,12 @@ if [ "$res" ]; then
 		'LX Appearance') i3-msg exec lxappearance ;;
 		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;
 		'Compton') i3-msg exec pluma ~/.config/compton.conf ;;
-		'Rofi') i3-msg exec pluma ~/.config/rofi/config ;;
+		'Rofi') i3-msg exec pluma ~/.config/rofi/config.rasi ;;
 		'Rofi Apps') i3-msg exec pluma ~/.config/rofi/scripts/apps ;;
 		'Rofi Power') i3-msg exec pluma ~/.config/rofi/scripts/power ;;
 		'Rofi Configs') i3-msg exec pluma ~/.config/rofi/scripts/configs ;;		
+		'LightDM') i3-msg exec sudo pluma /etc/lightdm/lightdm.conf ;;
+		'LightDM Greeter') i3-msg exec sudo pluma /etc/lightdm/lightdm-gtk-greeter.conf ;;
 		'.Xresources') i3-msg exec pluma ~/.Xresources ;;
 		'.xinitrc') i3-msg exec pluma ~/.xinitrc ;;
 		'.xprofile') i3-msg exec pluma ~/.xprofile ;;

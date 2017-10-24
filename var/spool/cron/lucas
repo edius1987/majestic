@@ -33,3 +33,5 @@
 0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@artemis:/ /home/lucas/vps/artemis/
 0 0 * * * rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} root@hera:/ /home/lucas/vps/hera/
 
+# Alarme
+6 0 * * 1,2,3,4,5 export DISPLAY=:0 ; deadbeef /home/lucas/audio/alarmes/cvn77whistle.wav
