@@ -6,7 +6,7 @@
 # value on error.
 
 #rm -f /usr/share/backgrounds/default
-#ln -s $(find /usr/share/backgrounds/ | shuf -n1) /usr/share/backgrounds/default
+ln -sf $(find /usr/share/backgrounds/macos/ -type f | shuf -n1) /usr/share/backgrounds/default
 
 disabled="/usr/share/xsessions-disabled/"
 
