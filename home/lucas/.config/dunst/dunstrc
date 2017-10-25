@@ -124,14 +124,17 @@
     summary = "*test*"
     background="#22dd22"
     
-[telegram-mae]
-    body = "*[fF]azenda*"
-    summary = "*"
-	script = ~/bin/alarme.sh
+[mae]
+	appname = Telegram
+    summary = "*[fF]azenda*"
+    body = "*"
+	script = /home/lucas/bin/alarme.sh
 	urgency = critical  
 	
-[teste]
-    body = "*oi*"
-    summary = "*"
-	script = ~/bin/alarme.sh
-	urgency = critical  	
+[joao]
+	appname = Telegram
+	summary = "*Jσα̃σ Pεɔяσ*"
+    body = "*"
+    script = /home/lucas/bin/alarme.sh
+    urgency = critical  
+

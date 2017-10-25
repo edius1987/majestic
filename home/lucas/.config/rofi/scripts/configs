@@ -16,9 +16,12 @@ apps=(
 '.xinitrc'
 '.xprofile'
 '.Xdefaults'
+'.bashrc'
+'.bash_aliases'
+'.bash_profile'
 )
 
-res=$( printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 15 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+res=$( printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 18 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
@@ -37,5 +40,8 @@ if [ "$res" ]; then
 		'.xinitrc') i3-msg exec pluma ~/.xinitrc ;;
 		'.xprofile') i3-msg exec pluma ~/.xprofile ;;
 		'.Xdefaults') i3-msg exec pluma ~/.Xdefaults ;;
+		'.bashrc') i3-msg exec pluma ~/.bashrc ;;
+		'.bash_aliases') i3-msg exec pluma ~/.bash_aliases ;;		
+		'.bash_profile') i3-msg exec pluma ~/.bash_profile ;;				
 	esac
 fi
