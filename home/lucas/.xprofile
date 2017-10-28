@@ -1,4 +1,5 @@
 export PATH="$HOME/bin/:$PATH"
+#export TERMINAL=tilix
 export TERMINAL=termite
 export BROWSER=firefox-developer
 export OOO_FORCE_DESKTOP=gnome

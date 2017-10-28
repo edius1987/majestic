@@ -1,7 +1,7 @@
 #!/bin/bash
 
-default="/home/lucas/img/wallpapers"
-wallp="/home/lucas/img/wallpapers/gaming"
+default="/home/lucas/img/wallpapers/unsplash"
+wallp="/home/lucas/img/wallpapers/unsplash"
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
 	for i in "${default}/*"; do
