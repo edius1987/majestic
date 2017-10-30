@@ -23,7 +23,7 @@ set $fundo-urgente          #900000
 set $indicador              #00ff00
 set $separador              #666666
 set $borda					#5b6365
-set $semitransparente		#0000004D
+set $semitransparente		#00000073
 set $transparente			#00000000
 
 #                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
@@ -110,6 +110,10 @@ set $workspace7  "7:  "
 set $workspace8  "8:  "
 set $workspace9  "9:  "
 set $workspace10 "10:  "
+
+# Alt+TAB & Alt+Shift+TAB	
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -260,9 +264,9 @@ bar {
 		#focused_workspace	$transparente	$transparente	$texto-ativo
 		#inactive_workspace	$transparente	$transparente	$texto-inativo
 		#urgent_workspace	$transparente	$transparente	$texto-urgente
-		focused_workspace	$transparente	$transparente	$azul
-		inactive_workspace	$transparente	$transparente	$cinza
-		urgent_workspace	$transparente	$transparente	$texto-urgente		
+		focused_workspace	$semitransparente	$semitransparente	$azul
+		inactive_workspace	$semitransparente	$semitransparente	$cinza
+		urgent_workspace	$semitransparente	$semitransparente	$texto-urgente		
     }
 }
 

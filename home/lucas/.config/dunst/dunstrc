@@ -125,16 +125,21 @@
     background="#22dd22"
     
 [mae]
-	appname = Telegram
+	#appname = Telegram
     summary = "*[fF]azenda*"
     body = "*"
 	script = /home/lucas/bin/alarme.sh
 	urgency = critical  
 	
 [joao]
-	appname = Telegram
+	#appname = Telegram
 	summary = "*Jσα̃σ Pεɔяσ*"
     body = "*"
     script = /home/lucas/bin/alarme.sh
     urgency = critical  
 
+[downloadhelper]
+	summary = "*Video DownloadHelper*"
+	body = "*"
+	script = XDG_RUNTIME_DIR=/run/user/1000 paplay /usr/share/sounds/freedesktop/stereo/complete.oga
+    urgency = critical  
