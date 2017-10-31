@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>${1:Titulo}</title>
+
+  <link rel="stylesheet" href="css/principal.css">
+  <link rel="icon" href="img/favicon.png">
+</head>
+
+<body>
+	${2:Corpo}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+
+</html>
+]]></content>
+	<tabTrigger>html5skel</tabTrigger>
+</snippet>

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function programado() {
-	letras=$(echo "$1" | tr -dc '[a-z][A-Z]')
-	numeros=$(echo "$1" | tr -dc '[0-9]')
+	letras=$(echo "$2" | tr -dc '[a-z][A-Z]')
+	numeros=$(echo "$2" | tr -dc '[0-9]')
 	#notify-send "Desligamento Programado" "O computador será desligado daqui a ${numeros} ${letras}"
 
 	if [[ $letras == hora* ]]; then
@@ -10,13 +10,18 @@ function programado() {
 	elif [[ $letras == minuto* ]]; then
 		tmp="minute"
 	fi
+	
 	quando=$(date -d "+${numeros} ${tmp}" '+%H:%M')
-	notify-send "Desligamento Programado" "O computador será desligado as ${quando}"
+	notify-send "$1 programado" "a tarefa será executada em ${quando}"
 
-	sudo shutdown -P "$quando"
+	if [ "$1" == "Desligamento" ]; then
+		sudo shutdown -P "$quando"
+	elif [ "$1" == "Suspensao" ]; then
+		systemctl suspend | at "$quando"
+	fi
 }
 
-res=$(echo "desligar;reiniciar;programado;travar;sair;cancelar" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+res=$(echo "desligar;reiniciar;supender;programado;travar;sair;cancelar" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 if [ ! -z $res ]; then
 	case $res in
@@ -28,10 +33,15 @@ if [ ! -z $res ]; then
 			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 			[ $confirma = "Sim" ] && systemctl reboot
 		;;
+		suspender)
+			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			[ $confirma = "Sim" ] && systemctl suspend
+		;;		
 		programado)
 			tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+			acao=$(echo "Suspensao;Desligamento" | rofi -sep ";" -dmenu -p "Ação" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 			confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
-			[ $confirma = "Sim" ] && programado "$tempo"
+			[ $confirma = "Sim" ] && programado "$acao" "$tempo"
 		;;
 		travar)
 			i3-msg -q 'exec i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z'
