@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Manjaro
+Exec=VBoxManage startvm "Manjaro"
+Icon=/home/lucas/.icons/places/disk.svg
+Type=Application
+Actions=Reiniciar;Desligar;
+
+[Desktop Action Reiniciar]
+Name=Reiniciar
+Exec=VBoxManage controlvm "Manjaro" restart
+
+[Desktop Action Desligar]
+Name=Desligar
+Exec=VBoxManage controlvm "Manjaro" poweroff

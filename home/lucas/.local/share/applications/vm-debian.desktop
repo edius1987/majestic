@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Debian
+Exec=VBoxManage startvm "Debian" --type headless
+Icon=/home/lucas/.icons/os/debian.svg
+Type=Application
+Actions=Iniciar;Reiniciar;Desligar;
+
+[Desktop Action Desligar]
+Name=Desligar
+Exec=VBoxManage controlvm "Debian" poweroff
+
+[Desktop Action Reiniciar]
+Name=Reiniciar
+Exec=VBoxManage controlvm "Debian" restart
+
+
+[Desktop Action Iniciar]
+Name=Iniciar
+Exec=VBoxManage startvm "Debian"
+

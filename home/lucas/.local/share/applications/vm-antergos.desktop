@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Antergos
+Exec=VBoxManage startvm "Antergos"
+Icon=/home/lucas/.icons/places/disk.svg
+Type=Application
+Actions=Reiniciar;Desligar;
+
+[Desktop Action Reiniciar]
+Name=Reiniciar
+Exec=VBoxManage controlvm "Antergos" restart
+
+[Desktop Action Desligar]
+Name=Desligar
+Exec=VBoxManage controlvm "Antergos" poweroff

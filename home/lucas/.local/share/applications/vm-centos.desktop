@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=CentOS
+Exec=VBoxManage startvm "CentOS" --type headless
+Icon=/home/lucas/.icons/os/centos.svg
+Type=Application
+Actions=Iniciar;Reiniciar;Desligar;
+
+[Desktop Action Desligar]
+Name=Desligar
+Exec=VBoxManage controlvm "CentOS" poweroff
+
+[Desktop Action Reiniciar]
+Name=Reiniciar
+Exec=VBoxManage controlvm "CentOS" restart
+
+
+[Desktop Action Iniciar]
+Name=Iniciar
+Exec=VBoxManage startvm "CentOS" --type headless
+

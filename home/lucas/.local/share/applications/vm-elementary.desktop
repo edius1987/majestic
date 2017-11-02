@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Elementary
+Exec=VBoxManage startvm "ElementaryOS"
+Icon=/home/lucas/.icons/places/disk.svg
+Type=Application
+Actions=Reiniciar;Desligar;
+
+[Desktop Action Reiniciar]
+Name=Reiniciar
+Exec=VBoxManage controlvm "ElementaryOS" restart
+
+[Desktop Action Desligar]
+Name=Desligar
+Exec=VBoxManage controlvm "ElementaryOS" poweroff

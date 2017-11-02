@@ -1,9 +1,10 @@
 configuration {
 	modi: "window,drun,run,ssh";
-	width: 30;
+/*	width: 30; */
 /*	lines: 15;*/
 /*	columns: 1;*/
-	font: "Noto Mono Regular 9";
+/*	font: "Noto Mono Regular 10"; */
+	font: "Roboto Thin 12";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
@@ -135,4 +136,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseD1";*/
 }
 
-@import "~/.local/share/rofi/themes/gruvbox-dark.rasi"
+/* @import "~/.local/share/rofi/themes/sistematico.rasi" */

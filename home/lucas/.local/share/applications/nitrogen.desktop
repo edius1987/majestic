@@ -1,0 +1,10 @@
+[Desktop Entry]
+StartupWMClass=nitrogen
+Name=Nitrogen
+TryExec=nitrogen
+Exec=nitrogen 
+Icon=/home/lucas/.icons/apps/nitrogen.png
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=GTK;

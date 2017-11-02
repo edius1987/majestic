@@ -1,47 +1,62 @@
 #!/bin/bash
 
-apps=(
-'i3 Config'
-'i3 Blocks'
+tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+
+configs=(
+'i3'
 'LX Appearance'
 'Dunst'
 'Compton'
 'Rofi'
 'Rofi Apps'
-'Rofi Power'
-'Rofi Configs'
+'Rofi Themes'
 'LightDM'
-'LightDM Greeter'
-'.Xresources'
-'.xinitrc'
-'.xprofile'
-'.Xdefaults'
-'.bashrc'
-'.bash_aliases'
-'.bash_profile'
+'Home'
 )
 
-res=$( printf "%s\n" "${apps[@]}" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 18 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 9 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
-		'i3 Config') i3-msg exec pluma ~/.config/i3/config	;;
+		'i3') 
+			i3cfg=$(echo "config;blocks;apps" | rofi -theme "$tema" -sep ";" -dmenu -p "i3 Config" -bw 0 -lines 3 -separator-style none -location 0 -width 130 -hide-scrollbar -padding 5)	
+			if [ $i3cfg = "apps" ]; then
+				i3blocksapps=$(ls "${HOME}/.config/i3/scripts/" | rofi -theme "$tema" -dmenu -p "i3 Blocks Apps" -bw 0 -lines 18 -separator-style none -location 0 -width 130 -hide-scrollbar -padding 5)	
+				if [ $i3blocksapps ]; then
+					i3-msg exec pluma ~/.config/i3/scripts/${i3blocksapps}
+				fi
+			elif [ $i3cfg ]; then
+				i3-msg exec pluma ~/.config/i3/${i3cfg}	
+			fi
+		;;
 		'i3 Blocks') i3-msg exec pluma ~/.config/i3/blocks ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
 		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;
 		'Compton') i3-msg exec pluma ~/.config/compton.conf ;;
 		'Rofi') i3-msg exec pluma ~/.config/rofi/config.rasi ;;
-		'Rofi Apps') i3-msg exec pluma ~/.config/rofi/scripts/apps ;;
-		'Rofi Power') i3-msg exec pluma ~/.config/rofi/scripts/power ;;
-		'Rofi Configs') i3-msg exec pluma ~/.config/rofi/scripts/configs ;;		
-		'LightDM') i3-msg exec sudo pluma /etc/lightdm/lightdm.conf ;;
-		'LightDM Greeter') i3-msg exec sudo pluma /etc/lightdm/lightdm-gtk-greeter.conf ;;
-		'.Xresources') i3-msg exec pluma ~/.Xresources ;;
-		'.xinitrc') i3-msg exec pluma ~/.xinitrc ;;
-		'.xprofile') i3-msg exec pluma ~/.xprofile ;;
-		'.Xdefaults') i3-msg exec pluma ~/.Xdefaults ;;
-		'.bashrc') i3-msg exec pluma ~/.bashrc ;;
-		'.bash_aliases') i3-msg exec pluma ~/.bash_aliases ;;		
-		'.bash_profile') i3-msg exec pluma ~/.bash_profile ;;				
+		'Rofi Apps') 
+			app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 10 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+			if [ $app ]; then
+				i3-msg exec pluma "${HOME}/.config/rofi/scripts/${app}"
+			fi
+		;;
+		'Rofi Themes')
+			tema=$( ls "${HOME}/.local/share/rofi/themes/" | rofi -theme "$tema" -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+			if [ $tema ]; then
+				i3-msg exec pluma "${HOME}/.local/share/rofi/themes/${tema}"
+			fi		
+		;;	
+		'LightDM') 
+			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -theme "$tema" -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+			if [ $ldm ]; then
+				i3-msg exec sudo pluma "/etc/lightdm/${ldm}.conf"
+			fi
+		;;
+		'Home') 
+			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 7 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+			if [ $homefiles ]; then
+				i3-msg exec pluma ~/${homefiles} 
+			fi
+		;;
 	esac
 fi

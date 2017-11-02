@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Skype
+Exec=/opt/skype/skype
+Icon=skype
+Type=Application
+Categories=Network;InstantMessaging;

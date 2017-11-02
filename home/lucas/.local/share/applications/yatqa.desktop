@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=YaTQA
+Comment=
+Exec=wine '/home/lucas/.wine/drive_c/Program Files (x86)/YaTQA/yatqa.exe'
+Icon=yatqa
+Terminal=false
+Categories=AudioVideo;

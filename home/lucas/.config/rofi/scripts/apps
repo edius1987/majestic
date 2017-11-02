@@ -1,6 +1,8 @@
 #!/bin/bash
 
-res=$(echo "firefox-beta;firefox-dev;firefox;termite;thunar;telegram;whatsie;pluma;atom;sublime;lxtask;deluge;popcorntime;stremio" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 14 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
+tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+
+res=$(echo "firefox-beta;firefox-dev;firefox;termite;thunar;telegram;whatsie;pluma;atom;sublime;lxtask;deluge;popcorntime;stremio" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 14 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
 
 if [ ! -z $res ]; then
 	case $res in

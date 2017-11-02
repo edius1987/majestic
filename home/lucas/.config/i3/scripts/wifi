@@ -37,9 +37,9 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 
 #------------------------------------------------------------------------
 
-if [[ ${QUALITY} -ge 60 ]]; then
+if [[ ${QUALITY} -ge 50 ]]; then
 	cor=""
-elif [[ ${QUALITY} -ge 50 ]]; then
+elif [[ ${QUALITY} -ge 45 ]]; then
 	cor=$cormin
 elif [[ ${QUALITY} -ge 40 ]]; then
 	cor=$cormed

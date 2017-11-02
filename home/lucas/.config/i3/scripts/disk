@@ -21,9 +21,9 @@ uso=$(df -h -P -l "$dir" | awk 'NR==2{print $5}' | tr -dc '0-9')
 
 if [[ ${uso} -gt 80 ]]; then
 	cor=$cormax
-elif [[ ${uso} -gt 60 ]]; then
+elif [[ ${uso} -gt 70 ]]; then
 	cor=$cormed
-elif [[ ${uso} -gt 35 ]]; then
+elif [[ ${uso} -gt 60 ]]; then
 	cor=$cormin
 else
 	cor=""

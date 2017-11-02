@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=SAM Broadcaster
+Comment=Streaming Audio
+Exec=wine '/home/lucas/.wine/drive_c/Program Files (x86)/SpacialAudio/SAMBC/SAMBC.exe'
+Icon=sam
+Terminal=false
+Categories=AudioVideo;

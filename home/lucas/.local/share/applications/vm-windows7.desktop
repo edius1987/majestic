@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Windows 7
+Exec=VBoxManage startvm "Windows 7"
+Icon=/home/lucas/.icons/places/disk.svg
+Type=Application
+Actions=Reiniciar;Desligar;
+
+[Desktop Action Reiniciar]
+Name=Reiniciar
+Exec=VBoxManage controlvm "Windows 7" restart
+
+[Desktop Action Desligar]
+Name=Desligar
+Exec=VBoxManage controlvm "Windows 7" poweroff
