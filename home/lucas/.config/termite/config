@@ -1,9 +1,19 @@
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# title      Nord Termite                                    +
+# project    nord-termite                                    +
+# version    0.2.0                                           +
+# repository https://github.com/arcticicestudio/nord-termite +
+# author     Arctic Ice Studio                               +
+# email      development@arcticicestudio.com                 +
+# copyright  Copyright (C) 2016                              +
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 [options]
-#DejaVu Sans Mono 10
-font = Hack 10
+#font = Hack 10
+font = Source Code Pro 10
 use_xft = true
 allow_bold = true
-#audible_bell = false
+audible_bell = false
 clickable_url = true
 dynamic_title = true
 #fullscreen = true
@@ -37,39 +47,30 @@ cursor_shape = block
 #size_hints = false
 
 [colors]
-# If both of these are unset, cursor falls back to the foreground color,
-# and cursor_foreground falls back to the background color.
-#cursor = #dcdccc
-#cursor_foreground = #dcdccc
+foreground = #D8DEE9
+#background = #2E3440
+background = rgba(46, 52, 64, 0.9)
+foreground_bold = #D8DEE9
+cursor = #D8DEE9
+cursor_foreground = #2E3440
+highlight = #4C566A
 
-#foreground = #dcdccc
-#foreground_bold = #ffffff
-#background = #1b1b1b
-
-# 20% background transparency (requires a compositor)
-#background = rgba(63, 63, 63, 0.8)
-background = rgba(27, 27, 27, 0.9)
-
-# If unset, will reverse foreground and background
-highlight = #2f2f2f
-
-# Colors from color0 to color254 can be set
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
-color15 = #ffffff
+color0  = #3B4252
+color1  = #BF616A
+color2  = #A3BE8C
+color3  = #EBCB8B
+color4  = #81A1C1
+color5  = #B48EAD
+color6  = #88C0D0
+color7  = #E5E9F0
+color8  = #4C566A
+color9  = #BF616A
+color10 = #A3BE8C
+color11 = #EBCB8B
+color12 = #81A1C1
+color13 = #B48EAD
+color14 = #8FBCBB
+color15 = #ECEFF4
 
 [hints]
 font = Monospace 12
@@ -82,4 +83,3 @@ border = #3f3f3f
 border_width = 0.5
 roundness = 2.0
 
-# vim: ft=dosini cms=#%s

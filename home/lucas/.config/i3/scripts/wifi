@@ -16,10 +16,7 @@
 
 #------------------------------------------------------------------------
 
-. ~/.config/i3/cores.conf
-
-#INTERFACE="${BLOCK_INSTANCE:-wlan0}"
-INTERFACE="${BLOCK_INSTANCE:-wlp6s0u2}"
+INTERFACE="${BLOCK_INSTANCE:-$(iw dev | awk '$1=="Interface"{print $2}')}"
 
 #------------------------------------------------------------------------
 
@@ -40,11 +37,11 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 if [[ ${QUALITY} -ge 50 ]]; then
 	cor=""
 elif [[ ${QUALITY} -ge 45 ]]; then
-	cor=$cormin
+	cor="#00FF00"
 elif [[ ${QUALITY} -ge 40 ]]; then
-	cor=$cormed
+	cor="#FFF600"
 else
-	cor=$cormax
+	cor="#FF0000"
 fi
 
 echo $QUALITY% # full text

@@ -11,11 +11,12 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'dikiaap/minimalist'
+" Plugin 'dikiaap/minimalist'
 " Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
+" Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'scrooloose/nerdtree'
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,18 +45,17 @@ filetype plugin indent on    " required
 " set showtabline=2 " Always display the tabline, even if there is only one tab
 
 set t_Co=256
-colorscheme minimalist
-let g:airline_theme='minimalist'
+" colorscheme minimalist
+" colorscheme nord
+" let g:airline_theme='minimalist'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-"set guifont=Inconsolata\ for\ Powerline:h15
+" set laststatus=2 " Always display the statusline in all windows
+" set showtabline=2 " Always display the tabline, even if there is only one tab
 set guifont=Inconsolata:h15
-" set guifont=Consolas:h11
-"set guifont=Hack:h11
 
 " autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif

@@ -4,7 +4,7 @@ configuration {
 /*	lines: 15;*/
 /*	columns: 1;*/
 /*	font: "Noto Mono Regular 10"; */
-	font: "Roboto Thin 12";
+	font: "Open Sans 11";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
@@ -19,7 +19,7 @@ configuration {
 /*	run-list-command: "";*/
 /*	run-shell-command: "{terminal} -e {cmd}";*/
 /*	window-command: "xkill -id {window}";*/
-/*	drun-icon-theme: ;*/
+	drun-icon-theme: "Paper";
 /*	disable-history: false;*/
 /*	sort: false;*/
 /*	levenshtein-sort: false;*/

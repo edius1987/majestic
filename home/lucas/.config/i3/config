@@ -47,7 +47,7 @@ bindsym $mod+q kill
 #bindsym $mod+d exec --no-startup-id "rofi -show run"
 #bindsym $mod+d exec --no-startup-id rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
 #bindsym $mod+d exec --no-startup-id rofi -show run -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
-bindsym $mod+d exec --no-startup-id exec rofi -theme ~/.local/share/rofi/themes/sistematico.rasi -show drun -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
+bindsym $mod+d exec --no-startup-id exec rofi -sidebar-mode -lines 0 -theme ~/.local/share/rofi/themes/sistematico.rasi -show drun -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
 #bindsym $mod+d exec --no-startup-id "rofi -show run -lines 5 -eh 2 -hide-scrollbar"
 bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://www.google.com.br/search?q={}
 bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
