@@ -22,9 +22,9 @@ configuration {
 	drun-icon-theme: "Paper";
 /*	disable-history: false;*/
 /*	sort: false;*/
-/*	levenshtein-sort: false;*/
+	levenshtein-sort: true;
 /*	case-sensitive: false;*/
-/*	cycle: true;*/
+	cycle: false;
 /*	sidebar-mode: false;*/
 /*	eh: 1;*/
 /*	auto-select: false;*/

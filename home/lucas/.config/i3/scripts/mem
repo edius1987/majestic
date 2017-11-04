@@ -24,11 +24,11 @@ por=$(echo "scale=2;(${usada}/${total})*100" | bc)
 porc=$(echo "scale=0;$por/1" | bc)
 
 if [[ ${porc} -gt 80 ]]; then
-	cor=$cormax
+	cor=$vermelho
 elif [[ ${porc} -gt 60 ]]; then
 	cor=$cormed2
 elif [[ ${porc} -gt 50 ]]; then
-	cor=$cormed
+	cor=$verde
 else
 	cor=""
 fi

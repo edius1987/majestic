@@ -5,7 +5,8 @@ force_display_urgency_hint 0
 workspace_auto_back_and_forth yes
 #new_window none
 new_window pixel 3
-font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono 8
+font pango:Cantarell 8
 
 #100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
 
@@ -13,6 +14,7 @@ set $branco                 #ffffff
 set $preto					#000000
 set $cinza					#8c8b8b
 set $azul					#3465a4
+set $verde					#a3be8c
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
 set $texto                  #ffffff
@@ -257,16 +259,17 @@ bar {
     strip_workspace_numbers yes
 	colors {
 		statusline		$branco
-		background		$semitransparente
+		#background		$semitransparente
+		background		$transparente
 		separator		$cinza
 
 		#					borda			fundo			texto
 		#focused_workspace	$transparente	$transparente	$texto-ativo
 		#inactive_workspace	$transparente	$transparente	$texto-inativo
 		#urgent_workspace	$transparente	$transparente	$texto-urgente
-		focused_workspace	$semitransparente	$semitransparente	$azul
-		inactive_workspace	$semitransparente	$semitransparente	$cinza
-		urgent_workspace	$semitransparente	$semitransparente	$texto-urgente		
+		focused_workspace	$transparente	$transparente	$verde
+		inactive_workspace	$transparente	$transparente	$cinza
+		urgent_workspace	$transparente	$transparente	$texto-urgente		
     }
 }
 

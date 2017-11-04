@@ -20,11 +20,11 @@ elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
 fi
 
 if [[ ${PACKAGE_COUNT} -gt 50 ]]; then
-	cor=$cormax
+	cor=$vermelho
 elif [[ ${PACKAGE_COUNT} -gt 20 ]]; then
 	cor=$cormed
 elif [[ ${PACKAGE_COUNT} -gt 10 ]]; then
-	cor=$cormin
+	cor=$verde
 else
 	cor=""
 fi

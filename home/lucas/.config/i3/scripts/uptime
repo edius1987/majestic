@@ -1,6 +1,9 @@
 #!/bin/bash
 #
 # Author: Raphael P. Ribeiro <raphaelpr01@gmail.com> 
+# Modified: Lucas Saliés Brum <lucas@archlinux.com.br> 
+
+. ~/.config/i3/cores.conf
 
 uptime=$(</proc/uptime)
 uptime=${uptime%%.*}
@@ -10,4 +13,4 @@ m=$(( uptime/60%60 ))
 h=$(( uptime/60/60%24 ))
 d=$(( uptime/60/60/24 ))
 
-echo ""$d"d"$h"h"$m"m"
+echo "${d}d${h}h${m}m"

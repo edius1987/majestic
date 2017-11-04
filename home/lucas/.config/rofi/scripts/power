@@ -19,11 +19,11 @@ function programado() {
 	if [ "$1" == "Desligamento" ]; then
 		sudo shutdown -P "$quando"
 	elif [ "$1" == "Suspensao" ]; then
-		systemctl suspend | at "$quando"
+		at "$quando" systemctl suspend
 	fi
 }
 
-res=$(echo "desligar;reiniciar;supender;programado;travar;sair;cancelar" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+res=$(echo "desligar;reiniciar;suspender;programado;travar;sair;cancelar" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 if [ ! -z $res ]; then
 	case $res in
@@ -36,8 +36,8 @@ if [ ! -z $res ]; then
 			[ $confirma = "Sim" ] && systemctl reboot
 		;;
 		suspender)
-			confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
-			[ $confirma = "Sim" ] && systemctl suspend
+			suspende=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			[ "$suspende" = "Sim" ] && systemctl suspend
 		;;		
 		programado)
 			tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)

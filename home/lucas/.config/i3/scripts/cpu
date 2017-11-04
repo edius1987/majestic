@@ -26,7 +26,7 @@ if [[ ${usada} -gt 80 ]]; then
 elif [[ ${usada} -gt 60 ]]; then
 	cor=$cormed
 elif [[ ${usada} -gt 40 ]]; then
-	cor=$cormin
+	cor=$verde
 else
 	cor=""
 fi

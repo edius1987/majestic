@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.config/i3/cores.conf
+
 TEMP_DEVICE="${BLOCK_INSTANCE:-Core}"
 TEMP_OUTPUT=$(sensors | grep "${TEMP_DEVICE}")
 

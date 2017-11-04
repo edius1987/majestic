@@ -30,7 +30,7 @@ fi
 if [[ "${status}" != *inactive* ]]; then
   echo ""
   echo ""
-  echo $ativo
+  echo "$vermelho"
 else
   echo ""
   echo ""

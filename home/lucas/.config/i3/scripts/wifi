@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+. ~/.config/i3/cores.conf
+
 #------------------------------------------------------------------------
 
 INTERFACE="${BLOCK_INSTANCE:-$(iw dev | awk '$1=="Interface"{print $2}')}"
@@ -37,11 +39,11 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 if [[ ${QUALITY} -ge 50 ]]; then
 	cor=""
 elif [[ ${QUALITY} -ge 45 ]]; then
-	cor="#00FF00"
+	cor=$verde
 elif [[ ${QUALITY} -ge 40 ]]; then
-	cor="#FFF600"
+	cor=$amarelo
 else
-	cor="#FF0000"
+	cor=$vermelho
 fi
 
 echo $QUALITY% # full text

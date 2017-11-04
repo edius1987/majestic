@@ -20,6 +20,6 @@ elif [[ ${BLOCK_BUTTON} -eq 3 ]]; then
 	~/bin/wallpaper.sh -c
 fi
 
-echo ""
-echo ""
+echo ""
+echo ""
 echo ""
