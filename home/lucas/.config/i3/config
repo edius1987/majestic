@@ -11,8 +11,21 @@ font pango:Cantarell 8, Siji 10
 set $branco                 #ffffff
 set $preto					#000000
 set $cinza					#8c8b8b
-set $azul					#3465a4
-set $verde					#a3be8c
+
+# Nord
+set $verde #8fbcbb
+set $verde2 #a3be8c
+set $azul #88c0d0
+set $azul2 #81a1c1
+set $azul3 #5e81ac
+set $vermelho #bf616a
+set $laranja #d08770
+set $amarelo #ebcb8b
+set $roxo #b48ead
+
+#set $azul					#3465a4
+#set $verde					#a3be8c
+
 set $fundo                  #1b1b1b
 set $fundo-inativo          #222222
 set $texto                  #ffffff
@@ -258,6 +271,7 @@ bar {
 #exec_always --no-startup-id hsetroot -solid "#2d343f"
 exec --no-startup-id /home/lucas/bin/wallpaper.sh -r
 exec --no-startup-id compton -b
+exec --no-startup-id conky
 exec --no-startup-id numlockx
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id clipit

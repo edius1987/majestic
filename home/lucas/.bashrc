@@ -5,15 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Powerline
-#if [[ -f /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh ]]; then
-#    powerline-daemon -q
-#    POWERLINE_BASH_CONTINUATION=1
-#    POWERLINE_BASH_SELECT=1
-#    . /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-    #. /usr/lib/python2.7/site-packages/powerline/bindings/shell/powerline.sh
-#fi
-
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 	source /etc/profile.d/vte.sh
 fi
@@ -30,11 +21,27 @@ shopt -s checkwinsize
 # Muda de diretório sem o cd
 shopt -s autocd
 
-# Adiciona ao histórico
+##################
+#### History  ####
+##################
+# Avoid duplicates
+export HISTCONTROL=ignoredups:erasedups
+
+# Size
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+# When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
 
-# After each command, save and reload history
-#export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND'\n'};history -a;history -c;history -r"
+# After each command, append to the history file and reread it
+#export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+#export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 ##################
 ##### ENV ########

@@ -24,7 +24,7 @@ configuration {
 /*	sort: false;*/
 	levenshtein-sort: true;
 /*	case-sensitive: false;*/
-	cycle: false;
+/*	cycle: false; */
 /*	sidebar-mode: false;*/
 /*	eh: 1;*/
 /*	auto-select: false;*/

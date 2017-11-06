@@ -1,7 +1,7 @@
 #!/bin/bash
 
 default="/home/lucas/img/wallpapers"
-wallp="/home/lucas/img/wallpapers/unsplash"
+wallp="/home/lucas/img/wallpapers/elementary"
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
 	for i in "${default}/*"; do
@@ -9,7 +9,7 @@ if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
 	done
 	opt=$(yad --title="i3 Wallpaper" --width="350" --height="220" --separator="" --list --column "Selecione o diretório..." --search-column 1 $w)
 	if [[ ! -z $opt ]]; then
-		sed -i "s|^\(wallp=\).*|\1\"${opt}\"|" ${HOME}/.config/i3/scripts/wallpaper
+		sed -i "s|^\(wallp=\).*|\1\"${opt}\"|" ${HOME}/.config/i3blocks/scripts/wallpaper
 		~/bin/wallpaper.sh "$opt"
 	fi
 elif [[ ${BLOCK_BUTTON} -eq 4 ]] || [[ ${BLOCK_BUTTON} -eq 5 ]]; then

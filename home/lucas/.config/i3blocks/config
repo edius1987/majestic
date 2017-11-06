@@ -3,6 +3,7 @@ full_text=
 align=center
 separator=false
 separator_block_width=7
+color=#ffffff
 markup=none
 
 [focus]
@@ -20,24 +21,6 @@ interval=5
 [wifi]
 label=
 interval=10
-
-[separator]
-
-[cpu]
-label=
-interval=1
-
-[separator]
-
-[mem]
-label=
-interval=1
-
-[separator]
-
-[disk]
-label=
-interval=30
 
 [separator]
 

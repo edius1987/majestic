@@ -23,7 +23,7 @@ function programado() {
 	fi
 }
 
-res=$(echo "desligar;reiniciar;suspender;programado;travar;sair;cancelar" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 6 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+res=$(echo "desligar;reiniciar;suspender;programado;travar;sair;cancelar" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 7 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 if [ ! -z $res ]; then
 	case $res in
