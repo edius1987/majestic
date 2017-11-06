@@ -1,0 +1,35 @@
+#!/bin/bash
+
+. ~/.config/i3/cores.conf
+
+icone="/usr/share/icons/Faience/actions/64/gnome-lockscreen.png"
+xauto=$(pgrep xautolock)
+
+
+if [[ $BLOCK_BUTTON -eq 1 ]]; then
+	if [[ ! -z $xauto ]]; then
+		/usr/bin/pkill xautolock
+		/usr/bin/pkill i3lock
+	else
+		/usr/bin/xautolock -time 5 -locker "i3lock-fancy -f Iosevka-Thin -t 'Arch Linux' -p -- scrot -z" -detect -notify 30 -notifier "notify-send -i $icone --urgency=critical 'TRAVANDO a tela em 30 segundos'" &
+	fi
+fi
+
+if [[ $BLOCK_BUTTON -ge 2 ]]; then
+	if [[ -z $xauto ]]; then
+		exec i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -g -- scrot -z
+	fi
+fi
+
+if [[ -z $xauto ]]; then
+    echo ""
+    echo ""
+    echo ""
+else
+    echo ""
+    echo ""
+    echo "$vermelho"
+fi
+
+exit 0
+

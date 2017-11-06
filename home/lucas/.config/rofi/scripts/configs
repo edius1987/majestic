@@ -4,6 +4,7 @@ tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
 
 configs=(
 'i3'
+'i3blocks'
 'LX Appearance'
 'Dunst'
 'Compton'
@@ -14,28 +15,32 @@ configs=(
 'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 9 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 10 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
-		'i3') 
-			i3cfg=$(echo "config;blocks;apps" | rofi -theme "$tema" -sep ";" -dmenu -p "i3 Config" -bw 0 -lines 3 -separator-style none -location 0 -width 130 -hide-scrollbar -padding 5)	
-			if [ $i3cfg = "apps" ]; then
-				i3blocksapps=$(ls "${HOME}/.config/i3/scripts/" | rofi -theme "$tema" -dmenu -p "i3 Blocks Apps" -bw 0 -lines 18 -separator-style none -location 0 -width 130 -hide-scrollbar -padding 5)	
-				if [ $i3blocksapps ]; then
-					i3-msg exec pluma ~/.config/i3/scripts/${i3blocksapps}
-				fi
-			elif [ $i3cfg ]; then
-				i3-msg exec pluma ~/.config/i3/${i3cfg}	
+		'i3') i3-msg exec pluma ~/.config/i3/config ;;
+		'i3blocks') 
+			i3blocks=$(echo "Top;Bottom;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "i3blocks" -bw 0 -lines 3 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+			if [ $i3blocks ]; then
+				case $i3blocks in
+					'Top') i3-msg exec pluma "${HOME}/.config/i3blocks/top" ;;
+					'Bottom') i3-msg exec pluma "${HOME}/.config/i3blocks/bottom" ;;
+					'Apps')
+						i3blocksapps=$(ls "${HOME}/.config/i3blocks/scripts/" | rofi -theme "$tema" -dmenu -p "i3 Blocks Apps" -bw 0 -lines 16 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+						if [ $i3blocksapps ]; then
+							i3-msg exec pluma ~/.config/i3blocks/scripts/${i3blocksapps}
+						fi					
+					;;
+				esac				
 			fi
 		;;
-		'i3 Blocks') i3-msg exec pluma ~/.config/i3/blocks ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
 		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;
 		'Compton') i3-msg exec pluma ~/.config/compton.conf ;;
 		'Rofi') i3-msg exec pluma ~/.config/rofi/config.rasi ;;
 		'Rofi Apps') 
-			app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 10 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+			app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 3 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 			if [ $app ]; then
 				i3-msg exec pluma "${HOME}/.config/rofi/scripts/${app}"
 			fi

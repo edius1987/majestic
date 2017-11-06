@@ -13,11 +13,17 @@ filter() {
     if [ "$(mpc | grep "^\[playing\]" | awk '{print $1}')" = "[playing]" ];then
         if [ "$(mpc | head -1 | wc -c )" -lt 30 ];then
             echo -e "$saida"
+            echo -e "$saida"
+            echo ""
         else
             echo -e "$(echo $saida | head -1 | head -c 30)..."
+            echo -e "$(echo $saida | head -1 | head -c 30)..."
+            echo ""
         fi
     else
-        echo -e " MPD"
+        echo " MPD"
+        echo " MPD"
+        echo ""
     fi
 }
 

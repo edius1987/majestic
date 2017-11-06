@@ -3,13 +3,11 @@ gaps inner 10
 hide_edge_borders both
 force_display_urgency_hint 0
 workspace_auto_back_and_forth yes
-#new_window none
 new_window pixel 3
 #font pango:DejaVu Sans Mono 8
-font pango:Cantarell 8
+font pango:Cantarell 8, Siji 10
 
 #100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
-
 set $branco                 #ffffff
 set $preto					#000000
 set $cinza					#8c8b8b
@@ -40,20 +38,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
-#bindsym --release Mod2+button2 kill
-#bindsym --release button2 kill
 
-#bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec --no-startup-id "rofi -show drun"
-#bindsym $mod+d exec --no-startup-id "rofi -show combi"
-#bindsym $mod+d exec --no-startup-id "rofi -show run"
-#bindsym $mod+d exec --no-startup-id rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
-#bindsym $mod+d exec --no-startup-id rofi -show run -bw 4 -eh 1 -font "Noto Mono Regular 11" -opacity "80" -lines 8 -line-margin 4 -width 50 -padding 16
 bindsym $mod+d exec --no-startup-id exec rofi -sidebar-mode -lines 0 -theme ~/.local/share/rofi/themes/sistematico.rasi -show drun -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
-#bindsym $mod+d exec --no-startup-id "rofi -show run -lines 5 -eh 2 -hide-scrollbar"
 bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://www.google.com.br/search?q={}
 bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
-
 bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
 
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
@@ -168,6 +156,7 @@ for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
 for_window [class="(mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator)"] floating enable, move position center
+for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 for_window [class="^etcher-electron"] floating enable
 for_window [class="^Skype"] floating enable
@@ -194,8 +183,6 @@ assign [class="^Inkscape"] $workspace5
 assign [class="^Lxappearance"] $workspace5
 assign [class="^Deadbeef"] $workspace6
 assign [class="^Gmpc"] $workspace6
-#assign [class="^Steam"] $workspace6
-#assign [class="^mpv"] $workspace6
 assign [class="^Deluge"] $workspace7
 assign [class="^Thunderbird"] $workspace8
 assign [class="^Telegram"] $workspace9
@@ -205,7 +192,7 @@ assign [class="^Gtkman"] $workspace10
 assign [class="^Mate-disk-usage-analyzer"] $workspace10
 #assign [class="^Pamac-updater"] $workspace10
 #assign [class="^Pamac-manager"] $workspace10
-assign [class="(^Pamac*|Notes)"] $workspace10
+assign [class="(^Pamac*|Notes|Lxtask)"] $workspace10
 
 #bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
 #-b 'config' 'i3-msg exec pluma ~/.config/i3/config' \
@@ -252,28 +239,23 @@ bindsym $mod+r mode "resize"
 
 bar {
 	tray_output none
-    status_command i3blocks -c ~/.config/i3/blocks
+	status_command i3blocks -vvv -c ~/.config/i3blocks/config
 	i3bar_command i3bar -t
-    #position top
-    font pango:Hack, FontAwesome 10
-    strip_workspace_numbers yes
+    position top
+	font pango:Hack, FontAwesome 10
+	strip_workspace_numbers yes
 	colors {
 		statusline		$branco
-		#background		$semitransparente
 		background		$transparente
 		separator		$cinza
 
-		#					borda			fundo			texto
-		#focused_workspace	$transparente	$transparente	$texto-ativo
-		#inactive_workspace	$transparente	$transparente	$texto-inativo
-		#urgent_workspace	$transparente	$transparente	$texto-urgente
 		focused_workspace	$transparente	$transparente	$verde
-		inactive_workspace	$transparente	$transparente	$cinza
+		inactive_workspace	$transparente	$transparente	$branco
 		urgent_workspace	$transparente	$transparente	$texto-urgente		
     }
 }
 
-#exec_always --no-startup-id hsetroot -solid "#1b1b1b"
+#exec_always --no-startup-id hsetroot -solid "#2d343f"
 exec --no-startup-id /home/lucas/bin/wallpaper.sh -r
 exec --no-startup-id compton -b
 exec --no-startup-id numlockx

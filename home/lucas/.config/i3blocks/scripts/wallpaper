@@ -1,6 +1,6 @@
 #!/bin/bash
 
-default="/home/lucas/img/wallpapers/unsplash"
+default="/home/lucas/img/wallpapers"
 wallp="/home/lucas/img/wallpapers/unsplash"
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then

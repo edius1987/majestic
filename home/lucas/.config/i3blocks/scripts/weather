@@ -30,7 +30,8 @@ else
 	fi
 fi
 
-echo "$icone $temp°C"
-echo "$temp°C"
+echo "$icone $temp°C" # full
+echo "$temp°C" # short
+echo ""
 
 #      
