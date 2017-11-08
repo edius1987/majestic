@@ -1,6 +1,6 @@
 ## Majestic Dotfiles(Arch Linux 64 Bits)
 
-Arquivos da minha pasta pessoal(/home/lucas, e outras pastas...) da máquina majestic.
+Arquivos da minha pasta pessoal(/home/lucas, e outras pastas...) da máquina [majestic](https://majestic.radiochat.com.br).
 Sinta-se livre para usar, alterar, divulgar e comentar.
 
 ## Índice
@@ -10,6 +10,7 @@ Sinta-se livre para usar, alterar, divulgar e comentar.
 * [rofi](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/rofi)
 * [dunst](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/dunst)
 * [compton](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/compton.conf)
+* [termite](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/termite/config)
 * [~/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/bin)
 
 ## Exemplos de como usar os dotfiles(não faça isso como root)
