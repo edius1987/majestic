@@ -13,4 +13,4 @@ Problemas? Abra uma issue ;)
 
 ![Screenshot][screenshot]
 
-[screenshot]: https://raw.githubusercontent.com/sistematico/majestic/screenshot.png "Screenshot"
+[screenshot]: https://raw.githubusercontent.com/sistematico/majestic/master/screenshot.png "Screenshot"
