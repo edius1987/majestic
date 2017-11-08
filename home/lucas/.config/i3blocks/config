@@ -12,15 +12,23 @@ interval=5
 
 [separator]
 
-[mpd]
-label=
-interval=5
+[firefox]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox-developer &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox-developer; fi'
+interval=once
+
+[thunar]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
+interval=once
+
+[termite]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termite &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall termite; fi'
+interval=once
 
 [separator]
 
-[wifi]
-label=
-interval=10
+[mpd]
+label=
+interval=5
 
 [separator]
 
@@ -70,23 +78,19 @@ signal=10
 [apps]
 command=bash -c 'echo " "; echo " "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/apps &> /dev/null; fi'
 interval=once
-separator=false
 separator_block_width=5
 
 [config]
 command=bash -c 'echo " "; echo " "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/configs &> /dev/null; fi'
 interval=once
-separator=false
 separator_block_width=5
 
 [wallpaper]
 interval=once
-separator=false
 separator_block_width=5
 
 [blank]
 interval=5
-separator=false
 separator_block_width=5
 
 [firewall]

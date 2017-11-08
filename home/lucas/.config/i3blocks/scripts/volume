@@ -17,6 +17,8 @@
 
 #------------------------------------------------------------------------
 
+. ~/.config/i3/cores.conf
+
 # The second parameter overrides the mixer selection
 # For PulseAudio users, use "pulse"
 # For Jack/Jack2 users, use "jackplug"
@@ -112,4 +114,4 @@ esac
 
 echo "$ICONE $(volume | format)"
 echo "$(volume | format)"
-echo ""
+echo "$laranja"

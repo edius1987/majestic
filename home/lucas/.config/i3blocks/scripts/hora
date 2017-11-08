@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.config/i3/cores.conf
+
 case $BLOCK_BUTTON in
 	1) notify-send "Data" "$(date '+%d/%m/%Y')" ;;  # left click, pause/unpause
 	2) notify-send "Data" "$(date '+%A')" ;;  # middle click, show info
@@ -11,4 +13,4 @@ esac
 
 echo "$(date '+%H:%M')"
 echo "$(date '+%H:%M')"
-echo ""
+echo "$vermelho"

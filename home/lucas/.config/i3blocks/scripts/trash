@@ -42,7 +42,7 @@ elif [[ ${TRASH_COUNT} -gt 40 ]]; then
 elif [[ ${TRASH_COUNT} -gt 20 ]]; then
 	cor=$verde
 else
-	cor=""
+	cor="$cinza4"
 fi
 
 echo "${TRASH_COUNT}"

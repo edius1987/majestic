@@ -1,20 +1,11 @@
 #!/bin/bash
 
+. ~/.config/i3/cores.conf
+
 titulo=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Arch Linux")
 tamanho=$(xdotool getactivewindow getwindowname 2>/dev/null | wc -c)
 max=35
-#truncado=$(echo $titulo | head -c $max)
 truncado=$(echo $titulo | /usr/local/bin/strcut.py)
-
-if [ "$tamanho" -gt "$max" ];then
-	echo "$truncado"
-	echo "$truncado"
-	echo ""
-else
-	echo "$titulo"
-	echo "$titulo"
-	echo ""
-fi
 
 if [[ $BLOCK_BUTTON -eq 1 ]]; then
     xdotool getactivewindow getwindowname 2>/dev/null | xclip -rmlastnl -selection c
@@ -25,22 +16,12 @@ elif [[ $BLOCK_BUTTON -eq 2 ]]; then
 	kill -9 $active_window_pid
 fi
 
-#case $BLOCK_BUTTON in
-  #1) i3-msg floating toggle ;;
-  #2) i3-msg layout tabbed ;;
- # 3) echo -ne "$titulo" | xclip -selection c ;;
-  #3) i3-msg layout toggle split ;;
- # 4) i3-msg workspace next ;;
- # 5) i3-msg workspace prev ;;
-#esac
-
-#case $BLOCK_BUTTON in
-#    1) echo -ne "$titulo" | xclip -selection c ;;
-#    3) echo -ne "$titulo" | xclip -selection c ;;
-#    *) echo -ne "$titulo" | xclip -selection c ;;
-#esac
-
-#echo -e $saida
-#echo -e $saida
-
-#exit 0
+if [ "$tamanho" -gt "$max" ];then
+	echo "$truncado"
+	echo "$truncado"
+	echo "$verde"
+else
+	echo "$titulo"
+	echo "$titulo"
+	echo "$verde"
+fi

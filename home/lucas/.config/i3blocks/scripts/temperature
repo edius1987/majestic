@@ -31,7 +31,7 @@ fi
 
 echo "${AVERAGE_TEMP}°C"
 echo "${AVERAGE_TEMP}°C"
-echo ""
+echo "$vermelho"
 
 if [[ "${IS_URGENT}" -eq 1 ]]; then
   exit 33

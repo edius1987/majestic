@@ -2,7 +2,9 @@
 
 tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
 
-configs=(
+ls ~/github/ | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "GitHub: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
+
+op=(
 'i3'
 'i3blocks'
 'Conky'

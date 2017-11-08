@@ -15,4 +15,4 @@ d=$(( uptime/60/60/24 ))
 
 echo "${d}d${h}h${m}m"
 echo "${d}d${h}h${m}m"
-echo ""
+echo "$roxo"
