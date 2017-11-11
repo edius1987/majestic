@@ -3,7 +3,7 @@
 # Author: Raphael P. Ribeiro <raphaelpr01@gmail.com> 
 # Modified: Lucas Saliés Brum <lucas@archlinux.com.br> 
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 uptime=$(</proc/uptime)
 uptime=${uptime%%.*}

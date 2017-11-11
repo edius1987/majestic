@@ -1,5 +1,5 @@
 [global]
-    font = "Monospace 9"
+    font = "Hack 10"
 	#transparency = 95
     markup = yes
     format = "<b>%s %p</b>\n%b"
@@ -8,7 +8,7 @@
 	show_indicators = false
     # geometry = "x5"
     idle_threshold = 0
-    geometry = "400x5-20+20"
+    geometry = "400x5-25+35"
     alignment = center
     show_age_threshold = 60
     sticky_history = yes
@@ -19,14 +19,15 @@
     horizontal_padding = 10
     separator_color = frame
     startup_notification = false
-    dmenu = "/usr/bin/dmenu -p dunst: -nb #FFFFFF -nf #000000 -sb #94DBFF -sf #000000"
-    browser = firefox
+    #dmenu = "/usr/bin/dmenu -p dunst: -nb #FFFFFF -nf #000000 -sb #2e3440 -sf #000000"
+    dmenu = "/usr/bin/dmenu -p dunst: -nb '#2e3440' -nf '#000000' -sb '#2e3440' -sf '#2e3440'"
+    browser = firefox-developer
 	# Align icons left/right/off
     icon_position = left
     icon_folders = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
 	#icon_folders = /usr/share/icons/Arc/status/32/:/usr/share/icons/Arc/devices/32/:/usr/share/icons/Arc/apps/32/
-	frame_width = 3
-	frame_color = "#000000"
+	frame_width = 0
+	#frame_color = "#000000"
 
 [shortcuts]
     close = ctrl+space
@@ -37,19 +38,19 @@
 [urgency_low]
     background = "#ffffff"
     foreground = "#000000"
-    timeout = 5
+    timeout = 7
 
 [urgency_normal]
     #background = "#94DBFF"
 	#background = "#2e3436"
-	background = "#555753"
+	background = "#2e3440"
     foreground = "#000000"
-    timeout = 10
+    timeout = 15
 
 [urgency_critical]
     background = "#ff9999"
     foreground = "#000000"
-    timeout = 15
+    timeout = 17
 
 
 [libpurple_signed]

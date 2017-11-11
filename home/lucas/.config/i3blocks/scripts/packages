@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 PACKAGE_COUNT=$(checkupdates | wc -l)
 
@@ -22,11 +22,11 @@ fi
 if [[ ${PACKAGE_COUNT} -gt 50 ]]; then
 	cor=$vermelho
 elif [[ ${PACKAGE_COUNT} -gt 20 ]]; then
-	cor=$cormed
+	cor=$amarelo
 elif [[ ${PACKAGE_COUNT} -gt 10 ]]; then
 	cor=$verde
 else
-	cor="$azul"
+	cor=''
 fi
 
 echo "${PACKAGE_COUNT}" # full-text

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 slash=$(echo $(mpc current) | awk -F'/' '{print $2}')
 
@@ -16,16 +16,16 @@ filter() {
         if [ "$(mpc | head -1 | wc -c )" -lt 30 ];then
             echo -e "$saida"
             echo -e "$saida"
-            echo "$verde2"
+            echo ''
         else
             echo -e "$(echo $saida | head -1 | head -c 30)..."
             echo -e "$(echo $saida | head -1 | head -c 30)..."
-            echo "$verde2"
+            echo ''
         fi
     else
-        echo " MPD"
-        echo " MPD"
-        echo "$verde2"
+        echo ' MPD'
+        echo ' MPD'
+        echo ''
     fi
 }
 

@@ -8,6 +8,8 @@ nome="ss-${data}"
 extensao=".png"
 atraso=10
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
+tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+tipo="image/png"
 
 if [ ! -d $dir ]; then
 	mkdir -p $dir
@@ -16,25 +18,50 @@ fi
 if [ "$1" == "-a" ]; then
 	arquivo="${nome}-full${extensao}"
 	$app ${arquivo}
+	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-w" ]; then
 	arquivo="${nome}-window${extensao}"
 	$app -i $(xdotool getactivewindow) ${arquivo}
+	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-s" ]; then
 	arquivo="${nome}-rec${extensao}"
     $app -s ${arquivo}
+    msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-d" ]; then
     arquivo="${nome}-delay${extensao}"
     $app -d $atraso ${arquivo}
+    msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
+elif [ "$1" == "-g" ]; then
+    arquivo="${nome}.gif"
+    tipo="image/gif"
+        
+    duracao=$(echo "5;10;15;30;45;60;90;120" | \
+    rofi -theme "$tema" -sep ";" -dmenu -p "Duração(segundos):" -bw 0 -lines 8 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+    
+    atraso=$(echo "0;1;2;3;5;10;15;30;45;60" | \
+    rofi -theme "$tema" -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 10 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+    
+    if [ -z $atraso ]; then
+    	atraso=2
+    fi
+    
+    if [ ! -z $duracao ]; then
+    	byzanz-record --delay=$atraso -d $duracao ${arquivo}    
+    	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
+	else
+		msg="Screenshot cancelada..."
+    fi    
 else
 	arquivo="${nome}-crop${extensao}"
 	$app ${arquivo}
-	#mogrify -crop 1920x1080+0+0 +repage ${arquivo}
+	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 fi
 
-if [ $(pwd) != $dir ]; then
-	mv $arquivo $dir
+if [ ! -z $arquivo ]; then
+	if [ $(pwd) != $dir ]; then
+		mv $arquivo $dir
+	fi
+	xclip -selection c -t $tipo -i $dir$arquivo
 fi
 
-notify-send -i $icone "ScreenShot" "A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
-
-xclip -selection c -t image/png -i $dir$arquivo
+notify-send -i $icone "ScreenShot" "$msg"

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Códigos: 
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 METRIC=1 #Should be 0 or 1; 0 for F, 1 for C
 
@@ -34,6 +34,6 @@ fi
 
 echo "$icone $temp°C" # full
 echo "$temp°C" # short
-echo "$laranja"
+echo ''
 
 #      

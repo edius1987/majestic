@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 TEMP_DEVICE="${BLOCK_INSTANCE:-Core}"
 TEMP_OUTPUT=$(sensors | grep "${TEMP_DEVICE}")
@@ -31,7 +31,7 @@ fi
 
 echo "${AVERAGE_TEMP}°C"
 echo "${AVERAGE_TEMP}°C"
-echo "$vermelho"
+echo ""
 
 if [[ "${IS_URGENT}" -eq 1 ]]; then
   exit 33

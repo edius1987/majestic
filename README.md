@@ -21,7 +21,7 @@ Usando o git:
 	mkdir ~/github && cd ~/github # crie a pasta gihub(ou qualquer outro nome)
     git clone git@github.com:sistematico/majestic.git # clone o repositório
     mv ~/.config/i3/config ~/.config/i3/config.bkp # caso já exista uma config, faça o backup
-    ln -s ~/github/majestic/home/lucas/.config/i3/config ~/.config/i3/config # linke o repositorio ao seus arquivos de configuração
+    ln -s ~/github/majestic/home/lucas/.config/i3/config ~/.config/i3/config # linke o repositorio
 
 Usando o curl:
 

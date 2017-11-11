@@ -17,7 +17,7 @@
 
 #------------------------------------------------------------------------
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 # The second parameter overrides the mixer selection
 # For PulseAudio users, use "pulse"
@@ -114,4 +114,4 @@ esac
 
 echo "$ICONE $(volume | format)"
 echo "$(volume | format)"
-echo "$laranja"
+echo ""

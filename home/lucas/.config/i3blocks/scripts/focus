@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 titulo=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Arch Linux")
 tamanho=$(xdotool getactivewindow getwindowname 2>/dev/null | wc -c)
@@ -19,9 +19,9 @@ fi
 if [ "$tamanho" -gt "$max" ];then
 	echo "$truncado"
 	echo "$truncado"
-	echo "$verde"
+	echo ""
 else
 	echo "$titulo"
 	echo "$titulo"
-	echo "$verde"
+	echo ""
 fi

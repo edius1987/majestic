@@ -69,6 +69,7 @@ bindsym Print exec --no-startup-id ~/bin/screenshot.sh
 bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
 bindsym --release Mod1+Sys_Req exec --no-startup-id ~/bin/screenshot.sh -s
 bindsym $mod+Print exec --no-startup-id ~/bin/screenshot.sh -d
+bindsym $mod+Shift+Print exec --no-startup-id ~/bin/screenshot.sh -g
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -256,19 +257,20 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
+	font pango:Hack, FontAwesome 10
 	tray_output none
-	status_command i3blocks -vvv -c ~/.config/i3blocks/config
+	status_command i3blocks
 	i3bar_command i3bar -t
 	position top
-	font pango:Hack, FontAwesome 10
+	separator_symbol "■"
 	strip_workspace_numbers yes
 	colors {
-		statusline		$branco
+		statusline		$cinza
 		background		$transparente
 		separator		$cinza
 
-		focused_workspace	$transparente	$transparente	$verde
-		inactive_workspace	$transparente	$transparente	$branco
+		focused_workspace	$transparente	$transparente	$branco
+		inactive_workspace	$transparente	$transparente	$cinza
 		urgent_workspace	$transparente	$transparente	$texto-urgente		
     }
 }
@@ -276,7 +278,6 @@ bar {
 exec --no-startup-id ~/bin/wallpaper.sh -r
 exec --no-startup-id compton -b
 exec --no-startup-id conky
-#exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id dunst
 exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64
@@ -284,4 +285,4 @@ exec --no-startup-id xautolock.sh
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id dropbox
-exec --no-startup-id notes
+#exec --no-startup-id notes

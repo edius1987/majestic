@@ -16,3 +16,4 @@ alias baixarlista='youtube-dl --username sistematico --extract-audio --audio-for
 alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
 alias pacman-clean='sudo pacman -Qdtq | pacman -Rs -'
 alias vim="vim -c 'startinsert'"
+alias showip='curl icanhazip.com'

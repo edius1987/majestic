@@ -14,6 +14,14 @@ DEFAULT="/usr/share/backgrounds/default"
 COR="#1b1b1b"
 DIA_PATH="${HOME}/img/modelos"
 
+function uso {
+	echo
+	echo "Uso: $0 [caminho|imagem]"
+	echo "     $0 -rdoc"
+	echo "     $0 -day"
+	echo
+}
+
 if [ ! -f "$DEFAULT" ]; then
 	curl https://raw.githubusercontent.com/sistematico/majestic/master/usr/share/backgrounds/default > $DEFAULT
 fi
@@ -46,8 +54,8 @@ if [ "$1" ]; then
 		elif [ -f "$1" ]; then
 			WALLPAPER=$1
 		else
-			echo "Imagem: $1 não identificada, abortando..."
-			exit 1
+			uso
+			exit 0
 		fi
 	else
 		WALL=$(echo $@ | tr ' ' '*')

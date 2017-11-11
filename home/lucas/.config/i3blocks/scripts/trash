@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.config/i3/cores.conf
+. ~/.config/i3blocks/cores.conf
 
 TRASH_DIRECTORY="${BLOCK_INSTANCE}"
 #TRASH_DIRECTORY="${HOME}/.local/share/Trash"
@@ -42,7 +42,7 @@ elif [[ ${TRASH_COUNT} -gt 40 ]]; then
 elif [[ ${TRASH_COUNT} -gt 20 ]]; then
 	cor=$verde
 else
-	cor="$cinza4"
+	cor=''
 fi
 
 echo "${TRASH_COUNT}"
