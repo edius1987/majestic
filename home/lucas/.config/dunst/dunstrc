@@ -20,7 +20,7 @@
     separator_color = frame
     startup_notification = false
     #dmenu = "/usr/bin/dmenu -p dunst: -nb #FFFFFF -nf #000000 -sb #2e3440 -sf #000000"
-    dmenu = "/usr/bin/dmenu -p dunst: -nb '#2e3440' -nf '#000000' -sb '#2e3440' -sf '#2e3440'"
+    dmenu = "/usr/bin/dmenu -p dunst: -nb '#2e3440' -nf '#FFFFFF' -sb '#2e3440' -sf '#2e3440'"
     browser = firefox-developer
 	# Align icons left/right/off
     icon_position = left
@@ -44,7 +44,7 @@
     #background = "#94DBFF"
 	#background = "#2e3436"
 	background = "#2e3440"
-    foreground = "#000000"
+    foreground = "#FFFFFF"
     timeout = 15
 
 [urgency_critical]

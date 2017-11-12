@@ -66,7 +66,7 @@ scripts=("blank"
 		"wifi")
 
 for script in ${scripts[@]}; do
-	curl -s -o ${HOME}/.config/i3blocks/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/${script}"
+	curl -s -o ${HOME}/.config/i3blocks/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/scripts/${script}"
 done
 
 # dunst

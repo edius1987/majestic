@@ -26,9 +26,10 @@ if [ ! -f "$DEFAULT" ]; then
 	curl https://raw.githubusercontent.com/sistematico/majestic/master/usr/share/backgrounds/default > $DEFAULT
 fi
 
-if [ ! -d "$WALL" ]; then
-	echo "O diretório $WALL não existe, abortando..."
-	exit 1
+if [ ! -d "$WALL" && ! -f "$WALL" ]; then
+	sed -i "s|^\(WALL=\).*|\1\"${DEFAULT}\"|" ${HOME}/bin/wallpaper.sh
+	#echo "O diretório $WALL não existe, abortando..."
+	#exit 1
 fi
 
 if [ "$1" ]; then
