@@ -1,8 +1,10 @@
 #!/bin/bash
 
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
+
 app_ok=1
-apps=("i3-gaps" "i3blocks" "i3lock-fancy" "dunst" "conky" "xdotool" "cantarell-fonts" "ttf-hack" "ttf-iosevka" "alsa-utils" "maim" "xclip")
+
+apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "cantarell-fonts" "ttf-hack")
 
 for app in ${apps[@]}; do
 	pacman -Q $app 1> /dev/null 2> /dev/null
@@ -77,6 +79,7 @@ if [ -d ${HOME}/.config/dunst ]; then
 else
 	mkdir -p ${HOME}/.config/i3blocks/scripts
 fi
+
 curl -s -o ${HOME}/.config/dunst/dunstrc 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/dunst/dunstrc'
 
 # rofi
@@ -94,40 +97,10 @@ else
 	mkdir -p ${HOME}/.config/rofi/scripts
 fi
 
-if [ ! -d ${HOME}/.local/share/rofi/themes ]; then
-	mkdir -p ${HOME}/.local/share/rofi/themes/
-fi
-
-curl -s -o ${HOME}/.local/share/rofi/themes/sistematico.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-dark.rasi'
 curl -s -o ${HOME}/.config/rofi/config.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/config.rasi'
 curl -s -o ${HOME}/.config/rofi/scripts/apps 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/apps'
 curl -s -o ${HOME}/.config/rofi/scripts/configs 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/configs'
 curl -s -o ${HOME}/.config/rofi/scripts/power 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/power'
-
-# conky
-if [ -d ${HOME}/.config/conky ]; then
-	if [ -f ${HOME}/.config/conky/conky.conf ]; then
-		mv ${HOME}/.config/conky/conky.conf ${HOME}/.config/conky/conky-${backup_date}.conf.bkp
-	fi
-else
-	mkdir -p ${HOME}/.config/conky
-fi
-curl -s -o ${HOME}/.config/conky/conky.conf 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/conky/conky.conf'
-
-# ~/bin
-bin_files=("wallpaper.sh" "screenshot.sh")
-
-if [ ! -d ${HOME}/bin ]; then	
-	mkdir -p ${HOME}/bin
-fi
-
-for bin_file in ${bin_files[@]}; do
-	if [ -f ${HOME}/bin/${bin_file} ]; then
-		mv ${HOME}/bin/${bin_file} ${HOME}/bin/${bin_file}-${backup_date}.bkp
-	fi
-	curl -s -o ${HOME}/bin/${bin_file} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/bin/${bin_file}"
-done
 
 # fontawesome
 fc-list | grep -i FontAwesome 1> /dev/null 2> /dev/null
@@ -144,11 +117,6 @@ fi
 
 echo "Tudo pronto!"
 
-ps -A | grep i3 1> /dev/null 2> /dev/null
-if [ $? = 0 ]; then
-	echo "Recarregando o i3..."
-	sleep 4
-	#i3-msg reload
-	i3-msg restart
-fi
+#i3-msg reload
+#i3-msg restart
 
