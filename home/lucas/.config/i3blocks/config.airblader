@@ -1,57 +1,55 @@
-# Colors: https://github.com/da-edra/dotfiles/blob/master/.i3blocks.conf
-
 command=~/.config/i3blocks/scripts/$BLOCK_NAME
-#full_text=
-#align=center
-#separator=false
-#separator_block_width=7
-#color=#ffffff
-#markup=none
 
 separator=false
 separator_block_width=10
 border_top=0
 border_left=0
 border_right=0
-border_bottom=3
+border_bottom=2
 
 [focus]
 label=
-interval=5
-border=#cc241d
+interval=1
+border=#d54e53
 
 [mpd]
 label=
 interval=5
-border=#d79921
+border=#e78c45
+
+[btc]
+label=
+interval=60
+instance=mercadobitcoin
+border=#e7c547
 
 [temperature]
 label=
 interval=10
-border=#b16286
+border=#b9ca4a
 
 [weather]
 instance="SAM|BR|BR010|CAMPO+GRANDE"
 interval=300
-border=#98971a
+border=#70c0b1
 
 [packages]
 label=
 interval=600
-border=#458588
+border=#7aa6da
 
 [trash]
 label=
 interval=30
-border=#928374
+border=#c397d8
 
 [hora]
 label=
 interval=5
-border=#cc241d
+border=#d54e53
 
 [volume]
 instance=Master
 interval=1
 signal=10
-border=#d79921
+border=#e78c45

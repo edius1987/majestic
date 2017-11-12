@@ -4,9 +4,10 @@ hide_edge_borders both
 force_display_urgency_hint 0
 workspace_auto_back_and_forth yes
 new_window pixel 3
-#font pango:DejaVu Sans Mono 8
-#font pango:Cantarell 8, Siji 10
-font pango:Cantarell 8
+# smart|urgent|focus|none
+focus_on_window_activation focus
+focus_follows_mouse no
+font pango:Source Code Pro 10
 
 # 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C
 # 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
@@ -19,6 +20,8 @@ set $cinza1					#2e3440
 set $cinza2					#3b4252
 set $cinza3					#434c5e
 set $cinza4					#4c566a
+set $cinza5					#556378
+set $cinza6					#5e6e85
 set $verde					#8fbcbb
 set $verde2					#a3be8c
 set $azul					#88c0d0
@@ -45,10 +48,10 @@ set $borda					#5b6365
 set $semitransparente		#00000073
 set $transparente			#00000000
 
-#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
-client.focused          $borda				$fundo-inativo  $texto                  $borda					$borda
-client.unfocused        $borda				$fundo-inativo  $texto-inativo			$fundo-inativo			$borda
-client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$fundo-inativo			$borda
+#                       BORDER      		BACKGROUND  TEXT        				INDICATOR   			CHILD_BORDER
+client.focused          $borda				$fundo-inativo  $texto                  $cinza6					$cinza6
+client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza1					$cinza1
+client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza1					$cinza1
 client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
 
 floating_modifier $mod
@@ -59,10 +62,15 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 bindsym $mod+d exec --no-startup-id exec rofi -sidebar-mode -lines 0 -theme ~/.local/share/rofi/themes/sistematico.rasi -show drun -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
+bindsym $mod+Shift+w exec --no-startup-id exec rofi -sidebar-mode -lines 0 -theme ~/.local/share/rofi/themes/sistematico.rasi -show window -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
 bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://www.google.com.br/search?q={}
 bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
 bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
 bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
+
+bindsym $mod+c exec ~/.config/rofi/scripts/configs
+bindsym $mod+a exec ~/.config/rofi/scripts/apps
+bindsym $mod+Shift+e exec ~/.config/rofi/scripts/power
 
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute
@@ -160,19 +168,15 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-for_window [urgent="latest"] focus
-
 # move [absolute] position <pos_x> [px] <pos_y> [px]
 # 1920 x 1080
 # move position center
+#for_window [urgent="latest"] focus
 
 for_window [window_role="pop-up"] floating enable, move position center
 for_window [window_role="bubble"] floating enable, move position center
 for_window [window_role="task_dialog"] floating enable, move position center
 for_window [window_role="Preferences"] floating enable, move position center
-
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
@@ -215,20 +219,6 @@ assign [class="^Mate-disk-usage-analyzer"] $workspace10
 #assign [class="^Pamac-manager"] $workspace10
 assign [class="(^Pamac*|Notes|Lxtask)"] $workspace10
 
-#bindsym $mod+c exec "i3-nagbar -t warning -m 'Editar arquivos do i3' \
-#-b 'config' 'i3-msg exec pluma ~/.config/i3/config' \
-#-b 'i3blocks' 'i3-msg exec pluma ~/.config/i3/blocks' \
-#-b 'dunst' 'i3-msg exec pluma ~/.config/i3/dunstrc' \
-#-b 'compton' 'i3-msg exec pluma ~/.config/compton.conf' \
-#-b 'rofi' 'i3-msg exec pluma ~/.config/rofi/config' \
-#-b '.Xresources' 'i3-msg exec pluma ~/.Xresources' \
-#-b '.xinitrc' 'i3-msg exec pluma ~/.config/.xinitrc' \
-#-b '.Xdefaults' 'i3-msg exec pluma ~/.config/.Xdefaults' \
-#-b 'apps' 'i3-msg exec pluma ~/.config/rofi/scripts/apps'"
-
-bindsym $mod+c exec ~/.config/rofi/scripts/configs
-bindsym $mod+a exec ~/.config/rofi/scripts/apps
-
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
 	bindsym s exec i3-msg exit
 	bindsym d exec systemctl poweroff
@@ -239,8 +229,6 @@ mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Mod1+e mode "[s]air, [d]esligar, [r]einiciar, [s]uspender"
-
-bindsym $mod+Shift+e exec ~/.config/rofi/scripts/power
 
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
@@ -259,21 +247,21 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-	font pango:Hack, FontAwesome 10
+	font pango:Source Code Pro 10, FontAwesome 10
 	tray_output none
 	status_command i3blocks
 	i3bar_command i3bar -t
 	position top
-	separator_symbol "■"
+	#separator_symbol "     "
 	strip_workspace_numbers yes
 	colors {
-		statusline		$cinza
+		statusline		$branco1
 		background		$transparente
-		separator		$cinza
+		separator		$branco1
 
-		focused_workspace	$transparente	$transparente	$branco
-		inactive_workspace	$transparente	$transparente	$cinza
-		urgent_workspace	$transparente	$transparente	$texto-urgente		
+		focused_workspace	$branco1		$transparente	$branco1
+		inactive_workspace	$transparente	$transparente	$branco1
+		urgent_workspace	$transparente	$transparente	$vermelho
     }
 }
 
@@ -287,4 +275,4 @@ exec --no-startup-id xautolock.sh
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id dropbox
-#exec --no-startup-id notes
+

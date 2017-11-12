@@ -1,0 +1,31 @@
+#!/bin/bash
+
+case $BLOCK_INSTANCE in
+	coinbase) 
+		saida=$(curl -sH 'CB-VERSION: 2015-04-08' -H 'Accept-Language: pt-br' 'https://api.coinbase.com/v2/prices/buy?currency=BRL' | jq -r '.data.amount' | awk '{printf("%.2f\n", $1)}')
+	;;  
+    *) 
+    	#saida=$(curl -sH 'Accept-encoding: gzip' 'https://www.mercadobitcoin.net/api/BTC/ticker/' | gunzip - | jq -r '.ticker.last' | awk '{print int($1)}')
+    	saida=$(curl -sH 'Accept-encoding: gzip' 'https://www.mercadobitcoin.net/api/BTC/ticker/' | gunzip - | jq -r '.ticker.last' | awk '{printf("%.2f\n", $1)}')
+    ;;
+esac
+
+#case $BLOCK_BUTTON in
+#	1)
+#		if [ $BLOCK_INSTANCE = "coinbase" ]; then
+#			
+#		else
+#		
+#		
+#		fi
+#	;;  # left click, pause/unpause
+#	2) notify-send "MPD" "$saida" | filter ;;  # middle click, show info
+#	3) i3-msg exec gmpc | filter ;;  # right click, gmpc
+#    4) mpc prev | filter ;;  # scroll up, previous
+#    5) mpc next | filter ;;  # scroll down, next
+#    *) mpc current | filter ;;
+#esac
+
+echo "$saida"
+echo "$saida"
+echo ''
