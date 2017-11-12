@@ -2,7 +2,7 @@
 
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 app_ok=1
-apps=("i3-gaps" "i3blocks" "i3lock-fancy-git" "dunst" "conky" "xdotool" "cantarell-fonts" "ttf-hack" "ttf-iosevka" "alsa-utils" "maim" "xclip")
+apps=("i3-gaps" "i3blocks-gaps-git" "i3lock-fancy-git" "dunst" "conky" "xdotool" "cantarell-fonts" "ttf-hack" "ttf-iosevka" "alsa-utils" "maim" "xclip")
 
 for app in ${apps[@]}; do
 	pacman -Q $app 1> /dev/null 2> /dev/null
@@ -116,7 +116,7 @@ fi
 curl -s -o ${HOME}/.config/conky/conky.conf 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/conky/conky.conf'
 
 # ~/bin
-bin_files=("wallpaper.sh" "screenshot.sh")
+bin_files=("wallpaper.sh" "screenshot.sh" "strcut.py")
 
 if [ ! -d ${HOME}/bin ]; then	
 	mkdir -p ${HOME}/bin
@@ -127,7 +127,9 @@ for bin_file in ${bin_files[@]}; do
 		mv ${HOME}/bin/${bin_file} ${HOME}/bin/${bin_file}-${backup_date}.bkp
 	fi
 	curl -s -o ${HOME}/bin/${bin_file} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/bin/${bin_file}"
+	chmod +x ${HOME}/bin/${bin_file}
 done
+
 
 # fontawesome
 fc-list | grep -i FontAwesome 1> /dev/null 2> /dev/null
