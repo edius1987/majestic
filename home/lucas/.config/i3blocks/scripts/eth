@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dollar=$(curl -s "https://finance.google.com/finance?q=BRLUSD" | grep -o '<span class=bld>.*</span>' | sed 's/\(<span class=bld>\|<\/span>\)//g' | tr -d '[:alpha:][:space:]')
+ethereum=$(curl -s 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=YourApiKeyToken' | jq -r '.result.ethusd' | awk '{printf("%.2f\n", $1)}')
+
+saida=$(($dollar * $ethereum))
+
+echo "$saida"
+echo "$saida"
+echo ''

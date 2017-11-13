@@ -8,25 +8,42 @@
 # Criado em: 17/06/2016 13:13:58
 # Última alteração: 05/08/2017 01:07:53
 
-DIR="${HOME}/.local/share/backgrounds"
-WALL="${DIR}/half-life3.png"
+WALL="${HOME}/img/wallpapers/arch-logo/2560x1600/"
+#DEFAULT="${HOME}/.wallpaper-default.jpg"
+DEFAULT="/usr/share/backgrounds/default"
+COR="#1b1b1b"
+DIA_PATH="${HOME}/img/modelos"
 
-if [ ! -f $WALL ]; then
-	if [ ! -d $DIR ]; then
-		mkdir -p $DIR
-	fi
-	curl "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/backgrounds/half-life3.png" > $WALL
+function uso {
+	echo
+	echo "Uso: $0 [caminho|imagem]"
+	echo "     $0 -rdoc"
+	echo "     $0 -day"
+	echo
+}
+
+if [ ! -f "$DEFAULT" ]; then
+	curl https://raw.githubusercontent.com/sistematico/majestic/master/usr/share/backgrounds/default > $DEFAULT
+fi
+
+if [ ! -d "$WALL" && ! -f "$WALL" ]; then
+	sed -i "s|^\(WALL=\).*|\1\"${DEFAULT}\"|" ${HOME}/bin/wallpaper.sh
+	#echo "O diretório $WALL não existe, abortando..."
+	#exit 1
 fi
 
 if [ "$1" ]; then
-	if [ "$1" = "-r" ]; then
+
+	if [ "$1" = "-day" ]; then
+		feh --bg-fill \"$(shuf -n1 -e ${DIA_PATH}/$(date +\"%A\")*)\"
+	elif [ "$1" = "-r" ]; then
 		if [ -f "${HOME}/.wall" ]; then
 			WALLPAPER=$(cat ${HOME}/.wall)
 		else
-			WALLPAPER=$WALL
+			WALLPAPER=$DEFAULT
 		fi
 	elif [ "$1" = "-d" ]; then
-		WALLPAPER=$WALL
+		WALLPAPER=$DEFAULT
 	elif [ "$1" = "-o" ]; then
 		WALLPAPER=$(cat ${HOME}/.wall)
 		viewnior $WALLPAPER
@@ -46,7 +63,7 @@ if [ "$1" ]; then
 		WALLPAPER=$(find $WALL -iname "*${WALL}*" | shuf -n1)
 	fi
 else
-	WALLPAPER="$(find $DIR | shuf -n1)"
+	WALLPAPER="$(find $WALL | shuf -n1)"
 fi
 
 if [ -f "$WALLPAPER" ]; then

@@ -63,7 +63,9 @@ scripts=("blank"
 		"volume"
 		"wallpaper"
 		"weather"
-		"wifi")
+		"wifi"
+		"btc"
+		"dollar")
 
 for script in ${scripts[@]}; do
 	curl -s -o ${HOME}/.config/i3blocks/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/scripts/${script}"
@@ -129,7 +131,6 @@ for bin_file in ${bin_files[@]}; do
 	curl -s -o ${HOME}/bin/${bin_file} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/bin/${bin_file}"
 	chmod +x ${HOME}/bin/${bin_file}
 done
-
 
 # fontawesome
 fc-list | grep -i FontAwesome 1> /dev/null 2> /dev/null

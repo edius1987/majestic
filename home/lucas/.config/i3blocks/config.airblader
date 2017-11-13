@@ -17,39 +17,44 @@ label=
 interval=5
 border=#e78c45
 
+[dollar]
+label=
+interval=300
+border=#e7c547
+
 [btc]
 label=
 interval=60
 instance=mercadobitcoin
-border=#e7c547
+border=#b9ca4a
 
 [temperature]
 label=
 interval=10
-border=#b9ca4a
+border=#70c0b1
 
 [weather]
 instance="SAM|BR|BR010|CAMPO+GRANDE"
 interval=300
-border=#70c0b1
+border=#7aa6da
 
 [packages]
 label=
 interval=600
-border=#7aa6da
+border=#c397d8
 
 [trash]
 label=
 interval=30
-border=#c397d8
+border=#d54e53
 
 [hora]
 label=
 interval=5
-border=#d54e53
+border=#e78c45
 
 [volume]
 instance=Master
 interval=1
 signal=10
-border=#e78c45
+border=#e7c547
