@@ -9,13 +9,13 @@
 # Última alteração: 05/08/2017 01:07:53
 
 DIR="${HOME}/.local/share/backgrounds"
-WALL="${DIR}/half-life3.png"
+WALL="${DIR}/half-life3.jpg"
 
 if [ ! -f $WALL ]; then
 	if [ ! -d $DIR ]; then
 		mkdir -p $DIR
 	fi
-	curl "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/backgrounds/half-life3.png" > $WALL
+	curl "https://i.imgur.com/zJAji6U.jpg" > $WALL
 fi
 
 if [ "$1" ]; then
