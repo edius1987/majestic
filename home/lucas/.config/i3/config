@@ -5,9 +5,9 @@ force_display_urgency_hint 0
 workspace_auto_back_and_forth yes
 new_window pixel 3
 # smart|urgent|focus|none
-focus_on_window_activation focus
-focus_follows_mouse no
-font pango:Source Code Pro 10
+#focus_on_window_activation focus
+#focus_follows_mouse no
+font pango:Source Code Pro 9
 
 # 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C
 # 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
@@ -171,7 +171,7 @@ bindsym $mod+minus scratchpad show
 # move [absolute] position <pos_x> [px] <pos_y> [px]
 # 1920 x 1080
 # move position center
-#for_window [urgent="latest"] focus
+for_window [urgent="latest"] focus
 
 for_window [window_role="pop-up"] floating enable, move position center
 for_window [window_role="bubble"] floating enable, move position center
@@ -195,7 +195,7 @@ for_window [title="^DownThemAll"] floating enable
 for_window [title="DownThemAll!$"] move window to scratchpad
 for_window [title="Mail do iCloud - Chromium"] floating enable, move position center
 for_window [title="i3 Wallpaper"] floating enable, move position center
-for_window [title="About Mozilla Firefox"] floating enable, move position center
+for_window [title="About*"] floating enable, move position center
 for_window [title="Sobre o Mozilla Firefox"] floating enable, move position center
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
 
@@ -247,19 +247,18 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-	font pango:Source Code Pro 10, FontAwesome 10
+	font pango:Source Sans Pro 9, FontAwesome 9
 	tray_output none
 	status_command i3blocks
 	i3bar_command i3bar -t
 	position top
-	#separator_symbol "     "
-	strip_workspace_numbers yes
+	strip_workspace_numbers no
 	colors {
 		statusline		$branco1
 		background		$transparente
 		separator		$branco1
-
-		focused_workspace	$branco1		$transparente	$branco1
+		# 					Borda			Fundo			Texto
+		focused_workspace	$transparente	$transparente	$verde2
 		inactive_workspace	$transparente	$transparente	$branco1
 		urgent_workspace	$transparente	$transparente	$vermelho
     }
