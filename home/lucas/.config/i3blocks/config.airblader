@@ -122,10 +122,15 @@ label=
 interval=5
 border=#e7c547
 
-[lateral]
-command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/drun &> /dev/null; fi'
+[launcher]
+command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/drun &> /dev/null; elif [ "$BLOCK_BUTTON" == 2 ]; then bash ~/.config/rofi/scripts/janelas &> /dev/null; elif [ "$BLOCK_BUTTON" == 3 ]; then bash ~/.config/rofi/scripts/run &> /dev/null; fi'
 interval=once
 border=#b9ca4a
+
+[wallpaper]
+interval=once
+separator=false
+separator_block_width=5
 
 [shutdown]
 command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
