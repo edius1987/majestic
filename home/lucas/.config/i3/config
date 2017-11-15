@@ -49,7 +49,7 @@ set $semitransparente		#00000073
 set $transparente			#00000000
 
 #                       BORDER      		BACKGROUND  TEXT        				INDICATOR   			CHILD_BORDER
-client.focused          $borda				$fundo-inativo  $texto                  $cinza6					$cinza6
+client.focused          $borda				$fundo-inativo  $texto                  $cinza5					$cinza5
 client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza1					$cinza1
 client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza1					$cinza1
 client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
@@ -61,16 +61,20 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
-bindsym $mod+d exec --no-startup-id exec rofi -sidebar-mode -lines 0 -theme ~/.local/share/rofi/themes/sistematico.rasi -show drun -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
-bindsym $mod+Shift+w exec --no-startup-id exec rofi -sidebar-mode -lines 0 -theme ~/.local/share/rofi/themes/sistematico.rasi -show window -bw 4 -eh 1 -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
+# Rofi
+
 bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://www.google.com.br/search?q={}
 bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
 bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
-bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
 
-bindsym $mod+c exec ~/.config/rofi/scripts/configs
-bindsym $mod+a exec ~/.config/rofi/scripts/apps
-bindsym $mod+Shift+e exec ~/.config/rofi/scripts/power
+bindsym $mod+Shift+w exec --no-startup-id ~/.config/rofi/scripts/janelas
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/drun
+bindsym Mod1+F2 exec --no-startup-id ~/.config/rofi/scripts/run
+bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/configs
+bindsym $mod+a exec --no-startup-id ~/.config/rofi/scripts/apps
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/rofi/scripts/power
+
+bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
 
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute
@@ -266,7 +270,7 @@ bar {
 
 exec --no-startup-id ~/bin/wallpaper.sh -r
 exec --no-startup-id compton -b
-exec --no-startup-id conky
+#exec --no-startup-id conky
 exec --no-startup-id dunst
 exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64

@@ -1,9 +1,17 @@
 #!/bin/bash
 
+# Array associativa
+#declare -A apps
+# Array numerica
+declare -a apps
+
 homedir="${HOME}/.local/share/applications"
 sysdir="/usr/share/applications"
-apps=("cinnamon*" "*qt4*" "mate-color-select*")
+apps=("cinnamon-" "qt4" "mate-color-select" "mpv")
+todos=($(find $sysdir $homedir -type f | egrep .desktop))
 nd='NoDisplay'
+
+#function uso {}
 
 function nodisp {
 	if [ $1 = '-r' ]; then
@@ -36,24 +44,34 @@ if [ $1 ]; then
 		fi
 
 	elif [ $1 = '-r' ]; then
-		if [ -f $homedir/$(basename $2) ]; then
-			nodisp -r $homedir/$(basename $2)
+		if [ -f "${homedir}/$(basename $2)" ]; then
+			nodisp -r "${homedir}/$(basename $2)"
 		fi
-	elif [ -f $homedir/$(basename $1) ]; then
-		nodisp $homedir/$(basename $1)
-	elif [ -f $sysdir/$(basename $1) ]; then
-		cp $sysdir/$(basename $1) $homedir/
-		nodisp $homedir/$(basename $1)
+	elif [ -f "${homedir}/$(basename $1)" ]; then
+		nodisp "${homedir}/$(basename $1)"
+	elif [ -f "${sysdir}/$(basename $1)" ]; then
+		cp "${sysdir}/$(basename $1)" "${homedir}/"
+		nodisp "${homedir}/$(basename $1)"
 	fi
 	exit 0
 fi
 
 for app in ${apps[@]}; do
-	if [ ! -f ${homedir}/${app} ]; then
-		if [ -f $sysdir/$app ]; then
-        	cp $sysdir/$app ${homedir}/
-		fi
-	fi
+	echo "Procurando o regex ${app}..."
+    for element in "${todos[@]}"; do
+        if [[ $element = *$app* ]]; then
+            nome=$(basename $element)
+			echo "O $nome coincide com ${app}..."
 
-	[ -f ${homedir}/${app} ] && nodisp ${homedir}/${app}
+    		if [ ! -f "${homedir}/${nome}" ]; then
+    		   echo "$nome não existe em ${homedir}"
+    		   if [ -f "${sysdir}/${nome}" ]; then
+    		       echo "$nome existe em ${sysdir}, copiando para ${homedir}/${nome}"
+    		       cp "${sysdir}/${nome}" "${homedir}/"
+    		   fi
+    		fi
+			[ -f "${homedir}/${nome}" ] && nodisp "${homedir}/${nome}"
+
+        fi
+    done
 done
