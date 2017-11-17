@@ -40,6 +40,7 @@ fi
 echo "Instalando as configs do i3blocks..."
 curl -s -o ${HOME}/.config/i3blocks/config.airblader 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.airblader'
 curl -s -o ${HOME}/.config/i3blocks/config.clean 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.clean'
+curl -s -o ${HOME}/.config/i3blocks/config.superclean 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.superclean'
 curl -s -o ${HOME}/.config/i3blocks/cores.conf 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/cores.conf'
 
 ln -s ${HOME}/.config/i3blocks/config.airblader ${HOME}/.config/i3blocks/config
