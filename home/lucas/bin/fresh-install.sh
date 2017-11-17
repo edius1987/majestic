@@ -10,3 +10,9 @@ mpv viewnior openssh vino vinagre mosh tmux rsync xorg-xinit wmctrl
 
 dconf write /org/gtk/settings/file-chooser/sort-directories-first true
 xfconf-query -c thunar -n -p /misc-full-path-in-title -t bool -s true
+
+
+# Fonte: https://github.com/linuxmint/cinnamon-settings-daemon/issues/141#issuecomment-304640407
+gsettings set org.cinnamon.desktop.session session-manager-uses-logind true
+gsettings set org.cinnamon.desktop.session settings-daemon-uses-logind true
+gsettings set org.cinnamon.desktop.session screensaver-uses-logind true

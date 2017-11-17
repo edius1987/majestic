@@ -2,25 +2,34 @@
 
 . ~/.config/i3blocks/cores.conf
 
+i3blocks_path="${HOME}/.config/i3blocks"
 i3blocks_config="${HOME}/.config/i3blocks/config"
 
-function switchi3 {
-	atual=$(basename $(readlink -f $i3blocks_config))
+for a in ${i3blocks_config}.*; do 
+	perfis+=($(basename $a))
+done
 
-	if [ ! -z $atual ]; then
-		case $atual in
-			config.airblader) 
-				ln -sf ${i3blocks_config}.clean ${i3blocks_config}
-				cor="$azul"
-				i3-msg restart
-			;;
-			config.clean) 
-				ln -sf ${i3blocks_config}.airblader ${i3blocks_config} 
-				cor="$vermelho"
-				i3-msg -q restart
-			;;
-			# *) i3-msg -q "exec $res" ;;
-		esac
+total=$((${#perfis[@]}-1))
+
+function switchi3 {
+	linkatual=$(basename $(readlink -f $i3blocks_config))
+
+	if [[ " ${perfis[*]} " != *" $linkatual "* ]]; then
+	    rm ${i3blocks_config}
+	    ln -sf "${i3blocks_path}/${perfis[0]}" ${i3blocks_config}
+	else
+		for i in "${!perfis[@]}"; do
+	   		if [[ "${perfis[$i]}" = "${linkatual}" ]]; then
+	   			if [ $i = $total ]; then
+		   			atual=0
+		   		else
+					atual=$(($i+1))
+		   		fi
+	   		fi
+		done
+
+		ln -sf "${i3blocks_path}/${perfis[$atual]}" "${i3blocks_config}"
+		i3-msg restart
 	fi
 
 	echo ""
