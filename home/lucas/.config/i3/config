@@ -254,12 +254,15 @@ bar {
 	font pango:Source Sans Pro 9, FontAwesome 9
 	tray_output none
 	status_command i3blocks
-	i3bar_command i3bar -t
+	# Fundo Transparente
+	#i3bar_command i3bar -t
 	position top
 	strip_workspace_numbers no
 	colors {
 		statusline		$branco1
-		background		$transparente
+		# Fundo Transparente
+		#background		$transparente
+		background		#1A1829
 		separator		$branco1
 		# 					Borda			Fundo			Texto
 		focused_workspace	$transparente	$transparente	$verde2

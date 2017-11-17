@@ -38,8 +38,11 @@ else
 fi
 
 echo "Instalando as configs do i3blocks..."
-curl -s -o ${HOME}/.config/i3blocks/config 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.airblader'
+curl -s -o ${HOME}/.config/i3blocks/config.airblader 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.airblader'
+curl -s -o ${HOME}/.config/i3blocks/config.clean 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.clean'
 curl -s -o ${HOME}/.config/i3blocks/cores.conf 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/cores.conf'
+
+ln -s ${HOME}/.config/i3blocks/config.airblader ${HOME}/.config/i3blocks/config
 
 # i3blocks scripts
 if [ -d ${HOME}/.config/i3blocks/scripts ]; then
@@ -65,7 +68,8 @@ scripts=("blank"
 		"weather"
 		"wifi"
 		"btc"
-		"dollar")
+		"dollar"
+		"i3blockstheme")
 
 for script in ${scripts[@]}; do
 	curl -s -o ${HOME}/.config/i3blocks/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/scripts/${script}"
@@ -102,10 +106,15 @@ fi
 
 curl -s -o ${HOME}/.local/share/rofi/themes/sistematico.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico.rasi'
 curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-dark.rasi'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-lateral.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-lateral.rasi'
 curl -s -o ${HOME}/.config/rofi/config.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/config.rasi'
 curl -s -o ${HOME}/.config/rofi/scripts/apps 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/apps'
 curl -s -o ${HOME}/.config/rofi/scripts/configs 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/configs'
 curl -s -o ${HOME}/.config/rofi/scripts/power 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/power'
+curl -s -o ${HOME}/.config/rofi/scripts/run 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/run'
+curl -s -o ${HOME}/.config/rofi/scripts/drun 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/drun'
+
+chmod +x ${HOME}/.config/rofi/scripts/*
 
 # conky
 if [ -d ${HOME}/.config/conky ]; then

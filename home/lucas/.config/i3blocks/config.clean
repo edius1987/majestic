@@ -1,22 +1,3 @@
-# Cores
-# vermelho=#d54e53
-# laranja=#e78c45
-# amarelo=#e7c547
-# verde=#b9ca4a
-# ciano=#458588
-# azul=#7aa6da
-# rosa=#c397d8
-# marrom=#928374
-
-#border=#d54e53
-#border=#e78c45
-#border=#e7c547
-#border=#b9ca4a
-#border=#458588
-#border=#7aa6da
-#border=#c397d8
-#border=#928374
-
 command=~/.config/i3blocks/scripts/$BLOCK_NAME
 separator=false
 separator_block_width=10
@@ -28,115 +9,91 @@ border_bottom=2
 [focus]
 label=
 interval=1
-border=#d54e53
 
 [firefox]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox-developer &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox-developer; fi'
 interval=once
-border=#e78c45
 
 [pcmanfm]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec pcmanfm &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall pcmanfm; fi'
 interval=once
-border=#e7c547
 
 [termite]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec termite &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall termite; fi'
 interval=once
-border=#b9ca4a
 
 [telegram]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec ~/.local/share/TelegramDesktop/Telegram &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall Telegram; fi'
 interval=once
-border=#458588
 
 [whatsapp]
 command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec Whatsapp &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall Whatsapp; fi'
 interval=once
-border=#7aa6da
 
 [mpd]
 label=
 interval=5
-border=#c397d8
 
 [dollar]
 label=
 interval=300
-border=#928374
 
 [btc]
 label=
 interval=60
 instance=mercadobitcoin
-border=#d54e53
 
 [wifi]
 label=
 interval=10
-border=#e78c45
 
 [cpu]
 label=
 interval=1
-border=#e7c547
 
 [mem]
 label=
 interval=1
-border=#b9ca4a
 
 [disk]
 label=
 interval=30
-border=#458588
 
 [temperature]
 label=
 interval=10
-border=#7aa6da
 
 [weather]
 instance="SAM|BR|BR010|CAMPO+GRANDE"
 interval=300
-border=#c397d8
 
 [packages]
 label=
 interval=600
-border=#928374
 
 [trash]
 label=
 interval=30
-border=#d54e53
 
 [volume]
 instance=Master
 interval=1
 signal=10
-border=#e78c45
 
 [hora]
 label=
 interval=5
-border=#e7c547
 
 [launcher]
 command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/drun &> /dev/null; elif [ "$BLOCK_BUTTON" == 2 ]; then bash ~/.config/rofi/scripts/janelas &> /dev/null; elif [ "$BLOCK_BUTTON" == 3 ]; then bash ~/.config/rofi/scripts/run &> /dev/null; fi'
 interval=once
-border=#b9ca4a
 
 [i3blockstheme]
 interval=once
-border=#458588
 
 [wallpaper]
 interval=once
-border=#7aa6da
 
 [shutdown]
 command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
 interval=once
-border=#c397d8
-

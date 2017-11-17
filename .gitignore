@@ -1,3 +1,5 @@
+*.bkp
+*-bkp
 menu.xml
 mpd.log 
 mpd.pid
