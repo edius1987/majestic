@@ -2,12 +2,6 @@
 
 clear
 
-# or use wm array -- add any that need to be recognized
-wms=( 2bwm 2wm 9wm aewm afterstep ahwm alopex amiwm antiwm awesome blackbox bspwm catwm clfswm ctwm cwm dminiwm dragonflywm dwm echinus \
-  euclid-wm evilpoison evilwm fluxbox flwm fvwm-crystal goomwwm hcwm herbstluftwm i3 icewm jwm karmen larswm lwm matwm2 mcwm monsterwm \
-  musca notion nwm olwm openbox oroborus pekwm ratpoison sapphire sawfish sscrotwm sithwm smallwm snapwm spectrwm stumpwm subtle tfwm tinywm tritium twm \
-  uwm vtwm w9wm weewm wind windowlab wm2 wmaker wmfs wmii wmx xfwm4 xmonad xoat yeahwm )
-
 # define colors for color-echo
 red="\e[31m"
 grn="\e[32m"
@@ -25,7 +19,7 @@ color-echo()
 
 print-kernel()
 {
-  color-echo 'KL' "$(uname -smr)"
+  color-echo 'KL' "$(uname -r | awk -F'-' '{print $1}')"
 }
 
 print-uptime()
@@ -39,7 +33,7 @@ print-uptime()
 }
 
 print-shell() {
-  shell=$(ls /bin/zsh-* | cut -c 6-)
+  shell=$(basename $(echo $SHELL))
   color-echo 'SH' "$shell"
 }
 
@@ -68,17 +62,10 @@ print-packages()
 
 print-wm()
 {
-  for wm in ${wms[@]}; do          # pgrep through wmname array
-    pid=$(pgrep -x -u $USER $wm) # if found, this wmname has running process
-    if [[ "$pid" ]]; then
-      color-echo 'WM' $wm
-      break
-    fi
-  done
+	color-echo 'WM' $DESKTOP_SESSION
 }
 
-print-distro()
-{
+print-distro() {
   [[ -e /etc/os-release ]] && source /etc/os-release
   if [[ -n "$NAME" ]]; then
     color-echo 'OS' "$NAME"
@@ -87,13 +74,20 @@ print-distro()
   fi
 }
 
-echo
-echo -en "  █▀▀▀▀▀▀▀▀█   |  " && print-distro
-echo -en "  █        █   |  " && print-wm
-echo -en "  █  █  █  █   |  " && print-uptime
-echo -en "  █        █   |  " && print-shell
-echo -en "  ▀█▄▄▄▄▄▄█▀   |  " && print-packages
-echo
-echo
+print-colors() {
+	for BG in 40m 41m 42m 43m 44m 45m 46m 47m; do
+		cor=$(echo -en "\033[$BG  \033[0m")
+		cores=$cores$cor
+	done
+	echo -ne " ${red}COR: $cores"
+}
 
-#print-colors
+echo
+echo -en "  █▀▀▀▀▀▀▀▀▀▀▀█   |  " && print-distro
+echo -en "  █           █   |  " && print-wm
+echo -en "  █           █   |  " && print-uptime
+echo -en "  █   █   █   █   |  " && print-shell
+echo -en "  █           █   |  " && print-kernel
+echo -en "  █           █   |  " && print-packages
+echo -en "  ▀█▄▄▄▄▄▄▄▄▄█▀   |  " && print-colors
+echo

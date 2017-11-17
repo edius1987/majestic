@@ -3,11 +3,11 @@ gaps inner 10
 hide_edge_borders both
 force_display_urgency_hint 0
 workspace_auto_back_and_forth yes
-new_window pixel 3
+new_window pixel 2
 # smart|urgent|focus|none
 #focus_on_window_activation focus
 #focus_follows_mouse no
-font pango:Source Code Pro 9
+font pango:Source Code Pro, FontAwesome 10
 
 # 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C
 # 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
@@ -50,8 +50,8 @@ set $transparente			#00000000
 
 #                       BORDER      		BACKGROUND  TEXT        				INDICATOR   			CHILD_BORDER
 client.focused          $borda				$fundo-inativo  $texto                  $cinza5					$cinza5
-client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza1					$cinza1
-client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza1					$cinza1
+client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
+client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
 client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
 
 floating_modifier $mod
@@ -251,23 +251,27 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-	font pango:Source Sans Pro 9, FontAwesome 9
+	#font pango:Siji 10,Monospace 10
+	#font pango:FontAwesome 10
 	tray_output none
 	status_command i3blocks
 	# Fundo Transparente
 	#i3bar_command i3bar -t
 	position top
-	strip_workspace_numbers no
+	strip_workspace_numbers yes
 	colors {
-		statusline		$branco1
+		statusline			$branco1
+		
 		# Fundo Transparente
-		#background		$transparente
-		background		#1A1829
-		separator		$branco1
+		#background			$transparente
+		
+		background			$cinza2
+		separator			$branco1
+		
 		# 					Borda			Fundo			Texto
-		focused_workspace	$transparente	$transparente	$verde2
-		inactive_workspace	$transparente	$transparente	$branco1
-		urgent_workspace	$transparente	$transparente	$vermelho
+		focused_workspace	$cinza2			$cinza2			$verde2
+		inactive_workspace	$cinza2	$cinza2			$branco1
+		urgent_workspace	$cinza2			$cinza2			$vermelho
     }
 }
 
