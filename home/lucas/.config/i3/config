@@ -78,6 +78,7 @@ bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -
 
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master 1+ toggle
 
 bindsym Print exec --no-startup-id ~/bin/screenshot.sh
 bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
@@ -251,14 +252,17 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-	#font pango:Siji 10,Monospace 10
-	#font pango:FontAwesome 10
+	#font pango:Monospace, FontAwesome 10
 	tray_output none
 	status_command i3blocks
+	
 	# Fundo Transparente
 	#i3bar_command i3bar -t
+	
 	position top
-	strip_workspace_numbers yes
+	height 25
+	#strip_workspace_numbers yes
+	
 	colors {
 		statusline			$branco1
 		
@@ -269,8 +273,8 @@ bar {
 		separator			$branco1
 		
 		# 					Borda			Fundo			Texto
-		focused_workspace	$cinza2			$cinza2			$verde2
-		inactive_workspace	$cinza2	$cinza2			$branco1
+		focused_workspace	$cinza2			$cinza2			$azul4
+		inactive_workspace	$cinza2			$cinza2			$branco1
 		urgent_workspace	$cinza2			$cinza2			$vermelho
     }
 }

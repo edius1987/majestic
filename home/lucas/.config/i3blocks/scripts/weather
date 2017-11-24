@@ -4,6 +4,10 @@
 . ~/.config/i3blocks/cores.conf
 
 METRIC=1 #Should be 0 or 1; 0 for F, 1 for C
+AGENTE="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36"
+
+vento1=$(curl -H $AGENTE -s 'https://www.accuweather.com/en/br/campo-grande/33738/current-weather/33738' | grep -iPo '(?<=<li class="wind"><strong>)(.*)(?=</strong></li>)' | tr -d "[:blank:]")
+vento2=$(curl -H $AGENTE -s 'https://www.accuweather.com/en/br/campo-grande/33738/current-weather/33738' | grep -iPo '(?<=<div class="wind-point )(.*)(?="></div>)' | tr -d '[:blank:]')
 
 info=$(curl -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=${METRIC}\&locCode\=${BLOCK_INSTANCE/ /+} | grep -iPo '(?<=<title>Currently:)(.*)(?=</title>)' | tr -d "[:blank:]")
 cond=$(echo $info | cut -d ":" -f1)
@@ -32,7 +36,7 @@ else
 	fi
 fi
 
-echo "$icone $temp°C" # full
+echo "$icone $vento1 $vento2 $temp°C" # full
 echo "$temp°C" # short
 echo ''
 

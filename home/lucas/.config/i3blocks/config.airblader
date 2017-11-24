@@ -35,8 +35,8 @@ command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firef
 interval=once
 border=#e78c45
 
-[pcmanfm]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec pcmanfm &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall pcmanfm; fi'
+[thunar]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
 interval=once
 border=#e7c547
 

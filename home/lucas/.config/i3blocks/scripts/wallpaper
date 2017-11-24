@@ -3,7 +3,7 @@
 . ~/.config/i3blocks/cores.conf
 
 default="/home/lucas/img/wallpapers"
-wallp="/home/lucas/img/wallpapers/elementary"
+wallp="/home/lucas/img/wallpapers/gaming"
 
 if [[ ${BLOCK_BUTTON} -eq 1 ]]; then
 	for i in "${default}/*"; do
