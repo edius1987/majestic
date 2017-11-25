@@ -82,6 +82,9 @@ if [[ $TERM == xterm-termite ]]; then
 	__vte_prompt_command
 fi
 
+if [[ -f /etc/profile.d/autojump.sh ]]; then
+	source /etc/profile.d/autojump.sh
+fi
 ##################
 #### Funções #####
 ##################

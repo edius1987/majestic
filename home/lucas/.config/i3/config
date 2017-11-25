@@ -76,9 +76,13 @@ bindsym $mod+Shift+e exec --no-startup-id ~/.config/rofi/scripts/power
 
 bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
 
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master 1+ toggle
+# Media Hotkeys
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master 1+ toggle
+bindsym $mod+Mod1+Left exec --no-startup-id mpc prev
+bindsym $mod+Mod1+Right exec --no-startup-id mpc next
 
 bindsym Print exec --no-startup-id ~/bin/screenshot.sh
 bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
