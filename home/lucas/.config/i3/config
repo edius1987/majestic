@@ -208,7 +208,7 @@ for_window [title="About*"] floating enable, move position center
 for_window [title="Sobre o Mozilla Firefox"] floating enable, move position center
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
 
-assign [class="^(Chromium|Firefox|firefox-developer)"] $workspace1
+assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $workspace1
 assign [class="(Termite|Tilix)"] $workspace2
 assign [class="(Pluma|Sublime_text|Atom)"] $workspace3
 assign [class="^(Thunar|Pcmanfm)"] $workspace4

@@ -3,13 +3,14 @@
 # wallpaper.sh - Programa para alterar o papel de parede.
 # Funciona no i3, OpenBox e outros.
 #
-# Criador por Lucas Saliés Brum a.k.a. sistematico, <lucas at archlinux dot com dot br>
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas at archlinux dot com dot br>
 #
 # Criado em: 17/06/2016 13:13:58
 # Última alteração: 05/08/2017 01:07:53
 
 DIR="${HOME}/.local/share/backgrounds"
-WALL="${DIR}/half-life3.jpg"
+#WALL="${DIR}/half-life3.jpg"
+WALL="/usr/share/backgrounds/default"
 
 if [ ! -f $WALL ]; then
 	if [ ! -d $DIR ]; then

@@ -14,8 +14,8 @@ interval=1
 command=bash -c 'echo ""; echo ""; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
 interval=once
 
-[pcmanfm]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec pcmanfm &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall pcmanfm; fi'
+[thunar]
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec thunar &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall thunar; fi'
 interval=once
 
 [termite]
@@ -96,6 +96,13 @@ interval=once
 interval=once
 
 [wallpaper]
+interval=once
+
+[screencast]
+interval=5
+
+[screenshot]
+command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/screenshot &> /dev/null; fi'
 interval=once
 
 [shutdown]

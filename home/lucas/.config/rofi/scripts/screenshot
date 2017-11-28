@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#app="scrot"
+app="maim -u"
+dir="${HOME}/img/shots/"
+data=$(date +%Y-%m-%d_%H-%M-%S)
+nome="ss-${data}"
+extensao=".png"
+atraso=10
+tipo="image/png"
+icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
+tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+
+res=$(echo "Capturar;reiniciar;suspender;travar;sair" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Screenshot" -bw 0 -lines 5 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+
+if [ ! -z $res ]; then
+	case $res in
+		desligar)
+		
+			quando=$(echo -e "Agora\nDepois" | rofi -theme "$tema" -dmenu -p "Quando?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			
+			if [ $quando = "Agora" ]; then
+				confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+				[ $confirma = "Sim" ] && systemctl poweroff
+			elif [ $quando = "Depois" ]; then
+				tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+				confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+				[ $confirma = "Sim" ] && programado "Desligamento" "$tempo"			
+			fi
+			
+		;;
+		reiniciar)
+			confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			[ $confirma = "Sim" ] && systemctl reboot
+		;;
+		suspender)
+			
+			quando=$(echo -e "Agora\nDepois" | rofi -theme "$tema" -dmenu -p "Quando?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			
+			if [ $quando = "Agora" ]; then
+				suspende=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+				[ "$suspende" = "Sim" ] && systemctl suspend
+			elif [ $quando = "Depois" ]; then
+				tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+				confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+				[ $confirma = "Sim" ] && programado "Suspensao" "$tempo"			
+			fi
+			
+		;;		
+		programado)
+			tempo=$(echo "5 minutos;10 minutos;15 minutos;30 minutos;45 minutos;1 hora;2 horas;3 horas;4 horas" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Power" -bw 0 -lines 9 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+			acao=$(echo "Suspensao;Desligamento" | rofi -theme "$tema" -sep ";" -dmenu -p "Ação" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			[ $confirma = "Sim" ] && programado "$acao" "$tempo"
+		;;
+		travar)
+			i3-msg -q 'exec i3lock-fancy -f Iosevka-Thin -t "Arch Linux" -p -- scrot -z'
+		;;
+		sair)
+			confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+			[ $confirma = "Sim" ] && i3-msg exit
+		;;
+		*)
+		;;
+	esac
+fi
+
