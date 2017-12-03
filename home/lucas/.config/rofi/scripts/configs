@@ -5,6 +5,7 @@ tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
 configs=(
 'i3'
 'i3blocks'
+'Polybar'
 'Conky'
 'LX Appearance'
 'Dunst'
@@ -14,7 +15,7 @@ configs=(
 'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 9 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 10 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
@@ -33,6 +34,7 @@ if [ "$res" ]; then
 				esac				
 			fi
 		;;
+		'Polybar') i3-msg exec pluma ~/.config/polybar/config ;;
 		'Conky') i3-msg exec pluma ~/.config/conky/conky.conf ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
 		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;

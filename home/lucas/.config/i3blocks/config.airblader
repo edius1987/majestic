@@ -31,7 +31,7 @@ interval=1
 border=#d54e53
 
 [firefox]
-command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox-developer &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox-developer; fi'
+command=bash -c 'echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then i3-msg exec firefox &> /dev/null; elif [ "$BLOCK_BUTTON" -gt 1 ]; then killall firefox; fi'
 interval=once
 border=#e78c45
 
@@ -136,12 +136,17 @@ border=#458588
 interval=once
 border=#7aa6da
 
-[wallpaper]
+[screenshot]
+command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/screenshot &> /dev/null; fi'
 interval=once
 border=#c397d8
+
+[wallpaper]
+interval=once
+border=#928374
 
 [shutdown]
 command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/power &> /dev/null; fi'
 interval=once
-border=#928374
+border=#d54e53
 

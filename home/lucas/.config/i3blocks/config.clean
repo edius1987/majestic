@@ -98,9 +98,6 @@ interval=once
 [wallpaper]
 interval=once
 
-[screencast]
-interval=5
-
 [screenshot]
 command=bash -c 'echo "  "; echo "  "; echo ""; if [ "$BLOCK_BUTTON" == 1 ]; then bash ~/.config/rofi/scripts/screenshot &> /dev/null; fi'
 interval=once

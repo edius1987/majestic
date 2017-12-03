@@ -255,42 +255,46 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bar {
+#bar {
 	#font pango:Monospace, FontAwesome 10
-	tray_output none
-	status_command i3blocks
+	#tray_output none
+	#status_command i3blocks
 	
 	# Fundo Transparente
 	#i3bar_command i3bar -t
 	
-	position top
-	height 25
+	#position top
+	#height 25
 	#strip_workspace_numbers yes
 	
-	colors {
-		statusline			$branco1
+#	colors {
+#		statusline			$branco1
 		
 		# Fundo Transparente
 		#background			$transparente
 		
-		background			$cinza2
-		separator			$branco1
+#		background			$cinza2
+#		separator			$branco1
 		
 		# 					Borda			Fundo			Texto
-		focused_workspace	$cinza2			$cinza2			$azul4
-		inactive_workspace	$cinza2			$cinza2			$branco1
-		urgent_workspace	$cinza2			$cinza2			$vermelho
-    }
-}
+#		focused_workspace	$cinza2			$cinza2			$azul4
+#		inactive_workspace	$cinza2			$cinza2			$branco1
+#		urgent_workspace	$cinza2			$cinza2			$vermelho
+#    }
+#}
+
+set $polybar ~/.config/polybar/launch.sh
 
 exec --no-startup-id ~/bin/wallpaper.sh -r
+exec_always --no-startup-id ~/.config/polybar/launch2.sh
 exec --no-startup-id compton -b
 #exec --no-startup-id conky
 exec --no-startup-id dunst
 exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64
-exec --no-startup-id xautolock.sh
+exec_always --no-startup-id xautolock.sh
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id dropbox
+exec --no-startup-id deluge
 

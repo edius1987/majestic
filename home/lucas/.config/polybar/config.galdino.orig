@@ -1,0 +1,718 @@
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                               GLOBAL VARIABLES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[colors]
+; theme palette
+;background = #1A1829
+background = #2B303B
+;background = #282a36
+current-line = #44475a
+selection = #44475a
+foreground = #8B9CAD
+cyan = #8be9fd
+green = #50fa7b
+orange = #ffb86c
+pink = #ff79c6
+purple = #bd93f9
+red = #ff5555
+yellow = #f1fa8c
+white = #F1F1F1
+black = #2B303B
+
+; Arc theme palette
+[arc-colors]
+background = #383C4A
+borders = #252a33
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                     B A R - B O T T O M
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/bottom]
+; Monitors
+; Use  xrandr -q | grep " connected" | cut -d ' ' -f1
+monitor = DVI-I-0
+
+
+; Bar dimensions
+width = 100%
+height = 22
+
+; Position
+bottom = true
+
+; Colors
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; Fixed center position for modules-center
+fixed-center = true
+
+; Underline
+;underline-size = 2
+;underline-color = ${colors.foreground}
+
+overline-size = 1
+overline-color = ${colors.foreground}
+
+border-top-size = 2
+;border-bottom-size = 3
+border-top-color = #F1F1F1
+
+; Fonts
+font-0 = Iosevka Medium:size=8;1
+font-1 = FontAwesome:pixelsize=10;4
+font-2 = siji:pixelsize=10;0
+font-3 = Wuncon Siji:pixelsize=10;1
+font-4 = unifont:size=8;1
+
+modules-left = i3
+modules-center = xwindow
+modules-right = weather clock calendar
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = #8B9CAD
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                     B A R - T O P 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/top]
+; Monitors
+monitor = DVI-I-0
+
+; Bar dimensions
+width = 100%
+height = 22
+
+; Position
+top = true
+
+; Colors
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; Fixed center position for modules-center
+fixed-center = true
+
+;Underline
+;underline-size = 2
+;underline-color = ${colors.foreground}
+
+overline-size = 1
+overline-color = ${colors.foreground}
+
+;border-top-size = 3
+border-bottom-size = 2
+border-bottom-color = #F1F1F1
+
+; Fonts
+font-0 = Iosevka Medium:size=8;1
+font-1 = FontAwesome:pixelsize=10;4
+font-2 = siji:pixelsize=10;0
+font-3 = Wuncon Siji:pixelsize=10;1
+font-4 = unifont:size=8;1
+
+modules-left = arch volume temperature space cpu memory rootfs homefs
+modules-center = mpd
+modules-right = gmail space wlan powermenu
+
+;tray-position = right
+;tray-padding = 2
+;tray-background = #8B9CAD
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                   MODULES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;----------------------------------------------------------
+;			   I 3 
+;----------------------------------------------------------
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+; ws-icon-[0-9]+ = label;icon
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+;ws-icon-default = 
+
+
+strip-wsnumbers = true
+
+label-focused = %name%
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.white}
+label-focused-underline = ${colors.background}
+label-focused-padding = 1
+
+
+label-unfocused = %name%
+label-unfocused-padding = 1
+label-unfocused-foreground = ${colors.foreground}
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.red}
+label-urgent-padding = 1
+
+label-visible = %name%
+
+;----------------------------------------------------------
+;		        X W I N D O W
+;----------------------------------------------------------
+
+[module/xwindow]
+type = internal/xwindow
+;label = %title:0:30:...%
+label = %title:0:30:...%  %{B- -o -u}
+
+;----------------------------------------------------------
+;		        F I L E S Y S T E M - /
+;----------------------------------------------------------
+
+[module/rootfs]
+interval = 400
+type = custom/script
+exec = df -h / | awk 'NR==2 {print $5}'
+;exec = df -h / | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
+format =  <label>
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		    F I L E S Y S T E M - H O M E
+;----------------------------------------------------------
+
+[module/homefs]
+interval = 400
+type = custom/script
+exec = df -h /home | awk 'NR==2 {print $5}'
+;exec = df -h /home | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
+format =  <label>
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		          X K E Y B O A R D
+;----------------------------------------------------------
+
+;[module/xkeyboard]
+;type = internal/xkeyboard
+
+;blacklist-0 = num lock
+
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.white}
+
+
+;label-layout = %layout%
+
+;label-indicator-padding = 2
+;label-indicator-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;			   C P U 
+;----------------------------------------------------------
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.white}
+;format-underline = #f90000
+label = %percentage%%
+
+;----------------------------------------------------------
+;			 M E M O R Y
+;----------------------------------------------------------
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+;format-underline = #4bffdc
+label = %percentage_used%%
+
+;----------------------------------------------------------
+;		             K E R N E L
+;----------------------------------------------------------
+
+[module/kernel]
+type = custom/script
+exec = uname -r | sed 's/-ARCH//g'
+tail = false
+interval = 3024
+format-underline = ${colors.red}
+format-prefix-foreground = ${colors.white}
+format-prefix = "  " 
+
+;----------------------------------------------------------
+;		        T E M P 
+;----------------------------------------------------------
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+
+format = <ramp><label>
+format-warn = " <ramp> <label-warn>"
+
+label = " %temperature%"
+label-background = ${colors.black}
+label-warn = "%temperature% "
+label-warn-foreground = ${colors.red}
+label-warn-background = ${colors.black}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;			   B A T T E R Y 
+;----------------------------------------------------------
+
+;[module/battery]
+;type = custom/script
+;format = <label>
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.white}
+;format-underline = ${colors.red}
+;exec = ~/.config/polybar/battery
+
+
+;----------------------------------------------------------
+;			   B A T T E R Y 0
+;----------------------------------------------------------
+
+;[module/battery_0]
+;type = internal/battery
+;battery = BAT1
+;adapter = AC
+;full-at = 98
+;time-format = %H:%M
+
+;format-charging = <animation-charging> <label-charging>
+;label-charging = %percentage%% %time%
+
+;format-discharging = <ramp-capacity> <label-discharging>
+;label-discharging = %percentage%% %time%
+
+;format-full = <label-full>
+;format-full-prefix = " "
+;format-full-prefix-foreground = ${colors.foreground}
+
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+;ramp-capacity-foreground = ${colors.white}
+
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
+;animation-charging-foreground = ${colors.white}
+;animation-charging-framerate = 750
+
+;----------------------------------------------------------
+;			  W L A N 
+;----------------------------------------------------------
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <ramp-signal><label-connected>
+label-connected =  " %essid% %{F#F1F1F1} %{F-}%downspeed:1% "
+;label-connected = " %essid% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = "  down "
+label-disconnected-foreground = ${colors.red}
+label-disconnected-background = ${colors.background}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 =  
+ramp-signal-3 = 
+ramp-signal-foreground = ${colors.white}
+;ramp-signal-background = ${colors.red}
+
+;----------------------------------------------------------
+;		           U P D A T E S
+;----------------------------------------------------------
+
+[module/updates]
+type = custom/script
+interval = 8600
+format = "<label>"
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+exec = ~/.config/polybar/archupdates
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+;----------------------------------------------------------
+;			    M A I L
+;----------------------------------------------------------
+
+[module/gmail]
+type = custom/script
+exec = ~/.config/polybar/gmail/launch.py --prefix '  ' --nosound
+tail = true
+click-left = xdg-open https://mail.google.com
+
+;[module/mail]
+;type = custom/script
+;interval = 2300
+;format = <label>
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.white}
+;format-underline = ${colors.red}
+;exec = ~/.config/polybar/email.py
+
+;----------------------------------------------------------
+;			    U P T I M E
+;----------------------------------------------------------
+
+[module/uptime]
+type = custom/script
+interval = 5
+format-prefix = " "
+;format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.white}
+exec = uptime -p | awk '{ print $2 "h:" $4 "m" }'
+
+;----------------------------------------------------------
+;			  T I M E 
+;----------------------------------------------------------
+
+[module/clock]
+type = internal/date
+
+interval = 1.0
+
+time = %H:%M
+;time = %I:%M %p
+;time-alt = %H:%M:%S
+
+format-prefix = "  "
+format-prefix-foreground =  ${colors.white}
+
+label = %time%  
+
+;----------------------------------------------------------
+;			 C A L E N D A R
+;----------------------------------------------------------
+
+[module/calendar]
+type = custom/script
+
+interval = 10.0
+
+exec =  date +" %a, %d %B "
+click-left = gsimplecal
+
+;date = %a, %d-%m-%Y 
+;date-alt = " %a, %b %d,  %Y at %I:%M%p"
+;date-alt = " %Y-%m-%d"
+;date-alt = " %a %b %d %Y"
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+format = <label>
+
+;----------------------------------------------------------
+;			    W E A T H E R
+;----------------------------------------------------------
+
+;[module/weather]
+;type = custom/script
+;interval = 300
+;exec = ~/Documentos/Outros/weather.py
+;format-prefix-foreground = ${colors.white}
+
+;format =  <label>
+;format-prefix = "  "
+
+;format-foreground = ${colors.foreground}
+;format-background = ${colors.background}
+
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = "  "
+exec = ~/.config/polybar/weather
+
+;----------------------------------------------------------
+;			    M P D
+;----------------------------------------------------------
+
+[module/mpd]
+type = internal/mpd
+;format-online = <label-time> %{F#88}|%{F-} <label-song> <icon-prev><icon-stop><toggle><icon-next> <icon-repeat><icon-random>
+format-online = <label-time>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
+label-offline = ---
+format-offline =
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+icon-random = 
+icon-repeat = 
+
+label-song-maxlen = 40
+label-song-ellipsis = true
+
+toggle-on-foreground = ${colors.white}
+toggle-off-foreground = ${colors.selection}
+label-song-foreground = ${colors.white}
+label-time-foreground = ${colors.foreground}
+
+icon-prev-foreground = ${colors.white}
+icon-stop-foreground  = ${colors.white}
+icon-play-foreground = ${colors.white}
+icon-pause-foreground = ${colors.white}
+icon-next-foreground = ${colors.white}
+
+bar-progress-width = 17
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = 
+bar-progress-indicator-foreground = ${colors.white}
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = ${colors.foreground}
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;			    M P D
+;----------------------------------------------------------
+
+#[module/current-song]
+#type = custom/script
+#exec = echo $(mpc current) | sed s/\;/,\ /g | cut -d - -f 1,2
+#click-left = mpc prev
+#click-middle = mpc toggle
+#click-right = mpc next
+#label = %output%
+#interval = 1
+
+;----------------------------------------------------------
+;	   V O L U M E
+;----------------------------------------------------------
+
+;[module/pavolume]
+;type = custom/script
+;interval = 2
+;exec = ~/.config/polybar/pavolume.sh
+
+
+;click-right = exec pavucontrol
+;click-left = ~/.config/polybar/pavolume.sh --togmute
+;scroll-up = ~/.config/polybar/pavolume.sh --up
+;scroll-down = ~/.config/polybar/pavolume.sh --down
+
+;label = %output%
+;label-foreground = ${colors.white}
+;format-padding = 1
+
+;----------------------------------------------------------
+;	   V O L U M E 
+;----------------------------------------------------------
+
+
+[module/volume]
+type = internal/volume
+
+format-volume-padding = 1
+format-muted-padding = 1
+
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+; Optionally define speaker and headphone mixers
+; Use the following command to list available mixer controls:
+; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
+master-mixer = Master
+
+mapped = false
+
+; NOTE: This is required if headphone_mixer is defined
+; Use the following command to list available device controls
+; $ amixer controls | sed -r "/CARD/\!d; s/.*=([0-9]+).*name='([^']+)'.*/printf '%3.0f: %s\n' '\1' '\2'/e" | sort
+; Default: none
+headphone-id = Headphone Jack
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.white}
+
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+label-muted = 
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+;----------------------------------------------------------
+;			   U S B
+;----------------------------------------------------------
+
+[module/usb]
+type = custom/script
+interval = 5
+; Displays the devices in the bar
+exec = ~/.config/polybar/usb.sh
+; Execute the script if udiskie is runned
+exec-if = pgrep -x udiskie
+
+click-left = udiskie-umount --detach -a
+
+label-foreground = ${colors.foreground}
+
+
+;----------------------------------------------------------
+;			   B L U E T O O T H
+;----------------------------------------------------------
+
+;[module/bluetooth]
+;type = custom/script
+;interval = 10
+;exec = ~/.config/polybar/bluetooth.sh
+
+;label = "%output%"
+;label-foreground = ${colors.foreground}
+
+;format = "<label> "
+
+
+;----------------------------------------------------------
+;		    P O W E R   M E N U
+;----------------------------------------------------------
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+label-open = "  "
+
+label-open-foreground = ${colors.red}
+label-open-background = ${colors.black}
+label-close =  cancel
+label-close-foreground = ${colors.yellow}
+label-separator = |
+label-separator-foreground = ${colors.white}
+
+menu-0-0 = suspend
+menu-0-0-exec = menu-open-1
+menu-0-1 = reboot
+menu-0-1-exec = menu-open-2
+menu-0-2 = "poweroff "
+menu-0-2-exec = menu-open-3
+menu-0-3 = "logout "
+menu-0-3-exec = menu-open-4
+
+menu-1-0 = SUPEND?
+menu-1-0-exec = systemctl suspend
+
+menu-3-0 = POWEROFF?
+menu-3-0-exec = systemctl poweroff
+
+menu-2-0 = REBOOT?
+menu-2-0-exec = systemctl reboot
+
+menu-4-0 = LOGOUT?
+menu-4-0-exec = i3-msg exit
+[settings]
+screenchange-reload = true
+
+;----------------------------------------------------------
+;		    U S E R
+;----------------------------------------------------------
+
+[module/user]
+type = custom/script
+
+exec = getent passwd $USER | cut -d ':' -f 5 | cut -d ',' -f 1
+interval = 300
+
+format =  <label>
+label = %output%
+
+
+;----------------------------------------------------------
+;		    S P O T I F Y
+;----------------------------------------------------------
+
+[module/spotify]
+
+type = custom/script
+tail = true
+exec = ~/.config/polybar/spotify.sh %artist% ▸ %title%
+
+format-background = ${colors.black}
+format-foreground = ${colors.green}
+
+format-prefix = " "
+;format-prefix = "  "
+format-prefix-background = ${colors.black}
+format-prefix-foreground = ${colors.green}
+internal = 1
+
+format-padding = 1
+
+
+;----------------------------------------------------------
+;			C U S T O M
+;----------------------------------------------------------
+
+[module/allow]
+type = custom/text
+content = " | "
+content-foreground = ${colors.selection}
+
+[module/space]
+type = custom/text
+content = " "
+content-background = ${colors.background}
+
+[module/arch]
+type = custom/text
+content = "  "
+content-foreground = ${colors.cyan}
+click-left = ~/.config/rofi/scripts/drun
+click-right = ~/.config/rofi/scripts/run
+click-middle = ~/.config/rofi/scripts/janelas
+
+; ------------------- END -------------------;

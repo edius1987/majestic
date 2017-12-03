@@ -15,14 +15,14 @@ audio=$(pacmd list-sinks | grep -A 1 'index: 1' | awk 'NR==2{print $2}' | awk '{
 ativo=$(tmux ls | awk -F':' '{print $1}' | grep $nome | tr -d '[:blank:]')
 cor=""
 	
-if [ "$ativo" == "$nome" ]; then
-	cor="$vermelho"
-else
+if [[ "$ativo" != "$nome" ]]; then
 	cor=""
+else
+	cor="$vermelho"
 fi	
 		
 if [[ $BLOCK_BUTTON -eq 1 ]]; then
-	if [ "$ativo" != "$nome" ]; then
+	if [[ "$ativo" != "$nome" ]]; then
 		tmux new-session -d -s $nome "ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo"
 	else
 		tmux kill-session -t $nome
