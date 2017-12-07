@@ -12,10 +12,11 @@ configs=(
 'Compton'
 'Rofi'
 'LightDM'
+'ncmpcpp'
 'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 10 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
@@ -34,7 +35,20 @@ if [ "$res" ]; then
 				esac				
 			fi
 		;;
-		'Polybar') i3-msg exec pluma ~/.config/polybar/config ;;
+		'Polybar') 
+			polyconfig=$(echo "Config;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+
+			if [ "$polyconfig" = "Apps" ]; then
+				app=$( ls ${HOME}/.config/polybar/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				if [ $app ]; then
+					i3-msg exec pluma "${app}"
+				fi			
+			elif [ $polyconfig ]; then
+				i3-msg exec pluma ~/.config/polybar/config
+			fi			
+		
+		
+		;;
 		'Conky') i3-msg exec pluma ~/.config/conky/conky.conf ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
 		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;
@@ -62,6 +76,9 @@ if [ "$res" ]; then
 			if [ $ldm ]; then
 				i3-msg exec sudo pluma "/etc/lightdm/${ldm}.conf"
 			fi
+		;;
+		'ncmpcpp')
+		    i3-msg exec pluma "${HOME}/.config/ncmpcpp/config"
 		;;
 		'Home')
 			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 9 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)

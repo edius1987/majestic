@@ -54,12 +54,12 @@ border-bottom-size = 2
 border-bottom-color = ${colors.borders}
 
 ; Fonts
-font-0 = Iosevka Medium:size=8;1
+font-0 = Iosevka Medium:size=8;2
 font-1 = FontAwesome:pixelsize=9;2
 font-2 = Wuncon Siji:pixelsize=10;1
 font-3 = unifont:size=8;1
 
-modules-left = firefox thunar termite telegram whatsapp volume temperature cpu memory rootfs homefs pkg
+modules-left = volume temperature cpu memory rootfs homefs pkg trash
 modules-center = mpd
 modules-right = wlan powermenu
 
@@ -101,8 +101,8 @@ font-2 = Wuncon Siji:pixelsize=10;1
 font-3 = unifont:size=8;1
 
 modules-left = i3
-modules-center = xwindow
-modules-right = weather clock calendar
+modules-center = window
+modules-right = weather clock calendar apps
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -110,7 +110,6 @@ scroll-down = i3wm-wsprev
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;                                   MODULES
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 ;----------------------------------------------------------
 ;			   I 3 
@@ -141,7 +140,6 @@ label-focused-foreground = ${colors.white}
 label-focused-underline = ${colors.background}
 label-focused-padding = 1
 
-
 label-unfocused = %name%
 label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.foreground}
@@ -151,276 +149,6 @@ label-urgent-foreground = ${colors.red}
 label-urgent-padding = 1
 
 label-visible = %name%
-
-;----------------------------------------------------------
-;		        X W I N D O W
-;----------------------------------------------------------
-
-[module/xwindow]
-type = internal/xwindow
-;label = %title:0:30:...%
-label = %title:0:40:...%  %{B- -o -u}
-
-;----------------------------------------------------------
-;		        F I L E S Y S T E M - /
-;----------------------------------------------------------
-
-[module/rootfs]
-interval = 400
-type = custom/script
-exec = df -h / | awk 'NR==2 {print $5}'
-;exec = df -h / | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
-format =  <label>
-format-prefix = "  "
-format-prefix-foreground = ${colors.white}
-
-;----------------------------------------------------------
-;		    F I L E S Y S T E M - H O M E
-;----------------------------------------------------------
-
-[module/homefs]
-interval = 400
-type = custom/script
-exec = df -h /home | awk 'NR==2 {print $5}'
-;exec = df -h /home | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
-format =  <label>
-format-prefix = "  "
-format-prefix-foreground = ${colors.white}
-
-;----------------------------------------------------------
-;			   C P U 
-;----------------------------------------------------------
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = "  "
-format-prefix-foreground = ${colors.white}
-;format-underline = #f90000
-label = %percentage%%
-
-;----------------------------------------------------------
-;			 M E M O R Y
-;----------------------------------------------------------
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = "  "
-format-prefix-foreground = ${colors.white}
-;format-underline = #4bffdc
-label = %percentage_used%%
-
-;----------------------------------------------------------
-;		             K E R N E L
-;----------------------------------------------------------
-
-[module/kernel]
-type = custom/script
-exec = uname -r | sed 's/-ARCH//g'
-tail = false
-interval = 3024
-format-underline = ${colors.red}
-format-prefix-foreground = ${colors.white}
-format-prefix = "  " 
-
-;----------------------------------------------------------
-;		        T E M P 
-;----------------------------------------------------------
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 65
-
-format = <ramp><label>
-format-warn = " <ramp> <label-warn>"
-
-label = " %temperature%"
-label-background = ${colors.black}
-label-warn = "%temperature% "
-label-warn-foreground = ${colors.red}
-label-warn-background = ${colors.black}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.white}
-
-
-;----------------------------------------------------------
-;			  W L A N 
-;----------------------------------------------------------
-
-[module/wlan]
-type = internal/network
-interface = wlan0
-interval = 3.0
-
-;format-connected = <ramp-signal><label-connected>
-format-connected = <ramp-signal><label-connected>
-;label-connected =  " %essid% %{F#F1F1F1} %{F-}%downspeed:1% "
-;label-connected = " %essid% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
-label-connected = " %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
-label-connected-foreground = ${colors.foreground}
-
-label-disconnected = "  down "
-label-disconnected-foreground = ${colors.red}
-label-disconnected-background = ${colors.background}
-
-ramp-signal-0 = " "
-ramp-signal-1 = " "
-ramp-signal-2 = " "
-ramp-signal-3 = " "
-ramp-signal-foreground = ${colors.white}
-;ramp-signal-background = ${colors.red}
-
-;----------------------------------------------------------
-;		           U P D A T E S
-;----------------------------------------------------------
-
-[module/updates]
-type = custom/script
-interval = 8600
-format = <label>
-format-prefix = "  "
-format-prefix-foreground = ${colors.white}
-;exec = ~/.config/polybar/archupdates
-exec = ~/.config/polybar/pkg.sh
-;exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
-
-[module/pkg]
-type = custom/script
-interval = 1200
-format = <label>
-format-prefix = "  "
-format-prefix-foreground = ${colors.white}
-;format-underline = #dc322f
-label = "%output:0:30%"
-exec = ~/.config/polybar/pkg.sh
-
-;----------------------------------------------------------
-;			    M A I L
-;----------------------------------------------------------
-
-[module/gmail]
-type = custom/script
-exec = ~/.config/polybar/gmail/launch.py --prefix '  ' --nosound
-tail = true
-click-left = xdg-open https://mail.google.com
-
-;----------------------------------------------------------
-;			    U P T I M E
-;----------------------------------------------------------
-
-[module/uptime]
-type = custom/script
-interval = 5
-format-prefix = " "
-;format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.white}
-exec = uptime -p | awk '{ print $2 "h:" $4 "m" }'
-
-;----------------------------------------------------------
-;			    W E A T H E R
-;----------------------------------------------------------
-
-[module/weather]
-type = custom/script
-interval = 10
-format = <label>
-;format-prefix = "  "
-exec = ~/.config/polybar/weather.py
-
-;----------------------------------------------------------
-;			  T I M E 
-;----------------------------------------------------------
-
-[module/clock]
-type = internal/date
-
-interval = 1.0
-
-time = %H:%M
-;time = %I:%M %p
-;time-alt = %H:%M:%S
-
-format-prefix = "  "
-format-prefix-foreground =  ${colors.white}
-
-label = %time%  
-
-;----------------------------------------------------------
-;			 C A L E N D A R
-;----------------------------------------------------------
-
-[module/calendar]
-type = custom/script
-
-interval = 10.0
-
-exec =  date +"%d/%m/%Y"
-;click-left = gsimplecal
-click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")"
-click-right = gsimplecal
-
-;date = %a, %d-%m-%Y 
-;date-alt = " %a, %b %d,  %Y at %I:%M%p"
-;date-alt = " %Y-%m-%d"
-;date-alt = " %a %b %d %Y"
-
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
-format = <label>
-format-prefix = "  "
-format-prefix-foreground =  ${colors.white}
-
-;----------------------------------------------------------
-;			    M P D
-;----------------------------------------------------------
-
-[module/mpd]
-type = internal/mpd
-;format-online = <label-time> %{F#88}|%{F-} <label-song> <icon-prev><icon-stop><toggle><icon-next> <icon-repeat><icon-random>
-format-online = <label-time>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
-label-offline = ---
-format-offline =
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-icon-random = 
-icon-repeat = 
-
-label-song-maxlen = 40
-label-song-ellipsis = true
-
-toggle-on-foreground = ${colors.white}
-toggle-off-foreground = ${colors.selection}
-label-song-foreground = ${colors.white}
-label-time-foreground = ${colors.foreground}
-
-icon-prev-foreground = ${colors.white}
-icon-stop-foreground  = ${colors.white}
-icon-play-foreground = ${colors.white}
-icon-pause-foreground = ${colors.white}
-icon-next-foreground = ${colors.white}
-
-bar-progress-width = 17
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = 
-bar-progress-indicator-foreground = ${colors.white}
-bar-progress-indicator-font = 3
-bar-progress-fill = ─
-bar-progress-fill-foreground = ${colors.foreground}
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = ${colors.white}
 
 ;----------------------------------------------------------
 ;	   V O L U M E 
@@ -453,19 +181,254 @@ format-volume-foreground = ${colors.white}
 
 label-volume = %percentage%%
 label-volume-foreground = ${colors.foreground}
-label-muted = 
+label-muted = 
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
 
 ;----------------------------------------------------------
+;		        X W I N D O W
+;----------------------------------------------------------
+;[module/xwindow]
+;type = internal/xwindow
+;label = %title:0:30:...%
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.white}
+;label = %title:0:40:...%  %{B- -o -u}
+;click-left = ~/.config/polybar/janela.sh -i
+;click-right = ~/.config/polybar/janela.sh -c
+
+[module/window]
+type = custom/script
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+;label = %output:0:40:...%  %{B- -o -u}
+label = %output:0:40:...%
+click-left = ~/.config/polybar/janela.sh -i
+click-right = ~/.config/polybar/janela.sh -c
+exec = ~/.config/polybar/janela.sh
+
+;----------------------------------------------------------
+;		        F I L E S Y S T E M - /
+;----------------------------------------------------------
+[module/rootfs]
+interval = 400
+type = custom/script
+exec = df -h / | awk 'NR==2 {print $5}'
+;exec = df -h / | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
+format =  <label>
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		    F I L E S Y S T E M - H O M E
+;----------------------------------------------------------
+[module/homefs]
+interval = 400
+type = custom/script
+exec = df -h /home | awk 'NR==2 {print $5}'
+;exec = df -h /home | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
+format =  <label>
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;			   C P U 
+;----------------------------------------------------------
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+;format-underline = #f90000
+label = %percentage%%
+
+;----------------------------------------------------------
+;			 M E M O R Y
+;----------------------------------------------------------
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+;format-underline = #4bffdc
+label = %percentage_used%%
+
+;----------------------------------------------------------
+;		        T E M P 
+;----------------------------------------------------------
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp><label>
+format-warn = " <ramp> <label-warn>"
+
+label = " %temperature%"
+label-background = ${colors.black}
+label-warn = "%temperature% "
+label-warn-foreground = ${colors.red}
+label-warn-background = ${colors.black}
+
+ramp-0 = "  "
+ramp-1 = "  "
+ramp-2 = "  "
+ramp-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		        T R A S H
+;----------------------------------------------------------
+[module/trash]
+type = custom/script
+interval = 60
+format = <label>
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+label = "%output:0:30%"
+exec = ~/.config/polybar/trash.sh
+click-left = ~/.config/polybar/trash.sh -x && notify-send "Lixeira" "Lixeira limpa!"
+
+;----------------------------------------------------------
+;			  W L A N 
+;----------------------------------------------------------
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+;format-connected = <ramp-signal><label-connected>
+format-connected = <ramp-signal><label-connected>
+;label-connected =  " %essid% %{F#F1F1F1} %{F-}%downspeed:1% "
+;label-connected = " %essid% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
+label-connected = " %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = "  down "
+label-disconnected-foreground = ${colors.red}
+label-disconnected-background = ${colors.background}
+
+ramp-signal-0 = "  "
+ramp-signal-1 = "  "
+ramp-signal-2 = "  "
+ramp-signal-3 = "  "
+ramp-signal-4 = "  "
+ramp-signal-foreground = ${colors.white}
+;ramp-signal-background = ${colors.red}
+
+;----------------------------------------------------------
+;		           U P D A T E S
+;----------------------------------------------------------
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+;format-underline = #dc322f
+label = "%output:0:30%"
+exec = ~/.config/polybar/pkg.sh
+
+;----------------------------------------------------------
+;			    U P T I M E
+;----------------------------------------------------------
+[module/uptime]
+type = custom/script
+interval = 5
+format-prefix = " "
+;format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.white}
+exec = uptime -p | awk '{ print $2 "h:" $4 "m" }'
+
+;----------------------------------------------------------
+;			    W E A T H E R
+;----------------------------------------------------------
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+;format-prefix = "  "
+exec = ~/.config/polybar/weather.py
+
+;----------------------------------------------------------
+;			  T I M E 
+;----------------------------------------------------------
+[module/clock]
+type = internal/date
+interval = 1.0
+time = %H:%M
+;time-alt = %H:%M:%S
+format-prefix = "  "
+format-prefix-foreground =  ${colors.white}
+label = %time%  
+
+;----------------------------------------------------------
+;			 C A L E N D A R
+;----------------------------------------------------------
+[module/calendar]
+type = custom/script
+interval = 10.0
+exec =  date +"%d/%m/%Y "
+click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")"
+click-right = gsimplecal
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format = <label>
+format-prefix = "  "
+format-prefix-foreground =  ${colors.white}
+
+;----------------------------------------------------------
+;			    M P D
+;----------------------------------------------------------
+[module/mpd]
+type = internal/mpd
+;format-online = <label-time> %{F#88}|%{F-} <label-song> <icon-prev><icon-stop><toggle><icon-next> <icon-repeat><icon-random>
+format-online = <label-time>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
+label-offline = ---
+format-offline =
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+icon-random = 
+icon-repeat = 
+
+label-song-maxlen = 40
+label-song-ellipsis = true
+
+toggle-on-foreground = ${colors.white}
+toggle-off-foreground = ${colors.selection}
+label-song-foreground = ${colors.white}
+label-time-foreground = ${colors.foreground}
+
+icon-prev-foreground = ${colors.white}
+icon-stop-foreground  = ${colors.white}
+icon-play-foreground = ${colors.white}
+icon-pause-foreground = ${colors.white}
+icon-next-foreground = ${colors.white}
+
+bar-progress-width = 17
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = 
+bar-progress-indicator-foreground = ${colors.white}
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = ${colors.foreground}
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = ${colors.white}
+
+;----------------------------------------------------------
 ;		    P O W E R   M E N U
 ;----------------------------------------------------------
-
 [module/powermenu]
 type = custom/menu
 
@@ -483,21 +446,24 @@ label-separator-foreground = ${colors.white}
 
 menu-0-0 = suspend
 menu-0-0-exec = menu-open-1
+
 menu-0-1 = reboot
 menu-0-1-exec = menu-open-2
+
 menu-0-2 = "poweroff "
 menu-0-2-exec = menu-open-3
+
 menu-0-3 = "logout "
 menu-0-3-exec = menu-open-4
 
 menu-1-0 = SUPEND?
 menu-1-0-exec = systemctl suspend
 
-menu-3-0 = POWEROFF?
-menu-3-0-exec = systemctl poweroff
-
 menu-2-0 = REBOOT?
 menu-2-0-exec = systemctl reboot
+
+menu-3-0 = POWEROFF?
+menu-3-0-exec = systemctl poweroff
 
 menu-4-0 = LOGOUT?
 menu-4-0-exec = i3-msg exit
@@ -507,13 +473,10 @@ screenchange-reload = true
 ;----------------------------------------------------------
 ;		    U S E R
 ;----------------------------------------------------------
-
 [module/user]
 type = custom/script
-
 exec = getent passwd $USER | cut -d ':' -f 5 | cut -d ',' -f 1
 interval = 300
-
 format =  <label>
 label = %output%
 
@@ -539,27 +502,24 @@ expand-right = true
 format-spacing = 1
 label-open = "  "
 label-close = "  cancelar "
+label-close-foreground = ${colors.yellow}
+label-separator = |
+label-separator-foreground = ${colors.white}
 
-menu-0-0 = " NAV "
-menu-0-0-exec = menu-open-1
+menu-0-0 = "  "
+menu-0-0-exec = firefox-developer &
 
-menu-0-1 = " FILE "
-menu-0-1-exec = menu-open-2
+menu-0-1 = "  "
+menu-0-1-exec = thunar &
 
-menu-0-2 = " TERM "
-menu-0-2-exec = menu-open-3
+menu-0-2 = "  "
+menu-0-2-exec = termite & 
 
-menu-1-0 = " Firefox "
-menu-1-0-exec = firefox &
+menu-0-3 = "  "
+menu-0-3-exec = telegram &
 
-menu-1-1 = " Chromium "
-menu-1-1-exec = chromium &
-
-menu-2-0 = " Thunar "
-menu-2-0-exec = thunar &
-
-menu-3-0 = " Termite "
-menu-3-0-exec = termite &
+menu-0-4 = "  "
+menu-0-4-exec = Whatsapp &
 
 ;----------------------------------------------------------
 ;			L A U N C H E R S
@@ -576,7 +536,7 @@ click-middle = ~/.config/rofi/scripts/janelas
 type = custom/text
 content = "  "
 ;content-foreground = ${colors.white}
-click-left = firefox
+click-left = firefox-developer
 
 [module/thunar]
 type = custom/text

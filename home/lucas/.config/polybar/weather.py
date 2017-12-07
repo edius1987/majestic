@@ -19,7 +19,17 @@ try:
         HOUR = datetime.datetime.now().hour
         
         if CURRENT == "Scattered clouds":
-        	CURRENT = "Nuvens esparsas"
+            CURRENT = "Nuvens dispersas"
+        elif CURRENT == "Thunderstorm":
+            CURRENT = "Trovoada"
+        elif CURRENT == "Thunderstorm with light rain":
+            CURRENT = "Trovoada com chuva fina"
+        elif CURRENT == "Few clouds":
+            CURRENT = "Poucas nuvens"
+        elif CURRENT == "Broken clouds":
+            CURRENT = "Nuvens esparsas" 
+        elif CURRENT == "Clear sky":
+            CURRENT = "Céu claro"                        
         
     else:
         print("Error: BAD HTTP STATUS CODE " + str(REQ.status_code))
@@ -27,7 +37,7 @@ except (ValueError, IOError):
     print("Error: Unable print the data")
 
 if ID >= 200 and ID <= 232:
-    ICON = ""
+    ICON = ""
 elif ID >= 310 and ID <= 531:
     ICON = ""
 elif ID >= 600 and ID <= 622:
@@ -38,7 +48,7 @@ elif ID >= 801 and ID <= 804:
     if HOUR >= 6 and HOUR <= 19:
         ICON = ""
     else:
-        ICON = ""
+        ICON = ""
 elif ID >= 900 and ID <= 902 or ID >= 957 and ID <= 962:
 	ICON = ""
 elif ID == 903 or ID == 906:

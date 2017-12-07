@@ -1,14 +1,14 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
-# Terminate already running bar instances
-killall -q polybar
+killall -9 -q polybar
+sleep 1
+killall -9 -q polybar
 
-# Wait until the processes have been shut down
-while pgrep -x polybar >/dev/null; do sleep 1; done
-
-# Launch bar1 and bar2
+while pgrep -x polybar > /dev/null; do
+	killall -9 -q polybar
+	sleep 1
+done
 
 polybar -c ~/.config/polybar/config.galdino bottom -q &
 polybar -c ~/.config/polybar/config.galdino top -q &
 
-#echo "Bars launched..."

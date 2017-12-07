@@ -1,3 +1,4 @@
+mpd_music_dir = "~/audio"
 ncmpcpp_directory = "~/.config/ncmpcpp"
 mpd_host = "localhost"
 mpd_port = "6600"
@@ -5,9 +6,9 @@ mpd_connection_timeout = 5
 
 # Playlist
 playlist_display_mode = "classic"
-song_list_format = " $0$8$8%l$0$8 $1│$7 $7%a$7 $1│$7 $7%t$1 $R $8%b$1"
+song_list_format = " $0$8$8%l$0$8 $1│$7 $7%a$7 $1│$7 $7%t$1 $R $8%b$8"
 song_library_format = "{%n > }{%t}|{%f}"
-song_columns_list_format = "(12)[white]{a}(85)[red]{t} (5)[black]{l}"
+song_columns_list_format = "(12)[white]{a}(85)[red]{t} (5)[cyan]{l}"
 autocenter_mode = "yes"
 centered_cursor = "yes"
 
@@ -18,14 +19,14 @@ centered_cursor = "yes"
 # progressbar_look = "─┅─"
 # progressbar_look = "─╼ "
 # progressbar_look = "▪▪▫"
-#progressbar_look = "╼ "
+# progressbar_look = "╼ "
 # progressbar_look = "─╼ "
 progressbar_look = "─╼╌"
 titles_visibility = "yes"
 header_visibility = "yes"
 #song_status_format = "$8%a $1// $8%t $1// $8%b {(Disc %d) }$1// $8%y $1"
 #song_status_format = "$8%t $1• $2%a $1•{ $5%b $1 }"
-song_status_format = "$2%a $1:: $8%t"
+song_status_format = "$2%a $7:: $8%t"
 
 # Browser
 browser_playlist_prefix = "$2plist »$9 "
@@ -33,8 +34,8 @@ browser_display_mode = "classic" (classic/columns)
 
 # Colors
 discard_colors_if_item_is_selected = "yes"
-header_window_color = "black"
-volume_color = "black"
+header_window_color = "cyan"
+volume_color = "cyan"
 state_line_color = "white"
 state_flags_color = "black"
 main_window_color = "default"
@@ -44,7 +45,7 @@ current_item_prefix = "$(red)$r"
 current_item_suffix = "$/r$(end)"
 progressbar_color = "black"
 progressbar_elapsed_color = "white"
-statusbar_color = "black"
+statusbar_color = "white"
 
 # Others
 song_window_title_format = "%a - %t"
