@@ -209,7 +209,8 @@ format-prefix-foreground = ${colors.white}
 ;label = %output:0:40:...%  %{B- -o -u}
 label = %output:0:40:...%
 click-left = ~/.config/polybar/janela.sh -i
-click-right = ~/.config/polybar/janela.sh -c
+click-middle = ~/.config/polybar/janela.sh -c
+click-right = ~/.config/polybar/janela.sh -w
 exec = ~/.config/polybar/janela.sh
 
 ;----------------------------------------------------------
@@ -269,7 +270,7 @@ warn-temperature = 60
 format = <ramp><label>
 format-warn = " <ramp> <label-warn>"
 
-label = " %temperature%"
+label = %temperature%
 label-background = ${colors.black}
 label-warn = "%temperature% "
 label-warn-foreground = ${colors.red}
@@ -302,10 +303,10 @@ interface = wlan0
 interval = 3.0
 
 ;format-connected = <ramp-signal><label-connected>
-format-connected = <ramp-signal><label-connected>
+format-connected = <label-connected>
 ;label-connected =  " %essid% %{F#F1F1F1} %{F-}%downspeed:1% "
 ;label-connected = " %essid% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
-label-connected = " %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed% "
+label-connected = "%{F#F1F1F1} %{F-}%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
 label-connected-foreground = ${colors.foreground}
 
 label-disconnected = "  down "
@@ -387,8 +388,8 @@ format-prefix-foreground =  ${colors.white}
 [module/mpd]
 type = internal/mpd
 ;format-online = <label-time> %{F#88}|%{F-} <label-song> <icon-prev><icon-stop><toggle><icon-next> <icon-repeat><icon-random>
-format-online = <label-time>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
-label-offline = ---
+format-online = %{F#F1F1F1} %{F-}<label-time> <label-song> %{F#F1F1F1}<icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
+label-offline = 
 format-offline =
 
 icon-prev = 
@@ -500,10 +501,10 @@ expand-right = true
 ; Other commands will be executed using "/usr/bin/env sh -c $COMMAND"
 
 format-spacing = 1
-label-open = "  "
+label-open = " "
 label-close = "  cancelar "
 label-close-foreground = ${colors.yellow}
-label-separator = |
+;label-separator = |
 label-separator-foreground = ${colors.white}
 
 menu-0-0 = "  "
