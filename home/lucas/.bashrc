@@ -82,9 +82,9 @@ if [[ $TERM == xterm-termite ]]; then
 	__vte_prompt_command
 fi
 
-if [[ -f /etc/profile.d/autojump.sh ]]; then
-	source /etc/profile.d/autojump.sh
-fi
+#if [[ -f /etc/profile.d/autojump.sh ]]; then
+#	source /etc/profile.d/autojump.sh
+#fi
 ##################
 ##### Funções ####
 ##################
@@ -111,10 +111,10 @@ PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 ##################
 ##### Powerline ##
 ##################
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#. /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
 echo
 fortune vimtips

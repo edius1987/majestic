@@ -14,7 +14,7 @@ OIFS="$IFS"
 IFS=$'\n'
 homedir="${HOME}/.local/share/applications"
 sysdir="/usr/share/applications"
-todos=($(find $sysdir $homedir -type f | egrep .desktop))
+todos=($(find $sysdir $homedir -type f | egrep -v "/screensavers/" | egrep .desktop))
 
 function orfao {
 	arquivo=$(basename $(cat $1 | grep -m1 -iPo '(?<=Exec=)(.*)' | awk '{print $1}'))

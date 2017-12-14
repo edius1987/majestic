@@ -7,7 +7,7 @@ declare -a apps
 
 homedir="${HOME}/.local/share/applications"
 sysdir="/usr/share/applications"
-apps=("cinnamon-" "qt4" "mate-color-select" "mpv")
+apps=("cinnamon-" "qt4" "mate-" "mpv")
 todos=($(find $sysdir $homedir -type f | egrep .desktop))
 nd='NoDisplay'
 
@@ -27,6 +27,8 @@ function nodisp {
 		if [ $? = 1 ]; then
 			echo "Inserindo NoDisplay em $1"
 			echo 'NoDisplay=true' >> $1
+		else
+			echo "$1 já tem o NoDisplay..."
 		fi
 	fi
 }
