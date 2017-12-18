@@ -1,6 +1,7 @@
 *.cache
 *.bkp
 *-bkp
+*.old
 menu.xml
 mpd.log 
 mpd.pid
