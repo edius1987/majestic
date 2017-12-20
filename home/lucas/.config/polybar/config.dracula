@@ -1,18 +1,45 @@
+;----------------------------------------------------------
+;		        C O L O R S
+;----------------------------------------------------------
+[colors]
+background = #2B303B
+current-line = #44475a
+selection = #44475a
+foreground = #8B9CAD
+cyan = #8be9fd
+green = #50fa7b
+orange = #ffb86c
+pink = #ff79c6
+purple = #bd93f9
+red = #ff5555
+yellow = #f1fa8c
+white = #F1F1F1
+black = #2B303B
+borders = #4c566a
+selected = #191b21
+azul = #2fbbf2
+
 [settings]
 throttle-ms = 50
 throttle-limit = 5
 
-[bar/sistematico]
+;----------------------------------------------------------
+;		        B A R / T O P
+;----------------------------------------------------------
+[bar/top]
 monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
-height = 27
+height = 24
 offset-y = 5
+top = true
 
-background = #005f627a
-foreground = #f2f2f2
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-overline-size = 2
-overline-color = #bc92f8
+fixed-center = true
+
+;overline-size = 2
+;overline-color = #bc92f8
 underline-size = 2
 underline-color = #bc92f8
 
@@ -22,61 +49,53 @@ module-margin-left = 0
 module-margin-right = 2
 
 font-0 = NotoSans:size=8;0
-font-1 = FontAwesome:size=8;-2
-font-2 = ypn envypn:size=10;-1
-font-3 = xos4 Terminus:size=8;-1
+font-1 = FontAwesome:size=8;2
+font-2 = ypn envypn:size=10;1
+font-3 = xos4 Terminus:size=8;1
 font-4 = Unifont:size=6;-3
 
-modules-left = i3 bspwm
-modules-center = xwindow
-modules-right = volume cpu memory clock
+modules-left = i3
+modules-center = window
+modules-right = crypto volume cpu memory clock
 
-[module/bspwm]
-type = internal/bspwm
+;----------------------------------------------------------
+;		        B A R / B O T T O M
+;----------------------------------------------------------
+[bar/bottom]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 24
+offset-y = 5
+bottom = true
 
-; Icones:             
-ws-icon-0 = 1; 
-ws-icon-1 = 2; 
-ws-icon-2 = 3;
-ws-icon-3 = 4; 
-ws-icon-4 = 5; 
-ws-icon-5 = 6; 
-ws-icon-6 = 7; 
-ws-icon-7 = 8; 
-ws-icon-8 = 9; 
-ws-icon-9 = 10; 
-;ws-icon-default = 
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-format = <label-state> <label-mode>
+fixed-center = true
 
-label-active = %icon%
-label-active-padding = 2
-label-active-margin = 1
-label-active-font = 3
-label-active-foreground = #fff
-label-active-background = #2fbbf2
-label-active-overline = #148ebe
-label-active-underline = #148ebe
+overline-size = 2
+overline-color = #bc92f8
+;underline-size = 2
+;underline-color = #bc92f8
 
-label-occupied = %icon%
-label-occupied-padding = 2
-label-occupied-margin = 1
-label-occupied-background = #eeeeee
-label-occupied-foreground = #dd222222
-label-occupied-overline = #c5c5c5
-label-occupied-underline = #c5c5c5
-label-occupied-font = 3
+spacing = 1
+padding-right = 2
+module-margin-left = 0
+module-margin-right = 2
 
-label-urgent = %icon%
-label-urgent-padding = 2
-label-urgent-margin = 1
-label-urgent-font = 3
+font-0 = NotoSans:size=8;2
+font-1 = FontAwesome:size=8;2
+font-2 = ypn envypn:size=10;0
+font-3 = xos4 Terminus:size=8;-10
+font-4 = Unifont:size=6;0
 
-label-empty = %icon%
-label-empty-padding = 2
-label-empty-margin = 1
-label-empty-font = 3
+modules-left = anews
+modules-center = weather network temperature rootfs homefs pkg trash
+modules-right = powermenu
 
+;----------------------------------------------------------
+;		        I 3
+;----------------------------------------------------------
 [module/i3]
 type = internal/i3
 
@@ -93,37 +112,85 @@ ws-icon-8 = 9;
 ws-icon-9 = 10; 
 ;ws-icon-default = 
 
+strip-wsnumbers = true
+
 format = <label-state> <label-mode>
 format-spacing = 0
 
-label-focused = %icon%
+label-focused = %name%
 label-focused-padding = 2
 label-focused-margin = 1
 label-focused-font = 3
 label-focused-foreground = #fff
-label-focused-background = #2fbbf2
+label-focused-background = #191b21
 label-focused-overline = #148ebe
 label-focused-underline = #148ebe
 
-label-unfocused = %icon%
+label-unfocused = %name%
 label-unfocused-padding = 2
 label-unfocused-margin = 1
-label-unfocused-background = #eeeeee
-label-unfocused-foreground = #dd222222
+;label-unfocused-background = #eeeeee
+label-unfocused-foreground = #fff
 label-unfocused-overline = #c5c5c5
 label-unfocused-underline = #c5c5c5
 label-unfocused-font = 3
 
-label-urgent = %icon%
+label-urgent = %name%
 label-urgent-padding = 2
 label-urgent-margin = 1
 label-urgent-font = 3
 
-label-visible = %icon%
+label-visible = %name%
 label-visible-padding = 2
 label-visible-margin = 1
 label-visible-font = 3
 
+;----------------------------------------------------------
+;		        C R Y P T O
+;----------------------------------------------------------
+[module/crypto]
+type = custom/script
+interval = 300
+
+format = <label>
+
+label = " btc R$ %output% "
+label-font = 3
+
+label-foreground = ${colors.black}
+label-background = ${colors.azul}
+
+;format-padding = 2
+
+exec = ~/.config/polybar/btc.sh
+
+;----------------------------------------------------------
+;		        V O L U M E
+;----------------------------------------------------------
+[module/volume]
+type = internal/volume
+;speaker-mixer = Speaker
+;headphone-mixer = Headphone
+;headphone-id = 9
+
+format-volume-padding = 2
+format-volume-background = #fff85a
+format-volume-foreground = #43433a
+format-volume-underline = #fffb8f
+format-volume-overline = #fffb8f
+
+format-muted-padding = 2
+format-muted-background = #77ffffff
+format-muted-foreground = #666666
+
+label-volume = volume %percentage%
+label-volume-font = 3
+label-muted = mudo
+label-muted-font = 3
+
+;----------------------------------------------------------
+;		        C P U
+;----------------------------------------------------------
 [module/cpu]
 type = internal/cpu
 interval = 0.5
@@ -131,8 +198,6 @@ interval = 0.5
 format = <label> <ramp-coreload>
 format-background = #66cc99
 format-foreground = #2a5c45
-format-underline = #60eaa5
-format-overline = #60eaa5
 format-padding = 2
 
 label = cpu
@@ -163,15 +228,16 @@ ramp-coreload-7 = █
 ramp-coreload-7-font = 5
 ramp-coreload-7-foreground = #ff3b51
 
+;----------------------------------------------------------
+;		        M E M O R Y
+;----------------------------------------------------------
 [module/memory]
 type = internal/memory
 
 format = <label> <bar-used>
 format-padding = 2
 format-background = #cb66cc
-format-foreground = #ffe3ff
-format-underline = #e58de6
-format-overline = #e58de6
+format-foreground = ${colors.black}
 
 label = memory
 label-font = 3
@@ -187,39 +253,211 @@ bar-used-empty = ─
 bar-used-empty-font = 4
 bar-used-empty-foreground = #934e94
 
+;----------------------------------------------------------
+;		        C L O C K
+;----------------------------------------------------------
 [module/clock]
 type = internal/date
-date = %%{T3}%Y-%m-%d %H:%M%%{T-}
+date = %%{T3}%d-%m-%Y %H:%M%%{T-}
 
 format-padding = 2
 format-background = #ff4279
-format-foreground = #ffcddc
-format-underline = #ff63a5
-format-overline = #ff63a5
+format-foreground = ${colors.black}
 
-[module/volume]
-type = internal/volume
-;speaker-mixer = Speaker
-;headphone-mixer = Headphone
-;headphone-id = 9
+;----------------------------------------------------------
+;		        W I N D O W
+;----------------------------------------------------------
+[module/window]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${colors.white}
+;label = %output:0:40:...%  %{B- -o -u}
+label = %output:0:40:...%
+label-font = 3
+click-left = ~/.config/polybar/janela.sh -i
+click-middle = ~/.config/polybar/janela.sh -c
+click-right = ~/.config/polybar/janela.sh -w
+exec = ~/.config/polybar/janela.sh
 
-format-volume-padding = 2
-format-volume-background = #fff85a
-format-volume-foreground = #43433a
-format-volume-underline = #fffb8f
-format-volume-overline = #fffb8f
+;----------------------------------------------------------
+;			N E W S
+;----------------------------------------------------------
+[module/anews]
+type = custom/script
+interval = 1200
+format = <label>
+label = " %{F#F1F1F1} %{F-}%output%"
+exec = ~/.config/polybar/anews.py
+click-left = $BROWSER "https://www.archlinux.org/news/"
 
-format-muted-padding = 2
-format-muted-background = #77ffffff
-format-muted-foreground = #666666
+;----------------------------------------------------------
+;			L A U N C H E R S
+;----------------------------------------------------------
+[module/firefox]
+type = custom/text
+content = "  "
+click-left = firefox-developer
 
-label-volume = volume %percentage%
-label-volume-font = 3
-label-muted = sound muted
-label-muted-font = 3
+[module/thunar]
+type = custom/text
+content = "  "
+click-left = thunar
 
-[module/xwindow]
-type = internal/xwindow
+[module/termite]
+type = custom/text
+content = "  "
+click-left = termite
+
+[module/telegram]
+type = custom/text
+content = "  "
+click-left = telegram
+
+[module/whatsapp]
+type = custom/text
+content = "  "
+click-left = Whatsapp
+
+;----------------------------------------------------------
+;			    W E A T H E R
+;----------------------------------------------------------
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+exec = ~/.config/polybar/weather.py
+
+;----------------------------------------------------------
+;		        N E T W O R K
+;----------------------------------------------------------
+[module/network]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <label-connected>
+
+format-disconnected = <label-disconnected>
+
+label-connected = "%{F#F1F1F1} %{F-}%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = desconectado
+label-disconnected-foreground = #66ffffff
+
+;----------------------------------------------------------
+;		        T E M P 
+;----------------------------------------------------------
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp><label>
+format-warn = <ramp><label-warn>
+
+label = %temperature%
+label-background = ${colors.black}
+label-warn = "%temperature% "
+label-warn-foreground = ${colors.red}
+label-warn-background = ${colors.black}
+
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = " "
+ramp-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		        F I L E S Y S T E M - /
+;----------------------------------------------------------
+[module/rootfs]
+interval = 400
+type = custom/script
+exec = df -h / | awk 'NR==2 {print $5}'
+;exec = df -h / | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
+format =  <label>
+format-prefix = " " 
+format-prefix-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		    F I L E S Y S T E M - H O M E
+;----------------------------------------------------------
+[module/homefs]
+interval = 400
+type = custom/script
+exec = df -h /home | awk 'NR==2 {print $5}'
+format =  <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.white}
+
+;----------------------------------------------------------
+;		           U P D A T E S
+;----------------------------------------------------------
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.white}
+label = "%output:0:30%"
+exec = ~/.config/polybar/pkg.sh
+click-left = pamac-updater
+click-middle = pamac-installer
+click-right = pamac-manager
+
+;----------------------------------------------------------
+;		        T R A S H
+;----------------------------------------------------------
+[module/trash]
+type = custom/script
+interval = 60
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.white}
+label = "%output:0:30%"
+exec = ~/.config/polybar/trash.sh
+click-left = ~/.config/polybar/trash.sh -x && notify-send "Lixeira" "Lixeira limpa!"
+
+;----------------------------------------------------------
+;		    P O W E R   M E N U
+;----------------------------------------------------------
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
 label-font = 3
 
-; vim:ft=dosini
+label-open = 
+label-open-foreground = ${colors.white}
+label-open-background = ${colors.black}
+
+label-close = 
+label-close-foreground = ${colors.yellow}
+label-separator = |
+label-separator-foreground = ${colors.white}
+
+menu-0-0 = "suspender"
+menu-0-0-exec = menu-open-1
+
+menu-0-1 = "reiniciar"
+menu-0-1-exec = menu-open-2
+
+menu-0-2 = "desligar"
+menu-0-2-exec = menu-open-3
+
+menu-0-3 = "sair"
+menu-0-3-exec = menu-open-4
+
+menu-1-0 = "SUSPENDER?"
+menu-1-0-exec = systemctl suspend
+
+menu-2-0 = "REINICIAR?"
+menu-2-0-exec = systemctl reboot
+
+menu-3-0 = "DESLIGAR?"
+menu-3-0-exec = systemctl poweroff
+
+menu-4-0 = "SAIR?"
+menu-4-0-exec = i3-msg exit
+[settings]
+screenchange-reload = true

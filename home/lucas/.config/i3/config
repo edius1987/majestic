@@ -285,7 +285,7 @@ bindsym $mod+r mode "resize"
 #    }
 #}
 
-set $polybar ~/.config/polybar/launch2.sh
+set $polybar ~/.config/polybar/launch.sh
 
 exec --no-startup-id ~/bin/wallpaper.sh -r
 exec_always --no-startup-id $polybar

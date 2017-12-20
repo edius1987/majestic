@@ -39,5 +39,9 @@ else
 fi
 
 if [ -f $arquivo ]; then
-	gsettings set org.mate.background picture-filename "$arquivo"
+	if [ "$DESKTOP_SESSION" == "mate" ]
+		gsettings set org.mate.background picture-filename "$arquivo"
+	elif [ "$DESKTOP_SESSION" == "i3" ]; then
+		which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
+	fi	
 fi

@@ -36,13 +36,22 @@ if [ "$res" ]; then
 			fi
 		;;
 		'Polybar') 
-			polyconfig=$(echo "Config;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			polyconfig=$(echo "Config;Temas;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$polyconfig" = "Apps" ]; then
 				app=$( ls ${HOME}/.config/polybar/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					i3-msg exec pluma "${app}"
-				fi			
+				fi
+			elif [ "$polyconfig" = "Temas" ]; then
+				for t in ${HOME}/.config/polybar/config.*; do 
+					tem+=($(basename $t)); 
+				done
+				temas=$( printf '%s\n' "${tem[@]}" | rofi -theme "$tema" -dmenu -p "Polybar Temas" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				if [ $temas ]; then
+					ln -sf "${HOME}/.config/polybar/${temas}" ${HOME}/.config/polybar/config
+					i3-msg restart
+				fi
 			elif [ $polyconfig ]; then
 				i3-msg exec pluma ~/.config/polybar/config
 			fi			
