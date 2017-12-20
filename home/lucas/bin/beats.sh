@@ -23,4 +23,5 @@ read h m s <<<$(date "+%H %M %S")
 # s=59
 
 beats=$(bc -l <<< "scale=0; ($s + ($m * 60) + (($h) * 3600)) / 86.4")
-echo "@$beats"
+
+echo @$beats
