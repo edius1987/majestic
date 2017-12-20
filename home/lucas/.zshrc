@@ -5,18 +5,25 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename '/home/lucas/.zshrc'
 
-HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=5000
-# Default
-#WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+##############################################################################
+# History Configuration
+##############################################################################
+HISTSIZE=10000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=10000               #Number of history entries to save to disk
+HISTDUP=erase               #Erase duplicates in the history file
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt incappendhistory #Immediately append to the history file, not just when a term is killed
 
-WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
+# Default
+WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+#WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
 #WORDCHARS=$WORDCHARS:s:/:
 #WORDCHARS=${WORDCHARS/\/}
 #WORDCHARS=${WORDCHARS//[\/]}
 
-setopt appendhistory extendedglob notify autocd nohashdirs no_auto_remove_slash
+setopt extendedglob notify autocd nohashdirs no_auto_remove_slash
 
 bindkey -e
 bindkey "^[[1;5C"	forward-word

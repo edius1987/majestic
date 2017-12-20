@@ -32,6 +32,10 @@ try:
             CURRENT = "Céu claro"
         elif CURRENT == "Moderate rain":
             CURRENT = "Chuva moderada"
+        elif CURRENT == "Thunderstorm with heavy rain":
+            CURRENT = "Trovoada com chuva pesada"
+        elif CURRENT == "Light rain":
+            CURRENT = "Chuva leve"
         
     else:
         print("Error: BAD HTTP STATUS CODE " + str(REQ.status_code))
@@ -40,7 +44,7 @@ except (ValueError, IOError):
 
 if ID >= 200 and ID <= 232:
     ICON = ""
-elif ID == 501:
+elif ID == 501 or ID == 500:
     ICON = ""
 elif ID >= 310 and ID <= 531:
     ICON = ""
