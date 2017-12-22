@@ -66,7 +66,7 @@ if [ "$res" ]; then
 			roficonfig=$(echo "Config;Apps;Themes" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$roficonfig" = "Apps" ]; then
-				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 7 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 8 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					i3-msg exec pluma "${HOME}/.config/rofi/scripts/${app}"
 				fi			

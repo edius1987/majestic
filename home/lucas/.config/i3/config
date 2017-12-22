@@ -84,7 +84,8 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master 1+ tog
 bindsym $mod+Mod1+Left exec --no-startup-id mpc prev
 bindsym $mod+Mod1+Right exec --no-startup-id mpc next
 
-bindsym Print exec --no-startup-id ~/bin/screenshot.sh
+#bindsym Print exec --no-startup-id ~/bin/screenshot.sh
+bindsym Print exec --no-startup-id ~/.config/rofi/scripts/screenshot
 bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
 bindsym --release Mod1+Sys_Req exec --no-startup-id ~/bin/screenshot.sh -s
 bindsym $mod+Print exec --no-startup-id ~/bin/screenshot.sh -d
