@@ -82,6 +82,7 @@ width = 100%
 height = 24
 offset-y = 5
 bottom = true
+enable-ipc = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -104,8 +105,8 @@ font-2 = ypn envypn:size=10;0
 font-3 = xos4 Terminus:size=8;-10
 font-4 = Unifont:size=6;0
 
-modules-left = apps anews
-modules-center = weather network temperature rootfs homefs pkg trash
+modules-left = apps multi
+modules-center = network temperature rootfs homefs pkg trash
 modules-right = mpd
 
 ;----------------------------------------------------------
@@ -137,7 +138,7 @@ label-focused-padding = 2
 label-focused-margin = 1
 label-focused-font = 3
 label-focused-foreground = #fff
-label-focused-background = #191b21
+label-focused-background = ${colors.cinza1}
 ;label-focused-overline = #148ebe
 ;label-focused-underline = #148ebe
 
@@ -145,7 +146,7 @@ label-unfocused = %name%
 label-unfocused-padding = 2
 label-unfocused-margin = 1
 ;label-unfocused-background = #eeeeee
-label-unfocused-foreground = ${colors.cinza3}
+label-unfocused-foreground = ${colors.cinza4}
 ;label-unfocused-overline = #c5c5c5
 ;label-unfocused-underline = #c5c5c5
 label-unfocused-font = 3
@@ -193,7 +194,7 @@ label-background = ${colors.azul}
 
 ;format-padding = 2
 
-exec = ~/.config/polybar/btc.sh
+exec = ~/.config/polybar/btc.sh coinbase
 
 ;----------------------------------------------------------
 ;		        V O L U M E
@@ -408,6 +409,27 @@ menu-0-4 = " "
 menu-0-4-font = 5
 menu-0-4-exec = Whatsapp &
 
+menu-0-5 = " "
+menu-0-5-font = 5
+menu-0-5-exec = termite -e screencast.sh &
+
+;----------------------------------------------------------
+;			M U L T I
+;----------------------------------------------------------
+[module/multi]
+type = custom/ipc
+;type = custom/script
+interval = 30
+hook-0 = ~/.config/polybar/anews.py
+hook-1 = ~/.config/polybar/weather.py
+hook-2 = ~/.config/polybar/logs.sh
+initial = 1
+click-left = polybar-msg -p %pid% hook multi 1
+click-right = polybar-msg -p %pid% hook multi 2
+click-middle = polybar-msg -p %pid% hook multi 3
+;format = <label>
+;label = "%output:10:...%"
+
 ;----------------------------------------------------------
 ;			N E W S
 ;----------------------------------------------------------
@@ -415,94 +437,9 @@ menu-0-4-exec = Whatsapp &
 type = custom/script
 interval = 1200
 format = <label>
-label = " %{F#F1F1F1} %{F-}%output%"
+;label = " %{F#F1F1F1} %{F-}%output%"
 exec = ~/.config/polybar/anews.py
 click-left = $BROWSER "https://www.archlinux.org/news/"
-
-;----------------------------------------------------------
-;			M P D
-;----------------------------------------------------------
-[module/mpd]
-type = internal/mpd
-
-host = 127.0.0.1
-port = 6600
-;password = mysecretpassword
-
-; Seconds to sleep between progressbar/song timer sync
-; Default: 1
-interval = 2
-
-; Available tags:
-;   <label-song> (default)
-;   <label-time>
-;   <bar-progress>
-;   <toggle> - gets replaced with <icon-(pause|play)>
-;   <toggle-stop> - gets replaced with <icon-(stop|play)>
-;   <icon-random>
-;   <icon-repeat>
-;   <icon-repeatone>
-;   <icon-consume>
-;   <icon-prev>
-;   <icon-stop>
-;   <icon-play>
-;   <icon-pause>
-;   <icon-next>
-;   <icon-seekb>
-;   <icon-seekf>
-;format-online = <label-song> <label-time> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random> <bar-progress>
-format-online = <label-song> <label-time> <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random>
-;format-playing = ${self.format-online}
-;format-paused = ${self.format-online}
-format-paused = " <toggle>"
-;format-stopped = ${self.format-online}
-format-stopped = " <toggle>"
-
-; Available tags:
-;   <label-offline>
-format-offline = <label-offline>
-
-; Available tokens:
-;   %artist%
-;   %album%
-;   %date%
-;   %title%
-; Default: %artist% - %title%
-label-song = " %artist% - %title%"
-
-; Available tokens:
-;   %elapsed%
-;   %total%
-; Default: %elapsed% / %total%
-label-time = "%elapsed% / %total%"
-
-; Available tokens:
-;   None
-label-offline = 
-
-; Only applies if <icon-X> is used
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-seekb = 
-icon-seekf = 
-icon-random = 🔀
-icon-repeat = 
-icon-repeatone = 🔂
-icon-consume = ✀
-
-; Used to display the state of random/repeat/repeatone
-; Only applies if <icon-[random|repeat|repeatone]> is used
-toggle-on-foreground = #ff
-toggle-off-foreground = #55
-
-; Only applies if <bar-progress> is used
-bar-progress-width = 8
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
 
 ;----------------------------------------------------------
 ;			L A U N C H E R S
@@ -615,9 +552,9 @@ format-prefix = " "
 format-prefix-foreground = ${colors.white}
 label = "%output:0:30%"
 exec = ~/.config/polybar/pkg.sh
-click-left = pamac-updater
-click-middle = pamac-installer
-click-right = pamac-manager
+click-left = pamac-updater &
+click-middle = pamac-installer &
+click-right = pamac-manager &
 
 ;----------------------------------------------------------
 ;		        T R A S H
@@ -631,3 +568,91 @@ format-prefix-foreground = ${colors.white}
 label = "%output:0:30%"
 exec = ~/.config/polybar/trash.sh
 click-left = ~/.config/polybar/trash.sh -x && notify-send "Lixeira" "Lixeira limpa!"
+
+;----------------------------------------------------------
+;			M P D
+;----------------------------------------------------------
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+;password = mysecretpassword
+
+; Seconds to sleep between progressbar/song timer sync
+; Default: 1
+interval = 2
+
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone>
+;   <icon-consume>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+;format-online = <label-song> <label-time> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random> <bar-progress>
+format-online = <label-song> <label-time> <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random>
+;format-playing = ${self.format-online}
+;format-paused = ${self.format-online}
+format-paused = " <toggle>"
+;format-stopped = ${self.format-online}
+format-stopped = " <toggle>"
+
+; Available tags:
+;   <label-offline>
+format-offline = <label-offline>
+
+; Available tokens:
+;   %artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song = " %artist% - %title%"
+
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+label-time = "%elapsed% / %total%"
+
+; Available tokens:
+;   None
+label-offline = 
+
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 🔀
+icon-repeat = 
+icon-repeatone = 🔂
+icon-consume = ✀
+
+; Used to display the state of random/repeat/repeatone
+; Only applies if <icon-[random|repeat|repeatone]> is used
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 8
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+scroll-up = mpc next
+scroll-down = mpc prev

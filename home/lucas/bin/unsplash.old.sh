@@ -2,7 +2,14 @@
 
 dir="/usr/share/backgrounds/"
 
-if [ "$1" == "-unsplash" ]; then
+if [ "$1" == "-d" ]; then
+	if [ -d $dir ]; then
+		arquivo=$(find $dir -type f -name "*.jpg" -o -name "*.png" | shuf -n1)
+	else
+		echo "$dir não existe."
+		exit 1
+	fi
+else
 	which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 	which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
 
@@ -29,13 +36,6 @@ if [ "$1" == "-unsplash" ]; then
 	done
 
 	mv /tmp/$nome $arquivo
-else
-	if [ -d $dir ]; then
-		arquivo=$(find $dir -type f -name "*.jpg" -o -name "*.png" | shuf -n1)
-	else
-		echo "$dir não existe."
-		exit 1
-	fi
 fi
 
 if [ -f $arquivo ]; then

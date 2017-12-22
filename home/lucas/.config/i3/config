@@ -287,7 +287,8 @@ bindsym $mod+r mode "resize"
 
 set $polybar ~/.config/polybar/launch.sh
 
-exec --no-startup-id ~/bin/wallpaper.sh -r
+#exec --no-startup-id ~/bin/wallpaper.sh -r
+exec --no-startup-id ~/bin/unsplash.sh
 exec_always --no-startup-id $polybar
 exec --no-startup-id compton -b
 #exec --no-startup-id conky

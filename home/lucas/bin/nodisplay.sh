@@ -58,27 +58,25 @@ if [ "$1" ]; then
 		nodisp "${homedir}/$(basename $1)"
 	fi
 
-elif [ "$1" = '-a' ]; then
+elif [ "$1" = "-a" ]; then
 	for app in ${apps[@]}; do
-		if [ -f $app ]; then
-			echo "Procurando o regex ${app}..."
-	    	for element in "${todos[@]}"; do
-	        	if [[ $element = *$app* ]]; then
-	            	echo $element
-	            	nome=$(basename $element)
-					echo "O $nome coincide com ${app}..."
+		echo "Procurando o regex ${app}..."
+    	for element in "${todos[@]}"; do
+        	if [[ $element = *$app* ]]; then
+            	echo $element
+            	nome=$(basename $element)
+				echo "O $nome coincide com ${app}..."
 
-	    			if [ ! -f "${homedir}/${nome}" ]; then
-	    		   		echo "$nome não existe em ${homedir}"
-	    		   		if [ -f "${sysdir}/${nome}" ]; then
-	    		       		echo "$nome existe em ${sysdir}, copiando para ${homedir}/${nome}"
-	    		       		cp "${sysdir}/${nome}" "${homedir}/"
-	    		   		fi
-	    			fi
-					[ -f "${homedir}/${nome}" ] && nodisp "${homedir}/${nome}"
-	        	fi
-	    	done
-    	fi
+    			if [ ! -f "${homedir}/${nome}" ]; then
+    		   		echo "$nome não existe em ${homedir}"
+    		   		if [ -f "${sysdir}/${nome}" ]; then
+    		       		echo "$nome existe em ${sysdir}, copiando para ${homedir}/${nome}"
+    		       		cp "${sysdir}/${nome}" "${homedir}/"
+    		   		fi
+    			fi
+				[ -f "${homedir}/${nome}" ] && nodisp "${homedir}/${nome}"
+        	fi
+    	done
 	done
 else
 	uso
