@@ -5,7 +5,8 @@ Sinta-se livre para usar, alterar, divulgar e comentar.
 
 ## Índice
 
-* [i3-gaps](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3)
+* [i3 gaps](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3)
+* [polybar](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/polybar)
 * [i3blocks](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3blocks)
 * [rofi](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/rofi)
 * [dunst](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/dunst)
