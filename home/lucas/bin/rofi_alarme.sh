@@ -8,7 +8,7 @@
 # Última Atualização: 28/12/17 00:52:16
 # Evaluate: ! date +"%d/%m/%y %H:%M:%S"
 
-dependencias=("rofi" "notify-send" "paplay")
+dependencias=("curl" "rofi" "notify-send" "mpg123")
 
 for dep in ${dependencias[@]} 
 do
@@ -22,35 +22,36 @@ do
 	fi
 done
 
-data=$(date +%Y-%m-%d_%H-%M-%S)
-nome="ss-${data}"
-extensao=".png"
-atraso=10
+audio="${HOME}/.alarme.mp3"
+audio_web="https://github.com/sistematico/majestic/raw/master/home/lucas/audio/alarme.mp3"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
-tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
-tipo="image/png"
+tema="${HOME}/.local/share/rofi/themes/sistematico-dark.rasi"
 
-if [ ! -d $dir ]; then
-	mkdir -p $dir
+if [ ! -f $audio ]; then
+	curl -L -s $audio_web > $audio
 fi
 
-hora=$(rofi -theme "$tema" -dmenu -p "Formato: HH:MM (c para cancelar!):" -bw 0 -lines 0 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
-date "+%H:%M" -d "$hora" > /dev/null 2>&1
+if [ ! -f $tema ]; then
+	curl -L -s $tema_web > $tema
+fi
+
+hora=$(rofi -theme "$tema" -dmenu -p "Formato: HH:MM (c para cancelar!):" -bw 0 -lines 2 -separator-style none -location 0 -width 300 -hide-scrollbar -padding 5)
 
 if [ $hora ]; then
-	if [ "$hora" == [cC] ]; then
+	if [ "$hora" = "c" ]; then
 		killall -9 $(basename $0)
-		msg="Alarme Cancelado!"
+		msg="Alarme Cancelado! $(basename $0)"
 	else
+		date "+%H:%M" -d "$hora" > /dev/null 2>&1
 		if [ $? != 0 ]; then
-			msg="Hora inválida!\n\nFormato: (HH:MM)"
+			msg="Hora inválida!\n\nVocê digitou: $hora \n\nFormato: (HH:MM)"
 		else
 			notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n\n$(date --date=${hora})"
 			sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
 			notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
 			while true; do
-	  			/usr/bin/mpg123 ~/alarm.mp3
-	  			sleep 60
+	  			/usr/bin/mpg123 $audio
+	  			sleep 3
 			done
 			
 			msg="Alarme ajustado para:\n\n${hora}"
