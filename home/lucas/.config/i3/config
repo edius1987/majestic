@@ -210,6 +210,8 @@ for_window [title="i3 Wallpaper"] floating enable, move position center
 for_window [title="About*"] floating enable, move position center
 for_window [title="Sobre o Mozilla Firefox"] floating enable, move position center
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
+for_window [title="Amigos|Steam"] floating enable, move absolute position 1620 px 0 px, resize set 300 px 680 px
+for_window [title="^screencast.sh"] move window to scratchpad
 
 assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $workspace1
 assign [class="(Termite|Tilix)"] $workspace2

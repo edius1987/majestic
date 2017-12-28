@@ -167,6 +167,7 @@ label-visible-font = 3
 ;----------------------------------------------------------
 [module/window]
 type = custom/script
+interval = 0.1
 format-prefix = " "
 format-prefix-foreground = ${colors.white}
 ;label = %output:0:40:...%  %{B- -o -u}

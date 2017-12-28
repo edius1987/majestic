@@ -28,5 +28,8 @@ else
     #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -threads 0 -probesize 10M $arquivo
     #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
     #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
-    ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
+    #ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
+    #ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
+    ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v h264_nvenc -qp 0 -c:a aac -b:a 128k $arquivo -probesize 50M
+	#ffmpeg -f alsa -i pulse -f x11grab -r 25 -s $resolucao -i :0 -c:a aac -c:v libx264 -threads 0 $arquivo -probesize 50M
 fi

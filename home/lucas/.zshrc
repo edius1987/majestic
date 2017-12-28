@@ -19,7 +19,7 @@ setopt incappendhistory #Immediately append to the history file, not just when a
 # Default
 WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 #WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
-#WORDCHARS=$WORDCHARS:s:/:
+WORDCHARS=$WORDCHARS:s:/:
 #WORDCHARS=${WORDCHARS/\/}
 #WORDCHARS=${WORDCHARS//[\/]}
 
@@ -38,7 +38,9 @@ bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal
 
 backward-kill-dir () {
-    local WORDCHARS=${WORDCHARS/\/}
+    #local WORDCHARS=${WORDCHARS/\/}
+	local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+	WORDCHARS=$WORDCHARS:s:/:
     zle backward-kill-word
 }
 zle -N backward-kill-dir

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+app=$(ps axco command --sort=start_time | egrep -m1 -oE "firefox|chrome|chromium")
+
+$app "$@"
+
+

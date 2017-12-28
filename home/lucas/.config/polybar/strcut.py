@@ -6,7 +6,7 @@
 # https://github.com/8carlosf/dotfiles/blob/master/bin/strcut.py
 
 # Número máximo de caracteres
-max = 40
+max = 90
 
 while True:
 	try:
