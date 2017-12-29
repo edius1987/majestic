@@ -215,7 +215,7 @@ label-background = ${colors.azul2}
 
 ;format-padding = 2
 
-exec = ~/.config/polybar/scripts/btc.sh coinbase
+exec = ~/.config/polybar/scripts/btc.sh
 
 ;----------------------------------------------------------
 ;		        V O L U M E

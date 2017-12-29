@@ -1,0 +1,13 @@
+[Unit]
+Description=Lock the screen automatically after a timeout
+Before=sleep.target
+
+[Service]
+Type=forking
+Environment=DISPLAY=:0
+Restart=always
+RestartSec=3sec
+ExecStart=/usr/bin/xautolock -locknow
+
+[Install]
+WantedBy=sleep.target

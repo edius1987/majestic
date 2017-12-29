@@ -9,7 +9,6 @@ Restart=always
 RestartSec=1min
 StandardOutput=null
 StandardError=null
-#ExecStart=/usr/bin/ngrok --log /opt/ngrok/ngrok.log --config /opt/ngrok/ngrok.conf start %i
 ExecStart=/usr/bin/ngrok --log %h/.local/share/ngrok/ngrok.log --config %h/.config/ngrok/ngrok.conf start %i
 ExecStop=/usr/bin/killall ngrok
 

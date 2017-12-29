@@ -1,0 +1,2 @@
+#!/bin/bash
+xautolock -detectsleep -time 1 -locker "${HOME}/.local/bin/lockscreen off" -nowlocker "${HOME}/.local/bin/lockscreen"
