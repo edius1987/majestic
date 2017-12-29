@@ -7,16 +7,17 @@
 # Changes made by Lucas Saliés Brum, aka sistematico, <lucas@archlinux.com.br>
  
 function uso {
-        echo "Uso : ffsplit.sh arquivo.mp4 duração"
-        echo -e "\t - arquivo pode ser qualquer tipo de arquivo reconhecido pelo ffmpeg"
-        echo -e "\t - a duração deve ser em segundos"
+    echo "Uso : ffsplit.sh arquivo.mp4 [offset] [duração]"
+    echo -e "\t - arquivo pode ser qualquer tipo de arquivo reconhecido pelo ffmpeg"
+    echo -e "\t - a duração deve ser em segundos"
+    echo -e "\t - o parâmetro offset é opcional"
 }
  
 ENTRADA="$1"
 #typeset -i TAMANHO
 TAMANHO="$2"
  
-HORAMS=$(ffprobe "$ENTRADA" -sexagesimal -show_format 2>&1 | sed -n 's/DURACAO=//p')
+HORAMS=$(ffprobe "$ENTRADA" -sexagesimal -show_format 2>&1 | sed -n 's/duration=//p')
 HORA=$(echo "$HORAMS" | cut -d ':' -f 1 | sed 's/^0*//')
 MINUTO=$(echo "$HORAMS" | cut -d ':' -f 2 | sed 's/^0*//')
 SEGUNDO=$(echo "$HORAMS" | cut -d ':' -f 3 | cut -d '.' -f 1 | sed 's/^0*//')
@@ -45,6 +46,7 @@ echo "Usando o formato: $NOVO_FORMAT"
  
 N='1'
 OFFSET='0'
+
 let 'N_FILES = DURACAO / TAMANHO + 1'
  
 while [ "$OFFSET" -lt "$DURACAO" ] ; do
