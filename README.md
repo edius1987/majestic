@@ -5,6 +5,8 @@ Sinta-se livre para usar, alterar, divulgar e comentar.
 
 ## Índice
 
+* [bspwm](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/bspwm)
+* [sxhkdrc](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/sxhkd/sxhkdrc)
 * [i3 gaps](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3)
 * [polybar](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/polybar)
 * [i3blocks](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3blocks)
