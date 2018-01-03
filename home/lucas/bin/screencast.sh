@@ -8,7 +8,7 @@
 # Última Atualização: 10/06/2017 09:36:56
 #
 
-preset="superfast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
+preset="veryfast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 caminho="${HOME}/video/screencast"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
@@ -29,7 +29,7 @@ else
     #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
     #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
     #ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
-    #ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
-    ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v h264_nvenc -qp 0 -c:a aac -b:a 128k $arquivo -probesize 50M
+    ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
+    #ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v h264_nvenc -qp 0 -c:a aac -b:a 128k $arquivo -probesize 50M
 	#ffmpeg -f alsa -i pulse -f x11grab -r 25 -s $resolucao -i :0 -c:a aac -c:v libx264 -threads 0 $arquivo -probesize 50M
 fi

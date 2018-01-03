@@ -9,8 +9,8 @@
 # Última alteração: 05/08/2017 01:07:53
 
 DIR="${HOME}/.local/share/backgrounds"
-#WALL="${DIR}/half-life3.jpg"
-WALL="/usr/share/backgrounds/default"
+WALL="${DIR}/default.jpg"
+#WALL="/usr/share/backgrounds/default"
 
 if [ ! -f $WALL ]; then
 	if [ ! -d $DIR ]; then
@@ -52,12 +52,12 @@ fi
 
 if [ -f "$WALLPAPER" ]; then
 	echo $WALLPAPER > ${HOME}/.wall
-fi
 
-if [ "$DESKTOP_SESSION" = "mate" ]; then
-	gsettings set org.mate.background picture-filename "$WALLPAPER"
-else
-	feh --bg-fill "$WALLPAPER"
+	if [ "$DESKTOP_SESSION" = "mate" ]; then
+		gsettings set org.mate.background picture-filename "$WALLPAPER"
+	else
+		feh --bg-fill "$WALLPAPER"
+	fi
 fi
 
 exit 0

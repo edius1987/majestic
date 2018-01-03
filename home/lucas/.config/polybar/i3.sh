@@ -10,7 +10,7 @@ while pgrep -u $UID -x polybar >/dev/null; do
 done
 
 # Launch bar1 and bar2
-polybar -c ~/.config/polybar/config bottom -q &
-polybar -c ~/.config/polybar/config top -q &
+polybar -c ~/.config/polybar/i3 bottom -q &
+polybar -c ~/.config/polybar/i3 top -q &
 
 

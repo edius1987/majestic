@@ -1,13 +1,3 @@
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# title      Nord Termite                                    +
-# project    nord-termite                                    +
-# version    0.2.0                                           +
-# repository https://github.com/arcticicestudio/nord-termite +
-# author     Arctic Ice Studio                               +
-# email      development@arcticicestudio.com                 +
-# copyright  Copyright (C) 2016                              +
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 [options]
 font = Source Code Pro 10
 use_xft = true
@@ -46,29 +36,46 @@ cursor_shape = block
 #size_hints = false
 
 [colors]
-foreground = #D8DEE9
-background = #2E3440
-foreground_bold = #D8DEE9
-cursor = #D8DEE9
-cursor_foreground = #2E3440
-highlight = #4C566A
 
-color0  = #3B4252
-color1  = #BF616A
-color2  = #A3BE8C
-color3  = #EBCB8B
-color4  = #81A1C1
-color5  = #B48EAD
-color6  = #88C0D0
-color7  = #E5E9F0
-color8  = #4C566A
-color9  = #BF616A
-color10 = #A3BE8C
-color11 = #EBCB8B
-color12 = #81A1C1
-color13 = #B48EAD
-color14 = #8FBCBB
-color15 = #ECEFF4
+# special
+foreground			= #ffffff
+foreground_bold		= #ffffff
+cursor				= #ffffff
+background 			= rgba(46, 52, 64, 0.9)
+cursor_foreground 	= #2E3440
+highlight 			= #4C566A
+
+# black
+color0  = #3b4252
+color8  = #4c566a
+
+# red
+color1  = #bf616a
+color9  = #bf616a
+
+# green
+color2  = #a3be8c
+color10 = #a3be8c
+
+# yellow
+color3  = #ebcb8b
+color11 = #ebcb8b
+
+# blue
+color4  = #81a1c1
+color12 = #81a1c1
+
+# magenta
+color5  = #b48ead
+color13 = #b48ead
+
+# cyan
+color6  = #88c0d0
+color14 = #d08770
+
+# white
+color7  = #e5e9f0
+color15 = #eceff4
 
 [hints]
 font = Monospace 12

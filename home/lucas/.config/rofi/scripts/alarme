@@ -10,7 +10,7 @@
 
 dependencias=("curl" "rofi" "notify-send" "mpg123")
 
-for dep in ${dependencias[@]} 
+for dep in ${dependencias[@]}
 do
 	which $dep 1> /dev/null 2> /dev/null
 	if [ $? != 0 ]; then
@@ -35,7 +35,8 @@ if [ ! -f $tema ]; then
 	curl -L -s $tema_web > $tema
 fi
 
-hora=$(rofi -theme "$tema" -dmenu -p "Formato: HH:MM (c para cancelar!):" -bw 0 -lines 2 -separator-style none -location 0 -width 300 -hide-scrollbar -padding 5)
+#rofi -dmenu -input /dev/null -prompt "Enter Text > "
+hora=$(rofi -theme "$tema" -dmenu -input /dev/null -p "HH:MM (c para cancelar!)" -bw 0 -lines 0 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 
 if [ $hora ]; then
 	if [ "$hora" = "c" ]; then
@@ -46,15 +47,20 @@ if [ $hora ]; then
 		if [ $? != 0 ]; then
 			msg="Hora inválida!\n\nVocê digitou: $hora \n\nFormato: (HH:MM)"
 		else
-			notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n\n$(date --date=${hora})"
-			sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
-			notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
-			while true; do
-	  			/usr/bin/mpg123 $audio
-	  			sleep 3
-			done
+			h=$(( $(date --date=${hora} +%s) - $(date +%s) ))
+			if [ $h -gt 1 ]; then
+				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n\n$(date --date=${hora})"
+				sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
+				notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
+				while true; do
+	  				/usr/bin/mpg123 $audio
+	  				sleep 3
+				done
 			
-			msg="Alarme ajustado para:\n\n${hora}"
+				msg="Alarme ajustado para:\n\n${hora}"				
+			else
+				msg="A hora tem que ser positiva!\n\nVocê digitou: $hora \n\nFormato: (HH:MM)"
+			fi
 		fi
 	fi
 

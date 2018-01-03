@@ -288,7 +288,7 @@ bindsym $mod+r mode "resize"
 #    }
 #}
 
-set $polybar ~/.config/polybar/launch.sh
+set $polybar ~/.config/polybar/i3.sh
 
 exec_always --no-startup-id $polybar
 exec --no-startup-id ~/bin/unsplash.sh
