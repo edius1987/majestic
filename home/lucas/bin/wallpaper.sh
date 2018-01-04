@@ -17,6 +17,7 @@ if [ ! -f $WALL ]; then
 		mkdir -p $DIR
 	fi
 	curl "https://i.imgur.com/zJAji6U.jpg" > $WALL
+	#~/.local/share/backgrounds/carmine-de-fazio-31543.jpg
 fi
 
 if [ "$1" ]; then

@@ -42,7 +42,7 @@ if [ "$res" ]; then
             elif [ "$polyconfig" = "Launcher" ]; then
                 $editor ~/.config/polybar/bspwm.sh
 			elif [ $polyconfig ]; then
-				$editor ~/.config/polybar/bspwm
+				$editor ~/.config/polybar/config
 			fi
 		;;
 		'lxappearance') i3-msg exec lxappearance ;;
@@ -76,7 +76,7 @@ if [ "$res" ]; then
 		    $editor "${HOME}/.config/ncmpcpp/config"
 		;;
 		'home')
-			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin;.bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 10 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin;.bin;.hyper.js" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
 
 			if [ "$homefiles" = "bin" ]; then
 				binfiles=$(ls "${HOME}/bin/" | rofi -theme "$tema" -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	

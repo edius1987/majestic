@@ -21,7 +21,7 @@ fi
 
 export TERMINAL=termite
 export EDITOR=nano
-export BROWSER=firefox
+export BROWSER=brsr
 
 #eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
@@ -38,9 +38,13 @@ export GNOME_KEYRING_PID
 
 eval $(dbus-launch --sh-syntax)
 
-session=${1:-i3}
+session=${1:-bspwm}
 
 case $session in
+	bspwm)
+		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+		exec bspwm
+	;;
 	i3|i3wm)
 		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec i3

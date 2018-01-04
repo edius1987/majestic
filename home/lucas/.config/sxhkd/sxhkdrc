@@ -4,12 +4,6 @@ super + Return
 
 Print
 	~/.config/rofi/scripts/screenshot
-#	~/bin/screenshot.sh
-
-ctrl + Print ~/bin/screenshot.sh -w
-#bindsym --release Mod1+Sys_Req exec --no-startup-id ~/bin/screenshot.sh -s
-#bindsym $mod+Print exec --no-startup-id ~/bin/screenshot.sh -d
-#bindsym $mod+Shift+Print exec --no-startup-id ~/bin/screenshot.sh -g	
 
 super + @space
 	~/.config/rofi/scripts/run
@@ -22,6 +16,9 @@ super + ctrl + c
 
 super + shift + e
     ~/.config/rofi/scripts/power.bspwm
+
+super + shift + x
+    i3lock-fancy -f "Iosevka-Thin" -t "" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
 
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -63,10 +60,9 @@ super + ctrl + {x,y,z}
 
 ######### focus/swap #########
 #alt + {_,shift +} Tab
-	#bspc node -f {next,prev} # global
-
-alt + {_,shift +} Tab
-    bspc node -f {next,prev}.local
+#bspc node -f {next,prev} # global
+#alt + {_,shift +} Tab
+#bspc node -f {next,prev}.local
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -87,6 +83,9 @@ super + {_,shift + }c
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
+alt + {_,shift +} Tab
+	bspc desktop -f {next,prev}.local
+
 # focus the last node/desktop
 #super + {grave,Tab}
 super + {grave}
@@ -105,6 +104,10 @@ super + {_,shift + }{1-9,0}
 # Rotate the tree that the current window belongs to
 super + {_,shift + }r
 	bspc node @parent -R {90,270}	
+
+# reload polybar
+super + ctrl + r
+	killall polybar ; ~/.config/polybar/bspwm.sh
 
 ######### preselect #########
 # preselect the direction
@@ -138,32 +141,3 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-######### scratchpad #########
-super + w
-    id=$(bspc query -N -n "focused");\
-    if [ -n "$id" ];then \
-        xprop -id $id -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
-        bspc node -t "floating";\
-        xdotool windowunmap $id;\
-    fi
-
-super + shift + w
-    i=$(bspc query -N -n "focused.floating");\
-    if [ -n "$i" ];then \
-        xprop -id $i -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
-        xdotool windowunmap $i;\
-    else;\
-        i=$(for w in $(xwininfo -root -children | grep -e "^\s*0x[0-9a-f]\+" -o);do \
-            t=$(xprop -id $w _SCRATCH | grep ' = \(.*\)');\
-            if [ -n "$t" ];then \
-                echo $t $w;\
-            fi;\
-        done|sort -n|head -n1|cut -d" " -f 5);\
-        if [ -n "$i" ];then \
-            xprop -id $i -remove _SCRATCH;\
-            bspc rule -a \* state=floating center=on --one-shot;\
-            xdotool windowmap $i;\
-            bspc node -f $i;\
-        fi;\
-    fi
