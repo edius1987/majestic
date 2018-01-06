@@ -26,7 +26,7 @@ if [ "$res" ]; then
 			polyconfig=$(echo "Config;Temas;Apps;Launcher" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$polyconfig" = "Apps" ]; then
-				app=$( ls ${HOME}/.config/polybar/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				app=$( ls ${HOME}/.config/polybar/scripts/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					$editor "${app}"
 				fi

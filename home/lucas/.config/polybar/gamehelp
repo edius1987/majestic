@@ -1,4 +1,5 @@
 [bar/top]
+monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
 height = 35 
 offset-x = 0
@@ -23,7 +24,7 @@ font-1 = FontAwesome:size=10;2
 
 modules-left = bspwm xwindow
 modules-center = 
-modules-right = firefox thunar hyper date volume powermenu
+modules-right = firefox thunar hyper telegram whatsapp date volume powermenu
 
 ;tray-position = right
 ;tray-padding = 2
@@ -105,54 +106,6 @@ type = custom/text
 content = 	 
 content-foreground = #00000000
 content-background = #55000000
-
-[module/battery]
-type = internal/battery
-
-full-at = 99
-
-battery = BAT0
-adapter = AC0
-
-poll-interval = 5
-
-format-charging = <animation-charging>  <label-charging>
-format-discharging = <ramp-capacity>  <label-discharging>
-format-full = <ramp-capacity>  <label-full>
-label-charging = %percentage%
-label-discharging = %percentage%
-label-full = %percentage%
-format-charging-padding = 3
-format-discharging-padding = 3
-format-full-padding = 3
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-framerate = 750
-
-[module/backlight]
-type = internal/backlight
-
-card = intel_backlight
-enable-scroll = true
-
-format = <ramp> <label>
-label = %percentage%
-
-ramp-0 = 🌕
-ramp-1 = 🌔
-ramp-2 = 🌓
-ramp-3 = 🌒
-ramp-4 = 🌑
 
 [module/volume]
 type = internal/volume
@@ -264,4 +217,37 @@ click-left = thunar &
 type = custom/text
 content = 
 content-padding = 2
-click-left = hyper &
+click-left = termite &
+
+[module/telegram]
+type = custom/text
+content = 
+content-padding = 2
+click-left = telegram &
+
+[module/whatsapp]
+type = custom/text
+content = 
+content-padding = 2
+click-left = Whatsapp &
+
+[module/bitcoin]
+type = custom/script
+format = <label>   
+label =  %output%
+interval = 5
+exec = ~/.config/polybar/scripts/crypto.py bitcoin
+
+[module/bitcoincash]
+type = custom/script
+format = <label>  
+label =  %output%
+interval = 10
+exec = ~/.config/polybar/scripts/crypto.py bitcoin-cash
+
+[module/ethereum]
+type = custom/script
+format = <label>
+label =  %output%
+interval = 63
+exec = ~/.config/polybar/scripts/crypto.py ethereum

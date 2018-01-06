@@ -30,10 +30,12 @@ super + alt + Escape
 
 # close and kill
 #super + {_,shift + }w
-#	bspc node -{c,k}
+super + w
+	bspc node -k
 
 super + q
-	bspc node -{c,k}	
+	bspc node -c	
+	#bspc node -{c,k}	
 
 # alternate between the tiled and monocle layout
 super + m
@@ -141,3 +143,9 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + minus
+    bspc node focused -g hidden=on
+
+super + shift + minus
+    bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off

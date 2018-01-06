@@ -1,28 +1,29 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-import configparser
-import sys
+import json
 import requests
-from decimal import Decimal
+import os
 
-config = configparser.ConfigParser()
+PRICE_CHANGE_PERIOD = '1h'
+PRICE_CHANGE_URGENT_PERCENT = 10
+API_URL = 'https://api.coinmarketcap.com/v1/ticker/{}/'
 
-# Everything except the general section
-currencies = [x for x in config.sections() if x != 'general']
-base_currency = config['general']['base_currency']
-params = {'convert': base_currency}
+coin = os.environ.get('1', 'bitcoin')
+r = requests.get(API_URL.format(coin))
+data = json.loads(r.text)[0]
+price = float(data['price_usd'])
+end = '%{F-}'
 
+if price > 100: precision = 0
+elif price > 0.1: precision = 2
+else: precision = 6
 
-for currency in currencies:
-	json = requests.get(f'https://api.coinmarketcap.com/v1/ticker/{currency}',
-					 	params=params).json()[0]
-	local_price = round(Decimal(json[f'price_{base_currency.lower()}']), 2)
-	change_24 = float(json['percent_change_24h'])
+percentChange = float(data['percent_change_' + PRICE_CHANGE_PERIOD])
+percentChangeFormat = '{}{}{:.2f}%{}'
 
-	display_opt = config['general']['display']
-	if display_opt == 'both' or display_opt == None:
-		sys.stdout.write(f'{local_price}/{change_24:+}%  ')
-	elif display_opt == 'percentage':
-		sys.stdout.write(f'{change_24:+}%')
-	elif display_opt == 'price':
-		sys.stdout.write(f'{local_price}')
+if percentChange > 0: percentChangeInfo = percentChangeFormat.format('%{F#9FE697}', '', percentChange, end)
+elif percentChange == 0: percentChangeInfo = percentChangeFormat.format('%{F#CCCCCC}', '', percentChange, end)
+else: percentChangeInfo = percentChangeFormat.format('#F7555E', '', percentChange, end)
+
+print(('{:.' + str(precision) + 'f} {}').format(price, percentChangeInfo))
