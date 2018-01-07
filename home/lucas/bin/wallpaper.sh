@@ -9,14 +9,13 @@
 # Última alteração: 05/08/2017 01:07:53
 
 DIR="${HOME}/.local/share/backgrounds"
-WALL="${DIR}/default.jpg"
+WALL="${DIR}/carmine-de-fazio-31543.jpg"
 
 if [ ! -f $WALL ]; then
 	if [ ! -d $DIR ]; then
 		mkdir -p $DIR
 	fi
-	curl "https://i.imgur.com/zJAji6U.jpg" > $WALL
-	#~/.local/share/backgrounds/carmine-de-fazio-31543.jpg
+	curl "https://i.imgur.com/crTC1QR.jpg" > $WALL
 fi
 
 if [ "$1" ]; then

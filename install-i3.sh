@@ -128,12 +128,17 @@ else
 	mkdir -p ${HOME}/.config/rofi/scripts
 fi
 
+[ ! -d ${HOME}/.local/share/rofi/themes/ ] && mkdir -p ${HOME}/.local/share/rofi/themes/
+
 curl -s -o ${HOME}/.config/rofi/config.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/config.rasi'
-curl -s -o ${HOME}/.config/rofi/scripts/apps 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/apps'
-curl -s -o ${HOME}/.config/rofi/scripts/configs 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/configs'
-curl -s -o ${HOME}/.config/rofi/scripts/power 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/power'
-curl -s -o ${HOME}/.config/rofi/scripts/run 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/run'
-curl -s -o ${HOME}/.config/rofi/scripts/screenshot 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/screenshot'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-lateral.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-lateral.rasi'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-dark.rasi'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico.rasi'
+
+rscripts=("alarme" "apps" "configs" "configs.bspwm" "drun" "fap" "git" "janelas" "power" "power.bspwm" "run" "screenshot")
+for rscript in ${rscripts[@]}; do
+	curl -s -o ${HOME}/.config/rofi/scripts/${rscript} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/${rscript}"
+done
 
 # fontawesome
 fc-list | grep -i FontAwesome 1> /dev/null 2> /dev/null
@@ -147,6 +152,18 @@ if [ $? -ne 0 ]; then
 	cp /tmp/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf ${HOME}/.fonts/fontawesome.ttf
 	fc-cache -v -f
 fi
+
+# Wallpaper
+DIR="${HOME}/.local/share/backgrounds"
+WALL="${DIR}/carmine-de-fazio-31543.jpg"
+
+if [ ! -f $WALL ]; then
+	if [ ! -d $DIR ]; then
+		mkdir -p $DIR
+	fi
+fi
+
+curl -s "https://i.imgur.com/crTC1QR.jpg" > $WALL
 
 echo "Tudo pronto!"
 

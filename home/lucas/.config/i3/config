@@ -261,7 +261,8 @@ bindsym $mod+r mode "resize"
 set $polybar ~/.config/polybar/i3.sh
 
 exec_always --no-startup-id $polybar
-exec --no-startup-id ~/bin/wallpaper.sh -d
+#exec --no-startup-id ~/bin/wallpaper.sh -d
+exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/carmine-de-fazio-31543.jpg
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id clipit

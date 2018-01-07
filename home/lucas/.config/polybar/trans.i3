@@ -184,7 +184,7 @@ format = <label>
 label = " %output%"
 exec = ~/.config/polybar/scripts/gmail/launch.py
 tail = true
-click-left = $BROWSER https://mail.google.com
+click-left = $BROWSER https://mail.google.com &
 
 ;----------------------------------------------------------
 ;		        C R Y P T O

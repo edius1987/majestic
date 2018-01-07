@@ -1,7 +1,20 @@
 #!/bin/sh
 
-app=$(ps axco command --sort=start_time | egrep -m1 -oE "firefox|chrome|chromium")
+#app=$(ps axco command --sort=start_time | egrep -m1 -oE "firefox|chrome|chromium")
+#app=$(ps axco command --sort=start_time | egrep -m1 "^firefox|^google-chrome|^chromium$")
+app=$(ps axo command --sort=start_time | egrep -m1 "^firefox|^google-chrome|^chromium$")
 
-$app "$@"
+if [ -z $app ]; then
+	if [ ! -z $BROWSER ] && [ $BROWSER != "brsr" ]; then
+		app=$BROWSER
+	else
+		app=$(ls -1 /usr/bin/ | egrep -m1 "^firefox|^google-chrome-stable$|^chromium$")
+	fi
+fi
 
-
+if [ -z $app ]; then
+	echo "Nenhum browser encontrado!"
+else
+	echo "O broser detectado foi: $app"
+#	$app "$@"
+fi
