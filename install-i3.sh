@@ -4,7 +4,7 @@
 
 app_ok=1
 
-apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "ttf-fira-sans")
+apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "json")
 
 for app in ${apps[@]}; do
 	pacman -Q $app 1> /dev/null 2> /dev/null
@@ -58,17 +58,18 @@ if [ $i3blocks == true ]; then
 	done
 else
 	# PolyBar
-if [ -d ${HOME}/.config/i3blocks ]; then
-		if [ -f ${HOME}/.config/i3blocks/config ]; then
-			mv ${HOME}/.config/i3blocks/config ${HOME}/.config/i3blocks/config-${backup_date}.bkp
+	if [ -d ${HOME}/.config/polybar ]; then
+		if [ -f ${HOME}/.config/polybar/config ]; then
+			mv ${HOME}/.config/polybar/config ${HOME}/.config/polybar/config-${backup_date}.bkp
 		fi
 	else
-		mkdir -p ${HOME}/.config/i3blocks
+		mkdir -p ${HOME}/.config/polybar
 	fi
 
-	echo "Instalando as configs do i3blocks..."
-	curl -s -o ${HOME}/.config/i3blocks/config 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.airblader'
-	curl -s -o ${HOME}/.config/i3blocks/cores.conf 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/cores.conf'
+	echo "Instalando as configs da polybar..."
+	curl -s -o ${HOME}/.config/polybar/i3.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/i3.sh'
+    curl -s -o ${HOME}/.config/polybar/trans.i3 "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans.i3"
+    ln -s ${HOME}/.config/polybar/trans.i3 ${HOME}/.config/polybar/i3
 
 	# polybar scripts
 	if [ -d ${HOME}/.config/polybar/scripts ]; then
@@ -90,11 +91,7 @@ if [ -d ${HOME}/.config/i3blocks ]; then
 
 	for gm in ${gmail[@]}; do
 		curl -s -o ${HOME}/.config/polybar/scripts/gmail/${gm} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/scripts/gmail/${gm}"
-	done	
-
-	curl -s -o ${HOME}/.config/polybar/trans.i3 "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans.i3"
-	curl -s -o ${HOME}/.config/polybar/i3.sh "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/i3.sh"
-	ln -s ${HOME}/.config/polybar/trans.i3 ${HOME}/.config/polybar/i3
+	done
 fi
 
 # dunst

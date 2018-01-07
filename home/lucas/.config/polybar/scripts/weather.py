@@ -4,20 +4,41 @@
 import requests
 import datetime
 
-CITY = "3467747"
-API_KEY = "3dedab9a1e2b6e1cb120ae2f421b477d"
+# Comente
+from weathercfg import *
+
+# Descomente e preencha
+#CITY = "3467747"
+#API_KEY = "SUA_API_KEY"
 UNITS = "Metric"
 UNIT_KEY = "C"
 
+# {
+# "coord":{"lon":-54.65,"lat":-20.44},
+# "weather":[{"id":211,"main":"Thunderstorm","description":"thunderstorm","icon":"11d"},{"id":521,"main":"Rain","description":"shower rain","icon":"09d"}],
+# "base":"stations","main":{"temp":23,"pressure":1013,"humidity":88,"temp_min":23,"temp_max":23},
+# "visibility":10000,
+# "wind":{"speed":3.6,"deg":270},"clouds":{"all":75},"dt":1515344400,"sys":{"type":1,"id":4473,"message":0.002,"country":"BR","sunrise":1515315967,"sunset":1515363852},"id":3467747,"name":"Campo Grande","cod":200}
 REQ = requests.get("http://api.openweathermap.org/data/2.5/weather?id={}&appid={}&units={}".format(CITY, API_KEY, UNITS))
 try:
     # HTTP CODE = OK
     if REQ.status_code == 200:
         CURRENT = REQ.json()["weather"][0]["description"].capitalize()
+        VELOCIDADE = REQ.json()["wind"]["speed"]
+        DIRECAO = REQ.json()["wind"]["deg"]
         ID = int(float(REQ.json()["weather"][0]["id"]))
         TEMP = int(float(REQ.json()["main"]["temp"]))
         HOUR = datetime.datetime.now().hour
-        
+
+        if DIRECAO > 270 and DIRECAO <= 45:
+            DIRECAO = "norte"
+        elif DIRECAO > 45 and DIRECAO <= 135:
+            DIRECAO = "norte"
+        elif DIRECAO > 135 and DIRECAO <= 225:
+            DIRECAO = "sul"
+        elif DIRECAO > 225 and DIRECAO <= 270:
+            DIRECAO = "oeste"
+
         if CURRENT == "Scattered clouds":
             CURRENT = "Nuvens dispersas"
         elif CURRENT == "Thunderstorm":
@@ -68,7 +89,7 @@ try:
             else:
                 ICON = ""
         #print("%%{F#555}%s %%{F-}%i °%s" % (ICON, TEMP, UNIT_KEY)) # Icon without description
-        print("%%{F#FFF}%s %%{F-}%s, %i°%s" % (ICON, CURRENT, TEMP, UNIT_KEY)) # Icon with description            
+        print("%%{F#FFF}%s %%{F-}%s, %i°%s %skm/h %s " % (ICON, CURRENT, TEMP, UNIT_KEY, VELOCIDADE, DIRECAO)) # Icon with description            
         
     else:
         print("Error: BAD HTTP STATUS CODE " + str(REQ.status_code))
