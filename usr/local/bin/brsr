@@ -12,9 +12,6 @@ if [ -z $app ]; then
 	fi
 fi
 
-if [ -z $app ]; then
-	echo "Nenhum browser encontrado!"
-else
-	echo "O broser detectado foi: $app"
-#	$app "$@"
+if [ ! -z $app ]; then
+	$app "$@"
 fi
