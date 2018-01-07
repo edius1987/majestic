@@ -8,6 +8,7 @@ mpd.pid
 mpd.state 
 mpd.db
 weathercfg.py
+weathercfg.pyc
 home/lucas/.config/i3/scripts/mail
 home/lucas/.config/i3/scripts/wallpaper
 home/lucas/.config/polybar/gmail/
