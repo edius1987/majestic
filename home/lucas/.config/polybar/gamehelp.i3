@@ -262,7 +262,7 @@ bar-used-empty-font = 2
 [module/calendar]
 type = custom/script
 interval = 60.0
-exec =  ~/bin/beats.sh 3
+exec =  ~/.local/bin/beats.sh 3
 click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")" &
 click-right = gsimplecal &
 click-middle = ~/.config/rofi/scripts/alarme &

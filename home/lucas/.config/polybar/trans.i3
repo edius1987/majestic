@@ -46,9 +46,9 @@ throttle-limit = 5
 ;		        B A R / T O P
 ;----------------------------------------------------------
 [bar/top]
-monitor = ${env:MONITOR:DVI-I-0}
+;monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
-height = 32
+height = 30
 offset-y = -1
 top = true
 
@@ -86,9 +86,9 @@ scroll-down = bspwm-deskprev
 ;		        B A R / B O T T O M
 ;----------------------------------------------------------
 [bar/bottom]
-monitor = ${env:MONITOR:DVI-I-0}
+;monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
-height = 32
+height = 30
 offset-y = -1
 bottom = true
 enable-ipc = true
@@ -248,7 +248,7 @@ bar-used-empty-font = 0
 [module/calendar]
 type = custom/script
 interval = 60.0
-exec =  ~/bin/beats.sh 3
+exec =  ~/.local/bin/beats.sh 3
 click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")" &
 click-right = gsimplecal &
 click-middle = ~/.config/rofi/scripts/alarme &
@@ -354,8 +354,8 @@ menu-0-5-exec = termite -e screencast.sh &
 [module/multi]
 type = custom/ipc
 interval = 30
-hook-0 = ~/.config/polybar/scripts/anews.py
-hook-1 = ~/.config/polybar/scripts/weather.py
+hook-0 = ~/.config/polybar/scripts/weather.py
+hook-1 = ~/.config/polybar/scripts/anews.py
 hook-2 = ~/.config/polybar/scripts/logs.sh
 initial = 1
 click-left = polybar-msg -p %pid% hook multi 1

@@ -18,7 +18,12 @@ UNIT_KEY = "C"
 # "weather":[{"id":211,"main":"Thunderstorm","description":"thunderstorm","icon":"11d"},{"id":521,"main":"Rain","description":"shower rain","icon":"09d"}],
 # "base":"stations","main":{"temp":23,"pressure":1013,"humidity":88,"temp_min":23,"temp_max":23},
 # "visibility":10000,
-# "wind":{"speed":3.6,"deg":270},"clouds":{"all":75},"dt":1515344400,"sys":{"type":1,"id":4473,"message":0.002,"country":"BR","sunrise":1515315967,"sunset":1515363852},"id":3467747,"name":"Campo Grande","cod":200}
+# "wind":{"speed":3.6,"deg":270},
+# "clouds":{"all":75},
+# "dt":1515344400,
+# "sys":{"type":1,"id":4473,"message":0.002,"country":"BR","sunrise":1515315967,"sunset":1515363852},
+# "id":3467747,"name":"Campo Grande","cod":200
+# }
 REQ = requests.get("http://api.openweathermap.org/data/2.5/weather?id={}&appid={}&units={}".format(CITY, API_KEY, UNITS))
 try:
     # HTTP CODE = OK
@@ -26,9 +31,14 @@ try:
         CURRENT = REQ.json()["weather"][0]["description"].capitalize()
         VELOCIDADE = REQ.json()["wind"]["speed"]
         DIRECAO = REQ.json()["wind"]["deg"]
+        PRESSAO = REQ.json()["main"]["pressure"]
+        VISIBILIDADE = REQ.json()["visibility"]
         ID = int(float(REQ.json()["weather"][0]["id"]))
         TEMP = int(float(REQ.json()["main"]["temp"]))
         HOUR = datetime.datetime.now().hour
+
+        #for k, v in REQ.json().iteritems():
+        #    print k, v
 
         if DIRECAO > 270 and DIRECAO <= 45:
             DIRECAO = "norte"
@@ -88,9 +98,8 @@ try:
                 ICON = ""
             else:
                 ICON = ""
-        #print("%%{F#555}%s %%{F-}%i °%s" % (ICON, TEMP, UNIT_KEY)) # Icon without description
-        print("%%{F#FFF}%s %%{F-}%s, %i°%s %skm/h %s " % (ICON, CURRENT, TEMP, UNIT_KEY, VELOCIDADE, DIRECAO)) # Icon with description            
-        
+        print("%%{F#FFF}%s %%{F-}%s, %i°%s, %skm/h %s, %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, VELOCIDADE, DIRECAO, PRESSAO)) # Icon with description
+
     else:
         print("Error: BAD HTTP STATUS CODE " + str(REQ.status_code))
 except (ValueError, IOError):

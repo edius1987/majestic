@@ -92,6 +92,14 @@ else
 	for gm in ${gmail[@]}; do
 		curl -s -o ${HOME}/.config/polybar/scripts/gmail/${gm} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/scripts/gmail/${gm}"
 	done
+
+	# Scripts auxiliares
+
+	if [ ! -d ${HOME}/.local/bin ]; then
+		mkdir -p ${HOME}/.local/bin
+	fi
+
+	curl -L -s https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/bin/beats.sh > ~/.local/bin/beats.sh
 fi
 
 # dunst
