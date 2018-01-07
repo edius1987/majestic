@@ -36,39 +36,41 @@ try:
             CURRENT = "Trovoada com chuva pesada"
         elif CURRENT == "Light rain":
             CURRENT = "Chuva leve"
+        elif CURRENT == "Light intensity shower rain":
+            CURRENT = "Chuva leve"
+
+        if ID >= 200 and ID <= 232:
+            ICON = ""
+        elif ID == 501 or ID == 500 or ID == 520:
+            ICON = ""
+        elif ID >= 310 and ID <= 531:
+            ICON = ""
+        elif ID >= 600 and ID <= 622:
+            ICON = ""
+        elif ID >= 701 and ID <= 761:
+            ICON = ""
+        elif ID >= 801 and ID <= 804:
+            if HOUR >= 6 and HOUR <= 19:
+                ICON = ""
+            else:
+                ICON = ""
+        elif ID >= 900 and ID <= 902 or ID >= 957 and ID <= 962:
+            ICON = ""
+        elif ID == 903 or ID == 906:
+            ICON = ""
+        elif ID == 904:
+            ICON = ""
+        elif ID == 905 or ID >= 951 and ID <= 956:
+            ICON = ""
+        else:
+            if HOUR >= 6 and HOUR <= 19:
+                ICON = ""
+            else:
+                ICON = ""
+        #print("%%{F#555}%s %%{F-}%i °%s" % (ICON, TEMP, UNIT_KEY)) # Icon without description
+        print("%%{F#FFF}%s %%{F-}%s, %i°%s" % (ICON, CURRENT, TEMP, UNIT_KEY)) # Icon with description            
         
     else:
         print("Error: BAD HTTP STATUS CODE " + str(REQ.status_code))
 except (ValueError, IOError):
-    print("Error: Unable print the data")
-
-if ID >= 200 and ID <= 232:
-    ICON = ""
-elif ID == 501 or ID == 500:
-    ICON = ""
-elif ID >= 310 and ID <= 531:
-    ICON = ""
-elif ID >= 600 and ID <= 622:
-    ICON = ""
-elif ID >= 701 and ID <= 761:
-    ICON = ""
-elif ID >= 801 and ID <= 804:
-    if HOUR >= 6 and HOUR <= 19:
-        ICON = ""
-    else:
-        ICON = ""
-elif ID >= 900 and ID <= 902 or ID >= 957 and ID <= 962:
-	ICON = ""
-elif ID == 903 or ID == 906:
-	ICON = ""
-elif ID == 904:
-	ICON = ""
-elif ID == 905 or ID >= 951 and ID <= 956:
-	ICON = ""
-else:
-    if HOUR >= 6 and HOUR <= 19:
-        ICON = ""
-    else:
-        ICON = ""
-#print("%%{F#555}%s %%{F-}%i °%s" % (ICON, TEMP, UNIT_KEY)) # Icon without description
-print("%%{F#FFF}%s %%{F-}%s, %i°%s" % (ICON, CURRENT, TEMP, UNIT_KEY)) # Icon with description
+    print("Erro: Unable print the data")

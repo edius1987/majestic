@@ -10,7 +10,6 @@
 
 DIR="${HOME}/.local/share/backgrounds"
 WALL="${DIR}/default.jpg"
-#WALL="/usr/share/backgrounds/default"
 
 if [ ! -f $WALL ]; then
 	if [ ! -d $DIR ]; then

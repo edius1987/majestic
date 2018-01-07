@@ -1,10 +1,10 @@
 #!/bin/bash
 
 tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+editor="subl"
 
 configs=(
 'i3'
-'i3blocks'
 'Polybar'
 'Conky'
 'LX Appearance'
@@ -16,32 +16,32 @@ configs=(
 'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 10 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
-		'i3') i3-msg exec pluma ~/.config/i3/config ;;
-		'i3blocks') 
+		'i3') i3-msg exec $editor ~/.config/i3/config ;;
+		'i3blocks')
 			i3blocks=$(echo "Config;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "i3blocks" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 			if [ $i3blocks ]; then
 				case $i3blocks in
-					'Config') i3-msg exec pluma "${HOME}/.config/i3blocks/config" ;;
+					'Config') i3-msg exec $editor "${HOME}/.config/i3blocks/config" ;;
 					'Apps')
 						i3blocksapps=$(ls "${HOME}/.config/i3blocks/scripts/" | rofi -theme "$tema" -dmenu -p "i3 Blocks Apps" -bw 0 -lines 16 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
 						if [ $i3blocksapps ]; then
-							i3-msg exec pluma ~/.config/i3blocks/scripts/${i3blocksapps}
-						fi					
+							i3-msg exec $editor ~/.config/i3blocks/scripts/${i3blocksapps}
+						fi
 					;;
-				esac				
+				esac
 			fi
 		;;
-		'Polybar') 
+		'Polybar')
 			polyconfig=$(echo "Config;Temas;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$polyconfig" = "Apps" ]; then
-				app=$( ls ${HOME}/.config/polybar/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				app=$( ls ${HOME}/.config/polybar/scripts/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 				if [ $app ]; then
-					i3-msg exec pluma "${app}"
+					i3-msg exec $editor "${app}"
 				fi
 			elif [ "$polyconfig" = "Temas" ]; then
 				for t in ${HOME}/.config/polybar/config.*; do 
@@ -53,41 +53,41 @@ if [ "$res" ]; then
 					i3-msg restart
 				fi
 			elif [ $polyconfig ]; then
-				i3-msg exec pluma ~/.config/polybar/config
-			fi			
-		
-		
+				cfgfile=$(awk '/.config/ {a=$3} END{print a}' ~/.config/polybar/i3.sh)
+				i3-msg exec $editor $cfgfile
+			fi
+
 		;;
-		'Conky') i3-msg exec pluma ~/.config/conky/conky.conf ;;
+		'Conky') i3-msg exec $editor ~/.config/conky/conky.conf ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
-		'Dunst') i3-msg exec pluma ~/.config/dunst/dunstrc ;;
-		'Compton') i3-msg exec pluma ~/.config/compton.conf ;;
+		'Dunst') i3-msg exec $editor ~/.config/dunst/dunstrc ;;
+		'Compton') i3-msg exec $editor ~/.config/compton.conf ;;
 		'Rofi') 
-			roficonfig=$(echo "Config;Apps;Themes" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			roficonfig=$(echo "Apps;Config;Themes" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$roficonfig" = "Apps" ]; then
-				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 8 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 11 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $app ]; then
-					i3-msg exec pluma "${HOME}/.config/rofi/scripts/${app}"
+					i3-msg exec $editor "${HOME}/.config/rofi/scripts/${app}"
 				fi			
 			elif [ "$roficonfig" = "Themes" ]; then
 				tema=$( ls "${HOME}/.local/share/rofi/themes/" | rofi -theme "$tema" -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $tema ]; then
-					i3-msg exec pluma "${HOME}/.local/share/rofi/themes/${tema}"
+					i3-msg exec $editor "${HOME}/.local/share/rofi/themes/${tema}"
 				fi			
 			elif [ $roficonfig ]; then
-				i3-msg exec pluma ~/.config/rofi/config.rasi
+				i3-msg exec $editor ~/.config/rofi/config.rasi
 			fi					
 		;;
 		'LightDM')
 			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -theme "$tema" -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 			if [ $ldm ]; then
-				i3-msg exec sudo pluma "/etc/lightdm/${ldm}.conf"
+				i3-msg exec sudo $editor "/etc/lightdm/${ldm}.conf"
 			fi
 		;;
 		'ncmpcpp')
-		    i3-msg exec pluma "${HOME}/.config/ncmpcpp/config"
+		    i3-msg exec $editor "${HOME}/.config/ncmpcpp/config"
 		;;
 		'Home')
 			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin;.bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 10 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
@@ -95,15 +95,15 @@ if [ "$res" ]; then
 			if [ "$homefiles" = "bin" ]; then
 				binfiles=$(ls "${HOME}/bin/" | rofi -theme "$tema" -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
 				if [ $binfiles ]; then
-					i3-msg exec pluma ~/bin/${binfiles} 
+					i3-msg exec $editor ~/bin/${binfiles} 
 				fi
             elif [ "$homefiles" = ".bin" ]; then
 				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -theme "$tema" -dmenu -p "~/.local/bin" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
 				if [ $dotbinfiles ]; then
-					i3-msg exec pluma ~/.local/bin/${dotbinfiles} 
+					i3-msg exec $editor ~/.local/bin/${dotbinfiles} 
 				fi
 			elif [ $homefiles ]; then
-				i3-msg exec pluma ~/${homefiles} 
+				i3-msg exec $editor ~/${homefiles} 
 			fi
 		;;
 	esac

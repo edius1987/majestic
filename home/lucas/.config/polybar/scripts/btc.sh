@@ -1,5 +1,7 @@
 #!/bin/bash
 
+LC_NUMERIC="en_US.UTF-8"
+
 case $1 in
 	coinbase) 
 		saida=$(curl -sH 'CB-VERSION: 2015-04-08' -H 'Accept-Language: pt-br' 'https://api.coinbase.com/v2/prices/buy?currency=BRL' | jq -r '.data.amount' | awk '{printf("%.2f\n", $1)}')

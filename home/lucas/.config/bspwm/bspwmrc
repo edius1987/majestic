@@ -26,17 +26,19 @@ bspc config borderless_monocle   	false
 bspc config gapless_monocle      	true
 bspc config paddingless_monocle	 	false
 
-bspc config normal_border_color		"#4c566a"
-bspc config focused_border_color	"#5e81ac"
+bspc config normal_border_color		"#2e3440"
+bspc config focused_border_color	"#4c566a"
 bspc config presel_feedback_color 	"#2e3440"
 
-bspc rule -a Navigator desktop='^1'
+bspc rule -a 'Firefox Developer Edition' desktop='^1' follow=on
 bspc rule -a Firefox desktop='^1' follow=on
 bspc rule -a Termite desktop='^2' focus=on
 bspc rule -a Pluma desktop='^3' focus=on
 bspc rule -a Sublime_text desktop='^3' focus=on
 bspc rule -a Thunar desktop='^4' focus=on
+bspc rule -a Deluge desktop='^7'
 bspc rule -a TelegramDesktop desktop='^9' focus=on
 bspc rule -a mpv state=floating
 bspc rule -a Viewnior state=floating
 bspc rule -a Agave state=floating
+bspc rule -a whatsapp-desktop desktop='^10' follow=on
