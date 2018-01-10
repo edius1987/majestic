@@ -1,0 +1,31 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Abrir terminal aqui</name>
+	<unique-id>1513773194584637-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Exemplo de uma ação personalizada</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>preferences-system-search</icon>
+	<name>Pesquisar</name>
+	<unique-id>1514448657823597-2</unique-id>
+	<command>catfish --path=%f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Cortar Video</name>
+	<unique-id>1515556936781928-2</unique-id>
+	<command>cortar.sh %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<video-files/>
+</action>
+</actions>

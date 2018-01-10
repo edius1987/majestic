@@ -32,15 +32,15 @@ if [ "$1" ]; then
 		viewnior $WALLPAPER
 	elif [ "$1" = "-c" ]; then
 		hsetroot -solid '#2e3440'
-	elif [ "$1" != "-r" ] || [ "$1" != "-d" ] || [ "$1" != "-o" ] || [ "$1" != "-c" ] || [ -d "$1" ]; then
-		if [ -d "$1" ]; then
+	elif [ -d "$1" ]; then
 			WALLPAPER="$(find "$1" -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \) | shuf -n1)"
-		elif [ -f "$1" ]; then
+	elif [ -f "$1" ]; then
 			WALLPAPER=$1
-		else
+	else
 			uso
 			exit 0
-		fi
+	fi
+	
 	else
 		WALL=$(echo $@ | tr ' ' '*')
 		WALLPAPER=$(find $WALL -iname "*${WALL}*" | shuf -n1)

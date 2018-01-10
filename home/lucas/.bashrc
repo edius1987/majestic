@@ -112,7 +112,7 @@ PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 ##### Powerline ##
 ##################
 
-echo
-fortune vimtips
-echo
+#echo
+#fortune vimtips
+#echo
 

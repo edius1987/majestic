@@ -18,3 +18,4 @@ alias pacman-clean='sudo pacman -Qdtq | pacman -Rs -'
 alias vim="vim -c 'startinsert'"
 alias showip='curl icanhazip.com'
 alias lostfiles='sudo lostfiles strict | egrep -vi "/usr/share/themes|-disabled"'
+alias yay='yay --noconfirm'

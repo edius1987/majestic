@@ -16,7 +16,8 @@ UNIT_KEY = "C"
 # {
 # "coord":{"lon":-54.65,"lat":-20.44},
 # "weather":[{"id":211,"main":"Thunderstorm","description":"thunderstorm","icon":"11d"},{"id":521,"main":"Rain","description":"shower rain","icon":"09d"}],
-# "base":"stations","main":{"temp":23,"pressure":1013,"humidity":88,"temp_min":23,"temp_max":23},
+# "base":"stations",
+# "main":{"temp":23,"pressure":1013,"humidity":88,"temp_min":23,"temp_max":23},
 # "visibility":10000,
 # "wind":{"speed":3.6,"deg":270},
 # "clouds":{"all":75},
@@ -32,7 +33,8 @@ try:
         VELOCIDADE = REQ.json()["wind"]["speed"]
         DIRECAO = REQ.json()["wind"]["deg"]
         PRESSAO = REQ.json()["main"]["pressure"]
-        VISIBILIDADE = REQ.json()["visibility"]
+        #VISIBILIDADE = REQ.json()["visibility"]
+        HUMIDADE = REQ.json()["main"]["humidity"]
         ID = int(float(REQ.json()["weather"][0]["id"]))
         TEMP = int(float(REQ.json()["main"]["temp"]))
         HOUR = datetime.datetime.now().hour
@@ -49,7 +51,9 @@ try:
         elif DIRECAO > 225 and DIRECAO <= 270:
             DIRECAO = "oeste"
 
-        if CURRENT == "Scattered clouds":
+        if CURRENT == "Overcast clouds":
+            CURRENT = "Nublado"
+        elif CURRENT == "Scattered clouds":
             CURRENT = "Nuvens dispersas"
         elif CURRENT == "Thunderstorm":
             CURRENT = "Trovoada"
@@ -58,7 +62,7 @@ try:
         elif CURRENT == "Few clouds":
             CURRENT = "Poucas nuvens"
         elif CURRENT == "Broken clouds":
-            CURRENT = "Nuvens esparsas" 
+            CURRENT = "Nuvens esparsas"
         elif CURRENT == "Clear sky":
             CURRENT = "Céu claro"
         elif CURRENT == "Moderate rain":
@@ -98,7 +102,7 @@ try:
                 ICON = ""
             else:
                 ICON = ""
-        print("%%{F#FFF}%s %%{F-}%s, %i°%s, %skm/h %s, %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, VELOCIDADE, DIRECAO, PRESSAO)) # Icon with description
+        print("%%{F#FFF}%s %%{F-}%s, %i°%s, %s%%, %skm/h %s, %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, HUMIDADE, VELOCIDADE, DIRECAO, PRESSAO)) # Icon with description
 
     else:
         print("Error: BAD HTTP STATUS CODE " + str(REQ.status_code))

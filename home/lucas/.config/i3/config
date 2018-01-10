@@ -1,13 +1,19 @@
 set $mod Mod4
+
 gaps inner 10
-hide_edge_borders both
+#gaps outer 10
+
+#hide_edge_borders both
 force_display_urgency_hint 0
-workspace_auto_back_and_forth yes
+#workspace_auto_back_and_forth yes
 new_window pixel 3
+
 # smart|urgent|focus|none
 #focus_on_window_activation focus
 #focus_follows_mouse no
-font pango:Source Code Pro, FontAwesome 10
+
+#font pango:Source Code Pro, FontAwesome 10
+font pango:Moon 2.0, FontAwesome 10
 
 # 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C
 # 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
@@ -44,15 +50,31 @@ set $texto-urgente          #cc5252
 set $fundo-urgente          #900000
 set $indicador              #00ff00
 set $separador              #666666
-set $borda					#5b6365
+#set $borda					#5b6365
+set $borda					#2E3440
 set $semitransparente		#00000073
 set $transparente			#00000000
 
-#                       BORDER      		BACKGROUND  TEXT        				INDICATOR   			CHILD_BORDER
-client.focused          $borda				$fundo-inativo  $texto                  $cinza5					$cinza5
-client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
-client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
-client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
+set $termite				#2E3440
+
+# Scheme #1
+#						 BORDER				BACKGROUND		TEXT					INDICATOR				CHILD_BORDER
+#client.focused          $borda				$fundo-inativo  $texto                  $cinza5					$cinza5
+#client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
+#client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
+#client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
+
+# Scheme #2
+#client.focused          $borda             $fundo-inativo  $texto                  $cinza5                 $cinza5
+#client.unfocused        $borda             $fundo-inativo  $texto-inativo          $termite                $termite
+#client.focused_inactive $borda             $fundo-inativo  $texto-inativo          $borda                  $borda
+#client.urgent           $borda             $fundo-inativo  $texto-urgente          $fundo-inativo          $borda
+
+# Scheme #3
+client.focused          $borda $fundo-inativo  $texto                  $borda          $borda
+client.unfocused        $borda $fundo-inativo  $texto-inativo          $borda          $borda
+client.focused_inactive $borda $fundo-inativo  $texto-inativo          $borda          $borda
+client.urgent           $borda $fundo-inativo  $texto-urgente          $borda          $borda
 
 floating_modifier $mod
 
@@ -74,7 +96,8 @@ bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/configs
 bindsym $mod+a exec --no-startup-id ~/.config/rofi/scripts/apps
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/rofi/scripts/power
 
-bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
+#bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
+bindsym $mod+Shift+x exec ~/.local/bin/lockscreen
 
 # Media Hotkeys
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
@@ -192,7 +215,7 @@ for_window [window_role="Preferences"] floating enable, move position center
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
-for_window [class="(mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator)"] floating enable, move position center
+for_window [class="(Mate-font-viewer|mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator)"] floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 for_window [class="^etcher-electron"] floating enable

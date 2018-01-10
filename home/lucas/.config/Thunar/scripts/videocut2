@@ -1,0 +1,32 @@
+#!/bin/bash
+
+video=$1
+vp=$(readlink -f "$video")
+path=$(dirname "$vp")
+#timestamp=$(date +%s)
+
+
+#probe=$(ffprobe -i $video -show_entries format=duration -v quiet -of csv='p=0')
+#total=$(date +%s --date="$probe")
+#tfloat=$total
+#probe2=${probe%.*}
+#dtotal=$(date +%s --date="$tint")
+#mtotal=""$(($dtotal / 3600)):$(($dtotal / 60 % 60)):$(($dtotal % 60))
+
+ext="${video##*.}"
+nome=$(basename "$video" .$ext)
+novo=$path/$nome-$timestamp.$ext
+
+echo $novo
+
+#OFFSET=""$(($probe2 / 3600)):$(($probe2 / 60 % 60)):$(($probe2 % 60))
+
+#echo $novo
+
+#eval $(yad --width=400 --height=300 --form --field=input:FL --field=start --field=end --field=output:SFL "$video" "00:00:00" "$mtotal" "$novo" | awk -F'|' '{printf "entrada=\"%s\"\ninicio=%s\nfim=%s\nsaida=\"%s\"\n", $1, $2, $3, $4}')
+#[[ -z $entrada || -z $inicio || -z $fim || -z $saida ]] && exit 1
+
+#DIF=$(($(date +%s --date="$fim")-$(date +%s --date="$inicio")))
+#OFFSET=""$(($DIF / 3600)):$(($DIF / 60 % 60)):$(($DIF % 60))
+
+#ffmpeg -ss "$inicio" -t "$OFFSET" -i "$entrada" "$saida"

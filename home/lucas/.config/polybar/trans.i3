@@ -326,7 +326,7 @@ label-separator-foreground = ${colors.white}
 
 menu-0-0 = ""
 menu-0-0-font = 5
-menu-0-0-exec = firefox-developer &
+menu-0-0-exec = firefox-developer-edition &
 
 menu-0-1 = ""
 menu-0-1-font = 5

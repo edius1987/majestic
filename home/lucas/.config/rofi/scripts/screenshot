@@ -9,6 +9,7 @@ atraso=10
 tipo="image/png"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+editor="gimp"
 
 if [ ! -d $dir ]; then
 	mkdir -p $dir
@@ -36,12 +37,12 @@ function screens {
 	elif [ "$1" == "4" ]; then	    
 		arquivo="${nome}-full${extensao}"
 		$app $delay ${arquivo}
-		viewnior ${arquivo}
+		$editor ${arquivo}
 		msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 	elif [ "$1" == "5" ]; then
 		arquivo="${nome}-window${extensao}"
 		$app $delay -i $(xdotool getactivewindow) ${arquivo}
-		viewnior ${arquivo}
+		$editor ${arquivo}
 		msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 	elif [ "$1" == "6" ]; then
 		arquivo="${nome}-rec${extensao}"
@@ -84,10 +85,13 @@ function screens {
 	notify-send -i $icone "ScreenShot" "$msg"
 }
 
-res=$(echo "Tela;Janela;Area" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Screenshot" -bw 0 -lines 3 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
-atraso=$(echo "1;2;3;5;10;15;30;45;60" | rofi -theme "$tema" -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 10 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+res=$(echo "Tela;Janela;Area;Editar" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Screenshot" -bw 0 -lines 4 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
-if [ ! -z $res ]; then
+if [ $res ]; then
+	atraso=$(echo "1;2;3;5;10;15;30" | rofi -theme "$tema" -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 7 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+fi
+
+if [ $res ]; then
 	case $res in
 		'Tela') 
 			screens 1 $atraso 
@@ -97,7 +101,10 @@ if [ ! -z $res ]; then
 		;;
 		'Area') 
 			screens 3 $atraso 
-		;;			
+		;;
+		'Editar') 
+			screens 4 $atraso 
+		;;					
 
 		#reiniciar)
 		#	confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
