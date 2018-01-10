@@ -10,12 +10,11 @@ import re
 import textwrap
 
 icone = ""
-d = feedparser.parse("https://www.archlinux.org/feeds/news/")
 
 try:
-	for f in range(0,1):
-	    #print( "%%{F#FFF}icone %%{F-}" d.entries[f].title, )
-	    print("%%{F#FFF}%s %%{F-}%s" % (icone, d.entries[f].title))
-	    xy = d.entries[f].title
-except (ValueError, IOError):
-    print("Erro: Impossível recuperar as notícias.")
+    d = feedparser.parse("https://www.archlinux.org/feeds/news/")
+    for f in range(0,1):
+        print("%%{F#FFF}%s %%{F-}%s" % (icone, d.entries[f].title))
+        xy = d.entries[f].title
+except:
+    print("%{F#66ffffff}Impossível recuperar as notícias.%{F-}")
