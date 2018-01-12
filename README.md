@@ -5,18 +5,19 @@ Sinta-se livre para usar, alterar, divulgar e comentar.
 
 ## Índice
 
-* [bspwm](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/bspwm/bspwmrc)
-* [sxhkdrc](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/sxhkd/sxhkdrc)
-* [i3 gaps](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3)
+* [i3 gaps](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3/config)
 * [polybar](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/polybar)
-* [i3blocks](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3blocks)
 * [rofi](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/rofi)
 * [dunst](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/dunst)
 * [compton](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/compton.conf)
 * [termite](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/termite/config)
 * [ncmpcpp](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/ncmpcpp)
 * [~/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/bin)
-* [~/.local/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/.local/bin)
+* [~/.local/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/.local/bin)  
+  
+* [bspwm](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/bspwm/bspwmrc)
+* [sxhkdrc](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/sxhkd/sxhkdrc)
+* [i3blocks](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/i3blocks)
 
 ## Exemplos de como usar os dotfiles(não faça isso como root)
     
