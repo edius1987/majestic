@@ -1,35 +1,5 @@
-URxvt.font:                     xft:inconsolata:pixelsize=16
-URxvt.iso14755:                 false
-URxvt*scrollBar:                false
-URxvt*scrollBar_right:          true
-URxvt*scrollColor:              #000000
+! Transparencia
+! 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
 
-URxvt.background:               #1b1b1b
-URxvt.foreground:               #FFFFFF
-URxvt.colorBD:                  #CFCFCF
-URxvt.colorUL:                  #969696
-URxvt.colorIT:                  #686868
-!Black
-*color0:                        #3D3D3D
-*color8:                        #4D4D4D 
-!Red
-*color1:                        #6673BF
-*color9:                        #899AFF 
-!Green
-*color2:                        #3EA290
-*color10:                       #52AD91
-!Yellow
-*color3:                        #B0EAD9
-*color11:                       #98C9BB
-!Blue
-*color4:                        #31658C
-*color12:                       #477AB3
-!Magenta
-*color5:                        #596196
-*color13:                       #7882BF
-!Cyan
-*color6:                        #8292B2
-*color14:                       #95A7CC
-!White
-*color7:                        #C8CACC
-*color15: #EDEFF2 
+! city  close  cybergirl  dragon  galactic  luna  madness  nord
+#include ".colors/nord"

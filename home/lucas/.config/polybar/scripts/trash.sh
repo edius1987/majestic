@@ -26,18 +26,10 @@ fi
 
 TRASH_COUNT=$(ls -U -1 "${TRASH_DIRECTORY}/files" | wc -l)
 
-if [[ ${TRASH_COUNT} -gt 60 ]]; then
-	cor=$vermelho
-elif [[ ${TRASH_COUNT} -gt 40 ]]; then
-	cor=$cormed
-elif [[ ${TRASH_COUNT} -gt 20 ]]; then
-	cor=$verde
+if [[ ${TRASH_COUNT} -gt 0 ]]; then
+	s=" ${TRASH_COUNT}"
 else
-	cor=''
+	s=""
 fi
 
-echo "${TRASH_COUNT}"
-
-#if [[ "${TRASH_COUNT}" -ge "${URGENT_VALUE}" ]]; then
-#  exit 33
-#fi
+echo "${s}"

@@ -12,18 +12,69 @@ new_window pixel 3
 #focus_on_window_activation focus
 #focus_follows_mouse no
 
-font pango:Source Code Pro, icomoon, FontAwesome 10
+#font pango:Source Code Pro, FontAwesome 10
+font pango:Moon 2.0, FontAwesome 10
 
-set_from_resource $fg i3wm.foreground #D8DEE9
-set_from_resource $bg i3wm.background #2E3440
+# 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C
+# 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
 
-# class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
-client.background       $bg
+# Nord
+set $branco1				#d8dee9
+set $branco2				#e5e9f0
+set $branco3				#eceff4
+set $cinza1					#2e3440
+set $cinza2					#3b4252
+set $cinza3					#434c5e
+set $cinza4					#4c566a
+set $cinza5					#556378
+set $cinza6					#5e6e85
+set $verde					#8fbcbb
+set $verde2					#a3be8c
+set $azul					#88c0d0
+set $azul2					#81a1c1
+set $azul3					#5e81ac
+set $vermelho				#bf616a
+set $laranja				#d08770
+set $amarelo				#ebcb8b
+set $roxo					#b48ead
+
+set $branco                 #ffffff
+set $preto					#000000
+set $cinza					#8c8b8b
+set $fundo                  #1b1b1b
+set $fundo-inativo          #222222
+set $texto                  #ffffff
+set $texto-ativo            #3465a4
+set $texto-inativo          #888888
+set $texto-urgente          #cc5252
+set $fundo-urgente          #900000
+set $indicador              #00ff00
+set $separador              #666666
+#set $borda					#5b6365
+set $borda					#2E3440
+set $semitransparente		#00000073
+set $transparente			#00000000
+
+set $termite				#2E3440
+
+# Scheme #1
+#						 BORDER				BACKGROUND		TEXT					INDICATOR				CHILD_BORDER
+#client.focused          $borda				$fundo-inativo  $texto                  $cinza5					$cinza5
+#client.unfocused        $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
+#client.focused_inactive $borda				$fundo-inativo  $texto-inativo			$cinza2					$cinza2
+#client.urgent           $borda				$fundo-inativo  $texto-urgente          $fundo-inativo			$borda
+
+# Scheme #2
+#client.focused          $borda             $fundo-inativo  $texto                  $cinza5                 $cinza5
+#client.unfocused        $borda             $fundo-inativo  $texto-inativo          $termite                $termite
+#client.focused_inactive $borda             $fundo-inativo  $texto-inativo          $borda                  $borda
+#client.urgent           $borda             $fundo-inativo  $texto-urgente          $fundo-inativo          $borda
+
+# Scheme #3
+client.focused          $borda $fundo-inativo  $texto                  $borda          $borda
+client.unfocused        $borda $fundo-inativo  $texto-inativo          $borda          $borda
+client.focused_inactive $borda $fundo-inativo  $texto-inativo          $borda          $borda
+client.urgent           $borda $fundo-inativo  $texto-urgente          $borda          $borda
 
 floating_modifier $mod
 
@@ -33,6 +84,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 # Rofi
+
 bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://www.google.com.br/search?q={}
 bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} xdg-open https://duckduckgo.com/?q={}
 bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
@@ -102,16 +154,16 @@ bindsym $mod+Shift+a focus parent
 bindsym $mod+Shift+d focus child
 
 # Icones:             
-set $workspace1 "1:"
-set $workspace2 "2:"
-set $workspace3 "3:"
-set $workspace4 "4:"
-set $workspace5 "5:"
-set $workspace6 "6:"
-set $workspace7 "7:"
-set $workspace8 "8:"
-set $workspace9 "9:"
-set $workspace10 "10:"
+set $workspace1  "1:  "
+set $workspace2  "2:  "
+set $workspace3  "3:  "
+set $workspace4  "4:  "
+set $workspace5  "5:  "
+set $workspace6  "6:  "
+set $workspace7  "7:  "
+set $workspace8  "8:  "
+set $workspace9  "9:  "
+set $workspace10 "10:  "
 
 # Alt+TAB & Alt+Shift+TAB	
 bindsym Mod1+Tab workspace next
@@ -229,7 +281,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#xrdb ~/.Xresources
+#xrdb -merge ~/.Xdefaults &
+xrdb ~/.Xresources
 set $polybar ~/.config/polybar/i3.sh
 exec_always --no-startup-id $polybar
 #exec --no-startup-id ~/bin/wallpaper.sh -d
@@ -241,4 +294,3 @@ exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id ~/.local/bin/xautolock
-exec_always --no-startup-id xrdb ~/.Xresources

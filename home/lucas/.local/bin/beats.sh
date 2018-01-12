@@ -25,7 +25,7 @@ case $1 in
     ;;
     *)
         beats
-        echo @$b
+        echo $b
     ;;
 esac
 

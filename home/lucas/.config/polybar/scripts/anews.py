@@ -9,7 +9,7 @@ from subprocess import call
 import re
 import textwrap
 
-icone = ""
+icone = ""
 
 try:
     d = feedparser.parse("https://www.archlinux.org/feeds/news/")

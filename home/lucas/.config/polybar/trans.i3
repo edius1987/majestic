@@ -1,46 +1,13 @@
 ;----------------------------------------------------------
 ;		        C O L O R S
 ;----------------------------------------------------------
-; 100%=FF - 95%=F2 - 90%=E6 - 85%=D9 - 80%=CC - 75%=BF - 70%=B3 - 65%=A6 - 60%=99 - 55%=8C - 50%=80
-; 45%=73 - 40%=66 - 35%=59 - 30%=4D - 25%=40 - 20%=33 - 15%=26 - 10%=1A - 5%=0D - 0%=00
+; 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
 [colors]
-background = #00000000
-focused = #FFFFFF
-unfocused = #66FFFFFF
-current-line = #44475a
-selection = #44475a
-foreground = #eee
-cyan = #8be9fd
-green = #50fa7b
-orange = #ffb86c
-pink = #ff79c6
-purple = #bd93f9
-red = #ff5555
-yellow = #f1fa8c
-white = #F1F1F1
-preto = #2B303B
-borders = #4c566a
-selected = #191b21
-
-; Nord Theme
-azul1 = #5e81ac
-azul2 = #81a1c1
-vermelho = #bf616a
-laranja = #d08770
-amarelo = #ebcb8b
-verde = #a3be8c
-rosa = #ff4279
-branco1 = #d8dee9
-branco2 = #e5e9f0
-branco3 = #eceff4
-cinza1 = #2e3440
-cinza2 = #3b4252
-cinza3 = #434c5e
-cinza4 = #4c566a
-
-[settings]
-throttle-ms = 50
-throttle-limit = 5
+trans = #66000000
+foreground = ${xrdb:foreground}
+background = ${xrdb:background}
+unfocused = ${xrdb:color16}
+urgent = ${xrdb:color1}
 
 ;----------------------------------------------------------
 ;		        B A R / T O P
@@ -52,7 +19,7 @@ height = 30
 offset-y = -1
 top = true
 
-background = ${colors.background}
+background = ${colors.trans}
 foreground = ${colors.foreground}
 
 fixed-center = true
@@ -68,10 +35,11 @@ underline-color = #bc92f8
 module-margin-left = 0
 module-margin-right = 2
 
-font-0 = Fira:pixelsize=10;0
-font-1 = FontAwesome:size=10;0
-font-2 = NotoSans:pixelsize=10;0
+font-0 = Fira:pixelsize=10;2
+font-1 = FontAwesome:size=10;2
+font-2 = NotoSans:pixelsize=10;2
 font-3 = Fira:pixelsize=6;-2
+font-4 = icomoon:size=11;3
 
 modules-left = i3
 modules-center = window
@@ -93,7 +61,7 @@ offset-y = -1
 bottom = true
 enable-ipc = true
 
-background = ${colors.background}
+background = ${colors.trans}
 foreground = ${colors.foreground}
 
 fixed-center = true
@@ -108,11 +76,12 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 2
 
-font-0 = Fira:pixelsize=10;0
-font-1 = FontAwesome:size=10;0
-font-2 = NotoSans:pixelsize=10;0
+font-0 = Fira:pixelsize=10;3
+font-1 = FontAwesome:size=10;3
+font-2 = NotoSans:pixelsize=10;3
+font-3 = icomoon:pixelsize=11;3
 
-modules-left = apps multi
+modules-left = apps launch multi
 modules-center = network temperature rootfs homefs pkg trash
 modules-right = mpd
 
@@ -123,40 +92,40 @@ modules-right = mpd
 type = internal/i3
 
 ; IC              
-ws-icon-0 = 1; 
-ws-icon-1 = 2; 
-ws-icon-2 = 3;
-ws-icon-3 = 4; 
-ws-icon-4 = 5; 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
 ws-icon-5 = 6; 
-ws-icon-6 = 7; 
-ws-icon-7 = 8; 
-ws-icon-8 = 9; 
-ws-icon-9 = 10; 
+ws-icon-6 = 7; 
+ws-icon-7 = 8; 
+ws-icon-8 = 9; 
+ws-icon-9 = 10;
 ;ws-icon-default = 
 
 strip-wsnumbers = true
 
 format = <label-state> <label-mode>
 format-spacing = 0
-label-font = 1
+label-font = 5
 
-label-focused-font = 2
+label-focused-font = 5
 label-focused = %name%
 label-focused-padding = 4
 label-focused-foreground = #fff
 
-label-unfocused-font = 2
+label-unfocused-font = 5
 label-unfocused = %name%
 label-unfocused-padding = 4
 label-unfocused-foreground = ${colors.unfocused}
 
-label-urgent-font = 2
+label-urgent-font = 5
 label-urgent = %name%
 label-urgent-padding = 4
-label-urgent-foreground = ${colors.vermelho}
+label-urgent-foreground = ${colors.urgent}
 
-label-visible-font = 2
+label-visible-font = 5
 label-visible = %name%
 label-visible-padding = 4
 
@@ -166,8 +135,8 @@ label-visible-padding = 4
 [module/window]
 type = custom/script
 interval = 0.1
-format-prefix = " "
-format-prefix-foreground = ${colors.white}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
 ;label = %output:0:40:...%  %{B- -o -u}
 label = %output:0:40:...%
 click-left = ~/.config/polybar/scripts/janela.sh -i
@@ -181,7 +150,7 @@ exec = ~/.config/polybar/scripts/janela.sh
 [module/gmail]
 type = custom/script
 format = <label>
-label = " %output%"
+label = " %output%"
 exec = ~/.config/polybar/scripts/gmail/launch.py
 tail = true
 click-left = $BROWSER https://mail.google.com &
@@ -193,8 +162,9 @@ click-left = $BROWSER https://mail.google.com &
 type = custom/script
 interval = 300
 format = <label>
-label =  %output%
-exec = ~/.config/polybar/scripts/btc.sh
+label = %output%
+;exec = ~/.config/polybar/scripts/btc.sh
+exec = ~/.config/polybar/scripts/crypto.py
 
 ;----------------------------------------------------------
 ;		        C P U
@@ -202,8 +172,7 @@ exec = ~/.config/polybar/scripts/btc.sh
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-format =  <ramp-coreload>
-;label = 
+format =  <ramp-coreload>
 
 ramp-coreload-0-font = 4
 ramp-coreload-1-font = 4
@@ -233,7 +202,8 @@ ramp-coreload-7-foreground = #ff3b51
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
-label = 
+label = 
+label-font = 5
 bar-used-width = 8
 bar-used-indicator = |
 bar-used-indicator-font = 0
@@ -248,11 +218,12 @@ bar-used-empty-font = 0
 [module/calendar]
 type = custom/script
 interval = 60.0
+label-font = 5
 exec =  ~/.local/bin/beats.sh 3
 click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")" &
 click-right = gsimplecal &
 click-middle = ~/.config/rofi/scripts/alarme &
-label = " %output%"
+label = " %output%"
 format = <label>
 
 ;----------------------------------------------------------
@@ -260,8 +231,13 @@ format = <label>
 ;----------------------------------------------------------
 [module/volume]
 type = internal/volume
-label-volume =  %percentage%%
-label-muted = 
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-muted =  mudo
+label-font = 5
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ;----------------------------------------------------------
 ;		    P O W E R   M E N U
@@ -270,11 +246,11 @@ label-muted = 
 [module/powermenu]
 type = custom/menu
 
-label-font = 3
+;label-font = 3
 format-spacing = 1
 format-padding = 1
 
-label-open = " "
+label-open = ""
 label-close = 
 label-separator = |
 
@@ -315,14 +291,12 @@ expand-right = true
 ;label-close-font = 5
 format-spacing = 1
 
-label-open = "  "
+label-open = "  "
 ;label-open-foreground = ${colors.foreground}
 ;label-open-background = ${colors.background}
 
 label-close = " "
-label-close-foreground = ${colors.yellow}
 label-separator = " "
-label-separator-foreground = ${colors.white}
 
 menu-0-0 = ""
 menu-0-0-font = 5
@@ -336,17 +310,30 @@ menu-0-2 = ""
 menu-0-2-font = 5
 menu-0-2-exec = termite &
 
-menu-0-3 = ""
+menu-0-3 = ""
 menu-0-3-font = 5
 menu-0-3-exec = telegram &
 
-menu-0-4 = " "
+menu-0-4 = ""
 menu-0-4-font = 5
 menu-0-4-exec = Whatsapp &
 
-menu-0-5 = " "
+menu-0-5 = ""
 menu-0-5-font = 5
 menu-0-5-exec = termite -e screencast.sh &
+
+;----------------------------------------------------------
+;			L A U N C H E R
+;----------------------------------------------------------
+[module/launch]
+type = custom/text
+;format = <label>
+content = 
+click-left = ~/.config/rofi/scripts/drun &
+click-middle = ~/.config/rofi/scripts/drun &
+click-right = ~/.config/rofi/scripts/drun &
+;scroll-up
+;scroll-down
 
 ;----------------------------------------------------------
 ;			M U L T I
@@ -384,10 +371,10 @@ interval = 3.0
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
-label-connected = "%{F#F1F1F1} %{F-}%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
+label-connected = "%{F#F1F1F1} %{F-}%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
 label-connected-foreground = ${colors.foreground}
 
-label-disconnected = desconectado
+label-disconnected = 
 label-disconnected-foreground = #66ffffff
 
 ;----------------------------------------------------------
@@ -396,19 +383,14 @@ label-disconnected-foreground = #66ffffff
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 55
 
-format = <ramp><label>
-format-warn = <ramp><label-warn>
+format = <label>
+format-warn = <label-warn>
 
-label = %temperature%
-label-warn = "%temperature% "
-label-warn-foreground = ${colors.red}
-
-ramp-0 = " "
-ramp-1 = " "
-ramp-2 = " "
-ramp-foreground = ${colors.white}
+label =  %temperature%
+label-warn =  %temperature%
+label-warn-foreground = ${colors.urgent}
 
 ;----------------------------------------------------------
 ;		        F I L E S Y S T E M - /
@@ -419,8 +401,7 @@ type = custom/script
 exec = df -h / | awk 'NR==2 {print $5}'
 ;exec = df -h / | awk 'NR==2 {total=$2; used=$3; print used" / "total}'
 format =  <label>
-format-prefix = " " 
-format-prefix-foreground = ${colors.white}
+format-prefix = " " 
 
 ;----------------------------------------------------------
 ;		    F I L E S Y S T E M - H O M E
@@ -430,8 +411,7 @@ interval = 400
 type = custom/script
 exec = df -h /home | awk 'NR==2 {print $5}'
 format =  <label>
-format-prefix = " "
-format-prefix-foreground = ${colors.white}
+format-prefix = " "
 
 ;----------------------------------------------------------
 ;		           U P D A T E S
@@ -440,8 +420,8 @@ format-prefix-foreground = ${colors.white}
 type = custom/script
 interval = 1200
 format = <label>
-format-prefix = " "
-;format-prefix-foreground = ${colors.white}
+format-prefix = " "
+;format-prefix-foreground = ${colors.foreground}
 label = "%output:0:30%"
 exec = ~/.config/polybar/scripts/pkg.sh
 click-left = pamac-updater &
@@ -455,8 +435,6 @@ click-right = pamac-manager &
 type = custom/script
 interval = 1
 format = <label>
-format-prefix = " "
-format-prefix-foreground = ${colors.white}
 label = "%output:0:30%"
 exec = ~/.config/polybar/scripts/trash.sh
 click-left = ~/.config/polybar/scripts/trash.sh -x && notify-send "Lixeira" "Lixeira limpa!"
@@ -471,19 +449,9 @@ port = 6600
 interval = 2
 
 format-online = <label-song> <label-time> <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random>
-format-paused = <toggle>
-format-stopped = <toggle>
-format-offline = <label-offline>
-
-label-song = " %artist% - %title%"
+label-song = " %artist% - %title%"
+label-paused = " %artist% - %title%"
 label-time = "%elapsed% / %total%"
-label-offline = ""
-
-label-online-font = 2
-label-song-font = 2
-label-offline-font = 2
-label-stopped-font = 2
-label-paused-font = 2
 
 ; Only applies if <icon-X> is used
 icon-play = 
