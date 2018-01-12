@@ -42,4 +42,6 @@ Problemas? Abra uma [issue](https://github.com/sistematico/majestic/issues/new) 
 
 ![Screenshot][screenshot]
 
-[screenshot]: https://raw.githubusercontent.com/sistematico/majestic/master/screenshot.png "Screenshot"
+[Screenshot #1]: https://raw.githubusercontent.com/sistematico/majestic/master/screenshot.png "Screenshot #1"
+[Screenshot #2]: https://raw.githubusercontent.com/sistematico/majestic/master/screenshot2.png "Screenshot #2"
+
