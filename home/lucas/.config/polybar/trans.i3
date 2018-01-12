@@ -43,7 +43,7 @@ font-4 = icomoon:size=11;3
 
 modules-left = i3
 modules-center = window
-modules-right = gmail crypto cpu memory calendar volume powermenu
+modules-right = gmail crypto cpu memory calendar volume ufw powermenu
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -81,7 +81,7 @@ font-1 = FontAwesome:size=10;3
 font-2 = NotoSans:pixelsize=10;3
 font-3 = icomoon:pixelsize=11;3
 
-modules-left = apps launch multi
+modules-left = apps launch screenshot multi
 modules-center = network temperature rootfs homefs pkg trash
 modules-right = mpd
 
@@ -240,6 +240,18 @@ ramp-volume-1 = 
 ramp-volume-2 = 
 
 ;----------------------------------------------------------
+;		        U F W
+;----------------------------------------------------------
+[module/ufw]
+type = custom/script
+interval = 1
+label-font = 5
+exec =  ~/.config/polybar/scripts/ufw.sh
+click-left = ~/.config/polybar/scripts/ufw.sh toggle
+label = %output%
+format = <label>
+
+;----------------------------------------------------------
 ;		    P O W E R   M E N U
 ;----------------------------------------------------------
 ;#b48ead
@@ -336,6 +348,15 @@ click-right = ~/.config/rofi/scripts/drun &
 ;scroll-down
 
 ;----------------------------------------------------------
+;			S C R E E N S H O T
+;----------------------------------------------------------
+[module/screenshot]
+type = custom/text
+content = 
+click-left = ~/.local/bin/screenshot &
+click-right = ~/.local/bin/screenshot clear &
+
+;----------------------------------------------------------
 ;			M U L T I
 ;----------------------------------------------------------
 [module/multi]
@@ -371,7 +392,7 @@ interval = 3.0
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
-label-connected = "%{F#F1F1F1} %{F-}%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
+label-connected = "%{F#F1F1F1} %{F-}%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
 label-connected-foreground = ${colors.foreground}
 
 label-disconnected = 
@@ -449,22 +470,30 @@ port = 6600
 interval = 2
 
 format-online = <label-song> <label-time> <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random>
+
 label-song = " %artist% - %title%"
-label-paused = " %artist% - %title%"
 label-time = "%elapsed% / %total%"
+label-stopped = 🎜
+label-paused = 🎜
+label-offline = 🎜
+
+;format-playing = ${self.format-online}
+;format-paused = ${self.format-stopped}
+;format-stopped = ${self.format-stopped}
+;format-offline = ${self.format-offline}
 
 ; Only applies if <icon-X> is used
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-seekb = 
-icon-seekf = 
-icon-random = 🔀
-icon-repeat = 
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 
+icon-repeat = 
 icon-repeatone = 🔂
-icon-consume = ✀
+icon-consume = 
 
 ; Used to display the state of random/repeat/repeatone
 ; Only applies if <icon-[random|repeat|repeatone]> is used
