@@ -16,6 +16,7 @@ Sinta-se livre para usar, alterar, divulgar e comentar.
 * [termite](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/termite/config)
 * [ncmpcpp](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/ncmpcpp)
 * [~/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/bin)
+* [~/.local/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/.local/bin)
 
 ## Exemplos de como usar os dotfiles(não faça isso como root)
     
