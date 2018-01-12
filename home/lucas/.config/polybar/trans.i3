@@ -40,10 +40,11 @@ font-1 = FontAwesome:size=10;2
 font-2 = NotoSans:pixelsize=10;2
 font-3 = Fira:pixelsize=6;-2
 font-4 = icomoon:size=11;3
+font-5 = Moon Phases:size=11;3
 
 modules-left = i3
 modules-center = window
-modules-right = gmail crypto cpu memory calendar volume ufw powermenu
+modules-right = gmail crypto cpu memory calendar moonphase volume ufw powermenu
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -97,10 +98,10 @@ ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6; 
-ws-icon-6 = 7; 
-ws-icon-7 = 8; 
-ws-icon-8 = 9; 
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
 ws-icon-9 = 10;
 ;ws-icon-default = 
 
@@ -227,6 +228,18 @@ label = " %output%"
 format = <label>
 
 ;----------------------------------------------------------
+;			 M O O N P H A S E
+;----------------------------------------------------------
+[module/moonphase]
+type = custom/script
+interval = 60.0
+label-font = 6
+exec =  ~/.config/polybar/scripts/moonphase.py
+click-left = notify-send -i ~/.config/dunst/icons/moon.svg "Fases Lunares" "$(python2 ~/.config/polybar/scripts/moonphase.py desc)" &
+label = %output%
+format = <label>
+
+;----------------------------------------------------------
 ;		        V O L U M E
 ;----------------------------------------------------------
 [module/volume]
@@ -303,7 +316,7 @@ expand-right = true
 ;label-close-font = 5
 format-spacing = 1
 
-label-open = "  "
+label-open = " "
 ;label-open-foreground = ${colors.foreground}
 ;label-open-background = ${colors.background}
 
@@ -322,17 +335,34 @@ menu-0-2 = ""
 menu-0-2-font = 5
 menu-0-2-exec = termite &
 
-menu-0-3 = ""
+menu-0-3 = ""
 menu-0-3-font = 5
-menu-0-3-exec = telegram &
+menu-0-3-exec = subl &
 
-menu-0-4 = ""
+menu-0-4 = ""
 menu-0-4-font = 5
-menu-0-4-exec = Whatsapp &
+menu-0-4-exec = telegram &
 
-menu-0-5 = ""
+menu-0-5 = ""
 menu-0-5-font = 5
-menu-0-5-exec = termite -e screencast.sh &
+menu-0-5-exec = Whatsapp &
+
+menu-0-6 = ""
+menu-0-6-font = 5
+menu-0-6-exec = termite -e screencast.sh &
+
+menu-0-7 = ""
+menu-0-7-font = 5
+menu-0-7-exec = steam-runtime &
+
+menu-0-8 = ""
+menu-0-8-font = 5
+menu-0-8-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &
+
+menu-0-9 = ""
+menu-0-9-font = 5
+menu-0-9-exec = termite &
+
 
 ;----------------------------------------------------------
 ;			L A U N C H E R

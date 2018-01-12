@@ -91,3 +91,4 @@ echo -en "  █           █   |  " && print-kernel
 echo -en "  █           █   |  " && print-packages
 echo -en "  ▀█▄▄▄▄▄▄▄▄▄█▀   |  " && print-colors
 echo
+sleep 10

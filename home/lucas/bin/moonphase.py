@@ -33,12 +33,12 @@ def phase(pos):
       7: "Lua Minguante"
    }[int(index) & 7]
 
-def main(): 
+def main():
    pos = position()
    phasename = phase(pos)
 
    roundedpos = round(float(pos), 3)
    print "%s (%s)" % (phasename, roundedpos)
 
-if __name__=="__main__": 
+if __name__=="__main__":
    main()
