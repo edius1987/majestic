@@ -42,9 +42,9 @@ font-3 = Fira:pixelsize=6;-2
 font-4 = icomoon:size=11;3
 font-5 = Moon Phases:size=11;3
 
-modules-left = i3
+modules-left = i3 bitcoin bcash ethereum
 modules-center = window
-modules-right = gmail crypto cpu memory calendar moonphase volume wallpaper ufw powermenu
+modules-right = cpu memory calendar moonphase volume wallpaper ufw powermenu
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -82,8 +82,8 @@ font-1 = FontAwesome:size=10;3
 font-2 = NotoSans:pixelsize=10;3
 font-3 = icomoon:pixelsize=11;3
 
-modules-left = apps launch screenshot multi
-modules-center = network temperature rootfs homefs pkg trash
+modules-left = apps launch screenshot
+modules-center = network temperature rootfs homefs trash
 modules-right = mpd
 
 ;----------------------------------------------------------
@@ -130,6 +130,57 @@ label-visible-font = 5
 label-visible = %name%
 label-visible-padding = 4
 
+
+;----------------------------------------------------------
+;		        B I T C O I N
+;----------------------------------------------------------
+[module/bitcoin]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py bitcoin BRL
+
+;----------------------------------------------------------
+;		        B C A S H
+;----------------------------------------------------------
+[module/bcash]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py bitcoin-cash BRL
+
+;----------------------------------------------------------
+;		        L I T E C O I N
+;----------------------------------------------------------
+[module/litecoin]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py litecoin BRL
+
+;----------------------------------------------------------
+;		        E T H E R E U M
+;----------------------------------------------------------
+[module/ethereum]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py ethereum BRL
+
+;----------------------------------------------------------
+;		        I O T A
+;----------------------------------------------------------
+[module/iota]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py iota BRL
+
 ;----------------------------------------------------------
 ;		        W I N D O W
 ;----------------------------------------------------------
@@ -144,29 +195,6 @@ click-left = ~/.config/polybar/scripts/janela.sh -i
 click-middle = ~/.config/polybar/scripts/janela.sh -c
 click-right = ~/.config/polybar/scripts/janela.sh -w
 exec = ~/.config/polybar/scripts/janela.sh
-
-;----------------------------------------------------------
-;		        G M A I L
-;----------------------------------------------------------
-[module/gmail]
-type = custom/script
-interval = 300
-format = <label>
-label = " %output%"
-exec = ~/.config/polybar/scripts/gmail/launch.py
-tail = true
-click-left = $BROWSER https://mail.google.com &
-
-;----------------------------------------------------------
-;		        C R Y P T O
-;----------------------------------------------------------
-[module/crypto]
-type = custom/script
-interval = 300
-format = <label>
-label = %output%
-;exec = ~/.config/polybar/scripts/btc.sh
-exec = ~/.config/polybar/scripts/crypto.py
 
 ;----------------------------------------------------------
 ;		        C P U
@@ -400,21 +428,6 @@ click-left = ~/.local/bin/screenshot &
 click-right = ~/.local/bin/screenshot clear &
 
 ;----------------------------------------------------------
-;			M U L T I
-;----------------------------------------------------------
-[module/multi]
-type = custom/ipc
-interval = 30
-hook-0 = ~/.config/polybar/scripts/weather.py
-hook-1 = ~/.config/polybar/scripts/anews.py
-hook-2 = ~/.config/polybar/scripts/logs.sh
-initial = 1
-click-left = polybar-msg -p %pid% hook multi 1
-click-right = polybar-msg -p %pid% hook multi 2
-click-middle = polybar-msg -p %pid% hook multi 3
-tail = true
-
-;----------------------------------------------------------
 ;		        N E T W O R K
 ;----------------------------------------------------------
 [module/network]
@@ -466,21 +479,6 @@ type = custom/script
 exec = df -h /home | awk 'NR==2 {print $5}'
 format =  <label>
 format-prefix = " "
-
-;----------------------------------------------------------
-;		           U P D A T E S
-;----------------------------------------------------------
-[module/pkg]
-type = custom/script
-interval = 1200
-format = <label>
-format-prefix = " "
-;format-prefix-foreground = ${colors.foreground}
-label = "%output:0:30%"
-exec = ~/.config/polybar/scripts/pkg.sh
-click-left = pamac-updater &
-click-middle = pamac-installer &
-click-right = pamac-manager &
 
 ;----------------------------------------------------------
 ;		        T R A S H

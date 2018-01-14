@@ -27,7 +27,7 @@ if [ ! -z $arquivo ]; then
 	if [ $(pwd) != $dir ]; then
 		mv $arquivo $dir
 	fi
-	xclip -selection c -t $tipo -i $dir$arquivo
 fi
 
+xclip -selection clipboard -t $tipo -i $dir$arquivo
 notify-send -i $icone "ScreenShot" "$msg"
