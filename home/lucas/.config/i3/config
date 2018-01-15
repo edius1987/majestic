@@ -12,7 +12,8 @@ new_window pixel 3
 #focus_on_window_activation focus
 #focus_follows_mouse no
 
-font pango:Source Code Pro, icomoon, FontAwesome 10
+#font pango:Source Code Pro, icomoon, Material Icons, FontAwesome 10
+font pango:Source Code Pro 10
 
 set_from_resource $fg i3wm.foreground #D8DEE9
 set_from_resource $bg i3wm.background #2E3440
@@ -101,17 +102,16 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+a focus parent
 bindsym $mod+Shift+d focus child
 
-# Icones:             
-set $workspace1 "1:"
-set $workspace2 "2:"
-set $workspace3 "3:"
-set $workspace4 "4:"
-set $workspace5 "5:"
-set $workspace6 "6:"
-set $workspace8 "7:"
-set $workspace7 "8:"
-set $workspace9 "9:"
-set $workspace10 "10:"
+set $workspace1 "1:"
+set $workspace2 "2:"
+set $workspace3 "3:"
+set $workspace4 "4:"
+set $workspace5 "5:"
+set $workspace6 "6:"
+set $workspace8 "7:"
+set $workspace7 "8:"
+set $workspace9 "9:"
+set $workspace10 "10:"
 
 # Alt+TAB & Alt+Shift+TAB	
 bindsym Mod1+Tab workspace next
@@ -188,19 +188,12 @@ assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $wor
 assign [class="(Termite|Tilix)"] $workspace2
 assign [class="(Pluma|Sublime_text|Atom)"] $workspace3
 assign [class="^(Thunar|Pcmanfm)"] $workspace4
-assign [class="^Gimp"] $workspace5
-assign [class="^Inkscape"] $workspace5
-assign [class="^Lxappearance"] $workspace5
-assign [class="^Deadbeef"] $workspace6
-assign [class="^Gmpc"] $workspace6
-assign [class="^Deluge"] $workspace7
-assign [class="^Thunderbird"] $workspace7
+assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $workspace5
+assign [class="(^Inkscape|^Gimp)"] $workspace6
+assign [class="^Gtkman"] $workspace7
 assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
 assign [class="^Telegram"] $workspace9
 assign [class="^Hexchat"] $workspace9
-assign [class="^Gtkman"] $workspace10
-assign [class="^Mate-disk-usage-analyzer"] $workspace10
-assign [class="(^Pamac*|Notes|Lxtask)"] $workspace10
 
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
 	bindsym s exec i3-msg exit
@@ -241,6 +234,7 @@ exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id thunar
+exec --no-startup-id firefox-developer-edition
 exec --no-startup-id numlockx on
 exec --no-startup-id ~/.local/bin/xautolock
 exec --no-startup-id xrdb ~/.Xresources

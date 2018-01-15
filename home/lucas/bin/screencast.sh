@@ -8,8 +8,9 @@
 # Última Atualização: 10/06/2017 09:36:56
 #
 
+[ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
+caminho="${XDG_VIDEOS_DIR:-${HOME}/video/screencast}"
 preset="ultrafast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
-caminho="${HOME}/video/screencast"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 arquivo="${caminho}/screencast-${data}.mp4"
@@ -33,5 +34,7 @@ else
     #ffmpeg -thread_queue_size 512 -f x11grab -r 30 -s $resolucao -i :0.0 -f pulse -ac 2 -i default -preset $preset -c:v h264_nvenc -qp 0 -c:a aac -b:a 128k $arquivo -probesize 50M
 	#ffmpeg -f alsa -i pulse -f x11grab -r 25 -s $resolucao -i :0 -c:a aac -c:v libx264 -threads 0 $arquivo -probesize 50M
     #ffmpeg -f x11grab -r 25 -s $resolucao -i :0 -f pulse -ac 2 -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo -probesize 50M
-    ffmpeg -f x11grab -r 25 -s $resolucao -i :0 -f pulse -ac 2 -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo
+    #ffmpeg -f x11grab -r 25 -s $resolucao -i :0 -f pulse -ac 2 -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k $arquivo
+    #ffmpeg -y -i screencast-2018-01-15_06-09-22.mp4 -c:v mpeg4 -b:v 600k -c:a libmp3lame output.avi
+    ffmpeg -y -f x11grab -r 25 -s $resolucao -i :0 -f pulse -ac 2 -i default -preset $preset -c:v mpeg4 -b:v 600k -c:a libmp3lame $arquivo
 fi

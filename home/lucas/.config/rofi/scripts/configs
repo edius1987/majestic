@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
 editor="subl"

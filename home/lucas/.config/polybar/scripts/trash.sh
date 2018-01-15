@@ -27,9 +27,9 @@ fi
 TRASH_COUNT=$(ls -U -1 "${TRASH_DIRECTORY}/files" | wc -l)
 
 if [[ ${TRASH_COUNT} -gt 0 ]]; then
-	s=" ${TRASH_COUNT}"
+	s=" ${TRASH_COUNT}"
 else
-	s=""
+	s=""
 fi
 
 echo "${s}"

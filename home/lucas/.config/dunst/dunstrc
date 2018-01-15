@@ -92,7 +92,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
     ### History ###
 
@@ -190,6 +190,13 @@
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
+
+[telegram]
+    appname = telegram-desktop
+    summary = "*"
+    body = "*"
+    script = ~/.local/bin/notification.sh
+    urgency = critical
 
 #[espeak]
 #    summary = "*"

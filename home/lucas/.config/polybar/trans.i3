@@ -131,6 +131,56 @@ label-visible = %name%
 label-visible-padding = 4
 
 ;----------------------------------------------------------
+;		        B I T C O I N
+;----------------------------------------------------------
+[module/bitcoin]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py bitcoin BRL
+
+;----------------------------------------------------------
+;		        B C A S H
+;----------------------------------------------------------
+[module/bcash]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py bitcoin-cash BRL
+
+;----------------------------------------------------------
+;		        L I T E C O I N
+;----------------------------------------------------------
+[module/litecoin]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py litecoin BRL
+
+;----------------------------------------------------------
+;		        E T H E R E U M
+;----------------------------------------------------------
+[module/ethereum]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py ethereum BRL
+
+;----------------------------------------------------------
+;		        I O T A
+;----------------------------------------------------------
+[module/iota]
+type = custom/script
+interval = 300
+format = <label>
+label =  %output%
+exec = ~/.config/polybar/scripts/crypto.py iota BRL
+
+;----------------------------------------------------------
 ;		        W I N D O W
 ;----------------------------------------------------------
 [module/window]

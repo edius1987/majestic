@@ -1,8 +1,13 @@
 #!/bin/sh
 
-#app="scrot"
+if [ -f ~/.config/user-dirs.dirs ]; then 
+	source ~/.config/user-dirs.dirs
+	dir="${XDG_PICTURES_DIR}/shots/"
+else
+	dir="${HOME}/img/shots/"
+fi
+
 app="maim -u"
-dir="${HOME}/img/shots/"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"
 extensao=".png"
@@ -11,9 +16,7 @@ icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
 tipo="image/png"
 
-if [ ! -d $dir ]; then
-	mkdir -p $dir
-fi
+[ ! -d $dir ] && mkdir -p $dir
 
 if [ "$1" == "-a" ]; then
 	arquivo="${nome}-full${extensao}"

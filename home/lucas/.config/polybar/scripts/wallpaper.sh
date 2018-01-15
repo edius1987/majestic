@@ -1,19 +1,20 @@
 #!/bin/bash
 
-#[ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
+[ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
-dir="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
+default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
+dir="/home/lucas/img/wallpapers/gaming"
+ultima="/home/lucas/img/wallpapers/gaming/131 - PS3.jpg"
 modo="--bg-fill"
 indice=0
 i=0
 
-[ -f ~/.wall ] && atual=$(cat ~/.wall)
 [ $2 ] && dir=$2
 
 while read linha; do
-    imagens[$i]="$linha"        
+    imagens[$i]="$linha"
     ((i++))
-done < <(find "$dir" -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \))    	
+done < <(find "$dir" -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \))
 #done < <(ls -1 $dir/*{jpg,png})
 
 cont=${#imagens[@]}
@@ -21,7 +22,7 @@ total=$(($cont-1))
 
 if [ $total -gt 0 ]; then
 	for i in "${!imagens[@]}"; do
-   		if [[ "${imagens[$i]}" = "${atual}" ]]; then
+   		if [[ "${imagens[$i]}" = "${ultima}" ]]; then
        		indice=${i}
    		fi
 	done
@@ -42,14 +43,15 @@ elif [ "$1" == "p" ]; then
 		((indice++))
 	else
 		indice=0
-	fi	
+	fi
 	img=${imagens[$indice]}
 elif [ "$1" == "r" ]; then
 	img=${imagens[$RANDOM % ${#imagens[@]}]}
 fi
 
-echo "$img"
-echo "$img" > ~/.wall
+#echo "$img"
+#echo "$img" > ~/.wall
+sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
 
 if [ -f "$img" ]; then
 	feh $modo "$img"

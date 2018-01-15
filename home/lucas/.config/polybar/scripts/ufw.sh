@@ -16,7 +16,7 @@ if [[ $? -gt 0 ]]; then
 fi
 
 if [[ "${status}" != *inactive* ]]; then
-  echo ""
+  echo ""
 else
-  echo ""
+  echo ""
 fi
