@@ -3,8 +3,8 @@
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
-dir="/home/lucas/img/wallpapers/macos"
-ultima="/home/lucas/img/wallpapers/macos/el_capitan/238570.jpg"
+dir="/home/lucas/img/wallpapers/unsplash"
+ultima="/home/lucas/img/wallpapers/unsplash/lum3n-187468.jpg"
 modo="--bg-fill"
 indice=0
 i=0

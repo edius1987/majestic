@@ -12,7 +12,6 @@ song_columns_list_format = "(12)[white]{a}(85)[red]{t} (5)[cyan]{l}"
 autocenter_mode = "yes"
 centered_cursor = "yes"
 
-
 # Bars
 # progressbar_look = "⠒⠒⠐"
 # progressbar_look = "━━╸"
@@ -48,6 +47,8 @@ progressbar_elapsed_color = "white"
 statusbar_color = "white"
 
 # Others
+execute_on_song_change = notify-send -i "/usr/share/icons/gnome/48x48/mimetypes/sound.png" "Now Playing ♫" "$(mpc current)"
+empty_tag_marker=" -- NENHUMA TAG -- "
 song_window_title_format = "%a - %t"
 search_engine_display_mode = "columns"
 follow_now_playing_lyrics = "yes"

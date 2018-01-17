@@ -4,7 +4,7 @@ nome="Rofi Wallpaper: $(basename $(pwd))"
 dir="/home/lucas/github/majestic/home/lucas/.config/rofi/scripts"
 tema="${HOME}/.local/share/rofi/themes/sistematico-dark.rasi"
 script="${HOME}/.config/polybar/scripts/wallpaper.sh"
-last="/home/lucas/img/wallpapers/macos"
+last="/home/lucas/img/wallpapers/unsplash"
 fullpath=$(readlink -e $0)
 
 ROFI="rofi -theme ${tema} -dmenu -p"
