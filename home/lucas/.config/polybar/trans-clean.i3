@@ -327,7 +327,7 @@ menu-0-5 = 
 menu-0-5-exec = Whatsapp &
 
 menu-0-6 = 
-menu-0-6-exec = steam-runtime &
+menu-0-6-exec = ~/.local/bin/steam-launcher &
 
 menu-0-7 = 
 menu-0-7-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &

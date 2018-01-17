@@ -42,7 +42,7 @@ font-3 = Fira:size=7;-2
 
 modules-left = i3 bitcoin bcash ethereum iota
 modules-center = window
-modules-right = gmail cpu memory calendar clock beats moonphase volume wallpaper ufw powermenu
+modules-right = gmail calendar clock beats moonphase volume wallpaper ufw powermenu
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -113,7 +113,7 @@ font-0 = Fira:size=10;2
 font-1 = feather:pixelsize=11;2
 
 modules-left = apps launch screencast screenshot multi
-modules-center = network temperature rootfs homefs pkg trash
+modules-center = cpu memory network temperature rootfs homefs pkg trash
 modules-right = mpd switch
 
 ;----------------------------------------------------------
@@ -237,51 +237,6 @@ label = " %output%"
 exec = ~/.config/polybar/scripts/gmail/launch.py
 tail = true
 click-left = $BROWSER https://mail.google.com &
-
-;----------------------------------------------------------
-;		        C P U
-;----------------------------------------------------------
-[module/cpu]
-type = internal/cpu
-interval = 0.5
-format =  <ramp-coreload>
-
-ramp-coreload-0-font = 4
-ramp-coreload-1-font = 4
-ramp-coreload-2-font = 4
-ramp-coreload-3-font = 4
-ramp-coreload-4-font = 4
-ramp-coreload-5-font = 4
-ramp-coreload-6-font = 4
-ramp-coreload-7-font = 4
-
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-4-foreground = #eee
-ramp-coreload-5 = ▆
-ramp-coreload-5-foreground = #eee
-ramp-coreload-6 = ▇
-ramp-coreload-6-foreground = #ff3b51
-ramp-coreload-7 = █
-ramp-coreload-7-foreground = #ff3b51
-
-;----------------------------------------------------------
-;		        M E M O R Y
-;----------------------------------------------------------
-[module/memory]
-type = internal/memory
-format = <label> <bar-used>
-label = 
-bar-used-width = 7
-bar-used-indicator = |
-bar-used-indicator-font = 0
-bar-used-fill = ─
-bar-used-fill-font = 0
-bar-used-empty = ─
-bar-used-empty-font = 0
 
 ;----------------------------------------------------------
 ;			 C A L E N D A R
@@ -438,7 +393,7 @@ menu-0-5 = 
 menu-0-5-exec = Whatsapp &
 
 menu-0-6 = 
-menu-0-6-exec = steam-runtime &
+menu-0-6-exec = ~/.local/bin/steam-launcher &
 
 menu-0-7 = 
 menu-0-7-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &
@@ -490,6 +445,28 @@ click-left = polybar-msg -p %pid% hook multi 1
 click-right = polybar-msg -p %pid% hook multi 2
 click-middle = polybar-msg -p %pid% hook multi 3
 tail = true
+
+;----------------------------------------------------------
+;		        C P U
+;----------------------------------------------------------
+[module/cpu]
+type = custom/script
+interval = 1
+format = <label>
+label = " %output:%%"
+exec = ~/.config/polybar/scripts/cpu.sh
+click-left = lxtask &
+
+;----------------------------------------------------------
+;		        M E M O R Y
+;----------------------------------------------------------
+[module/memory]
+type = custom/script
+interval = 1
+format = <label>
+label = " %output:%%"
+exec = ~/.config/polybar/scripts/mem.sh
+click-left = lxtask &
 
 ;----------------------------------------------------------
 ;		        N E T W O R K

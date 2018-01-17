@@ -168,22 +168,15 @@ for_window [window_type="menu"] floating enable, move position center
 for_window [class="(Mate-font-viewer|mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator|YAD|VideoCut)"] floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
-for_window [class="^etcher-electron"] floating enable
-for_window [class="^Skype"] floating enable
+for_window [class="(^etcher-electron|^Skype)"] floating enable
 for_window [title="^Governo do Estado de Mato Grosso do Sul"] floating enable
 for_window [title="^Mail do iCloud - Enc"] floating enable
 for_window [title="Filtros de mensagens"] floating enable
-for_window [title="Preferências do Thunderbird"] floating enable
-for_window [title="Biblioteca"] floating enable, move position center
-for_window [title="Library"] floating enable, move position center
-for_window [title="^DownThemAll"] floating enable
-for_window [title="DownThemAll!$"] move window to scratchpad
-for_window [title="Mail do iCloud - Chromium"] floating enable, move position center
-for_window [title="i3 Wallpaper"] floating enable, move position center
-for_window [title="About*"] floating enable, move position center
+for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird)"] floating enable
+for_window [title="(^DownThemAll|DownThemAll!$)"] move window to scratchpad
+for_window [title="(Biblioteca|Library|About*|Amigos|Steam)"] floating enable, move position center
 for_window [title="Sobre o Mozilla Firefox"] floating enable, move position center
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
-for_window [title="Amigos|Steam"] floating enable, move absolute position 1620 px 0 px, resize set 300 px 680 px
 for_window [title="(screencast$)"] move window to scratchpad
 
 assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $workspace1

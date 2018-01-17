@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+modos=(store games servers screenshots news settings bigpicture friends)
+
+if [[ " ${modos[*]} " =~ " $1 " ]]; then
+	/usr/bin/steam-runtime steam://open/$1
+else
+	/usr/bin/steam-runtime steam://open/games
+fi
