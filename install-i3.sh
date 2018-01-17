@@ -3,7 +3,6 @@
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 
 app_ok=1
-
 apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "json")
 
 for app in ${apps[@]}; do
@@ -68,8 +67,9 @@ else
 
 	echo "Instalando as configs da polybar..."
 	curl -s -o ${HOME}/.config/polybar/i3.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/i3.sh'
+    curl -s -o ${HOME}/.config/polybar/trans-clean.i3 "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans-clean.i3"
     curl -s -o ${HOME}/.config/polybar/trans.i3 "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans.i3"
-    ln -s ${HOME}/.config/polybar/trans.i3 ${HOME}/.config/polybar/i3
+    ln -s ${HOME}/.config/polybar/trans-clean.i3 ${HOME}/.config/polybar/i3
 
 	# polybar scripts
 	if [ -d ${HOME}/.config/polybar/scripts ]; then
@@ -78,7 +78,7 @@ else
 		mkdir -p ${HOME}/.config/polybar/scripts
 	fi
 
-	scripts=("anews.py" "btc.sh" "crypto2.py" "crypto.py" "janela.sh" "logs.sh" "pkg.sh" "strcut.py" "trash.sh" "weather.py")
+	scripts=("anews.py" "btc.sh" "crypto.py" "janela.sh" "logs.sh" "pkg.sh" "strcut.py" "trash.sh" "weather.py" "clock.sh" "moonphase.py" "wallpaper.sh" "beats.sh" "calendar.sh" "cpu.sh" "mem.sh" "switch.sh" "ufw.sh")
 	gmail=("auth.py"  "client_secrets.json"  "credentials.json"  "launch.py"  "preview.png"  "readme.md")
 
 	for script in ${scripts[@]}; do
@@ -94,12 +94,14 @@ else
 	done
 
 	# Scripts auxiliares
-
 	if [ ! -d ${HOME}/.local/bin ]; then
 		mkdir -p ${HOME}/.local/bin
 	fi
 
-	curl -L -s https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/bin/beats.sh > ~/.local/bin/beats.sh
+	localbinscripts=("beats.sh" "lockscreen" "lockscreen.firefox" "lockscreen.quotes" "lockscreen.simple" "notification.sh" "otf2ttf.ff" "screencast" "screenshot" "steam-launcher" "xautolock")
+	for localbinscript in ${localbinscripts[@]}; do
+		curl -s -o ${HOME}/.local/bin/${localbinscript} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/bin/${localbinscript}"
+	done
 fi
 
 # dunst
@@ -141,15 +143,13 @@ for rscript in ${rscripts[@]}; do
 done
 
 # fontawesome
-fc-list | grep -i FontAwesome 1> /dev/null 2> /dev/null
+fc-list | grep -i feather 1> /dev/null 2> /dev/null
 if [ $? -ne 0 ]; then
-	echo "FontAwesome não encontrado, instalando..."
-	curl -s http://fontawesome.io/assets/font-awesome-4.7.0.zip > /tmp/font-awesome-4.7.0.zip
-	unzip /tmp/font-awesome-4.7.0.zip -d /tmp/
-	if [ ! -d ${HOME}/.fonts ]; then
-		mkdir ${HOME}/.fonts
+	echo "Fonte FeatherIcons não encontrado, instalando..."
+	if [ ! -d ${HOME}/.local/share/fonts ]; then
+		mkdir ${HOME}/.local/share/fonts
 	fi
-	cp /tmp/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf ${HOME}/.fonts/fontawesome.ttf
+	curl -s https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/fonts/feather.ttf > ${HOME}/.local/share/fonts/feather.ttf
 	fc-cache -v -f
 fi
 
