@@ -102,14 +102,16 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+a focus parent
 bindsym $mod+Shift+d focus child
 
+#                     
+#          
 set $workspace1 "1:"
 set $workspace2 "2:"
 set $workspace3 "3:"
 set $workspace4 "4:"
 set $workspace5 "5:"
-set $workspace6 "6:"
-set $workspace8 "7:"
-set $workspace7 "8:"
+set $workspace6 "6:"
+set $workspace7 "7:"
+set $workspace8 "8:"
 set $workspace9 "9:"
 set $workspace10 "10:"
 
@@ -182,18 +184,17 @@ for_window [title="About*"] floating enable, move position center
 for_window [title="Sobre o Mozilla Firefox"] floating enable, move position center
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
 for_window [title="Amigos|Steam"] floating enable, move absolute position 1620 px 0 px, resize set 300 px 680 px
-for_window [title="^screencast.sh"] move window to scratchpad
+for_window [title="(screencast$)"] move window to scratchpad
 
 assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $workspace1
 assign [class="(Termite|Tilix)"] $workspace2
-assign [class="(Pluma|Sublime_text|Atom)"] $workspace3
+assign [class="(^Code*|Pluma|Sublime_text|Atom)"] $workspace3
 assign [class="^(Thunar|Pcmanfm)"] $workspace4
 assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $workspace5
-assign [class="(^Inkscape|^Gimp)"] $workspace6
-assign [class="^Gtkman"] $workspace7
+assign [class="(^Steam)"] $workspace6
+assign [class="(Gtkman|MedleyText)"] $workspace7
 assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
-assign [class="^Telegram"] $workspace9
-assign [class="^Hexchat"] $workspace9
+assign [class="(^Telegram|^Hexchat)"] $workspace9
 
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
 	bindsym s exec i3-msg exit
@@ -226,15 +227,17 @@ bindsym $mod+r mode "resize"
 set $polybar ~/.config/polybar/i3.sh
 exec_always --no-startup-id $polybar
 #exec --no-startup-id ~/bin/wallpaper.sh -d
-exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/carmine-de-fazio-31543.jpg
+#exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/carmine-de-fazio-31543.jpg
+exec_always --no-startup-id feh --bg-fill "$(cat ~/.wall)"
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
-exec --no-startup-id thunar
-exec --no-startup-id firefox-developer-edition
+#exec --no-startup-id thunar
+#exec --no-startup-id ~/apps/medley-latest.AppImage
+#exec --no-startup-id firefox-developer-edition
 exec --no-startup-id numlockx on
 exec --no-startup-id ~/.local/bin/xautolock
 exec --no-startup-id xrdb ~/.Xresources

@@ -43,7 +43,7 @@ try:
         if CURRENT == "Overcast clouds":
             CURRENT = "Nublado"
         elif CURRENT == "Scattered clouds":
-            CURRENT = "Nuvens dispersas"
+            CURRENT = "Nuvens esparsas"
         elif CURRENT == "Thunderstorm":
             CURRENT = "Trovoada"
         elif CURRENT == "Thunderstorm with light rain":
@@ -64,24 +64,24 @@ try:
             CURRENT = "Chuva leve"
 
         if ID >= 200 and ID <= 232:
-            ICON = ""
+            ICON = ""
         elif ID == 501 or ID == 500 or ID == 520:
-            ICON = ""
+            ICON = ""
         elif ID == 521:
-            ICON = ""
+            ICON = ""
         elif ID >= 310 and ID <= 531:
-            ICON = ""
+            ICON = ""
         elif ID >= 600 and ID <= 622:
-            ICON = ""
+            ICON = ""
         elif ID >= 701 and ID <= 761:
-            ICON = ""
+            ICON = ""
         elif ID >= 801 and ID <= 804:
             if HOUR >= 6 and HOUR <= 19:
-                ICON = ""
+                ICON = ""
             else:
-                ICON = ""
+                ICON = ""
         elif ID >= 900 and ID <= 902 or ID >= 957 and ID <= 962:
-            ICON = ""
+            ICON = ""
         elif ID == 903 or ID == 906:
             ICON = ""
         elif ID == 904:
@@ -90,10 +90,10 @@ try:
             ICON = ""
         else:
             if HOUR >= 6 and HOUR <= 19:
-                ICON = ""
+                ICON = ""
             else:
-                ICON = ""
-        print("%%{F#FFF}%s %%{F-}%s, %i°%s, %s%%,  %s %skm/h, %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, HUMIDADE, DIRECAO, VELOCIDADE, PRESSAO)) # Icon with description
+                ICON = ""
+        print("%%{F#FFF}%s %%{F-}%s, %i°%s, %s%%,  %s  %skm/h, %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, HUMIDADE, DIRECAO, VELOCIDADE, PRESSAO)) # Icon with description
 
 except requests.exceptions.RequestException:  # This is the correct syntax
     print("%{F#66ffffff}Erro ao recuperar o clima.%{F-}")

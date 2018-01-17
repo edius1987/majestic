@@ -18,7 +18,8 @@ height = 30
 offset-y = -1
 top = true
 
-background = ${colors.trans}
+;background = ${colors.trans}
+background = ${colors.background}
 foreground = ${colors.foreground}
 
 fixed-center = true
@@ -41,8 +42,43 @@ modules-left = i3
 modules-center = window
 modules-right = calendar clock beats moonphase volume wallpaper ufw powermenu
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
+tray-position = right
+
+; If true, the bar will not shift its
+; contents when the tray changes
+tray-detached = false
+
+; Tray icon max size
+tray-maxsize = 20
+
+; Enable pseudo transparency
+; Will automatically be enabled if a fully transparent
+; background color is defined using `tray-background`
+tray-transparent = false
+
+; Background color for the tray container
+; By default the tray container will use the bar
+; background color.
+; Note: 32 bit alpha blending is not supported.
+tray-background = ${colors.background}
+
+; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+tray-offset-x = 0
+tray-offset-y = 1
+
+; Pad the sides of each tray icon
+tray-padding = 0
+
+; Scale factor for tray clients
+tray-scale = 1.0
 
 ;----------------------------------------------------------
 ;		        B A R / B O T T O M
@@ -54,7 +90,8 @@ offset-y = -1
 bottom = true
 enable-ipc = true
 
-background = ${colors.trans}
+;background = ${colors.trans}
+background = ${colors.background}
 foreground = ${colors.foreground}
 
 fixed-center = true
@@ -73,7 +110,7 @@ font-2 = Fira:size=7;-2
 
 modules-left = apps launch screencast screenshot
 modules-center = cpu memory network temperature rootfs homefs trash
-modules-right = mpd
+modules-right = mpd switch
 
 ;----------------------------------------------------------
 ;		        I 3
@@ -81,12 +118,14 @@ modules-right = mpd
 [module/i3]
 type = internal/i3
 
+;                     
+;          
 ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6;
+ws-icon-5 = 6;
 ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
@@ -266,8 +305,8 @@ expand-right = true
 ;format-spacing = 1
 
 label-open = " "
-label-close = " "
-label-separator = " "
+label-close = " "
+label-separator = "  "
 
 menu-0-0 = 
 menu-0-0-exec = firefox-developer-edition &
@@ -287,14 +326,14 @@ menu-0-4-exec = telegram &
 menu-0-5 = 
 menu-0-5-exec = Whatsapp &
 
-menu-0-7 = 
-menu-0-7-exec = steam-runtime &
+menu-0-6 = 
+menu-0-6-exec = steam-runtime &
 
-menu-0-8 = 
-menu-0-8-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &
+menu-0-7 = 
+menu-0-7-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &
 
-menu-0-9 = 
-menu-0-9-exec = ~/apps/medley-latest.AppImage &
+menu-0-8 = 
+menu-0-8-exec = ~/apps/medley-latest.AppImage &
 
 ;----------------------------------------------------------
 ;			L A U N C H E R
@@ -310,9 +349,12 @@ click-right = ~/.config/rofi/scripts/drun &
 ;			S C R E E N C A S T
 ;----------------------------------------------------------
 [module/screencast]
-type = custom/text
-content = 
-click-left = termite -e screencast.sh &
+type = custom/script
+interval = 1
+label = %output%
+click-left = termite -e ~/.local/bin/screencast &
+click-right = ~/.local/bin/screencast clear &
+exec = ~/.local/bin/screencast status
 
 ;----------------------------------------------------------
 ;			S C R E E N S H O T
@@ -327,47 +369,23 @@ click-right = ~/.local/bin/screenshot clear &
 ;		        C P U
 ;----------------------------------------------------------
 [module/cpu]
-type = internal/cpu
-interval = 0.5
-format = <label> <ramp-coreload>
-label = 
-
-ramp-coreload-0-font = 3
-ramp-coreload-1-font = 3
-ramp-coreload-2-font = 3
-ramp-coreload-3-font = 3
-ramp-coreload-4-font = 3
-ramp-coreload-5-font = 3
-ramp-coreload-6-font = 3
-ramp-coreload-7-font = 3
-
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-4-foreground = #eee
-ramp-coreload-5 = ▆
-ramp-coreload-5-foreground = #eee
-ramp-coreload-6 = ▇
-ramp-coreload-6-foreground = #ff3b51
-ramp-coreload-7 = █
-ramp-coreload-7-foreground = #ff3b51
+type = custom/script
+interval = 1
+format = <label>
+label = " %output:%%"
+exec = ~/.config/polybar/scripts/cpu.sh
+click-left = lxtask &
 
 ;----------------------------------------------------------
 ;		        M E M O R Y
 ;----------------------------------------------------------
 [module/memory]
-type = internal/memory
-format = <label> <bar-used>
-label = 
-bar-used-width = 7
-bar-used-indicator = |
-bar-used-indicator-font = 0
-bar-used-fill = ─
-bar-used-fill-font = 0
-bar-used-empty = ─
-bar-used-empty-font = 0
+type = custom/script
+interval = 1
+format = <label>
+label = " %output:%%"
+exec = ~/.config/polybar/scripts/mem.sh
+click-left = lxtask &
 
 ;----------------------------------------------------------
 ;		        N E T W O R K
@@ -429,8 +447,9 @@ type = custom/script
 interval = 1
 format = <label>
 label = "%output:0:30%"
-exec = ~/.config/polybar/scripts/trash.sh
-click-left = ~/.config/polybar/scripts/trash.sh -x ; exec paplay /usr/share/sounds/freedesktop/stereo/trash-empty.oga ; notify-send "Lixeira" "Lixeira limpa!"
+click-left = ~/.config/polybar/scripts/trash.sh -x ; exec paplay /usr/share/sounds/freedesktop/stereo/trash-empty.oga ; notify-send "Lixeira" "Lixeira limpa!" &
+click-middle = ~/.config/polybar/scripts/trash.sh -o &
+click-right = ~/.config/polybar/scripts/trash.sh -x ; exec paplay /usr/share/sounds/freedesktop/stereo/trash-empty.oga ; notify-send "Lixeira" "Lixeira limpa!" &
 
 ;----------------------------------------------------------
 ;			M P D
@@ -441,21 +460,52 @@ host = 127.0.0.1
 port = 6600
 interval = 2
 
-format-online = <label-song> <label-time> <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-repeatone> <icon-random> <icon-consume>
-format-stopped = <toggle>
-
-label-song = " %artist% - %title%"
-label-time = "%elapsed% / %total%"
-label-stopped = 
-label-paused = 
-label-offline = 
-
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone>
+;   <icon-consume>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <label-song> <label-time> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next> <icon-repeat> <icon-repeatone> <icon-random>
 ;format-playing = ${self.format-online}
-;format-paused = ${self.format-stopped}
-;format-stopped = ${self.format-stopped}
-;format-offline = ${self.format-offline}
+;format-paused = ${self.format-online}
+;format-stopped = ${self.format-online}
+
+; Available tags:
+;   <label-offline>
+format-offline = <label-offline>
+
+; Available tokens:
+;   %artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song =  %artist% - %title%
+
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+;label-time = %elapsed% / %total%
+
+; Available tokens:
+;   None
+label-offline = 🎜 MPD
 
 ; Only applies if <icon-X> is used
+
 icon-play = 
 icon-pause = 
 icon-stop = 
@@ -466,7 +516,7 @@ icon-seekf = 
 icon-random = 
 icon-repeat = 
 icon-repeatone = 
-icon-consume = 
+icon-consume = ✀
 
 ; Used to display the state of random/repeat/repeatone
 ; Only applies if <icon-[random|repeat|repeatone]> is used
@@ -474,10 +524,17 @@ toggle-on-foreground = #ff
 toggle-off-foreground = #55
 
 ; Only applies if <bar-progress> is used
-bar-progress-width = 8
+bar-progress-width = 45
 bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
 
-scroll-up = mpc next
-scroll-down = mpc prev
+;----------------------------------------------------------
+;		        S W I T C H
+;----------------------------------------------------------
+[module/switch]
+type = custom/script
+interval = 1
+label = %output:0:50:...%
+click-left = ~/.config/polybar/scripts/switch.sh s &
+exec = ~/.config/polybar/scripts/switch.sh

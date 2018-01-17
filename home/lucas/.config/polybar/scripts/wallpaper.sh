@@ -3,8 +3,8 @@
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
-dir="/home/lucas/img/wallpapers/gaming"
-ultima="/home/lucas/img/wallpapers/gaming/131 - PS3.jpg"
+dir="/home/lucas/img/wallpapers/macos"
+ultima="/home/lucas/img/wallpapers/macos/el_capitan/238570.jpg"
 modo="--bg-fill"
 indice=0
 i=0
@@ -55,4 +55,5 @@ sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
 
 if [ -f "$img" ]; then
 	feh $modo "$img"
+	echo "$img" > ~/.wall
 fi

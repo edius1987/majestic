@@ -23,7 +23,7 @@ else:
 r = requests.get(API_URL.format(coin))
 data = json.loads(r.text)[0]
 price = float(data['price_usd'])
-end = '%{F-}'
+ids = data['id']
 
 # Convert
 def conv(moeda,valor):
@@ -39,14 +39,18 @@ else: precision = 6
 percentChange = float(data['percent_change_' + PRICE_CHANGE_PERIOD])
 percentChangeFormat = '{}{}{:.2f}%{}'
 
-if percentChange > 0: percentChangeInfo = percentChangeFormat.format('%{F#9FE697}', '', percentChange, end)
-elif percentChange == 0: percentChangeInfo = percentChangeFormat.format('%{F#CCCCCC}', '', percentChange, end)
-else: percentChangeInfo = percentChangeFormat.format('%{F#BF616A}', '', percentChange, end)
+if percentChange > 0: percentChangeInfo = percentChangeFormat.format('%{F#9FE697}', ' ', percentChange, '%{F-}')
+elif percentChange == 0: percentChangeInfo = percentChangeFormat.format('%{F#CCCCCC}', ' ', percentChange, '%{F-}')
+else: percentChangeInfo = percentChangeFormat.format('%{F#BF616A}', ' ', percentChange, '%{F-}')
 
 if moeda != "USD":
     vlr = conv(moeda,price)
 else:
     vlr = price
 
+#if coin == "list":    
+#    for x in ids:
+#        print x
+#else:
 #print(('{:.' + str(precision) + 'f} {}').format(price, percentChangeInfo))
 print(('{:.' + str(precision) + 'f} {}').format(vlr, percentChangeInfo))

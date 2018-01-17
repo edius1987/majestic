@@ -23,7 +23,7 @@ lixeira="${HOME}/.local/share/Trash"
 if [ $1 ]; then
 	icone="/usr/share/icons/Arc/places/24@2x/user-trash.png"
 	listagem=(${dir}*)
-	if [ ${#listagem[@]} -gt 1 ]; then 
+	if [ ${#listagem[@]} -gt 0 ]; then 
 		mv ${dir}* ${lixeira}/files/
 		msg="Pasta de screenshots limpa!"
 	else

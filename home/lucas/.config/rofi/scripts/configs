@@ -36,9 +36,10 @@ if [ "$res" ]; then
 			fi
 		;;
 		'Polybar')
-			polyconfig=$(echo "Config;Temas;Apps" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-
-			if [ "$polyconfig" = "Apps" ]; then
+			polyconfig=$(echo "Config;Temas;Apps;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			if [ "$polyconfig" = "Reload" ]; then
+				~/.config/polybar/i3.sh
+			elif [ "$polyconfig" = "Apps" ]; then
 				app=$( ls ${HOME}/.config/polybar/scripts/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					i3-msg exec $editor "${app}"
@@ -53,8 +54,15 @@ if [ "$res" ]; then
 					i3-msg restart
 				fi
 			elif [ $polyconfig ]; then
-				cfgfile=$(awk '/.config/ {a=$3} END{print a}' ~/.config/polybar/i3.sh)
-				i3-msg exec $editor $cfgfile
+				#cfgfile=$(awk '/.config/ {a=$3} END{print a}' ~/.config/polybar/i3.sh)
+				cfgfile=$(echo -e "Atual\n$(ls -m1 ${HOME}/.config/polybar/ | egrep '.i3$')" | rofi -theme "$tema" -dmenu -p "Polybar Configs" -bw 0 -lines 5 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+				if [ $cfgfile ]; then
+					if [ $cfgfile == "Atual" ]; then
+						i3-msg exec $editor ${HOME}/.config/polybar/i3
+					else
+						i3-msg exec $editor ${HOME}/.config/polybar/$cfgfile
+					fi
+				fi
 			fi
 
 		;;
@@ -90,7 +98,7 @@ if [ "$res" ]; then
 		    i3-msg exec $editor "${HOME}/.config/ncmpcpp/config"
 		;;
 		'Home')
-			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin;.bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 10 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
 	
 			if [ "$homefiles" = "bin" ]; then
 				binfiles=$(ls "${HOME}/bin/" | rofi -theme "$tema" -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
@@ -98,10 +106,12 @@ if [ "$res" ]; then
 					i3-msg exec $editor ~/bin/${binfiles} 
 				fi
             elif [ "$homefiles" = ".bin" ]; then
-				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -theme "$tema" -dmenu -p "~/.local/bin" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -theme "$tema" -dmenu -p "~/.local/bin" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)	
 				if [ $dotbinfiles ]; then
 					i3-msg exec $editor ~/.local/bin/${dotbinfiles} 
 				fi
+			elif [ "$homefiles" = "mimeapps" ]; then
+				i3-msg exec $editor ~/.config/mimeapps.list
 			elif [ $homefiles ]; then
 				i3-msg exec $editor ~/${homefiles} 
 			fi

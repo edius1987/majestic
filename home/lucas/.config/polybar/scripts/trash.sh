@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. ~/.config/i3blocks/cores.conf
-
 TRASH_DIRECTORY="${HOME}/.local/share/Trash"
 TRASH_TEMP="/tmp/lixo"
 
@@ -22,6 +20,8 @@ if [[ "${1}" == "-x" ]]; then
 
 	mkdir ${TRASH_DIRECTORY}/files
 	mkdir ${TRASH_DIRECTORY}/info
+elif [[ "${1}" == "-o" ]]; then
+	xdg-open $TRASH_DIRECTORY/files
 fi
 
 TRASH_COUNT=$(ls -U -1 "${TRASH_DIRECTORY}/files" | wc -l)
