@@ -40,12 +40,15 @@ Usando o auto instalador:
 
 Problemas? Abra uma [issue](https://github.com/sistematico/majestic/issues/new) ;)
 
-## ScreenShot
+## ScreenShots
 
-![Screenshot #1][screenshot2]  
+![Screenshot #1][screenshot1]  
+Clean
 
-![Screenshot #2][screenshot2]
+![Screenshot #2][screenshot2]  
+Full
 
 [screenshot1]: https://raw.githubusercontent.com/sistematico/majestic/master/screenshot.png "Screenshot #1"
+
 [screenshot2]: https://raw.githubusercontent.com/sistematico/majestic/master/screenshot2.png "Screenshot #2"
 
