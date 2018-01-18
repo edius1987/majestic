@@ -7,6 +7,7 @@
 # Criado em: 09/06/2017 23:26:41
 # Última Atualização: 16/01/2018 01:20:47
 
+cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 lixeira="${HOME}/.local/share/Trash"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 
@@ -28,14 +29,14 @@ fi
 
 if pgrep -x "ffmpeg" > /dev/null
 then
-    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#d08770}%{F-}"
+    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo ""
     if [ ! $1 ]; then
         killall ffmpeg
         notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi terminado."
         exit 0
     fi
 else
-    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo ""
+    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}"
     if [ ! "$1" ]; then
         notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi iniciado..."
         #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -threads 0 -probesize 10M $arquivo

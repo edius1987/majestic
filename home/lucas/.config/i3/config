@@ -188,6 +188,7 @@ assign [class="(^Steam)"] $workspace6
 assign [class="(Gtkman|MedleyText)"] $workspace7
 assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
 assign [class="(^Telegram|^Hexchat)"] $workspace9
+assign [class="(dontstarve_steam)"] $workspace10
 
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
 	bindsym s exec i3-msg exit
@@ -216,11 +217,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#xrdb ~/.Xresources
-set $polybar ~/.config/polybar/i3.sh
+set $polybar ~/.config/polybar/launch.sh
 exec_always --no-startup-id $polybar
-#exec --no-startup-id ~/bin/wallpaper.sh -d
-#exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/carmine-de-fazio-31543.jpg
 exec_always --no-startup-id feh --bg-fill "$(cat ~/.wall)"
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
@@ -228,9 +226,6 @@ exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
-#exec --no-startup-id thunar
-#exec --no-startup-id ~/apps/medley-latest.AppImage
-#exec --no-startup-id firefox-developer-edition
 exec --no-startup-id numlockx on
 exec --no-startup-id ~/.local/bin/xautolock
 exec --no-startup-id xrdb ~/.Xresources

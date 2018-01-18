@@ -4,6 +4,10 @@
 # https://www.swatch.com/en/internettime/
 # https://en.wikipedia.org/wiki/Swatch_Internet_Time#Calculation_from_UTC.2B1
 
+if [ "$DESKTOP_SESSION" == "mate" ]; then
+	icone="@"
+fi
+
 function beats {
     command -v bc >/dev/null 2>&1 || { echo "bc não encontrado." ; exit 1; }
     read h m s <<<$(date -u "+%H %M %S")
@@ -25,7 +29,7 @@ case $1 in
     ;;
     *)
         beats
-        echo $b
+        echo $icone$b
     ;;
 esac
 

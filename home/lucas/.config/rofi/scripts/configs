@@ -36,7 +36,7 @@ if [ "$res" ]; then
 			fi
 		;;
 		'Polybar')
-			polyconfig=$(echo "Config;Temas;Apps;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			polyconfig=$(echo "Config;Cores;Apps;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 			if [ "$polyconfig" = "Reload" ]; then
 				~/.config/polybar/i3.sh
 			elif [ "$polyconfig" = "Apps" ]; then
@@ -44,25 +44,21 @@ if [ "$res" ]; then
 				if [ $app ]; then
 					i3-msg exec $editor "${app}"
 				fi
-			elif [ "$polyconfig" = "Temas" ]; then
-				for t in ${HOME}/.config/polybar/config.*; do 
-					tem+=($(basename $t)); 
-				done
-				temas=$( printf '%s\n' "${tem[@]}" | rofi -theme "$tema" -dmenu -p "Polybar Temas" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
-				if [ $temas ]; then
-					ln -sf "${HOME}/.config/polybar/${temas}" ${HOME}/.config/polybar/config
-					i3-msg restart
+			elif [ "$polyconfig" = "Cores" ]; then
+				cores=$(echo "azul;vermelho;amarelo;verde;branco" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar Cores" -bw 0 -lines 5 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+				if [ $cores ]; then
+					i3-msg exec $editor ${HOME}/.config/polybar/cores/${cores}
 				fi
 			elif [ $polyconfig ]; then
 				#cfgfile=$(awk '/.config/ {a=$3} END{print a}' ~/.config/polybar/i3.sh)
-				cfgfile=$(echo -e "Atual\n$(ls -m1 ${HOME}/.config/polybar/ | egrep '.i3$')" | rofi -theme "$tema" -dmenu -p "Polybar Configs" -bw 0 -lines 5 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-				if [ $cfgfile ]; then
-					if [ $cfgfile == "Atual" ]; then
-						i3-msg exec $editor ${HOME}/.config/polybar/i3
-					else
-						i3-msg exec $editor ${HOME}/.config/polybar/$cfgfile
-					fi
-				fi
+				#cfgfile=$(echo -e "Atual\n$(ls -m1 ${HOME}/.config/polybar/ | egrep '.i3$')" | rofi -theme "$tema" -dmenu -p "Polybar Configs" -bw 0 -lines 5 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+				#if [ $cfgfile ]; then
+				#	if [ $cfgfile == "Atual" ]; then
+						i3-msg exec $editor ${HOME}/.config/polybar/principal
+				#	else
+				#		i3-msg exec $editor ${HOME}/.config/polybar/$cfgfile
+				#	fi
+				#fi
 			fi
 
 		;;

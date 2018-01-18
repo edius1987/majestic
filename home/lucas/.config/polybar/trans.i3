@@ -1,9 +1,15 @@
 ;----------------------------------------------------------
+;		        S E T T I N G S
+;----------------------------------------------------------
+[settings]
+screenchange-reload = true
+
+;----------------------------------------------------------
 ;		        C O L O R S
 ;----------------------------------------------------------
 ; 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
 [colors]
-trans = #66000000
+transparente = #66000000
 foreground = ${xrdb:foreground}
 background = ${xrdb:background}
 unfocused = ${xrdb:color16}
@@ -18,8 +24,10 @@ width = 100%
 height = 30
 offset-y = -1
 top = true
+;override-redirect = true
+;wm-restack = i3
 
-;background = ${colors.trans}
+;background = ${colors.transparente}
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -93,7 +101,7 @@ offset-y = -1
 bottom = true
 enable-ipc = true
 
-;background = ${colors.trans}
+;background = ${colors.transparente}
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -113,7 +121,7 @@ font-0 = Fira:size=10;2
 font-1 = feather:pixelsize=11;2
 
 modules-left = apps launch screencast screenshot multi
-modules-center = cpu memory network temperature rootfs homefs pkg trash
+modules-center = cpu memory network temperature rootfs homefs pkg trash uptime
 modules-right = mpd switch
 
 ;----------------------------------------------------------
@@ -235,8 +243,8 @@ interval = 300
 format = <label>
 label = " %output%"
 exec = ~/.config/polybar/scripts/gmail/launch.py
-tail = true
 click-left = $BROWSER https://mail.google.com &
+tail = true
 
 ;----------------------------------------------------------
 ;			 C A L E N D A R
@@ -323,7 +331,6 @@ format = <label>
 ;----------------------------------------------------------
 ;		    P O W E R   M E N U
 ;----------------------------------------------------------
-;#b48ead
 [module/powermenu]
 type = custom/menu
 format-spacing = 1
@@ -357,9 +364,6 @@ menu-3-0-exec = systemctl poweroff
 menu-4-0 = "SAIR?"
 menu-4-0-exec = i3-msg exit
 
-[settings]
-screenchange-reload = true
-
 ;----------------------------------------------------------
 ;			A P P S
 ;----------------------------------------------------------
@@ -381,7 +385,7 @@ menu-0-1 = 
 menu-0-1-exec = thunar &
 
 menu-0-2 = 
-menu-0-2-exec = termite &
+menu-0-2-exec = cd ; $TERMINAL &
 
 menu-0-3 = 
 menu-0-3-exec = subl &
@@ -393,7 +397,7 @@ menu-0-5 = 
 menu-0-5-exec = Whatsapp &
 
 menu-0-6 = 
-menu-0-6-exec = ~/.local/bin/steam-launcher &
+menu-0-6-exec = steam &
 
 menu-0-7 = 
 menu-0-7-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &
@@ -418,7 +422,7 @@ click-right = ~/.config/rofi/scripts/drun &
 type = custom/script
 interval = 1
 label = %output%
-click-left = termite -e ~/.local/bin/screencast &
+click-left = $TERMINAL -e ~/.local/bin/screencast &
 click-right = ~/.local/bin/screencast clear &
 exec = ~/.local/bin/screencast status
 
@@ -548,6 +552,15 @@ exec = ~/.config/polybar/scripts/trash.sh
 click-left = ~/.config/polybar/scripts/trash.sh -x ; exec paplay /usr/share/sounds/freedesktop/stereo/trash-empty.oga ; notify-send "Lixeira" "Lixeira limpa!" &
 click-middle = ~/.config/polybar/scripts/trash.sh -o &
 click-right = ~/.config/polybar/scripts/trash.sh -x ; exec paplay /usr/share/sounds/freedesktop/stereo/trash-empty.oga ; notify-send "Lixeira" "Lixeira limpa!" &
+
+;----------------------------------------------------------
+;		        U P T I M E
+;----------------------------------------------------------
+[module/uptime]
+type = custom/script
+format-prefix = " "
+exec = ~/.config/polybar/scripts/uptime.sh
+interval = 60
 
 ;----------------------------------------------------------
 ;			M P D

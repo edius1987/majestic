@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 status=$(sudo ufw status 2>/dev/null)
 
 # Left click
@@ -18,7 +19,7 @@ if [[ $? -gt 0 ]]; then
 fi
 
 if [[ "${status}" != *inactive* ]]; then
-  echo ""
+  echo "%{F#${cor}}%{F-}"
 else
-  echo ""
+  echo "%{F#${cor}}%{F-}"
 fi
