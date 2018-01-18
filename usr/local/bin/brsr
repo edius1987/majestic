@@ -1,17 +1,30 @@
 #!/bin/sh
 
+default="firefox-developer-edition"
+
 #app=$(ps axco command --sort=start_time | egrep -m1 -oE "firefox|chrome|chromium")
 #app=$(ps axco command --sort=start_time | egrep -m1 "^firefox|^google-chrome|^chromium$")
-app=$(ps axo command --sort=start_time | egrep -m1 "^firefox|^google-chrome|^chromium$")
+app=$(ps axo command --sort=start_time | egrep -m1 "firefox|google-chrome|chromium$" | grep -v grep | awk '{print $1}')
+msg="App escolhido por processo!"
 
-if [ -z $app ]; then
+if [ -z "$app" ]; then
 	if [ ! -z $BROWSER ] && [ $BROWSER != "brsr" ]; then
+		msg="App escolhido pelo $BROWSER!"
 		app=$BROWSER
 	else
-		app=$(ls -1 /usr/bin/ | egrep -m1 "^firefox|^google-chrome-stable$|^chromium$")
+		which $default >/dev/null 2>&1
+		if [ $? = 0 ]; then
+			msg="App escolhido por default!"
+			app=$default
+		else
+			msg="App escolhido pelo PATH!"
+			app=$(ls -1 /usr/bin/ | egrep -m1 "^firefox|^google-chrome-stable$|^chromium$")
+		fi
 	fi
 fi
 
-if [ ! -z $app ]; then
+if [ ! -z "$app" ]; then
+	#echo "$app"
+	#echo "$msg"
 	$app "$@"
 fi
