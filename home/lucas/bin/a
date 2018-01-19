@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-tema="${HOME}/.local/share/rofi/themes/alert.rasi"
-conf="${HOME}/.config/rofi/alert.rasi"
-
-rofi -config $conf -theme $tema -e "$@"
