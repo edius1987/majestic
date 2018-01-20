@@ -4,7 +4,7 @@
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
 dir="/home/lucas/img/wallpapers/unsplash"
-ultima="/home/lucas/img/wallpapers/unsplash/lum3n-187468.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/lucian-moldovan-180777.jpg"
 modo="--bg-fill"
 indice=0
 i=0

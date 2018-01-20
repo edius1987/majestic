@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="estilo.css" rel="stylesheet" type="text/css">
+		<link rel='stylesheet' href='hack-subset.css'>
+		<link href="font-awesome.min.css" rel="stylesheet">
+		<title>Start Page</title>
+	</head>
+
+	<body>
+		<div id="terminal">
+			<p class="directory">~</p>
+			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls</span></p>
+			<div class="links">
+				<p style="display: inline;">
+					<span class="blue-text spaced-link"><a href="https://wiki.archlinux.org">archwiki</a></span>
+					<span class="blue-text spaced-link"><a href="https://discordapp.com/channels/@me">discord</a></span>
+					<span class="blue-text spaced-link"><a href="https://github.com/">github</a></span>
+					<span class="blue-text spaced-link"><a href="https://mail.protonmail.com/login">protonmail</a></span>
+					<span class="blue-text spaced-link"><a href="https://reddit.com">reddit</a></span>
+					<span class="blue-text spaced-link"><a href="https://standardnotes.slack.com">slack</a></span>
+					<span class="blue-text spaced-link"><a href="https://youtube.com/">youtube</a></span>
+				</p>
+			</div>
+
+			<p class="directory">~</p>
+			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search</span></p>
+			<div class="links">
+				<p style="display: inline;">
+					<span class="blue-text spaced-link"><a href="https://start.duckduckgo.com" class="ddg">duckduckgo</a></span>
+					<span class="blue-text spaced-link"><a href="https://google.com" class="google">google</a></span>
+					<span class="blue-text spaced-link"><a href="https://bing.com" class="bing">bing</a></span>
+				</p>
+			</div>			
+
+			<p class="directory">~</p>
+			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls reddit</span></p>
+			<div class="links">
+				<p style="display: inline;">
+					<span class="blue-text spaced-link"><a href="https://reddit.com/r/startpages/">startpages</a></span>
+					<!-- <span class="blue-text spaced-link"><a href="https://reddit.com/r/dredmorbius/">dredmorbius</a></span> -->
+					<span class="blue-text spaced-link"><a href="https://reddit.com/r/unixporn/">unixporn</a></span>
+				</p>
+			</div>
+
+			<p class="directory">~</p>
+			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls .shopping</span></p>
+			<div class="links">
+				<p style="display: inline;">
+					<span class="blue-text spaced-link"><a href="https://amazon.in">amazon</a></span>
+					<span class="blue-text spaced-link"><a href="https://flipkart.com">flipkart</a></span>
+				</p>
+			</div>
+			<p class="directory">~</p>
+			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search-bar</span></p>
+			<div class="links">
+				<p style="display: inline;">
+					<form id="pesquisa" action="http://www.google.com/search" method="get">
+    					
+					<!-- <div class="box"> -->
+  						<div class="container-1">
+      						<span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+      						<input type="search" name="q" id="search" placeholder="Pesquisar..." />
+  						</div>
+					<!-- </div> -->
+					</form>
+				</p>
+			</div>
+
+		</div>
+		<script src="jquery-3.2.1.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('.google').on('click', function(e) {
+					e.preventDefault();
+ 					$('#pesquisa').attr('action', $(this).attr('href'));
+ 					$('#pesquisa input:last').attr('name', 'q');
+ 					$('#pesquisa input:last').prop('placeholder', 'Pesquisar no Google');
+				});
+
+				$('#pesquisa').on('submit', function(e) { 
+					e.preventDefault();
+					var texto = $('#search').val();
+					alert(texto);
+				});
+			});
+		</script>
+	</body>
+</html>
