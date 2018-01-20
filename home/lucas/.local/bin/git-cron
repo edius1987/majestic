@@ -10,5 +10,9 @@ cd $caminho
 
 status=$(git add . -n)
 if [ ! -z "$status" ]; then
-	echo "Arquivos foram alterados..."
+	c=$(echo $(git add . -n | tr '\r\n' ' '))
+	m="Autocommit por Gig Cron: arquivos alterados: $c"
+	git add .
+	git commit -m "$m"
+	git push
 fi

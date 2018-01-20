@@ -35,3 +35,6 @@
 
 # Alarme
 6 0 * * 1,2,3,4,5 export DISPLAY=:0 ; deadbeef /home/lucas/audio/alarmes/cvn77whistle.wav
+
+# Git Cron(add, commit, push automático)
+*/15 * * * * sh -c "~/.local/bin/git-cron" > /dev/null 2>&1
