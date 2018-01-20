@@ -1,10 +1,10 @@
 #!/bin/sh
 
-default="firefox-developer-edition"
+default="qutebrowser"
 
 #app=$(ps axco command --sort=start_time | egrep -m1 -oE "firefox|chrome|chromium")
 #app=$(ps axco command --sort=start_time | egrep -m1 "^firefox|^google-chrome|^chromium$")
-app=$(ps axo command --sort=start_time | egrep -m1 "firefox|google-chrome|chromium$" | grep -v grep | awk '{print $1}')
+app=$(ps axo command --sort=start_time | egrep -m1 "firefox|google-chrome|chromium$|qutebrowser" | grep -v grep | awk '{print $1}')
 msg="App escolhido por processo!"
 
 if [ -z "$app" ]; then
@@ -18,7 +18,7 @@ if [ -z "$app" ]; then
 			app=$default
 		else
 			msg="App escolhido pelo PATH!"
-			app=$(ls -1 /usr/bin/ | egrep -m1 "^firefox|^google-chrome-stable$|^chromium$")
+			app=$(ls -1 /usr/bin/ | egrep -m1 "^firefox|^google-chrome-stable$|^chromium|^qutebrowser$")
 		fi
 	fi
 fi
