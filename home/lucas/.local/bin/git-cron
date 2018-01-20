@@ -1,0 +1,12 @@
+#!/bin/sh
+
+caminho="${HOME}/github/majestic"
+
+cd $caminho
+
+status=$(git add . -n)
+if [ -z "$status" ]; then
+	echo "Nada mudou"
+else
+	echo "Arquivos foram alterados..."
+fi
