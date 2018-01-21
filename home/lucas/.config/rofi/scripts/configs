@@ -76,9 +76,9 @@ if [ "$res" ]; then
 		;;
 		'Compton') 
 			comptonconfig=$(echo "Config;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-			if [ "$dunstconfig" = "Reload" ]; then
+			if [ "$comptonconfig" = "Reload" ]; then
 				killall compton && compton &
-			elif [ $dunstconfig ]; then
+			elif [ $comptonconfig ]; then
 				i3-msg exec $editor ~/.config/compton.conf 
 			fi
 		;;

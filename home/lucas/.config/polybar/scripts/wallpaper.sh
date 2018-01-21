@@ -4,7 +4,7 @@
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
 dir="/home/lucas/img/wallpapers"
-ultima="/home/lucas/img/wallpapers/unsplash/unsplash-2017-12-23.jpeg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-2018-01-02-2.jpg"
 modo="--bg-fill"
 indice=0
 i=0
