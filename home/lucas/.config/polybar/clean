@@ -551,16 +551,6 @@ bar-progress-fill = ─
 bar-progress-empty = ─
 
 ;----------------------------------------------------------
-;		        S W I T C H
-;----------------------------------------------------------
-[module/switch]
-type = custom/script
-interval = 1
-label = %output:0:50:...%
-click-left = ~/.config/polybar/scripts/switch.sh s &
-exec = ~/.config/polybar/scripts/switch.sh
-
-;----------------------------------------------------------
 ;		        C O R E S
 ;----------------------------------------------------------
 [module/azul]

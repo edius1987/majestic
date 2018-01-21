@@ -5,17 +5,6 @@
 screenchange-reload = true
 
 ;----------------------------------------------------------
-;		        C O L O R S
-;----------------------------------------------------------
-; 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C - 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
-[colors]
-transparente = #66000000
-foreground = ${xrdb:foreground}
-background = ${xrdb:background}
-unfocused = ${xrdb:color16}
-urgent = ${xrdb:color1}
-
-;----------------------------------------------------------
 ;		        B A R / T O P
 ;----------------------------------------------------------
 [bar/top]
@@ -639,6 +628,34 @@ bar-progress-width = 45
 bar-progress-indicator = |
 bar-progress-fill = ─
 bar-progress-empty = ─
+
+;----------------------------------------------------------
+;               C O R E S
+;----------------------------------------------------------
+[module/azul]
+type = custom/text
+content = "%{F#5e81ac}%{F-}"
+click-left = ~/.config/polybar/scripts/azul.sh &
+
+[module/vermelho]
+type = custom/text
+content = "%{F#bf616a}%{F-}"
+click-left = ~/.config/polybar/scripts/vermelho.sh &
+
+[module/amarelo]
+type = custom/text
+content = "%{F#ebcb8b}%{F-}"
+click-left = ~/.config/polybar/scripts/amarelo.sh &
+
+[module/verde]
+type = custom/text
+content = "%{F#8fbcbb}%{F-}"
+click-left = ~/.config/polybar/scripts/verde.sh &
+
+[module/branco]
+type = custom/text
+content = "%{F#FFFFFF}%{F-}"
+click-left = ~/.config/polybar/scripts/branco.sh &
 
 ;----------------------------------------------------------
 ;		        S W I T C H
