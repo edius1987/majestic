@@ -4,7 +4,7 @@
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
 dir="/home/lucas/img/wallpapers/unsplash"
-ultima="/home/lucas/img/wallpapers/unsplash/elena-prokofyeva-17909.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-2017-12-20-3.jpeg"
 modo="--bg-fill"
 indice=0
 i=0
