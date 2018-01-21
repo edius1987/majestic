@@ -209,6 +209,16 @@ label-volume = %percentage%%
 ;ramp-volume-2 = 
 
 ;----------------------------------------------------------
+;		        R A D I O
+;----------------------------------------------------------
+[module/radio]
+type = custom/script
+interval = 1
+label = %output%
+click-left = ~/.config/rofi/scripts/radio &
+exec = ~/.config/rofi/scripts/radio status
+
+;----------------------------------------------------------
 ;		        W A L L P A P E R
 ;----------------------------------------------------------
 [module/wallpaper]

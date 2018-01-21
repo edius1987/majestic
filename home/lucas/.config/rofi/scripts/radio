@@ -6,6 +6,7 @@
 # Última Alteração: 21/01/2018 00:09:46
 
 tema="${HOME}/.local/share/rofi/themes/sistematico-dark.rasi"
+cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 
 estacoes=(
 'SDM=http://somdomato.com:8000/'
@@ -66,40 +67,51 @@ estacoes=(
 #'- Black Rock FM=http://somafm.com/brfm.pls'
 )
 
-listar() {
-  for radio in "${estacoes[@]}"; do
-    echo "${radio%%=*}"
-  done
-}
+if [ ! $1 ]; then
 
-matar() {
-	killall mpv
-	exit 0
-}
+	listar() {
+	  for radio in "${estacoes[@]}"; do
+	    echo "${radio%%=*}"
+	  done
+	}
 
-if [ $(pgrep -x mpv) ]; then
-	m="Matar\n"
-fi
+	matar() {
+		killall mpv
+		exit 0
+	}
 
-opts='-width 10'
+	if [ $(pgrep -x mpv) ]; then
+		m="Matar\n"
+	fi
 
-ESTACAO=$(echo -e "${m}$(listar)" | rofi -theme $tema $opts -dmenu -p "Selecione a estacao:")
+	opts='-width 10'
+	ESTACAO=$(echo -e "${m}$(listar)" | rofi -theme $tema $opts -dmenu -p "Selecione a estacao:")
 
-if [ "$ESTACAO" ]; then
-	if [ "$ESTACAO" == "Matar" ]; then
-		matar
-	else
-		for i in "${!estacoes[@]}"; do
-	   		if [[ "${estacoes[$i]}" == *"$ESTACAO"* ]]; then
-	   			sel="${estacoes[${i}]}"
-	       		break
-	   		fi
-		done
+	if [ "$ESTACAO" ]; then
+		if [ "$ESTACAO" == "Matar" ]; then
+			matar
+		else
+			for i in "${!estacoes[@]}"; do
+		   		if [[ "${estacoes[$i]}" == *"$ESTACAO"* ]]; then
+		   			sel="${estacoes[${i}]}"
+		       		break
+		   		fi
+			done
 
-		if [ "$sel" ]; then
-			[ $(pgrep -x mpv) ] && matar
-			r=$(echo $sel | awk -F= '{print $2}')
-			mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r > /dev/null 2>&1 &
+			if [ "$sel" ]; then
+				[ $(pgrep -x mpv) ] && matar
+				r=$(echo $sel | awk -F= '{print $2}')
+				mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r > /dev/null 2>&1 &
+			fi
+		fi
+	fi
+
+else
+	if [ "$1" == "status" ]; then
+		if [ "$(pgrep -x mpv)" ]; then
+			echo ""
+		else
+			echo "%{F#${cor}}%{F-}"
 		fi
 	fi
 fi

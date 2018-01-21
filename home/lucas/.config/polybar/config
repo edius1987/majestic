@@ -10,7 +10,7 @@ foreground = #D8DEE9
 background = #2E3440
 unfocused = #a8adb5
 urgent = #BF616A
-destaque = #5e81ac
+destaque = #ebcb8b
 ;----------------------------------------------------------
 ;		        S E T T I N G S
 ;----------------------------------------------------------
@@ -50,7 +50,7 @@ font-2 = Moon Phases:size=10;4
 
 modules-left = i3
 modules-center = window
-modules-right = calendar clock beats volume wallpaper ufw powermenu
+modules-right = calendar clock beats volume radio wallpaper ufw powermenu
 
 ;tray-position = right
 ;tray-detached = false
@@ -220,6 +220,16 @@ label-volume = %percentage%%
 ;ramp-volume-0 = 
 ;ramp-volume-1 = 
 ;ramp-volume-2 = 
+
+;----------------------------------------------------------
+;		        R A D I O
+;----------------------------------------------------------
+[module/radio]
+type = custom/script
+interval = 1
+label = %output%
+click-left = ~/.config/rofi/scripts/radio &
+exec = ~/.config/rofi/scripts/radio status
 
 ;----------------------------------------------------------
 ;		        W A L L P A P E R
