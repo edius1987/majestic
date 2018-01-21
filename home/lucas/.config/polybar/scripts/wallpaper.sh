@@ -3,8 +3,8 @@
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
-dir="/home/lucas/img/wallpapers/unsplash"
-ultima="/home/lucas/img/wallpapers/unsplash/unsplash-2017-12-20-3.jpeg"
+dir="/home/lucas/img/wallpapers"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-2017-12-23.jpeg"
 modo="--bg-fill"
 indice=0
 i=0
