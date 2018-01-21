@@ -74,7 +74,10 @@ if [ $(pgrep -x mpv) ]; then
 	m="Matar\n"
 fi
 
-ESTACAO=$(echo -e "${m}$(listar)" | rofi -dmenu -p "Selefione a estacao:")
+opts='-width 10'
+
+
+ESTACAO=$(echo -e "${m}$(listar)" | rofi $opts -dmenu -p "Selecione a estacao:")
 
 if [ "$ESTACAO" ]; then
 	if [ "$ESTACAO" == "Matar" ]; then
