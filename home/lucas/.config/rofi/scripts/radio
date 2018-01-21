@@ -7,6 +7,7 @@
 
 tema="${HOME}/.local/share/rofi/themes/sistematico-dark.rasi"
 cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
+backend="mpv" # mpd ou mpv
 
 estacoes=(
 'SDM=http://somdomato.com:8000/'
@@ -101,7 +102,11 @@ if [ ! $1 ]; then
 			if [ "$sel" ]; then
 				[ $(pgrep -x mpv) ] && matar
 				r=$(echo $sel | awk -F= '{print $2}')
-				mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r > /dev/null 2>&1 &
+				if [ "$backend" == "mpv" ]; then
+					mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r > /dev/null 2>&1 &
+				elif [ "$backend" == "mpd" ]; then
+					mpc add $r | mpc play | mpc next
+				fi
 			fi
 		fi
 	fi
