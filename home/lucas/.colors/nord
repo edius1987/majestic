@@ -59,3 +59,8 @@
 *.color15: nord6
 *.color16: nord16
 *.color17: nord0
+
+*.cinza1: #2e3440
+*.cinza2: #3b4252
+*.cinza3: #434c5e
+*.cinza4: #4c566a

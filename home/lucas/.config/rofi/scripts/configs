@@ -115,8 +115,18 @@ if [ "$res" ]; then
 		;;		
 		'Home')
 			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
-	
-			if [ "$homefiles" = "bin" ]; then
+			
+			if [ "$homefiles" = ".Xresources" ]; then
+				resfiles=$( echo "Config;Cores" | rofi -theme "$tema" -sep ";" -dmenu -p "~/.Xresources" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				if [ "$resfiles" == "Config" ]; then
+					i3-msg exec $editor ~/.Xresources
+				elif [ "$resfiles" == "Cores" ]; then
+					colorfiles=$(ls "${HOME}/.colors/" | rofi -theme "$tema" -dmenu -p "Xresources Colors" -bw 0 -lines 10 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)	
+					if [ $colorfiles ]; then
+						i3-msg exec $editor ~/.colors/${colorfiles} 
+					fi
+				fi
+			elif [ "$homefiles" = "bin" ]; then
 				binfiles=$(ls "${HOME}/bin/" | rofi -theme "$tema" -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
 				if [ $binfiles ]; then
 					i3-msg exec $editor ~/bin/${binfiles} 
