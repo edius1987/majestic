@@ -22,19 +22,19 @@
 			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls</span></p>
 			<div class="links">
 				<p style="display: inline;">
-					<span class="blue-text spaced-link"><a href="https://wiki.archlinux.org">archwiki</a></span>
-					<span class="blue-text spaced-link"><a href="https://discordapp.com/channels/@me">discord</a></span>
-					<span class="blue-text spaced-link"><a href="https://github.com/">github</a></span>
-					<span class="blue-text spaced-link"><a href="https://mail.protonmail.com/login">protonmail</a></span>
-					<span class="blue-text spaced-link"><a href="https://reddit.com">reddit</a></span>
-					<span class="blue-text spaced-link"><a href="https://standardnotes.slack.com">slack</a></span>
-					<span class="blue-text spaced-link"><a href="https://youtube.com/">youtube</a></span>
+					<span class="blue-text spaced-link"><a href="https://wiki.archlinux.org" target="_blank">archwiki</a></span>
+					<span class="blue-text spaced-link"><a href="https://discordapp.com/channels/@me" target="_blank">discord</a></span>
+					<span class="blue-text spaced-link"><a href="https://github.com/" target="_blank">github</a></span>
+					<span class="blue-text spaced-link"><a href="https://mail.google.com" target="_blank">gmail</a></span>
+					<span class="blue-text spaced-link"><a href="https://mail.protonmail.com/login" target="_blank">protonmail</a></span>
+					<span class="blue-text spaced-link"><a href="https://reddit.com" target="_blank">reddit</a></span>
+					<span class="blue-text spaced-link"><a href="https://youtube.com/" target="_blank">youtube</a></span>
 				</p>
 			</div>
 
 			<p class="directory">~</p>
 			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search</span></p>
-			<div class="links">
+			<div class="links searchlinks">
 				<p style="display: inline;">
 					<span class="blue-text spaced-link"><a href="https://duckduckgo.com/" alt="DuckDuckGo">duckduckgo</a></span>
 					<span class="blue-text spaced-link"><a href="https://www.google.com/search" alt="Google">google</a></span>
@@ -65,12 +65,14 @@
 			<!-- <p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search-bar</span></p> -->
 			<div class="links">
 				<p style="display: inline;">
-					<form style="display: inline-block; text-align: center;" id="pesquisa" action="https://www.google.com/search" method="get" target="_blank">
-  						<div class="container-1">
-      						<span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
-      						<input type="search" name="q" id="search" placeholder="Pesquisar..." />
-  						</div>
-					</form>
+					<div class="container-1">
+						<form id="pesquisa" action="https://www.google.com/search" method="get" target="_blank">
+	  						<div class="container-1">
+	      						<span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+	      						<input type="search" name="q" id="search" placeholder="Pesquisar..." />
+	  						</div>
+						</form>
+					</div>
 				</p>
 			</div>
 
@@ -79,7 +81,7 @@
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('.links a').on('click', function(e) {
+				$('.searchlinks a').on('click', function(e) {
 					e.preventDefault();
 					$("#pesquisa").fadeIn(1000);;
  					$('#pesquisa').attr('action', $(this).attr('href'));
