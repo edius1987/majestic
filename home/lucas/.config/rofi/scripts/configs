@@ -13,6 +13,7 @@ configs=(
 'Rofi'
 'LightDM'
 'ncmpcpp'
+'StartPage'
 'Home'
 )
 
@@ -93,6 +94,9 @@ if [ "$res" ]; then
 		'ncmpcpp')
 		    i3-msg exec $editor "${HOME}/.config/ncmpcpp/config"
 		;;
+		'StartPage')
+		    i3-msg exec $editor "${HOME}/.config/startpage/*.html"
+		;;		
 		'Home')
 			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
 	
