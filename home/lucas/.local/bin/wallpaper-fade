@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# xwinwrap -ov -fs -- /usr/lib/xscreensaver/glslideshow -delay 0 -window-id WID -zoom 100
+
 if [ $1 ]; then
 	caminho="$1"
 else

@@ -19,7 +19,7 @@ else
 fi
 
 if [ ! $1 ]; then
-    preset="slow" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
+    preset="ultrafast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
     data=$(date +%Y-%m-%d_%H-%M-%S)
     arquivo="${caminho}/screencast-${data}.mp4"
     resolucao=$(xrandr | grep '*' | awk 'NR==1{print $1}')

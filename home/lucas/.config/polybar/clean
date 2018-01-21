@@ -415,7 +415,7 @@ label-disconnected = desconectado
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 50
+warn-temperature = 55
 
 format = <label>
 format-prefix = 
