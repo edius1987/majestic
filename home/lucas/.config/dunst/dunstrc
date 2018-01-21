@@ -151,7 +151,7 @@
     close = ctrl+space
     close_all = ctrl+shift+space
     history = ctrl+period
-    context = ctrl+shift+period
+    #context = ctrl+shift+period
 
 [urgency_low]
     background = "#222222"
