@@ -120,10 +120,11 @@ a:active {
 #pesquisa, .dirsearch { display: none; }
 .logo { width: 100px; height: auto; }
 
-/*#search::-webkit-search-cancel-button{
-    content: ;
+#search::-webkit-search-cancel-button {
+    background-image: url(https://wordassociations.net/image/200x/svg_to_png/Arnoud999_Right_or_wrong_5.png);
+    /*content: ;*/
     position:relative;
     right:20px;    
 }
-*/
+
 /*https://www.google.com.br/search?dcr=0&source=hp&ei=eBhkWuBGg5nBBOCMoKgP&q=font+awesome&oq=font+awesome&gs_l=psy-ab.3...0.0.0.2118.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.YTqbIE274_A*/
