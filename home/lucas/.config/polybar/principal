@@ -37,7 +37,7 @@ font-2 = Moon Phases:size=10;4
 
 modules-left = i3
 modules-center = window
-modules-right = calendar clock beats volume wallpaper ufw powermenu
+modules-right = calendar clock beats volume radio wallpaper ufw powermenu
 
 ;tray-position = right
 ;tray-detached = false
