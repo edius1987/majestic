@@ -41,7 +41,7 @@
 					<span class="blue-text spaced-link"><a href="https://bing.com/" alt="Bing">bing</a></span>
 					<span class="blue-text spaced-link"><a href="https://wiki.archlinux.org/index.php/Special:Search/" alt="Arch Wiki">archwiki</a></span>
 					<span class="blue-text spaced-link"><a href="https://en.wikipedia.org/wiki/Special:Search?search=" alt="Wikipedia">wikipedia</a></span>
-					<span class="blue-text spaced-link"><a href="https://bing.com" alt="Reddit">reddit</a></span>
+					<span class="blue-text spaced-link"><a href="https://www.reddit.com/search" alt="Reddit">reddit</a></span>
 				</p>
 			</div>			
 
@@ -63,6 +63,15 @@
 					<span class="blue-text spaced-link"><a href="https://flipkart.com">flipkart</a></span>
 				</p>
 			</div>
+
+			<p class="directory">~</p>
+			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls .me</span></p>
+			<div class="links">
+				<p style="display: inline;">
+					<span class="blue-text spaced-link"><a href="https://github.com/sistematico">github</a></span>
+					<span class="blue-text spaced-link"><a href="https://github.com/archlinux-br-dev/cabron">cabron</a></span>
+				</p>
+			</div>			
 
 			<!-- <p class="directory">~</p> -->
 			<!-- <p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search-bar</span></p> -->
@@ -88,7 +97,7 @@
 				$('.searchlinks a').on('click', function(e) {
 					e.preventDefault();
 					var nome = $(this).attr('alt');
-					if (nome == 'Bing' || nome == 'Google' || nome == 'DuckDuckGo') {
+					if (nome == 'Bing' || nome == 'Google' || nome == 'DuckDuckGo' || name == 'Reddit') {
 						$('#pesquisa input:last').prop('name', 'q');
 					} else {
 						$('#pesquisa input:last').prop('name', 'search');

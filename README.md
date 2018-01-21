@@ -12,6 +12,8 @@ Sinta-se livre para usar, alterar, divulgar e comentar.
 * [compton](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/compton.conf)
 * [termite](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/termite/config)
 * [ncmpcpp](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/ncmpcpp)
+* [qutebrowser](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/qutebrowser/config.py)
+* [startpage](https://github.com/sistematico/majestic/tree/master/home/lucas/.config/startpage/)
 * [~/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/bin)
 * [~/.local/bin](https://github.com/sistematico/majestic/tree/master/home/lucas/.local/bin)  
   
