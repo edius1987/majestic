@@ -1,13 +1,5 @@
 #!/bin/bash
 
-if [ $(pgrep -x mpv) ]; then
-	KILL=$(echo -e "Sim\nNão" | rofi -lines 2 -width 100 -dmenu -p "Finalizar o Processo?")
-	if [ "$KILL" == "Sim" ]; then
-		killall mpv
-		exit
-	fi
-fi
-
 estacoes=(
 'SDM=http://somdomato.com:8000/'
 'Pinguin Radio=http://pr320.pinguinradio.nl:80/'
@@ -73,17 +65,32 @@ listar() {
   done
 }
 
-ESTACAO=$(listar | rofi -dmenu -p "Selefione a estacao:")
+matar() {
+	killall mpv
+	exit 0
+}
+
+if [ $(pgrep -x mpv) ]; then
+	m="Matar\n"
+fi
+
+ESTACAO=$(echo -e "${m}$(listar)" | rofi -dmenu -p "Selefione a estacao:")
 
 if [ "$ESTACAO" ]; then
-	for i in "${!estacoes[@]}"; do
-   		if [[ "${estacoes[$i]}" == *"$ESTACAO"* ]]; then
-   			sel="${estacoes[${i}]}"
-       		break
-   		fi
-	done
-	if [ "$sel" ]; then
-		r=$(echo $sel | awk -F= '{print $2}')
-		mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r
+	if [ "$ESTACAO" == "Matar" ]; then
+		matar
+	else
+		for i in "${!estacoes[@]}"; do
+	   		if [[ "${estacoes[$i]}" == *"$ESTACAO"* ]]; then
+	   			sel="${estacoes[${i}]}"
+	       		break
+	   		fi
+		done
+
+		if [ "$sel" ]; then
+			[ $(pgrep -x mpv) ] && matar
+			r=$(echo $sel | awk -F= '{print $2}')
+			mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r > /dev/null 2>&1 &
+		fi
 	fi
 fi
