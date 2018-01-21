@@ -50,8 +50,8 @@ estacoes=(
 #'- Left Coast 70s=http://somafm.com/seventies.pls'
 '- Cliqhop idm=http://somafm.com/cliqhop.pls'
 #'- Digitalis=http://somafm.com/digitalis.pls'
-'- Dub Step Beyond=http://somafm.com/dubstep.pls'
-'- Seven Inch Soul=http://somafm.com/7soul.pls'
+'Dub Step Beyond=http://somafm.com/dubstep.pls'
+'Seven Inch Soul=http://somafm.com/7soul.pls'
 #'- Thistle Radio=http://somafm.com/thistle.pls'
 #'- Doomed=http://somafm.com/doomed.pls'
 #'- Mission Control=http://somafm.com/missioncontrol.pls'
@@ -59,42 +59,26 @@ estacoes=(
 #'- Black Rock FM=http://somafm.com/brfm.pls'
 )
 
-# while(true); do
 listar() {
   indice=0
-  for i in "${estacoes[@]}"; do
-    echo $indice ${i%%=*}
-    #indice=$[indice+1]
-    ((indice++))
+  for radio in "${estacoes[@]}"; do
+    echo "${radio%%=*}"
   done
 }
 
-#ESTACAO=$( (echo empty; est) | rofi -dmenu -p "Selefione a estacao:")
-
 ESTACAO=$(listar | rofi -dmenu -p "Selefione a estacao:")
 
-#if [ x"empty" == x"$ESTACAO" ]; then
-#    est
-#elif [ -n "$ESTACAO" ]; then
-if [ -n "$ESTACAO" ]; then
-	echo $ESTACAO
-	#echo ${#estacoes[$ESTACAO]}
-
+if [ $ESTACAO ]; then
 	for i in "${!estacoes[@]}"; do
-		echo "${i}"
-   		if [[ "${estacoes[$i]}" == *"${ESTACAO}"* ]]; then
-       		echo "${i}";
+   		if [[ ${estacoes[$i]} = *"Ping"* ]]; then
+   			sel="${estacoes[${i}]}"
+       		break
    		fi
 	done
-
-	#echo "$estacoes[$ESTACAO]" | cut -d '=' -f2
-	#capture="-capture -dumpfile ${estacoes[$sta]%%=*}_`date "+%T_%F"`.mp3"
-	#mpv -vo null --quiet --no-ytdl --no-resume-playback $(echo "$estacoes[$ESTACAO]" | cut -d "=" -f 2)
+	if [ "$sel" ]; then
+		r=$(echo $sel | awk -F= '{print $2}')
+		mpv -vo null --quiet --no-ytdl --no-resume-playback $r
+	fi
 else
 	listar
 fi
-
-unset -v indice
-#done
-
-#exit 0
