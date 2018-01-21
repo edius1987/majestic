@@ -10,7 +10,7 @@ foreground = #D8DEE9
 background = #2E3440
 unfocused = #a8adb5
 urgent = #BF616A
-destaque = #FFFFFF
+destaque = #5e81ac
 ;----------------------------------------------------------
 ;		        S E T T I N G S
 ;----------------------------------------------------------

@@ -66,13 +66,17 @@ else
             notify-send -i $icone "ScreenCast" "Pasta de screencasts limpa!"
         else
             notify-send -i $icone "ScreenCast" "Pasta de screencasts já está limpa!"
-        fi        
+        fi
+        exit 0
     fi       
 fi
 
 if [ -f $arquivo ]; then
     xclip -selection c -t 'video/mp4' -i $arquivo
+    exit 0
 fi
 
 # Re-encode
 # #ffmpeg -y -i screencast-2018-01-15_06-09-22.mp4 -c:v mpeg4 -b:v 600k -c:a libmp3lame output.avi
+
+exit 0
