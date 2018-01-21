@@ -64,19 +64,29 @@ listar() {
   indice=0
   for i in "${estacoes[@]}"; do
     echo $indice ${i%%=*}
-    indice=$[indice+1]
+    #indice=$[indice+1]
+    ((indice++))
   done
 }
 
 #ESTACAO=$( (echo empty; est) | rofi -dmenu -p "Selefione a estacao:")
 
-ESTACAO=$( listar | rofi -dmenu -p "Selefione a estacao:")
+ESTACAO=$(listar | rofi -dmenu -p "Selefione a estacao:")
 
 #if [ x"empty" == x"$ESTACAO" ]; then
 #    est
 #elif [ -n "$ESTACAO" ]; then
 if [ -n "$ESTACAO" ]; then
-	echo $estacoes[$ESTACAO]
+	echo $ESTACAO
+	#echo ${#estacoes[$ESTACAO]}
+
+	for i in "${!estacoes[@]}"; do
+		echo "${i}"
+   		if [[ "${estacoes[$i]}" == *"${ESTACAO}"* ]]; then
+       		echo "${i}";
+   		fi
+	done
+
 	#echo "$estacoes[$ESTACAO]" | cut -d '=' -f2
 	#capture="-capture -dumpfile ${estacoes[$sta]%%=*}_`date "+%T_%F"`.mp3"
 	#mpv -vo null --quiet --no-ytdl --no-resume-playback $(echo "$estacoes[$ESTACAO]" | cut -d "=" -f 2)

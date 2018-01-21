@@ -66,7 +66,14 @@ if [ "$res" ]; then
 		;;
 		'Conky') i3-msg exec $editor ~/.config/conky/conky.conf ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
-		'Dunst') i3-msg exec $editor ~/.config/dunst/dunstrc ;;
+		'Dunst') 
+			dunstconfig=$(echo "Config;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			if [ "$dunstconfig" = "Reload" ]; then
+				killall dunst && dunst &
+			elif [ $dunstconfig ]; then
+				i3-msg exec $editor ~/.config/conky/conky.conf
+			fi
+		;;
 		'Compton') i3-msg exec $editor ~/.config/compton.conf ;;
 		'Rofi') 
 			roficonfig=$(echo "Apps;Config;Themes" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
