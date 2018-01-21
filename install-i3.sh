@@ -66,10 +66,10 @@ else
 	fi
 
 	echo "Instalando as configs da polybar..."
-	curl -s -o ${HOME}/.config/polybar/i3.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/i3.sh'
-    curl -s -o ${HOME}/.config/polybar/trans-clean.i3 "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans-clean.i3"
-    curl -s -o ${HOME}/.config/polybar/trans.i3 "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans.i3"
-    ln -s ${HOME}/.config/polybar/trans-clean.i3 ${HOME}/.config/polybar/i3
+	curl -s -o ${HOME}/.config/polybar/launch.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/launch.sh'
+    curl -s -o ${HOME}/.config/polybar/full "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans-clean.i3"
+    curl -s -o ${HOME}/.config/polybar/clean "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/clean"
+    ln -s ${HOME}/.config/polybar/clean ${HOME}/.config/polybar/principal
 
 	# polybar scripts
 	if [ -d ${HOME}/.config/polybar/scripts ]; then
@@ -78,12 +78,25 @@ else
 		mkdir -p ${HOME}/.config/polybar/scripts
 	fi
 
+	# polybar cores
+	if [ ! -d ${HOME}/.config/polybar/cores ]; then
+		mkdir -p ${HOME}/.config/polybar/cores
+	fi	
+
+	cores=("azul" "vermelho" "amarelo" "verde" "branco")
 	scripts=("anews.py" "btc.sh" "crypto.py" "janela.sh" "logs.sh" "pkg.sh" "strcut.py" "trash.sh" "weather.py" "clock.sh" "moonphase.py" "wallpaper.sh" "beats.sh" "calendar.sh" "cpu.sh" "mem.sh" "switch.sh" "ufw.sh")
 	gmail=("auth.py"  "client_secrets.json"  "credentials.json"  "launch.py"  "preview.png"  "readme.md")
 
 	for script in ${scripts[@]}; do
 		curl -s -o ${HOME}/.config/polybar/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/scripts/${script}"
 	done
+
+	for cor in ${cores[@]}; do
+		curl -s -o ${HOME}/.config/polybar/cores/${cor} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/cores/${cor}"
+	done
+
+	cat ${HOME}/.config/polybar/cores/vermelho > ${HOME}/.config/polybar/config
+	cat ${HOME}/.config/polybar/clean >> ${HOME}/.config/polybar/config
 
 	if [ ! -d ${HOME}/.config/polybar/scripts/gmail ]; then
 		mkdir -p ${HOME}/.config/polybar/scripts/gmail

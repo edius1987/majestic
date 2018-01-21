@@ -78,7 +78,7 @@ font-1 = feather:pixelsize=11;2
 font-2 = Fira:size=7;-2
 
 modules-left = apps launch screencast screenshot
-modules-center = cpu memory network temperature rootfs homefs trash uptime
+modules-center = cpu memory network temperature rootfs homefs pkg trash uptime
 modules-right = mpd azul vermelho amarelo verde branco switch
 
 ;----------------------------------------------------------
@@ -449,6 +449,21 @@ exec = df -h /home | awk 'NR==2 {print $5}'
 format =  <label>
 format-prefix = " "
 format-prefix-foreground = ${colors.destaque}
+
+;----------------------------------------------------------
+;		           U P D A T E S
+;----------------------------------------------------------
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.destaque}
+label = "%output:0:30%"
+exec = ~/.config/polybar/scripts/pkg.sh
+click-left = pamac-updater &
+click-middle = pamac-installer &
+click-right = pamac-manager &
 
 ;----------------------------------------------------------
 ;		        T R A S H
