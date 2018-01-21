@@ -12,12 +12,13 @@ configs=(
 'Compton'
 'Rofi'
 'LightDM'
+'qutebrowser'
 'ncmpcpp'
 'StartPage'
 'Home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 12 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
@@ -94,6 +95,7 @@ if [ "$res" ]; then
 		'ncmpcpp')
 		    i3-msg exec $editor "${HOME}/.config/ncmpcpp/config"
 		;;
+		'qutebrowser') i3-msg exec $editor ~/.config/qutebrowser/config.py ;;
 		'StartPage')
 		    i3-msg exec $editor "${HOME}/.config/startpage/*.html"
 		;;		
