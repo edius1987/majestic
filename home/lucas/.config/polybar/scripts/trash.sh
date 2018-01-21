@@ -1,5 +1,6 @@
 #!/bin/bash
 
+COR=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 TRASH_DIRECTORY="${HOME}/.local/share/Trash"
 TRASH_TEMP="/tmp/lixo"
 
@@ -27,9 +28,9 @@ fi
 TRASH_COUNT=$(ls -U -1 "${TRASH_DIRECTORY}/files" | wc -l)
 
 if [[ ${TRASH_COUNT} -gt 0 ]]; then
-	s=" ${TRASH_COUNT}"
+	s="%{F#${COR}}%{F-} ${TRASH_COUNT}"
 else
-	s=""
+	s="%{F#${COR}}%{F-}"
 fi
 
 echo "${s}"
