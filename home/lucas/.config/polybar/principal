@@ -202,10 +202,12 @@ type = internal/volume
 format-volume = <label-volume>
 format-volume-prefix = " "
 format-volume-prefix-foreground = ${colors.destaque}
+
 label-volume = %percentage%%
+
 label-muted = " "
-;format-volume-muted = <label-muted>
-;format-muted-prefix-foreground = ${colors.destaque}
+format-volume-muted = <label-muted>
+format-muted-prefix-foreground = ${colors.destaque}
 ;ramp-volume-0 = 
 ;ramp-volume-1 = 
 ;ramp-volume-2 = 
