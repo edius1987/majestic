@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ $(pgrep -x mpv) ]; then
+	KILL=$(echo -e "Sim\nNão" | rofi -lines 2 -width 100 -dmenu -p "Finalizar o Processo?")
+	if [ "$KILL" == "Sim" ]; then
+		killall mpv
+		exit
+	fi
+fi
+
 estacoes=(
 'SDM=http://somdomato.com:8000/'
 'Pinguin Radio=http://pr320.pinguinradio.nl:80/'
@@ -60,7 +68,6 @@ estacoes=(
 )
 
 listar() {
-  indice=0
   for radio in "${estacoes[@]}"; do
     echo "${radio%%=*}"
   done
@@ -68,17 +75,15 @@ listar() {
 
 ESTACAO=$(listar | rofi -dmenu -p "Selefione a estacao:")
 
-if [ $ESTACAO ]; then
+if [ "$ESTACAO" ]; then
 	for i in "${!estacoes[@]}"; do
-   		if [[ ${estacoes[$i]} = *"Ping"* ]]; then
+   		if [[ "${estacoes[$i]}" == *"$ESTACAO"* ]]; then
    			sel="${estacoes[${i}]}"
        		break
    		fi
 	done
 	if [ "$sel" ]; then
 		r=$(echo $sel | awk -F= '{print $2}')
-		mpv -vo null --quiet --no-ytdl --no-resume-playback $r
+		mpv -vo null --really-quiet --no-ytdl --no-resume-playback $r
 	fi
-else
-	listar
 fi
