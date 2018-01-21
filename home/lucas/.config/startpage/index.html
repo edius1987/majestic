@@ -60,11 +60,12 @@
 					<span class="blue-text spaced-link"><a href="https://flipkart.com">flipkart</a></span>
 				</p>
 			</div>
-			<p class="directory">~</p>
-			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search-bar</span></p>
+
+			<!-- <p class="directory">~</p> -->
+			<!-- <p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls search-bar</span></p> -->
 			<div class="links">
 				<p style="display: inline;">
-					<form id="pesquisa" action="https://www.google.com/search" method="get" target="_blank">
+					<form style="display: inline-block; text-align: center;" id="pesquisa" action="https://www.google.com/search" method="get" target="_blank">
   						<div class="container-1">
       						<span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
       						<input type="search" name="q" id="search" placeholder="Pesquisar..." />
@@ -74,21 +75,16 @@
 			</div>
 
 		</div>
+
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script>
 			$(document).ready(function() {
 				$('.links a').on('click', function(e) {
 					e.preventDefault();
+					$("#pesquisa").fadeIn(1000);;
  					$('#pesquisa').attr('action', $(this).attr('href'));
- 					//$('#pesquisa input:last').attr('name', 'q');
  					$('#pesquisa input:last').prop('placeholder', 'Pesquisar no ' + $(this).attr('alt'));
 				});
-
-				// $('#pesquisa').on('submit', function() { 
-				// 	//e.preventDefault();
-				// 	var texto = $('#search').val();
-				// 	alert(texto);
-				// });
 			});
 		</script>
 	</body>
