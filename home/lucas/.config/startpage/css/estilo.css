@@ -37,24 +37,19 @@ html {
 }
 
 a {
+  color: #434c5e;
 	text-decoration: none;
+  -o-transition:color .2s ease-out, background 1s ease-in;
+  -ms-transition:color .2s ease-out, background 1s ease-in;
+  -moz-transition:color .2s ease-out, background 1s ease-in;
+  -webkit-transition:color .2s ease-out, background 1s ease-in;
+  /* ...and now override with proper CSS property */
+  transition:color .2s ease-out, background 1s ease-in;
 }
-
-a:link {
-	color: #81A1C1;
-}
-
-a:visited {
-	color: #81A1C1;
-}
-
-a:hover {
-	color: #81A1C1;
-}
-
-a:active {
-	color: #81A1C1;
-}
+a:hover { color:white; }
+/*a:link { color: #434c5e; } 
+a:visited { color: #434c5e; }
+a:active { color: #434c5e; }*/
 
 .spaced-link {
 	margin-right: 25px;
