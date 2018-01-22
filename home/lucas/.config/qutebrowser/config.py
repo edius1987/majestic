@@ -280,6 +280,7 @@ c.colors.statusbar.command.private.bg = xresources['*.background']
 ## Background color of the statusbar in insert mode.
 ## Type: QssColor
 # c.colors.statusbar.insert.bg = 'darkgreen'
+c.colors.statusbar.insert.bg = xresources['*.background']
 
 ## Foreground color of the statusbar in insert mode.
 ## Type: QssColor
@@ -955,7 +956,7 @@ c.fonts.statusbar = '10pt "Noto Sans"'
 ## Automatically enter insert mode if an editable element is focused
 ## after loading the page.
 ## Type: Bool
-# c.input.insert_mode.auto_load = False
+c.input.insert_mode.auto_load = True
 
 ## Switch to insert mode when clicking flash and other plugins.
 ## Type: Bool
