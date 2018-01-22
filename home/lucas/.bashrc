@@ -89,7 +89,8 @@ fi
 ##### Funções ####
 ##################
 function mm() {
-    mpv --profile=youtube ytdl://ytsearch10:"$@"
+	params=\"$@\"
+    mpv --profile=youtube ytdl://ytsearch10:"$params" 
 }
 
 function mma() {
