@@ -63,6 +63,7 @@ startpage = 'file:///home/lucas/.config/startpage/index.html'
 ## Background color of the completion widget category headers.
 ## Type: QssColor
 # c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
+c.colors.completion.category.bg = xresources['*.cinza1']
 
 ## Bottom border color of the completion widget category headers.
 ## Type: QssColor
@@ -79,6 +80,7 @@ startpage = 'file:///home/lucas/.config/startpage/index.html'
 ## Background color of the completion widget for even rows.
 ## Type: QssColor
 # c.colors.completion.even.bg = '#333333'
+c.colors.completion.even.bg = xresources['*.cinza3']
 
 ## Text color of the completion widget. May be a single color to use for
 ## all columns or a list of three colors, one for each column.
@@ -88,6 +90,7 @@ startpage = 'file:///home/lucas/.config/startpage/index.html'
 ## Background color of the selected completion item.
 ## Type: QssColor
 # c.colors.completion.item.selected.bg = '#e8c000'
+c.colors.completion.item.selected.bg = xresources['*.cinza4']
 
 ## Bottom border color of the selected completion item.
 ## Type: QssColor
@@ -108,6 +111,7 @@ startpage = 'file:///home/lucas/.config/startpage/index.html'
 ## Background color of the completion widget for odd rows.
 ## Type: QssColor
 # c.colors.completion.odd.bg = '#444444'
+c.colors.completion.odd.bg = xresources['*.cinza3']
 
 ## Color of the scrollbar in the completion view.
 ## Type: QssColor
@@ -378,7 +382,7 @@ c.colors.tabs.odd.bg = xresources['*.background']
 
 ## Background color of selected even tabs.
 ## Type: QtColor
-c.colors.tabs.selected.even.bg = xresources['*.color8']
+c.colors.tabs.selected.even.bg = xresources['*.cinza4']
 
 ## Foreground color of selected even tabs.
 ## Type: QtColor
@@ -386,7 +390,7 @@ c.colors.tabs.selected.even.bg = xresources['*.color8']
 
 ## Background color of selected odd tabs.
 ## Type: QtColor
-c.colors.tabs.selected.odd.bg = xresources['*.color8']
+c.colors.tabs.selected.odd.bg = xresources['*.cinza4']
 
 ## Foreground color of selected odd tabs.
 ## Type: QtColor
@@ -409,7 +413,7 @@ c.colors.tabs.selected.odd.bg = xresources['*.color8']
 
 ## Height (in pixels or as percentage of the window) of the completion.
 ## Type: PercOrInt
-# c.completion.height = '50%'
+c.completion.height = '40%'
 
 ## Minimum amount of characters needed to update completions.
 ## Type: Int
