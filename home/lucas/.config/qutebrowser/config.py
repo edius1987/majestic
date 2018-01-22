@@ -262,7 +262,7 @@ c.colors.downloads.error.bg = xresources['*.vermelho1']
 
 ## Background color of the statusbar in command mode.
 ## Type: QssColor
-c.colors.statusbar.command.bg = xresources['*.color8']
+c.colors.statusbar.command.bg = xresources['*.background']
 
 ## Foreground color of the statusbar in command mode.
 ## Type: QssColor
@@ -271,6 +271,7 @@ c.colors.statusbar.command.bg = xresources['*.color8']
 ## Background color of the statusbar in private browsing + command mode.
 ## Type: QssColor
 # c.colors.statusbar.command.private.bg = 'grey'
+c.colors.statusbar.command.private.bg = xresources['*.background']
 
 ## Foreground color of the statusbar in private browsing + command mode.
 ## Type: QssColor
@@ -286,7 +287,7 @@ c.colors.statusbar.command.bg = xresources['*.color8']
 
 ## Background color of the statusbar.
 ## Type: QssColor
-c.colors.statusbar.normal.bg = xresources['*.color8']
+c.colors.statusbar.normal.bg = xresources['*.background']
 
 ## Foreground color of the statusbar.
 ## Type: QssColor
@@ -315,19 +316,23 @@ c.colors.statusbar.normal.bg = xresources['*.color8']
 ## Foreground color of the URL in the statusbar on error.
 ## Type: QssColor
 # c.colors.statusbar.url.error.fg = 'orange'
+c.colors.statusbar.url.error.fg = xresources['*.vermelho1']
 
 ## Default foreground color of the URL in the statusbar.
 ## Type: QssColor
 # c.colors.statusbar.url.fg = 'white'
+c.colors.statusbar.url.fg = xresources['*.cinza4']
 
 ## Foreground color of the URL in the statusbar for hovered links.
 ## Type: QssColor
 # c.colors.statusbar.url.hover.fg = 'aqua'
+c.colors.statusbar.url.hover.fg = 'white'
 
 ## Foreground color of the URL in the statusbar on successful load
 ## (http).
 ## Type: QssColor
 # c.colors.statusbar.url.success.http.fg = 'white'
+c.colors.statusbar.url.success.http.fg = xresources['*.cinza4']
 
 ## Foreground color of the URL in the statusbar on successful load
 ## (https).
@@ -349,7 +354,7 @@ c.colors.tabs.even.bg = xresources['*.background']
 
 ## Foreground color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.fg = xresources['*.foreground']
+c.colors.tabs.even.fg = xresources['*.cinza4']
 
 ## Color for the tab indicator on errors.
 ## Type: QtColor
@@ -379,10 +384,11 @@ c.colors.tabs.odd.bg = xresources['*.background']
 ## Foreground color of unselected odd tabs.
 ## Type: QtColor
 # c.colors.tabs.odd.fg = 'white'
+c.colors.tabs.odd.fg = xresources['*.cinza4']
 
 ## Background color of selected even tabs.
 ## Type: QtColor
-c.colors.tabs.selected.even.bg = xresources['*.cinza4']
+c.colors.tabs.selected.even.bg = xresources['*.background']
 
 ## Foreground color of selected even tabs.
 ## Type: QtColor
@@ -390,7 +396,7 @@ c.colors.tabs.selected.even.bg = xresources['*.cinza4']
 
 ## Background color of selected odd tabs.
 ## Type: QtColor
-c.colors.tabs.selected.odd.bg = xresources['*.cinza4']
+c.colors.tabs.selected.odd.bg = xresources['*.background']
 
 ## Foreground color of selected odd tabs.
 ## Type: QtColor
