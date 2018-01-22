@@ -119,11 +119,11 @@ startpage = 'file:///home/lucas/.config/startpage/index.html'
 
 ## Background color for the download bar.
 ## Type: QssColor
-# c.colors.downloads.bar.bg = 'black'
+c.colors.downloads.bar.bg = xresources['*.cinza1']
 
 ## Background color for downloads with errors.
 ## Type: QtColor
-# c.colors.downloads.error.bg = 'red'
+c.colors.downloads.error.bg = xresources['*.vermelho1']
 
 ## Foreground color for downloads with errors.
 ## Type: QtColor
@@ -1331,7 +1331,7 @@ c.url.default_page = startpage
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://google.com/?q={}','ddg': 'https://duckduckgo.com/?q={}','g': 'https://google.com/?q={}','gi': 'https://images.google.com/?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://www.google.com.br/search?q={}','ddg': 'https://duckduckgo.com/?q={}','g': 'https://google.com/?q={}','gi': 'https://images.google.com/?q={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl

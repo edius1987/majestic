@@ -6,7 +6,7 @@ html {
 	background-color: #2E3440;
 	border: 4px solid #5E81AC;
 	width: 700px;
-	height: 535px;
+	height: 500px;
 	margin: 180px auto 100px;
 	box-shadow: 5px 5px 5px;
 	padding: 20px;
@@ -118,7 +118,7 @@ a:active {
 }
 
 #pesquisa, .dirsearch { display: none; }
-.logo { width: 100px; height: auto; }
+.logo { width: 400px; height: auto; }
 
 #search::-webkit-search-cancel-button {
     background-image: url(https://wordassociations.net/image/200x/svg_to_png/Arnoud999_Right_or_wrong_5.png);

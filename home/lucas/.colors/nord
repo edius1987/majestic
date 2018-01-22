@@ -64,3 +64,22 @@
 *.cinza2: #3b4252
 *.cinza3: #434c5e
 *.cinza4: #4c566a
+
+*.branco1: #d8dee9
+*.branco2: #e5e9f0
+*.branco3: #eceff4
+
+*.verde1: #8fbcbb
+*.verde2: #88c0d0
+*.verde3: #a3be8c
+
+*.azul1: #81a1c1
+*.azul2: #5e81ac
+
+*.vermelho1: #bf616a
+
+*.laranja1: #d08770
+
+*.amarelo1: #ebcb8b
+
+*.rosa1: #b48ead

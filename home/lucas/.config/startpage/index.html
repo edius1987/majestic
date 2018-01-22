@@ -15,7 +15,7 @@
 	<body>
 		<div id="terminal">
 			<div align="center">
-				<img src="img/crown.png" class="logo" />
+				<img src="img/arch.svg" class="logo" />
 			</div>
 
 			<p class="directory">~</p>
@@ -96,6 +96,7 @@
 			$(document).ready(function() {
 				$('.searchlinks a').on('click', function(e) {
 					e.preventDefault();
+					$('#terminal').animate({height: '600px'});
 					var nome = $(this).attr('alt');
 					if (nome == 'Bing' || nome == 'Google' || nome == 'DuckDuckGo' || name == 'Reddit') {
 						$('#pesquisa input:last').prop('name', 'q');
@@ -105,6 +106,11 @@
 					$("#pesquisa").fadeIn(1000);
  					$('#pesquisa').attr('action', $(this).attr('href'));
  					$('#pesquisa input:last').prop('placeholder', 'Pesquisar no ' + $(this).attr('alt'));
+				});
+
+				$('#pesquisa').focusout(function() {
+  					$('#terminal').animate({height: '500px'});
+  					$("#pesquisa").fadeOut(1000);
 				});
 			});
 		</script>
