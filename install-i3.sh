@@ -67,7 +67,7 @@ else
 
 	echo "Instalando as configs da polybar..."
 	curl -s -o ${HOME}/.config/polybar/launch.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/launch.sh'
-    curl -s -o ${HOME}/.config/polybar/full "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/trans-clean.i3"
+    curl -s -o ${HOME}/.config/polybar/full "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/full"
     curl -s -o ${HOME}/.config/polybar/clean "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/clean"
     ln -s ${HOME}/.config/polybar/clean ${HOME}/.config/polybar/principal
 
