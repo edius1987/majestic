@@ -28,5 +28,7 @@ fi
 if [ ! -z "$app" ]; then
 	#echo "$app"
 	#echo "$msg"
-	$app "$@"
+	$app "$@" &
 fi
+
+exit 0
