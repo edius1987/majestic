@@ -1053,7 +1053,7 @@ c.fonts.statusbar = '10pt "Noto Sans"'
 
 ## Show a scrollbar.
 ## Type: Bool
-# c.scrolling.bar = False
+c.scrolling.bar = True
 
 ## Enable smooth scrolling for web pages. Note smooth scrolling does not
 ## work with the `:scroll-px` command.
