@@ -1,0 +1,1 @@
+amixer | grep 'Front Left: Playback' | awk '{print $5;exit}'
