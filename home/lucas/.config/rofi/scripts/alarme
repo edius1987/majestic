@@ -35,19 +35,20 @@ if [ ! -f $tema ]; then
 	curl -L -s $tema_web > $tema
 fi
 
-if [ ! -z "$(ps ax | grep alarme | grep -v grep)" ]; then
-	hora=$(echo -e "Existe um alarme em progresso para:\n$(cat /tmp/rofi_alarme)\nDeseja cancelar?\nSim\nNão" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+if [ -f /tmp/rofi-alarme.pid ]; then
+	hora=$(echo -e "Existe um alarme em progresso para:\n$(cat /tmp/rofi-alarme.log)\nDeseja cancelar?\nSim\nNão" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 else
 	hora=$(echo -e "Digite a hora no formato: HH:MM" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 1 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 fi
 
 if [ $hora ]; then
 	if [ "$hora" = "c" ] || [ "$hora" == "Cancelar" ] || [ "$hora" == "Sim" ]; then
-		ppid=(ps ax | grep rofi | grep alarme | grep -v grep | tail -n1 | awk '{print $1}')
+		#ppid=(ps ax | grep rofi | grep alarme | grep -v grep | tail -n1 | awk '{print $1}')
 		#linkpath="$(readlink $0)"
 		#scriptpath="$( cd "$(dirname "$0")" ; pwd -P )"
-		kill -9 $ppid
-		msg="Alarme Cancelado! $linkpath $(basename $0)"
+		kill -9 $(cat /tmp/rofi-alarme.pid)
+		msg="Alarme Cancelado! PID: $(cat /tmp/rofi-alarme.pid)"
+		rm -f /tmp/rofi-alarme.pid
 	else
 		date "+%H:%M" -d "$hora" > /dev/null 2>&1
 		if [ $? != 0 ]; then
@@ -55,7 +56,8 @@ if [ $hora ]; then
 		else
 			h=$(( $(date --date=${hora} +%s) - $(date +%s) ))
 			if [ $h -gt 1 ]; then
-				echo "$(date --date=${hora})" > /tmp/rofi_alarme
+				echo $$ > /tmp/rofi-alarme.pid
+				echo "$(date --date=${hora})" > /tmp/rofi-alarme.log
 				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n$(date --date=${hora})"
 				sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
 				notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
