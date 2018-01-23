@@ -246,7 +246,6 @@ interval = 60.0
 exec =  ~/.config/polybar/scripts/calendar.sh short
 click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")" &
 click-right = gsimplecal &
-click-middle = ~/.config/rofi/scripts/alarme &
 label = %output%
 format = <label>
 format-prefix = " "
