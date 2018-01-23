@@ -43,9 +43,6 @@ fi
 
 if [ $hora ]; then
 	if [ "$hora" = "c" ] || [ "$hora" == "Cancelar" ] || [ "$hora" == "Sim" ]; then
-		#ppid=(ps ax | grep rofi | grep alarme | grep -v grep | tail -n1 | awk '{print $1}')
-		#linkpath="$(readlink $0)"
-		#scriptpath="$( cd "$(dirname "$0")" ; pwd -P )"
 		kill -9 $(cat /tmp/rofi-alarme.pid)
 		msg="Alarme Cancelado! PID: $(cat /tmp/rofi-alarme.pid)"
 		rm -f /tmp/rofi-alarme.pid
@@ -61,8 +58,10 @@ if [ $hora ]; then
 				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n$(date --date=${hora})"
 				sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
 				notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
-				while true; do
-	  				/usr/bin/mpg123 $audio
+				
+				for run in {1..10}
+				do
+	  				/usr/bin/mpg123 "$audio"
 	  				sleep 3
 				done
 
