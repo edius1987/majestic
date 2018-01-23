@@ -179,6 +179,7 @@ c.colors.downloads.error.bg = xresources['*.vermelho1']
 ## Font color for the matched part of hints.
 ## Type: QssColor
 # c.colors.hints.match.fg = 'green'
+c.colors.hints.match.fg = 'white'
 
 ## Background color of the keyhint widget.
 ## Type: QssColor

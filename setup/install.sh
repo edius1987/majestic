@@ -2,8 +2,10 @@
 
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 
+# Comente para usar a polybar
+i3blocks=1
 app_ok=1
-apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "jsoncpp")
+apps=("i3-gaps-next-git" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "jsoncpp" "rofi")
 
 for app in ${apps[@]}; do
 	pacman -Q $app 1> /dev/null 2> /dev/null
@@ -29,7 +31,7 @@ fi
 echo "Instalando as configs do i3..."
 curl -s -o ${HOME}/.config/i3/config 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3/config'
 
-if [ $i3blocks == true ]; then
+if [ $i3blocks ]; then
 	# i3blocks
 	if [ -d ${HOME}/.config/i3blocks ]; then
 		if [ -f ${HOME}/.config/i3blocks/config ]; then
