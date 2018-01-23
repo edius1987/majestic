@@ -61,7 +61,7 @@ if [ $hora ]; then
 				
 				for run in {1..10}
 				do
-	  				/usr/bin/mpg123 "$audio"
+	  				dbus-launch /usr/bin/mpg123 "$audio"
 	  				sleep 3
 				done
 
