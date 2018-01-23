@@ -43,8 +43,11 @@ fi
 
 if [ $hora ]; then
 	if [ "$hora" = "c" ] || [ "$hora" == "Cancelar" ] || [ "$hora" == "Sim" ]; then
-		killall -9 $0
-		msg="Alarme Cancelado! $(basename $0)"
+		ppid=(ps ax | grep rofi | grep alarme | grep -v grep | tail -n1 | awk '{print $1}')
+		#linkpath="$(readlink $0)"
+		#scriptpath="$( cd "$(dirname "$0")" ; pwd -P )"
+		kill -9 $ppid
+		msg="Alarme Cancelado! $linkpath $(basename $0)"
 	else
 		date "+%H:%M" -d "$hora" > /dev/null 2>&1
 		if [ $? != 0 ]; then
