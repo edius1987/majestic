@@ -4,7 +4,7 @@
 # Criado em: 23/01/2018 18:08:09
 # Última atualização: 23/01/2018 18:08:20
 
-if [ $(whoami) == "root" ]; then
+if [ $(whoami) != "root" ]; then
     echo "Esse script precisa de privilégios do usuário root"
     exit
 fi
