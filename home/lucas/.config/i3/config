@@ -1,7 +1,7 @@
+#############################################################
+############### M A I N #####################################
+#############################################################
 set $mod Mod4
-
-gaps inner 10
-#gaps outer 10
 
 #hide_edge_borders both
 force_display_urgency_hint 0
@@ -15,6 +15,9 @@ new_window pixel 3
 #font pango:Source Code Pro, icomoon, Material Icons, FontAwesome 10
 font pango:Source Code Pro 10
 
+#############################################################
+############### C O L O R S #################################
+#############################################################
 set_from_resource $fg i3wm.foreground #D8DEE9
 set_from_resource $bg i3wm.background #2E3440
 
@@ -28,6 +31,9 @@ client.background       $bg
 
 floating_modifier $mod
 
+#############################################################
+############### B I N D I N G S #############################
+#############################################################
 bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
@@ -35,7 +41,7 @@ bindsym $mod+q kill
 
 # Rofi
 bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
-bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://duckduckgo.com/?q={}
+#bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/sistematico-dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://duckduckgo.com/?q={}
 bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
 
 bindsym $mod+Shift+w exec --no-startup-id ~/.config/rofi/scripts/janelas
@@ -102,8 +108,9 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+a focus parent
 bindsym $mod+Shift+d focus child
 
-#                     
-#          
+#############################################################
+############### W O R K S P A C E S #########################
+#############################################################
 set $workspace1 "1:"
 set $workspace2 "2:"
 set $workspace3 "3:"
@@ -114,6 +121,18 @@ set $workspace7 "7:"
 set $workspace8 "8:"
 set $workspace9 "9:"
 set $workspace10 "10:"
+
+set $default_gaps_inner 10
+set $default_gaps_outer 0
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+
+#workspace $workspace1 gaps inner 0
+#workspace $workspace1 gaps outer 0
+#workspace $workspace2 gaps inner 0
+#workspace $workspace2 gaps outer 0
+#workspace $workspace3 gaps inner 0
+#workspace $workspace3 gaps outer 0
 
 # Alt+TAB & Alt+Shift+TAB	
 bindsym Mod1+Tab workspace next
@@ -158,6 +177,9 @@ bindsym $mod+minus scratchpad show
 # move position center
 for_window [urgent="latest"] focus
 
+#############################################################
+############### R U L E S ###################################
+#############################################################
 for_window [window_role="pop-up"] floating enable, move position center
 for_window [window_role="bubble"] floating enable, move position center
 for_window [window_role="task_dialog"] floating enable, move position center
@@ -190,6 +212,9 @@ assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
 assign [class="(^Telegram|^Hexchat)"] $workspace9
 assign [class="(dontstarve_steam)"] $workspace10
 
+#############################################################
+############### G R O U P S #################################
+#############################################################
 mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
 	bindsym s exec i3-msg exit
 	bindsym d exec systemctl poweroff
@@ -217,6 +242,58 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+#############################################################
+############### G A P S #####################################
+#############################################################
+set $mode_gaps gaps
+set $mode_gaps_outer outer gaps
+set $mode_gaps_inner inner gaps
+
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+
+    bindsym 0      mode "default", exec --no-startup-id i3-msg "gaps inner current set 0" && i3-msg "gaps outer current set 0"
+    bindsym d      mode "default", exec --no-startup-id i3-msg "gaps inner current set $default_gaps_inner" && i3-msg "gaps outer current set $default_gaps_outer"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     mode "default", gaps inner current set 0
+    bindsym d     mode "default", gaps inner current set $default_gaps_inner
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     mode "default", gaps inner all set 0
+    bindsym Shift+d     mode "default", gaps inner all set $default_gaps_inner
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     mode "default", gaps outer current set 0
+    bindsym d     mode "default", gaps outer current set $default_gaps_outer
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     mode "default", gaps outer all set 0
+    bindsym Shift+d     mode "default", gaps outer all set $default_gaps_outer
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+#############################################################
+############### I N I T #####################################
+#############################################################
 set $polybar ~/.config/polybar/launch.sh
 exec_always --no-startup-id $polybar
 exec_always --no-startup-id feh --bg-fill "$(cat ~/.wall)"

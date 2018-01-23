@@ -51,16 +51,13 @@ if [ "$res" ]; then
 				if [ $cores ]; then
 					i3-msg exec $editor ${HOME}/.config/polybar/cores/${cores}
 				fi
-			elif [ $polyconfig ]; then
-				#cfgfile=$(awk '/.config/ {a=$3} END{print a}' ~/.config/polybar/i3.sh)
-				#cfgfile=$(echo -e "Atual\n$(ls -m1 ${HOME}/.config/polybar/ | egrep '.i3$')" | rofi -theme "$tema" -dmenu -p "Polybar Configs" -bw 0 -lines 5 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-				#if [ $cfgfile ]; then
-				#	if [ $cfgfile == "Atual" ]; then
-						i3-msg exec $editor ${HOME}/.config/polybar/principal
-				#	else
-				#		i3-msg exec $editor ${HOME}/.config/polybar/$cfgfile
-				#	fi
-				#fi
+			elif [ "$polyconfig" == "Config" ]; then
+				fcconfig=$(echo "Full;Clean" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar Cores" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+				if [ "$fcconfig" == "Full" ]; then
+					i3-msg exec $editor ${HOME}/.config/polybar/full
+				elif [ "$fcconfig" == "Clean" ]; then
+					i3-msg exec $editor ${HOME}/.config/polybar/clean
+				fi
 			fi
 
 		;;
