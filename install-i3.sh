@@ -3,7 +3,7 @@
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 
 app_ok=1
-apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "json")
+apps=("i3-gaps" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "jsoncpp")
 
 for app in ${apps[@]}; do
 	pacman -Q $app 1> /dev/null 2> /dev/null
