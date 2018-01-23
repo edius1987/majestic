@@ -109,7 +109,7 @@ module-margin-right = 2
 font-0 = Fira:size=10;2
 font-1 = feather:pixelsize=11;2
 
-modules-left = apps launch screencast screenshot multi
+modules-left = apps vbox launch screencast screenshot multi
 modules-center = cpu memory network temperature rootfs homefs pkg trash uptime
 modules-right = mpd azul vermelho amarelo verde branco switch
 
@@ -424,6 +424,18 @@ menu-0-8 = 
 menu-0-8-exec = ~/apps/medley-latest.AppImage &
 
 ;----------------------------------------------------------
+;			V B O X
+;----------------------------------------------------------
+[module/vbox]
+type = custom/script
+interval = 3
+label = %output%
+click-left = ~/.local/bin/vms ligar 'Arch Linux' &
+click-right = ~/.local/bin/vms desligar 'Arch Linux' &
+exec = ~/.local/bin/vms estado 'Arch Linux' 
+tail = true
+
+;----------------------------------------------------------
 ;			L A U N C H E R
 ;----------------------------------------------------------
 [module/launch]
@@ -443,7 +455,8 @@ interval = 1
 label = %output%
 click-left = $TERMINAL -e ~/.local/bin/screencast &
 click-right = ~/.local/bin/screencast clear &
-exec = ~/.local/bin/screencast status
+exec = ~/.local/bin/screencast status 
+tail = true
 
 ;----------------------------------------------------------
 ;			S C R E E N S H O T
