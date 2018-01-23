@@ -8,7 +8,7 @@
 # Última Atualização: 28/12/17 00:52:16
 # Evaluate: ! date +"%d/%m/%y %H:%M:%S"
 
-dependencias=("curl" "rofi" "notify-send" "mpg123")
+dependencias=("curl" "rofi" "notify-send" "mpg123" "arc-icon-theme")
 
 for dep in ${dependencias[@]}
 do
@@ -24,7 +24,7 @@ done
 
 audio="${HOME}/.alarme.mp3"
 audio_web="https://github.com/sistematico/majestic/raw/master/home/lucas/audio/alarme.mp3"
-icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
+icone="/usr/share/icons/Arc/mimetypes/24@2x/stock_calendar.png"
 tema="${HOME}/.local/share/rofi/themes/sistematico-dark.rasi"
 
 if [ ! -f $audio ]; then
@@ -36,10 +36,16 @@ if [ ! -f $tema ]; then
 fi
 
 #rofi -dmenu -input /dev/null -prompt "Enter Text > "
-hora=$(rofi -theme "$tema" -dmenu -input /dev/null -p "HH:MM (c para cancelar!)" -bw 0 -lines 0 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+# echo -e "Digite a hora no formato: HH:MM" | rofi -p "Rofi Alarme: " -dmenu
+
+if [ "$(pgrep -x alarme)" ]; then
+	hora=$(echo -e "Existe um alarme em progresso para: $(cat /tmp/rofi_alarme) deseja cancelar?\nSim\nNão" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 1 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+else
+	hora=$(echo -e "Digite a hora no formato: HH:MM" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 1 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+fi
 
 if [ $hora ]; then
-	if [ "$hora" = "c" ]; then
+	if [ "$hora" = "c" ] || [ "$hora" == "Cancelar" ] || [ "$hora" == "Sim" ]; then
 		killall -9 $(basename $0)
 		msg="Alarme Cancelado! $(basename $0)"
 	else
@@ -49,17 +55,18 @@ if [ $hora ]; then
 		else
 			h=$(( $(date --date=${hora} +%s) - $(date +%s) ))
 			if [ $h -gt 1 ]; then
-				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n\n$(date --date=${hora})"
+				cat "$(date --date=${hora})" > /tmp/rofi_alarme
+				notify-send -i $icone "Rofi Alarme" "O alarme irá tocar as:\n$(date --date=${hora})"
 				sleep $(( $(date --date="$hora" +%s) - $(date +%s) ));
 				notify-send -i $icone "Rofi Alarme" "ACORDA!!!"
 				while true; do
 	  				/usr/bin/mpg123 $audio
 	  				sleep 3
 				done
-			
-				msg="Alarme ajustado para:\n\n${hora}"				
+
+				msg="Alarme ajustado para:\n${hora}"
 			else
-				msg="A hora tem que ser positiva!\n\nVocê digitou: $hora \n\nFormato: (HH:MM)"
+				msg="A hora tem que ser positiva!\nVocê digitou: $hora\nFormato: (HH:MM)"
 			fi
 		fi
 	fi
