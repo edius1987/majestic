@@ -4,7 +4,7 @@
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
 dir="/home/lucas/img/wallpapers"
-ultima="/home/lucas/img/wallpapers/unsplash/maxime-staudenmann-359076.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-2018-01-03-6.jpg"
 modo="--bg-fill"
 indice=0
 i=0

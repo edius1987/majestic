@@ -15,8 +15,8 @@ top = true
 ;override-redirect = true
 ;wm-restack = i3
 
-;background = ${colors.transparente}
-background = ${colors.background}
+background = ${colors.transparente}
+;background = ${colors.background}
 foreground = ${colors.foreground}
 
 fixed-center = true
@@ -59,8 +59,8 @@ offset-y = -1
 bottom = true
 enable-ipc = true
 
-;background = ${colors.transparente}
-background = ${colors.background}
+background = ${colors.transparente}
+;background = ${colors.background}
 foreground = ${colors.foreground}
 
 fixed-center = true
