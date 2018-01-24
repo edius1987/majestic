@@ -9,8 +9,8 @@ trans = #66000000
 foreground = #D8DEE9
 background = #2E3440
 unfocused = #a8adb5
-urgent = #BF616A
-destaque = #FFFFFF
+urgent = #d08770
+destaque = #bf616a
 ;----------------------------------------------------------
 ;		        S E T T I N G S
 ;----------------------------------------------------------

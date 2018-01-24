@@ -1,6 +1,6 @@
 # System
 export TERMINAL=termite
-export BROWSER=brsr
+export BROWSER=qutebrowser
 
 # Custom
 export GH=~/github/majestic
