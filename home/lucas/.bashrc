@@ -89,7 +89,7 @@ fi
 ##### Funções ####
 ##################
 # function mm() {
-# 	params=\"$@\"
+#	params=\"$@\"
 #     mpv --really-quiet --profile=youtube ytdl://ytsearch10:"$params" > /dev/null 2>&1 &
 #     i3-msg '[class="mpv"] sticky enable' > /dev/null 2>&1
 # }

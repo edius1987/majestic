@@ -11,17 +11,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-if [ -d "$HOME/bin" ] ; then
-    export PATH=$PATH:$HOME/bin
-fi
-
-if [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services" ] ; then
-	mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
-fi
+[ -d ${HOME}/bin ] && export PATH=$PATH:$HOME/bin
+[ -d ${HOME}/apps ] && export PATH=${PATH}:${HOME}/apps
+[ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services" ] && mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
 
 export TERMINAL=termite
 export EDITOR=nano
-export BROWSER=brsr
+export BROWSER=firefox-developer-edition
 
 #eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
@@ -35,10 +31,9 @@ export GNOME_KEYRING_PID
 #export QT_IM_MODULE=ibus
 #ibus-daemon -drx
 
+#eval $(dbus-launch --sh-syntax)
 
-eval $(dbus-launch --sh-syntax)
-
-session=${1:-bspwm}
+session=${1:-i3}
 
 case $session in
 	bspwm)
