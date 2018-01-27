@@ -31,7 +31,7 @@ export BROWSER=firefox-developer-edition
 #eval $(dbus-launch --sh-syntax)
 
 case $DESKTOP_SESSION in
-    i3|i3wm|bspwm)
+    i3|i3wm|bspwm|openbox)
         ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     cinnamon|cinnamon-session)
