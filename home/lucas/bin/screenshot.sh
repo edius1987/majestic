@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f ~/.config/user-dirs.dirs ]; then 
+if [ -f ~/.config/user-dirs.dirs ]; then
 	source ~/.config/user-dirs.dirs
 	dir="${XDG_PICTURES_DIR}/shots/"
 else
@@ -15,25 +15,23 @@ atraso=10
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
 tipo="image/png"
+#msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
+msg="Imagem salva em <b>$dir</b>..."
 
 [ ! -d $dir ] && mkdir -p $dir
 
 if [ "$1" == "-a" ]; then
 	arquivo="${nome}-full${extensao}"
 	$app ${arquivo}
-	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-w" ]; then
 	arquivo="${nome}-window${extensao}"
 	$app -i $(xdotool getactivewindow) ${arquivo}
-	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-s" ]; then
 	arquivo="${nome}-rec${extensao}"
     $app -s ${arquivo}
-    msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-d" ]; then
     arquivo="${nome}-delay${extensao}"
     $app -d $atraso ${arquivo}
-    msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 elif [ "$1" == "-g" ]; then
     arquivo="${nome}.gif"
     tipo="image/gif"
@@ -50,15 +48,12 @@ elif [ "$1" == "-g" ]; then
 
     if [ ! -z $duracao ]; then
     	byzanz-record --delay=$atraso -d $duracao ${arquivo}
-    	msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 	else
 		msg="Screenshot cancelada..."
     fi
 else
 	arquivo="${nome}${extensao}"
 	$app ${arquivo}
-	#msg="A screenshot <b>$arquivo</b> salva em <b>$dir</b>..."
-	msg="Screenshot <b>$arquivo</b> salva"
 fi
 
 if [ ! -z $arquivo ]; then
