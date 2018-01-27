@@ -331,7 +331,13 @@
       <action name="Execute">
         <command>screenshot.sh</command>
       </action>
-    </keybind>       
+    </keybind>
+
+    <keybind key="A-Print">
+      <action name="Execute">
+        <command>screenshot.sh -w</command>
+      </action>
+    </keybind>           
 
   </keyboard>
   <mouse>
