@@ -72,12 +72,12 @@ border_color_pressed = #607d8b 100
 
 #-------------------------------------
 # Panel
-panel_items = TCS
+panel_items = LTCS
 panel_size = 100% 40
 panel_margin = 0 0
 panel_padding = 3 3 3
 panel_background_id = 1
-wm_menu = 0
+wm_menu = 1
 panel_dock = 0
 panel_position = top center horizontal
 panel_layer = normal
@@ -153,14 +153,20 @@ systray_name_filter =
 
 #-------------------------------------
 # Launcher
-launcher_padding = 100 0 0
+launcher_icon_theme = LinuxLex-8
+launcher_padding = 5 0 10
+#launcher_background_id = 9
+#launcher_icon_size = 85
+
+#launcher_padding = 100 0 0
 launcher_background_id = 0
 launcher_icon_background_id = 0
-launcher_icon_size = 0
+launcher_icon_size = 16
 launcher_icon_asb = 0 -100 -100
 launcher_icon_theme_override = 0
 startup_notifications = 0
 launcher_tooltip = 0
+launcher_item_app = /usr/share/applications/termite.desktop
 
 #-------------------------------------
 # Clock

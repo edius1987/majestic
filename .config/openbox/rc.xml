@@ -55,8 +55,8 @@
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
   -->
-    <keepBorder>yes</keepBorder>
-    <animateIconify>yes</animateIconify>
+    <keepBorder>no</keepBorder>
+    <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
       <name>sans</name>
       <size>8</size>
@@ -154,10 +154,10 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>0</top>
-    <bottom>0</bottom>
-    <left>0</left>
-    <right>0</right>
+    <top>4</top>
+    <bottom>4</bottom>
+    <left>4</left>
+    <right>4</right>
   </margins>
   <dock>
     <position>TopLeft</position>
@@ -317,19 +317,33 @@
       </action>
     </keybind>
     <!-- Keybindings for running applications -->
+    
     <keybind key="A-F2">
       <action name="Execute">
         <command>gmrun</command>
       </action>
     </keybind>
+    
     <keybind key="C-r">
       <action name="Reconfigure"/>
     </keybind>
+
+    <keybind key="W-r">
+      <action name="Reconfigure"/>
+    </keybind>    
+
+    <keybind key="W-Return">
+      <action name="Execute">
+        <command>termite</command>
+      </action>
+    </keybind>
+    
     <keybind key="Print">
       <action name="Execute">
         <command>screenshot.sh</command>
       </action>
     </keybind>
+
     <keybind key="A-Print">
       <action name="Execute">
         <command>screenshot.sh -w</command>
