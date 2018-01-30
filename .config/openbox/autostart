@@ -1,4 +1,5 @@
 feh --bg-fill .local/share/backgrounds/afraidofmusic.png &
-tint2 -c ~/.config/tint2/chrome.tint2rc &
-plank &
+tint2 -c ~/.config/tint2/afraidofmusic.tint2rc &
+#(sleep 2 ; plank) &
 (sleep 5 ; compton) &
+(sleep 10s ; pa-applet) &
