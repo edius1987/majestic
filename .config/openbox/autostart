@@ -1,4 +1,4 @@
-feh --bg-fill .local/share/backgrounds/carmine-de-fazio-31543.jpg &
+feh --bg-fill .local/share/backgrounds/afraidofmusic.png &
 tint2 -c ~/.config/tint2/chrome.tint2rc &
 plank &
 (sleep 5 ; compton) &
