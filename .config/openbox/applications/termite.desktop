@@ -2,7 +2,7 @@
 Name=Termite
 Comment=Use the command line
 Exec=termite
-Icon=utilities-terminal
+Icon=/usr/share/icons/evolvere-black-folders-dark-fallback/apps/64/terminal.svg
 Type=Application
 Categories=GTK;System;TerminalEmulator;
 StartupNotify=true

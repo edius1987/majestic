@@ -158,13 +158,14 @@ launcher_padding = 5 0 10
 launcher_background_id = 0
 launcher_icon_background_id = 0
 launcher_icon_size = 16
-#launcher_icon_asb = 0 -100 -100
+launcher_icon_asb = 100 -100 -5
 launcher_icon_theme_override = 0
 startup_notifications = 0
 launcher_tooltip = 1
 launcher_item_app = ~/.config/openbox/applications/firefox-developer-edition.desktop
 launcher_item_app = ~/.config/openbox/applications/Thunar.desktop
 launcher_item_app = ~/.config/openbox/applications/termite.desktop
+launcher_item_app = ~/.config/openbox/applications/steam.desktop
 
 #-------------------------------------
 # Clock
