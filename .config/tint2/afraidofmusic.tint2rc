@@ -110,7 +110,7 @@ taskbar_always_show_all_desktop_tasks = 0
 taskbar_name_padding = 10 0
 taskbar_name_background_id = 2
 taskbar_name_active_background_id = 2
-taskbar_name_font = Roboto Bold 8
+taskbar_name_font = Fira 10
 taskbar_name_font_color = #cfd7db 100
 taskbar_name_active_font_color = #cfd7db 100
 taskbar_distribute_size = 0
@@ -125,7 +125,7 @@ task_centered = 1
 urgent_nb_of_blink = 7
 task_maximum_size = 250 0
 task_padding = 13 0 0
-task_font = Roboto Bold 8
+task_font = Fira 10
 task_tooltip = 0
 task_thumbnail = 0
 task_thumbnail_size = 8
@@ -153,7 +153,7 @@ systray_name_filter =
 
 #-------------------------------------
 # Launcher
-#launcher_icon_theme = LinuxLex-8
+launcher_icon_theme = Arc
 launcher_padding = 5 0 10
 launcher_background_id = 0
 launcher_icon_background_id = 0
@@ -161,25 +161,25 @@ launcher_icon_size = 16
 #launcher_icon_asb = 0 -100 -100
 launcher_icon_theme_override = 0
 startup_notifications = 0
-launcher_tooltip = 0
+launcher_tooltip = 1
 launcher_item_app = ~/.config/openbox/applications/firefox-developer-edition.desktop
 launcher_item_app = ~/.config/openbox/applications/Thunar.desktop
 launcher_item_app = ~/.config/openbox/applications/termite.desktop
 
 #-------------------------------------
 # Clock
-time1_format = %B %_d, %H:%M
+time1_format = %d/%m/%y %H:%M
 time2_format = 
-time1_font = Roboto Bold 8
+time1_font = Fira 10
 time1_timezone = 
 time2_timezone = 
-time2_font = Roboto Bold 8
+time2_font = Fira 10
 clock_font_color = #cfd7db 100
 clock_padding = 13 0
 clock_background_id = 2
 clock_tooltip = 
 clock_tooltip_timezone = 
-clock_lclick_command = 
+clock_lclick_command = gsimplecal
 clock_rclick_command = 
 clock_mclick_command = 
 clock_uwheel_command = 
