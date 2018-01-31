@@ -356,9 +356,13 @@
 
     <keybind key="W-q">
         <action name="Close"/>
-    </keybind>    
+    </keybind>  
 
-     
+    <keybind key="W-S-e">
+      <action name="Execute">
+        <command>oblogout</command>
+      </action>
+    </keybind>
 
   </keyboard>
   

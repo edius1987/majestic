@@ -4,5 +4,8 @@
 (sleep 5s ; compton) &
 (sleep 6s ; clipit) &
 (sleep 10s ; pa-applet) &
-(sleep 20s ; numlockx on) &
-(sleep 30s ; ~/.local/bin/xautolock) &
+(sleep 20s ; sudo headsetcontrol 64) &
+(sleep 22s ; numlockx on) &
+(sleep 30s ; thunar --daemon) &
+(sleep 45s ; ~/.local/bin/xautolock) &
+(sleep 60s ; xset r rate 300 75) &
