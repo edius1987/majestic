@@ -1,5 +1,8 @@
-feh --bg-fill .local/share/backgrounds/afraidofmusic.png &
-tint2 -c ~/.config/tint2/afraidofmusic.tint2rc &
-#(sleep 2 ; plank) &
-(sleep 5 ; compton) &
+(sleep 2s ; feh --bg-fill .local/share/backgrounds/afraidofmusic.png) &
+(sleep 3s ; tint2 -c ~/.config/tint2/afraidofmusic.tint2rc) &
+(sleep 4s ; dunst) &
+(sleep 5s ; compton) &
+(sleep 6s ; clipit) &
 (sleep 10s ; pa-applet) &
+(sleep 20s ; numlockx on) &
+(sleep 30s ; ~/.local/bin/xautolock) &
