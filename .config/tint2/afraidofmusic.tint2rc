@@ -150,6 +150,8 @@ systray_icon_size = 0
 systray_icon_asb = 100 0 0
 systray_monitor = 1
 systray_name_filter = 
+# alpha (0 to 100) saturation (-100  to  100) brightness  (-100 to 100)
+systray_icon_asb = 100 -100 100
 
 #-------------------------------------
 # Launcher
