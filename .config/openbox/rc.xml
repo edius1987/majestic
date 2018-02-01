@@ -375,6 +375,8 @@
 
 	<keybind key="W-c">
 		<action name="MoveResizeTo">
+			<width>60%</width>
+    		<height>60%</height>
 			<x>center</x>
 			<y>center</y>
 		</action>
@@ -425,8 +427,8 @@
 	<keybind key="W-KP_5">
 		<action name="UnmaximizeFull"/>
 		<action name="MoveResizeTo">
-    		<width>50%</width>
-    		<height>50%</height>
+    		<!-- <width>50%</width> -->
+    		<!-- <height>50%</height> -->
 			<x>center</x>
 			<y>center</y>
 		</action>
@@ -473,8 +475,33 @@
 	</keybind>	
 
 	<keybind key="W-KP_0">
- 		<action name="Maximize"/>
-	</keybind>											
+ 		<!-- <action name="Maximize"/> -->
+ 		<action name="ToggleMaximize"/>
+	</keybind>	
+
+	<keybind key="W-S-KP_6">
+  		<action name="ResizeRelative">
+    		<right>5</right>
+  		</action>
+	</keybind>
+
+	<keybind key="W-S-KP_4">
+  		<action name="ResizeRelative">
+    		<right>-5</right>
+  		</action>
+	</keybind>
+
+	<keybind key="W-S-KP_2">
+  		<action name="ResizeRelative">
+    		<bottom>5</bottom>
+  		</action>
+	</keybind>
+
+	<keybind key="W-S-KP_8">
+  		<action name="ResizeRelative">
+    		<bottom>-5</bottom>
+  		</action>
+	</keybind>	
 
   </keyboard>
   
