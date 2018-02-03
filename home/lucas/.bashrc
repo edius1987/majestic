@@ -78,7 +78,7 @@ function mma() {
 ##### Prompt #####
 ##################
 # Sem cor
-PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
 
 # Com cor
-#PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
