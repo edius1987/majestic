@@ -166,7 +166,7 @@ startup_notifications = 0
 launcher_tooltip = 1
 launcher_item_app = ~/.config/openbox/applications/firefox-developer-edition.desktop
 launcher_item_app = ~/.config/openbox/applications/Thunar.desktop
-launcher_item_app = ~/.config/openbox/applications/termite.desktop
+launcher_item_app = ~/.config/openbox/applications/tilix.desktop
 launcher_item_app = ~/.config/openbox/applications/telegram-desktop.desktop
 launcher_item_app = ~/.config/openbox/applications/steam.desktop
 
