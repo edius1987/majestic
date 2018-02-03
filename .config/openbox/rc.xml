@@ -43,7 +43,7 @@
   </placement>
 
   <theme>
-  	<cornerRadius menu="yes">2</cornerRadius>
+  	<cornerRadius menu="no">3</cornerRadius>
     <name>Adapta-Nokto</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
