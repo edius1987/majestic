@@ -4,12 +4,13 @@ video=$1
 
 [ ! $1 ] && exit 1
 
-if [ -f $video ]; then
+if [ -f "$video" ]; then
 	vp=$(readlink -f "$video")
 	path=$(dirname "$vp")
 	timestamp=$(date +%s)
 
-	probe=$(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv='p=0')
+	#probe=$(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv='p=0')
+	probe=""$(ffprobe -i "$video" -show_format -v quiet | sed -n 's/duration=//p')
 	int=${probe%.*}
 	total=""$(($int / 3600)):$(($int / 60 % 60)):$(($int % 60))
 
@@ -18,10 +19,12 @@ if [ -f $video ]; then
 	novo="$path/$nome-$timestamp.$ext"
 fi
 
-eval $(yad --title "VideoCut" --center --width=400 --height=280 --form --field=Arquivo:FL --field=Inicio --field=Fim --field=Saida:SFL "$video" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "entrada=\"%s\"\ninicio=%s\nfim=%s\nsaida=\"%s\"\n", $1, $2, $3, $4}')
+eval $(yad --form --title "VideoCut" --center --width=600 --field=Arquivo:FL --field=Inicio --field=Fim --field=Saida:SFL "$video" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "entrada=\"%s\"\ninicio=%s\nfim=%s\nsaida=\"%s\"\n", $1, $2, $3, $4}')
 [[ -z $entrada || -z $inicio || -z $fim || -z $saida ]] && exit 1
+#[[ -z $fim ]] && fim=$(ffprobe -i "$video" -show_format -v quiet | sed -n 's/duration=//p')
 
 diferenca=$(($(date +%s --date="$fim")-$(date +%s --date="$inicio")))
 offset=""$(($diferenca / 3600)):$(($diferenca / 60 % 60)):$(($diferenca % 60))
 
 ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida"
+

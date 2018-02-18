@@ -21,6 +21,7 @@ screenchange-reload = true
 ;		        B A R / T O P
 ;----------------------------------------------------------
 [bar/top]
+;monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
 height = 30
 offset-y = -1
@@ -47,25 +48,55 @@ module-margin-right = 2
 font-0 = Fira:size=10;2
 font-1 = feather:pixelsize=11;3
 font-2 = Moon Phases:size=10;4
+font-3 = Fira:size=7;-2
 
 modules-left = i3
 modules-center = window
-modules-right = calendar clock beats volume radio wallpaper ufw powermenu
+modules-right = bitcoin gmail calendar clock beats moonphase volume radio wallpaper ufw powermenu
 
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
 ;tray-position = right
+
+; If true, the bar will not shift its
+; contents when the tray changes
 ;tray-detached = false
+
+; Tray icon max size
 ;tray-maxsize = 20
+
+; Enable pseudo transparency
+; Will automatically be enabled if a fully transparent
+; background color is defined using `tray-background`
 ;tray-transparent = false
+
+; Background color for the tray container
+; By default the tray container will use the bar
+; background color.
+; Note: 32 bit alpha blending is not supported.
 ;tray-background = ${colors.background}
+
+; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 ;tray-offset-x = 0
 ;tray-offset-y = 1
+
+; Pad the sides of each tray icon
 ;tray-padding = 0
+
+; Scale factor for tray clients
 ;tray-scale = 1.0
 
 ;----------------------------------------------------------
 ;		        B A R / B O T T O M
 ;----------------------------------------------------------
 [bar/bottom]
+monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
 height = 30
 offset-y = -1
@@ -80,6 +111,8 @@ fixed-center = true
 
 overline-size = 2
 overline-color = #bc92f8
+;underline-size = 2
+;underline-color = #bc92f8
 
 spacing = 1
 padding-right = 2
@@ -88,11 +121,10 @@ module-margin-right = 2
 
 font-0 = Fira:size=10;2
 font-1 = feather:pixelsize=11;2
-font-2 = Fira:size=7;-2
 
-modules-left = apps vbox launch screencast screenshot
+modules-left = apps vbox launch screencast screenshot multi
 modules-center = cpu memory network temperature rootfs homefs pkg trash uptime
-modules-right = mpd azul vermelho amarelo verde branco switch
+modules-right = mpd
 
 ;----------------------------------------------------------
 ;		        I 3
@@ -118,26 +150,76 @@ strip-wsnumbers = true
 
 format = <label-state> <label-mode>
 format-spacing = 0
-label-font = 2
+label-font = 5
 
-label-focused-font = 2
+label-focused-font = 5
 label-focused = %name%
 label-focused-padding = 4
 label-focused-foreground = ${colors.destaque}
 
-label-unfocused-font = 2
+label-unfocused-font = 5
 label-unfocused = %name%
 label-unfocused-padding = 4
 label-unfocused-foreground = ${colors.unfocused}
 
-label-urgent-font = 2
+label-urgent-font = 5
 label-urgent = %name%
 label-urgent-padding = 4
 label-urgent-foreground = ${colors.urgent}
 
-label-visible-font = 2
+label-visible-font = 5
 label-visible = %name%
 label-visible-padding = 4
+
+;----------------------------------------------------------
+;		        B I T C O I N
+;----------------------------------------------------------
+[module/bitcoin]
+type = custom/script
+interval = 300
+format = <label>
+label =  btc %output%
+exec = ~/.config/polybar/scripts/crypto.py bitcoin BRL
+
+;----------------------------------------------------------
+;		        B C A S H
+;----------------------------------------------------------
+[module/bcash]
+type = custom/script
+interval = 300
+format = <label>
+label = bcsh %output%
+exec = ~/.config/polybar/scripts/crypto.py bitcoin-cash BRL
+
+;----------------------------------------------------------
+;		        L I T E C O I N
+;----------------------------------------------------------
+[module/litecoin]
+type = custom/script
+interval = 300
+format = <label>
+label = lcoin %output%
+exec = ~/.config/polybar/scripts/crypto.py litecoin BRL
+
+;----------------------------------------------------------
+;		        E T H E R E U M
+;----------------------------------------------------------
+[module/ethereum]
+type = custom/script
+interval = 300
+format = <label>
+label = eth %output%
+exec = ~/.config/polybar/scripts/crypto.py ethereum BRL
+
+;----------------------------------------------------------
+;		        I O T A
+;----------------------------------------------------------
+[module/iota]
+type = custom/script
+interval = 300
+format = <label>
+label = iota %output%
+exec = ~/.config/polybar/scripts/crypto.py iota BRL
 
 ;----------------------------------------------------------
 ;		        W I N D O W
@@ -155,6 +237,20 @@ click-right = ~/.config/polybar/scripts/janela.sh -w
 exec = ~/.config/polybar/scripts/janela.sh
 
 ;----------------------------------------------------------
+;		        G M A I L
+;----------------------------------------------------------
+[module/gmail]
+type = custom/script
+interval = 300
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.destaque}
+label = %output%
+exec = ~/.config/polybar/scripts/gmail/launch.py
+click-left = $BROWSER https://mail.google.com &
+tail = true
+
+;----------------------------------------------------------
 ;			 C A L E N D A R
 ;----------------------------------------------------------
 [module/calendar]
@@ -163,7 +259,6 @@ interval = 60.0
 exec =  ~/.config/polybar/scripts/calendar.sh short
 click-left = notify-send "Data" "$(date +"%A, %d de %B de %Y")" &
 click-right = gsimplecal &
-click-middle = ~/.config/rofi/scripts/alarme &
 label = %output%
 format = <label>
 format-prefix = " "
@@ -254,6 +349,7 @@ scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
 [module/ufw]
 type = custom/script
 interval = 1
+;label-font = 3
 exec =  ~/.config/polybar/scripts/ufw.sh
 click-left = ~/.config/polybar/scripts/ufw.sh toggle
 label = %output%
@@ -313,8 +409,7 @@ label-separator = " "
 label-open-foreground = ${colors.destaque}
 
 menu-0-0 = 
-menu-0-0-exec = qutebrowser &
-;menu-0-0-exec = firefox-developer-edition &
+menu-0-0-exec = $BROWSER &
 
 menu-0-1 = 
 menu-0-1-exec = thunar &
@@ -384,6 +479,21 @@ content = 
 content-foreground = ${colors.destaque}
 click-left = ~/.local/bin/screenshot &
 click-right = ~/.local/bin/screenshot clear &
+
+;----------------------------------------------------------
+;			M U L T I
+;----------------------------------------------------------
+[module/multi]
+type = custom/ipc
+interval = 30
+hook-0 = ~/.config/polybar/scripts/weather.py
+hook-1 = ~/.config/polybar/scripts/anews.py
+hook-2 = ~/.config/polybar/scripts/logs.sh
+initial = 1
+click-left = polybar-msg -p %pid% hook multi 1
+click-right = polybar-msg -p %pid% hook multi 2
+click-middle = polybar-msg -p %pid% hook multi 3
+tail = true
 
 ;----------------------------------------------------------
 ;		        C P U
@@ -498,7 +608,7 @@ click-right = pamac-manager &
 type = custom/script
 interval = 1
 format = <label>
-label = "%output%"
+label = %output%
 exec = ~/.config/polybar/scripts/trash.sh
 click-left = ~/.config/polybar/scripts/trash.sh -x ; exec paplay /usr/share/sounds/freedesktop/stereo/trash-empty.oga ; notify-send "Lixeira" "Lixeira limpa!" &
 click-middle = ~/.config/polybar/scripts/trash.sh -o &
@@ -593,7 +703,7 @@ bar-progress-fill = ─
 bar-progress-empty = ─
 
 ;----------------------------------------------------------
-;		        C O R E S
+;               C O R E S
 ;----------------------------------------------------------
 [module/azul]
 type = custom/text
@@ -621,7 +731,7 @@ content = "%{F#FFFFFF}%{F-}"
 click-left = ~/.config/polybar/scripts/branco.sh &
 
 ;----------------------------------------------------------
-;               S W I T C H
+;		        S W I T C H
 ;----------------------------------------------------------
 [module/switch]
 type = custom/script
@@ -629,4 +739,3 @@ interval = 1
 label = %output:0:50:...%
 click-left = ~/.config/polybar/scripts/switch.sh s
 exec = ~/.config/polybar/scripts/switch.sh
-
