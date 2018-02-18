@@ -34,8 +34,7 @@ Usando o curl:
 
 Usando o auto instalador:
 
-    curl -s -o /tmp/install.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/setup/install.sh'
-    bash /tmp/install.sh
+    bash <(curl -s 'https://raw.githubusercontent.com/sistematico/majestic/master/setup/install.sh')
 
 Problemas? Abra uma [issue](https://github.com/sistematico/majestic/issues/new) ;)
 

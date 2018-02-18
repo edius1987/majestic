@@ -675,7 +675,7 @@ label-song =  %artist% - %title%
 
 ; Available tokens:
 ;   None
-label-offline = 🎜 MPD
+label-offline = MPD
 
 ; Only applies if <icon-X> is used
 
@@ -730,12 +730,4 @@ type = custom/text
 content = "%{F#FFFFFF}%{F-}"
 click-left = ~/.config/polybar/scripts/branco.sh &
 
-;----------------------------------------------------------
-;		        S W I T C H
-;----------------------------------------------------------
-[module/switch]
-type = custom/script
-interval = 1
-label = %output:0:50:...%
-click-left = ~/.config/polybar/scripts/switch.sh s
-exec = ~/.config/polybar/scripts/switch.sh
+

@@ -2,10 +2,10 @@
 
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 
-# Comente para usar a polybar
-i3blocks=1
+
+
 app_ok=1
-apps=("i3-gaps-next-git" "i3blocks" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "jsoncpp" "rofi")
+apps=("i3-gaps" "polybar" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "jsoncpp" "rofi")
 
 for app in ${apps[@]}; do
 	pacman -Q $app 1> /dev/null 2> /dev/null
@@ -14,121 +14,49 @@ for app in ${apps[@]}; do
 		app_ok=0
 	fi
 done
-
 [ "$app_ok" -eq 0 ] && echo "Existem dependências, programa abortado." && exit 1
 
-backup_date=$(date +'%s')
-
 # i3
-if [ -d ${HOME}/.config/i3 ]; then
-	if [ -f ${HOME}/.config/i3/config ]; then
-		mv ${HOME}/.config/i3/config ${HOME}/.config/i3/config-${backup_date}.bkp
-	fi
-else
-	mkdir -p ${HOME}/.config/i3
-fi
+[ ! -d ${HOME}/.config/i3 ] && mkdir -p ${HOME}/.config/i3
 
 echo "Instalando as configs do i3..."
-curl -s -o ${HOME}/.config/i3/config 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3/config'
+curl -s -o ${HOME}/.config/i3/config 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/i3/config'
 
-if [ $i3blocks ]; then
-	# i3blocks
-	if [ -d ${HOME}/.config/i3blocks ]; then
-		if [ -f ${HOME}/.config/i3blocks/config ]; then
-			mv ${HOME}/.config/i3blocks/config ${HOME}/.config/i3blocks/config-${backup_date}.bkp
-		fi
-	else
-		mkdir -p ${HOME}/.config/i3blocks
-	fi
+# PolyBar
+if [ ! -d ${HOME}/.config/polybar ] && mkdir -p ${HOME}/.config/polybar
 
-	echo "Instalando as configs do i3blocks..."
-	curl -s -o ${HOME}/.config/i3blocks/config 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/config.airblader'
-	curl -s -o ${HOME}/.config/i3blocks/cores.conf 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/cores.conf'
+echo "Instalando as configs da polybar..."
+curl -s -o ${HOME}/.config/polybar/launch.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/polybar/launch.sh'
+chmod +x ${HOME}/.config/polybar/launch.sh
+curl -s -o ${HOME}/.config/polybar/config "https://raw.githubusercontent.com/sistematico/majestic/master/.config/polybar/config"
 
-	# i3blocks scripts
-	if [ -d ${HOME}/.config/i3blocks/scripts ]; then
-		mv ${HOME}/.config/i3blocks/scripts ${HOME}/.config/i3blocks/scripts-${backup_date}
-	else
-		mkdir -p ${HOME}/.config/i3blocks/scripts
-	fi
+# Polybar Scripts
+[ ! -d ${HOME}/.config/polybar/scripts ] &&	mkdir -p ${HOME}/.config/polybar/scripts
 
-	scripts=("blank" "cpu" "disk" "firewall" "focus" "hora" "mem" "mpd"	"packages" "temperature" "trash" "uptime" "volume" "wallpaper" "weather" "wifi")
+scripts=("anews.py" "btc.sh" "crypto.py" "janela.sh" "logs.sh" "pkg.sh" "strcut.py" "trash.sh" "weather.py" "clock.sh" "moonphase.py" "wallpaper.sh" "beats.sh" "calendar.sh" "cpu.sh" "mem.sh" "ufw.sh")
+gmail=("auth.py"  "client_secrets.json"  "credentials.json"  "launch.py"  "preview.png"  "readme.md")
 
-	for script in ${scripts[@]}; do
-		curl -s -o ${HOME}/.config/i3blocks/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/i3blocks/${script}"
-	done
-else
-	# PolyBar
-	if [ -d ${HOME}/.config/polybar ]; then
-		if [ -f ${HOME}/.config/polybar/config ]; then
-			mv ${HOME}/.config/polybar/config ${HOME}/.config/polybar/config-${backup_date}.bkp
-		fi
-	else
-		mkdir -p ${HOME}/.config/polybar
-	fi
+for script in ${scripts[@]}; do
+	curl -s -o ${HOME}/.config/polybar/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/.config/polybar/scripts/${script}"
+done
 
-	echo "Instalando as configs da polybar..."
-	curl -s -o ${HOME}/.config/polybar/launch.sh 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/launch.sh'
-    curl -s -o ${HOME}/.config/polybar/full "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/full"
-    curl -s -o ${HOME}/.config/polybar/clean "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/clean"
-    ln -s ${HOME}/.config/polybar/clean ${HOME}/.config/polybar/principal
+[ ! -d ${HOME}/.config/polybar/scripts/gmail ] && mkdir -p ${HOME}/.config/polybar/scripts/gmail
 
-	# polybar scripts
-	if [ -d ${HOME}/.config/polybar/scripts ]; then
-		mv ${HOME}/.config/polybar/scripts ${HOME}/.config/polybar/scripts-${backup_date}
-	else
-		mkdir -p ${HOME}/.config/polybar/scripts
-	fi
+for gm in ${gmail[@]}; do
+	curl -s -o ${HOME}/.config/polybar/scripts/gmail/${gm} "https://raw.githubusercontent.com/sistematico/majestic/master/.config/polybar/scripts/gmail/${gm}"
+done
 
-	# polybar cores
-	if [ ! -d ${HOME}/.config/polybar/cores ]; then
-		mkdir -p ${HOME}/.config/polybar/cores
-	fi	
+# Scripts auxiliares
+[ ! -d ${HOME}/.local/bin ] && mkdir -p ${HOME}/.local/bin
 
-	cores=("azul" "vermelho" "amarelo" "verde" "branco")
-	scripts=("anews.py" "btc.sh" "crypto.py" "janela.sh" "logs.sh" "pkg.sh" "strcut.py" "trash.sh" "weather.py" "clock.sh" "moonphase.py" "wallpaper.sh" "beats.sh" "calendar.sh" "cpu.sh" "mem.sh" "switch.sh" "ufw.sh")
-	gmail=("auth.py"  "client_secrets.json"  "credentials.json"  "launch.py"  "preview.png"  "readme.md")
-
-	for script in ${scripts[@]}; do
-		curl -s -o ${HOME}/.config/polybar/scripts/${script} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/scripts/${script}"
-	done
-
-	for cor in ${cores[@]}; do
-		curl -s -o ${HOME}/.config/polybar/cores/${cor} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/cores/${cor}"
-	done
-
-	cat ${HOME}/.config/polybar/cores/vermelho > ${HOME}/.config/polybar/config
-	cat ${HOME}/.config/polybar/clean >> ${HOME}/.config/polybar/config
-
-	if [ ! -d ${HOME}/.config/polybar/scripts/gmail ]; then
-		mkdir -p ${HOME}/.config/polybar/scripts/gmail
-	fi
-
-	for gm in ${gmail[@]}; do
-		curl -s -o ${HOME}/.config/polybar/scripts/gmail/${gm} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/polybar/scripts/gmail/${gm}"
-	done
-
-	# Scripts auxiliares
-	if [ ! -d ${HOME}/.local/bin ]; then
-		mkdir -p ${HOME}/.local/bin
-	fi
-
-	localbinscripts=("beats.sh" "lockscreen" "lockscreen.firefox" "lockscreen.quotes" "lockscreen.simple" "notification.sh" "otf2ttf.ff" "screencast" "screenshot" "steam-launcher" "xautolock")
-	for localbinscript in ${localbinscripts[@]}; do
-		curl -s -o ${HOME}/.local/bin/${localbinscript} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/bin/${localbinscript}"
-	done
-fi
+localbinscripts=("beats.sh" "lockscreen" "lockscreen.firefox" "lockscreen.quotes" "lockscreen.simple" "notification.sh" "otf2ttf.ff" "screencast" "screenshot" "steam-launcher" "xautolock")
+for localbinscript in ${localbinscripts[@]}; do
+	curl -s -o ${HOME}/.local/bin/${localbinscript} "https://raw.githubusercontent.com/sistematico/majestic/master/.local/bin/${localbinscript}"
+done
 
 # dunst
-if [ -d ${HOME}/.config/dunst ]; then
-	if [ -f ${HOME}/.config/dunst/dunstrc ]; then
-		mv ${HOME}/.config/dunst/dunstrc ${HOME}/.config/dunst/dunstrc-${backup_date}.bkp
-	fi
-else
-	mkdir -p ${HOME}/.config/dunst
-fi
-
-curl -s -o ${HOME}/.config/dunst/dunstrc 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/dunst/dunstrc'
+[ ! -d ${HOME}/.config/dunst ] && mkdir -p ${HOME}/.config/dunst
+curl -s -o ${HOME}/.config/dunst/dunstrc 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/dunst/dunstrc'
 
 # rofi
 if [ -d ${HOME}/.config/rofi ]; then
@@ -147,14 +75,14 @@ fi
 
 [ ! -d ${HOME}/.local/share/rofi/themes/ ] && mkdir -p ${HOME}/.local/share/rofi/themes/
 
-curl -s -o ${HOME}/.config/rofi/config.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/config.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-lateral.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-lateral.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico-dark.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/sistematico.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/rofi/themes/sistematico.rasi'
+curl -s -o ${HOME}/.config/rofi/config.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/rofi/config.rasi'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-lateral.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/rofi/themes/sistematico-lateral.rasi'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico-dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/rofi/themes/sistematico-dark.rasi'
+curl -s -o ${HOME}/.local/share/rofi/themes/sistematico.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/rofi/themes/sistematico.rasi'
 
 rscripts=("alarme" "apps" "configs" "configs.bspwm" "drun" "fap" "git" "janelas" "power" "power.bspwm" "run" "screenshot")
 for rscript in ${rscripts[@]}; do
-	curl -s -o ${HOME}/.config/rofi/scripts/${rscript} "https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.config/rofi/scripts/${rscript}"
+	curl -s -o ${HOME}/.config/rofi/scripts/${rscript} "https://raw.githubusercontent.com/sistematico/majestic/master/.config/rofi/scripts/${rscript}"
 done
 
 # fontawesome
@@ -164,7 +92,7 @@ if [ $? -ne 0 ]; then
 	if [ ! -d ${HOME}/.local/share/fonts ]; then
 		mkdir ${HOME}/.local/share/fonts
 	fi
-	curl -s https://raw.githubusercontent.com/sistematico/majestic/master/home/lucas/.local/share/fonts/feather.ttf > ${HOME}/.local/share/fonts/feather.ttf
+	curl -s "https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/fonts/feather.ttf" > ${HOME}/.local/share/fonts/feather.ttf
 	fc-cache -v -f
 fi
 
@@ -180,8 +108,6 @@ fi
 
 curl -s "https://i.imgur.com/crTC1QR.jpg" > $WALL
 
-echo "Tudo pronto!"
-
-#i3-msg reload
-#i3-msg restart
-
+if [ "$DESKTOP_SESSION" == "i3" ]; then
+	i3-msg restart
+fi
