@@ -2,7 +2,11 @@
 
 [ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 
+read -p "ATENÇÃO!!! Esse script irá apagar configurações prévias do i3 e da Polybar!!! Deseja continuar? [s/N]: " confirma
 
+if [[ -z $confirma ]] || [[ $confirma != [sS]* ]]; then
+	exit 0
+fi
 
 app_ok=1
 apps=("i3-gaps" "polybar" "dunst" "xdotool" "ttf-fira-sans" "adobe-source-code-pro-fonts" "jsoncpp" "rofi")
@@ -16,7 +20,7 @@ for app in ${apps[@]}; do
 done
 [ "$app_ok" -eq 0 ] && echo "Existem dependências, programa abortado." && exit 1
 
-# i3
+# i3-gaps
 [ ! -d ${HOME}/.config/i3 ] && mkdir -p ${HOME}/.config/i3
 
 echo "Instalando as configs do i3..."
