@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+tema="~/.local/share/rofi/themes/dark.rasi"
 editor="subl"
 
 configs=(
