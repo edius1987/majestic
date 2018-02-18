@@ -202,6 +202,7 @@ for_window [title="(Biblioteca|Library|About*|Amigos|Steam)"] floating enable, m
 for_window [title="(Sobre o Mozilla Firefox|VideoCut)"] floating enable, move position center
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
 for_window [title="(screencast$)"] move window to scratchpad
+for_window [title="War Thunder"] move position center, border pixel 1
 
 assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $workspace1
 assign [class="(Termite|Tilix)"] $workspace2
@@ -213,7 +214,7 @@ assign [class="(Gtkman|MedleyText)"] $workspace7
 assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
 assign [class="(^Telegram|^Hexchat)"] $workspace9
 assign [class="(dontstarve_steam)"] $workspace10
-assign [title="War Thunder|dagor2"] $workspace10
+assign [title="War Thunder"] $workspace10
 
 
 #############################################################
