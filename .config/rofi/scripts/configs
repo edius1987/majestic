@@ -38,7 +38,7 @@ if [ "$res" ]; then
 			fi
 		;;
 		'Polybar')
-			polyconfig=$(echo "Config;Cores;Apps;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			polyconfig=$(echo "Config;Apps;Reload" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 			if [ "$polyconfig" = "Reload" ]; then
 				~/.config/polybar/i3.sh
 			elif [ "$polyconfig" = "Apps" ]; then
@@ -46,20 +46,9 @@ if [ "$res" ]; then
 				if [ $app ]; then
 					i3-msg exec $editor "${app}"
 				fi
-			elif [ "$polyconfig" = "Cores" ]; then
-				cores=$(echo "azul;vermelho;amarelo;verde;branco" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar Cores" -bw 0 -lines 5 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-				if [ $cores ]; then
-					i3-msg exec $editor ${HOME}/.config/polybar/cores/${cores}
-				fi
 			elif [ "$polyconfig" == "Config" ]; then
-				fcconfig=$(echo "Full;Clean" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar Cores" -bw 0 -lines 2 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
-				if [ "$fcconfig" == "Full" ]; then
-					i3-msg exec $editor ${HOME}/.config/polybar/full
-				elif [ "$fcconfig" == "Clean" ]; then
-					i3-msg exec $editor ${HOME}/.config/polybar/clean
-				fi
+				i3-msg exec $editor ${HOME}/.config/polybar/config
 			fi
-
 		;;
 		'Conky') i3-msg exec $editor ~/.config/conky/conky.conf ;;
 		'LX Appearance') i3-msg exec lxappearance ;;
