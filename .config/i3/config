@@ -213,6 +213,8 @@ assign [class="(Gtkman|MedleyText)"] $workspace7
 assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
 assign [class="(^Telegram|^Hexchat)"] $workspace9
 assign [class="(dontstarve_steam)"] $workspace10
+assign [title="War Thunder|dagor2"] $workspace10
+
 
 #############################################################
 ############### G R O U P S #################################
