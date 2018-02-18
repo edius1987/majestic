@@ -5,7 +5,7 @@
 # Criado em: 21/01/2018 00:09:35
 # Última Alteração: 21/01/2018 00:09:46
 
-tema="${HOME}/.local/share/rofi/themes/sistematico-dark.rasi"
+tema="${HOME}/.local/share/rofi/themes/dark.rasi"
 cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 backend="mpv" # mpd ou mpv
 

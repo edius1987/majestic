@@ -8,7 +8,7 @@ extensao=".png"
 atraso=10
 tipo="image/png"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
-tema="~/.local/share/rofi/themes/sistematico-dark.rasi"
+tema="~/.local/share/rofi/themes/dark.rasi"
 editor="gimp"
 
 if [ ! -d $dir ]; then
@@ -34,7 +34,7 @@ function screens {
 		arquivo="${nome}-rec${extensao}"
 	    $app $delay -s ${arquivo}
 	    msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
-	elif [ "$1" == "4" ]; then	    
+	elif [ "$1" == "4" ]; then
 		arquivo="${nome}-full${extensao}"
 		$app $delay ${arquivo}
 		$editor ${arquivo}
