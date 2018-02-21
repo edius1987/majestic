@@ -52,7 +52,7 @@ font-3 = Fira:size=7;-2
 
 modules-left = i3
 modules-center = window
-modules-right = calendar clock beats moonphase volume radio wallpaper ufw powermenu
+modules-right = calendar clock beats volume wallpaper ufw powermenu
 
 ;----------------------------------------------------------
 ;		        B A R / B O T T O M
