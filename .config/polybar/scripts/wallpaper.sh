@@ -3,8 +3,8 @@
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
 default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
-dir="/home/lucas/img/wallpapers/firefox"
-ultima="/home/lucas/img/wallpapers/firefox/GcP71BP.png"
+dir="/home/lucas/img/wallpapers/elementary"
+ultima="/home/lucas/img/wallpapers/elementary/wallpaper-2906553.jpg"
 modo="--bg-fill"
 indice=0
 i=0
