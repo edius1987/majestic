@@ -613,9 +613,9 @@ interval = 2
 ;   <icon-seekb>
 ;   <icon-seekf>
 format-online = <label-song> <label-time> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next> <icon-repeat> <icon-repeatone> <icon-random>
-;format-playing = ${self.format-online}
-;format-paused = ${self.format-online}
-;format-stopped = ${self.format-online}
+format-playing = ${self.format-online}
+format-paused = <toggle>
+format-stopped = <toggle>
 
 ; Available tags:
 ;   <label-offline>
@@ -627,7 +627,7 @@ format-offline = <label-offline>
 ;   %date%
 ;   %title%
 ; Default: %artist% - %title%
-label-song =  %artist% - %title%
+label-song = %{F#DFDFDF}%{F-} %artist% - %title%
 
 ; Available tokens:
 ;   %elapsed%
@@ -637,7 +637,7 @@ label-song =  %artist% - %title%
 
 ; Available tokens:
 ;   None
-label-offline = MPD
+label-offline =  Off-line
 
 ; Only applies if <icon-X> is used
 

@@ -38,7 +38,7 @@ function screens {
 	    msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 	elif [ "$1" == "4" ]; then
 		arquivo="${nome}-full${extensao}"
-		$app $delay ${arquivo}
+		$app $delay ${dir}${arquivo}
 		$editor ${dir}${arquivo}
 		msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 	elif [ "$1" == "5" ]; then

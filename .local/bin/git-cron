@@ -8,11 +8,13 @@ fi
 
 cd $caminho
 
-status=$(git add . -n)
-if [ ! -z "$status" ] && [ ! -f .noup ]; then
-	c=$(echo $(git add . -n | tr '\r\n' ' '))
-	m="Autocommit por Git-Cron: alterações: $c"
-	git add .
-	git commit -m "$m"
-	git push
+if [ ! -f .noup ]; then
+	status=$(git add . -n)
+	if [ ! -z "$status" ]; then
+		c=$(echo $(git add . -n | tr '\r\n' ' '))
+		m="Autocommit por Git-Cron: alterações: $c"
+		git add .
+		git commit -m "$m"
+		git push
+	fi
 fi

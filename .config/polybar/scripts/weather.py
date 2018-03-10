@@ -4,11 +4,12 @@
 import requests
 import datetime
 
-# Comente
+# Comente a linha abaixo!!!
 from weathercfg import *
 
-# Descomente e preencha
+# Descomente e preencha (http://openweathermap.org/help/city_list.txt)
 #CITY = "3467747"
+# Faça uma conta em https://home.openweathermap.org/users/sign_up e copia sua API aqui...
 #API_KEY = "SUA_API_KEY"
 UNITS = "Metric"
 UNIT_KEY = "C"
