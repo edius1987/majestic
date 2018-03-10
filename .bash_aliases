@@ -17,5 +17,8 @@ alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/r
 alias pacman-clean='sudo pacman -Qdtq | pacman -Rs -'
 alias vim="vim -c 'startinsert'"
 alias showip='curl icanhazip.com'
-alias lostfiles='sudo lostfiles strict | egrep -vi "/usr/share/themes|-disabled"'
+alias lostfiles='sudo lostfiles strict | egrep -vi "/usr/share/themes|-disabled|/var/cache|/var/default|/usr/share/mime|/usr/share/.mono"'
 alias yay='yay --noconfirm'
+alias ue='systemctl list-unit-files | grep enabled'
+alias uue='systemctl --user list-unit-files | grep enabled'
+alias stpshr='systemctl --user stop dropbox google-drive onedrive yandex'

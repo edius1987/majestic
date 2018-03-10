@@ -1,0 +1,14 @@
+[Unit]
+Description=Google Drive service
+After=local-fs.target network.target
+ 
+[Service]
+#Type=oneshot
+ExecStart=/usr/bin/google-drive-ocamlfuse -m %h/drive
+ExecStop=/usr/bin/fusermount -uqz %h/drive
+#ExecStop=/usr/bin/umount -l %h/drive
+RestartSec=60
+Restart=always
+ 
+[Install]
+WantedBy=default.target
