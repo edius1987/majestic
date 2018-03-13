@@ -42,9 +42,9 @@ if [ "$res" ]; then
 			if [ "$polyconfig" = "Reload" ]; then
 				~/.config/polybar/i3.sh
 			elif [ "$polyconfig" = "Apps" ]; then
-				app=$( ls ${HOME}/.config/polybar/scripts/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				app=$( ls "${HOME}/.config/polybar/scripts/" | egrep ".sh|.py"  | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
 				if [ $app ]; then
-					i3-msg exec $editor "${app}"
+					i3-msg exec $editor "${HOME}/.config/polybar/scripts/${app}"
 				fi
 			elif [ "$polyconfig" == "Config" ]; then
 				i3-msg exec $editor ${HOME}/.config/polybar/config

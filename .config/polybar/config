@@ -397,6 +397,9 @@ menu-0-7-exec = ~/apps/DevDocs-0.6.7-x86_64.AppImage &
 menu-0-8 = 
 menu-0-8-exec = ~/apps/medley-latest.AppImage &
 
+menu-0-9 = 
+menu-0-9-exec = ~/.config/rofi/scripts/kill &
+
 ;----------------------------------------------------------
 ;			V B O X
 ;----------------------------------------------------------

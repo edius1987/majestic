@@ -194,7 +194,7 @@ for_window [class="^VirtualBox" title="*Executando*"] floating enable
 for_window [title="^Governo do Estado de Mato Grosso do Sul|^Mail do iCloud - Enc|Filtros de mensagens|^etcher-electron|^Skype"] floating enable
 for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird)"] floating enable
 for_window [title="(Biblioteca|Library|About|Amigos|Steam|Sobre o Mozilla Firefox|VideoCut|dagor2)"] floating enable, move position center
-for_window [title="(War Thunder|War Thunder (Configurações))"] move to workspace $workspace10, floating enable, move position center, border pixel 1
+for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $workspace10, floating enable, move position center, border pixel 1
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
 for_window [title="(screencast$|^DownThemAll|DownThemAll!$)"] move window to scratchpad
 
