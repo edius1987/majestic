@@ -1,0 +1,19 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"ayu",
+		"Colorsublime",
+		"Git",
+		"LiveReload",
+		"Materialize",
+		"Package Control",
+		"Theme - Autumn",
+		"Theme - Kronuz",
+		"Theme - Soda"
+	]
+}

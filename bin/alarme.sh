@@ -1,9 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Arquivo: alarme.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 16-03-2018 16:35:20
+# Última alteração: 16-03-2018 16:35:55
 
 hora=$1
 audio="${HOME}/.alarme.mp3"
-#audio="${HOME}/audio/alarmes/naval/cvn77whistle.wav"
-audio_web="https://github.com/sistematico/majestic/raw/master/home/lucas/audio/alarme.mp3"
+audio_web="https://github.com/sistematico/majestic/raw/master/lucas/audio/alarme.mp3"
 
 function alarme {
 	n=1
@@ -29,7 +35,7 @@ if [ $hora ]; then
 				echo -e "O alarme irá tocar as:\n$(date --date=${hora})"
 				sleep $(( $(date --date=${hora} +%s) - $(date +%s) ));
 				echo "ACORDA!!!"
-				#while true; do
+				# alarme.sh
 	  				/usr/bin/mpg123 $audio
 	  			#	sleep 3
 				#done

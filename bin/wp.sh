@@ -17,28 +17,31 @@ if [[ $continuar != [sS] ]]; then
 fi
 
 echo
-echo -n "Senha do usuário root do MySQL [Padrão: root]: "
-read usuario_root
+read -p "Usuário root do MySQL [Padrão: root]: " usuario_root
 
 echo
-echo -n "Senha do usuário root do MySQL [Padrão: wordpress]: "
-read -r senha_root
+read -p "Senha do usuário root do MySQL [Padrão: wordpress]: " senha_root
 
 echo
-echo -n "Nome do host do wordpress [Padrão: localhost]: "
-read -r host
+read -p "Nome do host do wordpress [Padrão: localhost]: " host
 
 echo
-echo -n "Nome do banco de dados do wordpress [Padrão: wordpress]: "
-read -r banco
+read -p "Nome do banco de dados do wordpress [Padrão: wordpress]: " banco
+
+mysqlshow -u${usuario_root} -p${senha_root} "$banco" > /dev/null 2>&1
+
+if [ $? = 0 ]; then
+	read -p "O banco de dados $banco já existe, deseja apagar e re-criar!? [s/n] " ap
+	if [ "$ap" = "s" ]; then
+		mysql -u${usuario_root} -p${senha_root} -e "DROP DATABASE ${banco}"
+	fi
+fi
 
 echo
-echo -n "Nome do usuario do banco de dados do wordpress [Padrão: wordpress]: "
-read -r usuario
+read -p "Nome do usuario do banco de dados do wordpress [Padrão: wordpress]: " usuario
 
 echo
-echo -n "Nome da senha do banco de dados do wordpress [Padrão: wordpress]: "
-read -r senha
+read -p "Nome da senha do banco de dados do wordpress [Padrão: wordpress]: " senha
 
 if [ -z $usuario_root ]; then
 	usuario_root="root"

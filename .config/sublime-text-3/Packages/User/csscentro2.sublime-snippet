@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+.centro {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: ${1:100}px;
+	height: ${2:100}px;
+	/* background-color: #ccc; */
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('imagem.jpg');
+	border-radius: 3px;
+}
+]]></content>
+	<tabTrigger>centro2</tabTrigger>
+	<scope>source.css</scope>
+</snippet>

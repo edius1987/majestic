@@ -7,6 +7,7 @@
 # Criado em: 09/06/2017 23:26:41
 # Última Atualização: 16/01/2018 01:20:47
 
+preset="ultrafast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
 cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 lixeira="${HOME}/.local/share/Trash"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
@@ -19,7 +20,6 @@ else
 fi
 
 if [ ! $1 ]; then
-    preset="ultrafast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
     data=$(date +%Y-%m-%d_%H-%M-%S)
     arquivo="${caminho}/screencast-${data}.mp4"
     resolucao=$(xrandr | grep '*' | awk 'NR==1{print $1}')

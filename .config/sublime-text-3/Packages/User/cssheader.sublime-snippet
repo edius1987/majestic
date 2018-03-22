@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+/****************************
+      ${1:TITULO}
+ ****************************/ 
+]]></content>
+	<tabTrigger>cssheader</tabTrigger>
+	<scope>source.css</scope>
+</snippet>

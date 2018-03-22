@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+<audio controls autoplay>
+	<source src="horse.ogg" type="audio/ogg">
+  	<source src="horse.mp3" type="audio/mpeg">
+  	Seu navegador não suporta a TAG audio.
+</audio> 
+]]></content>
+	<tabTrigger>audioskel</tabTrigger>
+	<!-- <scope>source.css</scope> -->
+</snippet>

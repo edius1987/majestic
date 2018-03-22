@@ -1,0 +1,11 @@
+{
+   "scope": "source.shell",
+
+   "completions":
+   [
+      { "trigger": "dialoginput\tDialog Input", "contents": "dialog --clear --backtitle \"${1:titulo}\" --title \"${2:subtitulo}\" --inputbox \"$3:\" 0 0 \"$4\" 3>&1 1>&2 2>&3" },
+      { "trigger": "dialogradio\tDialog Radio", "contents": "dialog --clear --backtitle \"${1:titulo}\" --title \"${2:subtitulo}\" --radiolist \"$3\" 0 0 0 op1 \"texto1\" on op2 \"texto2\" off op3 \"texto3\" off 3>&1 1>&2 2>&3" },
+      { "trigger": "dialogchecklist\tDialog Checklist", "contents": "dialog --clear --backtitle \"${1:titulo}\" --title \"${2:subtitulo}\" --checklist \"Você gosta de:\" 0 0 0 rock \"\" on samba \"\" off metal \"\" on jazz \"\" off pop \"\" on mpb \"\" off 3>&1 1>&2 2>&3" },
+      { "trigger": "acronym", "contents": "<acronym>$0</acronym>" }
+   ]
+}

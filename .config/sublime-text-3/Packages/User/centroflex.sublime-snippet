@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+]]></content>
+	<tabTrigger>centroflex</tabTrigger>
+</snippet>

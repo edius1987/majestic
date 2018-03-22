@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('imagem.jpg');
+]]></content>
+	<tabTrigger>darken</tabTrigger>
+	<scope>source.css</scope>
+</snippet>

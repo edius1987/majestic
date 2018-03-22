@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+background:rgba(255,255,255,0.5);
+]]></content>
+	<tabTrigger>trans</tabTrigger>
+	<scope>source.css</scope>
+</snippet>

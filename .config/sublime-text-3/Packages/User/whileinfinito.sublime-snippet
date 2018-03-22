@@ -1,0 +1,31 @@
+<snippet>
+	<content><![CDATA[
+# While Infinito
+while : ; do
+    \$${1:resposta}=\$(
+      dialog --stdout               \
+             --title 'Menu da Tia'  \
+             --menu 'Oi Tia, escolha o quê você quer fazer:' \
+            0 0 0                   \
+            1 'Navegar na Internet' \
+            2 'Escrever uma carta'  \
+            3 'Jogar paciência'     \
+            4 'Perder tempo'        \
+            0 'Sair'                )
+
+    # Ela apertou CANCELAR ou ESC, então vamos sair...
+    [ \$? -ne 0 ] && break
+
+    # De acordo com a opção escolhida, dispara programas
+    case "\$resposta" in
+         1) /usr/bin/mozilla 'http://google.com.br' ;;
+         2) /bin/mcedit /tmp/carta.txt ;;
+         3) /usr/games/solitaire ;;
+         4) /usr/X11R6/bin/xsnow ; /usr/X11R6/bin/xeyes ;;
+         0) break ;;
+    esac
+done
+]]></content>
+	<tabTrigger>whileinfinito</tabTrigger>
+	<scope>source.shell</scope>
+</snippet>
