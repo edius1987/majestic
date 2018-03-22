@@ -12,7 +12,11 @@ if [ ! -f .noup ]; then
 	status=$(git add . -n)
 	if [ ! -z "$status" ]; then
 		c=$(echo $(git add . -n | tr '\r\n' ' '))
-		m="Autocommit por Git-Cron: alterações: $c"
+		if [ $2 ]; then
+			m="$2"
+		else
+			m="Autocommit por Git-Cron: alterações: $c"
+		fi
 		git add .
 		git commit -m "$m"
 		git push
