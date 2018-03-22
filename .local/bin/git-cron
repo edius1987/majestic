@@ -3,7 +3,7 @@
 if [ ! $1 ]; then
 	caminho="${HOME}/github/majestic"
 else
-	caminho="$@"
+	caminho="$1"
 fi
 
 cd $caminho
