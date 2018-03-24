@@ -5,7 +5,7 @@ repos=('majestic' 'sistematico.github.io')
 
 atualiza() {
 	if [ ! -f .noup ]; then
-		cd $1
+		cd "$1"
     	status=$(git add . -n)
     	if [ ! -z "$status" ]; then
         	c=$(echo $(git add . -n | tr '\r\n' ' '))
@@ -20,10 +20,10 @@ atualiza() {
 if [ ! $1 ]; then
 	for r in "${repos[@]}";	do
 		caminho="${dir}/${r}"
-		atualiza $caminho
+		atualiza "$caminho"
 	done
 else
 	caminho="$@"
-	atualiza $caminho
+	atualiza "$caminho"
 fi
 
