@@ -1,24 +1,29 @@
 #!/bin/sh
 
-if [ ! $1 ]; then
-	caminho="${HOME}/github/majestic"
-else
-	caminho="$1"
-fi
+dir="${HOME}/github"
+repos=('majestic' 'sistematico.github.io')
 
-cd $caminho
-
-if [ ! -f .noup ]; then
-	status=$(git add . -n)
-	if [ ! -z "$status" ]; then
-		c=$(echo $(git add . -n | tr '\r\n' ' '))
-		if [ $2 ]; then
-			m="$2"
-		else
-			m="Autocommit por Git-Cron: alterações: $c"
-		fi
-		git add .
-		git commit -m "$m"
-		git push
+atualiza() {
+	if [ ! -f .noup ]; then
+		cd $1
+    	status=$(git add . -n)
+    	if [ ! -z "$status" ]; then
+        	c=$(echo $(git add . -n | tr '\r\n' ' '))
+        	m="Autocommit por Git-Cron: alterações: $c"
+        	git add .
+        	git commit -m "$m"
+        	git push
+    	fi
 	fi
+}
+
+if [ ! $1 ]; then
+	for r in "${repos[@]}";	do
+		caminho="${dir}/${r}"
+		atualiza $caminho
+	done
+else
+	caminho="$@"
+	atualiza $caminho
 fi
+
