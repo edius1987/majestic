@@ -18,7 +18,7 @@ fi
 
 export TERMINAL=termite
 export EDITOR=nano
-export BROWSER=firefox-developer-edition
+#export BROWSER=firefox-developer-edition
 
 #export SSH_AUTH_SOCK
 #export GPG_AGENT_INFO
@@ -33,7 +33,7 @@ export BROWSER=firefox-developer-edition
 #ibus-daemon -drx
 #eval $(dbus-launch --sh-syntax)
 
-session=${1:-i3}
+session=${1:-mate}
 
 case $session in
 	bspwm)
@@ -44,6 +44,10 @@ case $session in
 		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec i3
 	;;
+    mate)
+        ln -sfT "/usr/share/dbus-1/services/org.freedesktop.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+        exec mate-session
+    ;;
     cinnamon|cinnamon-session)
 		ln -sfT "/usr/share/dbus-1/services/org.freedesktop.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec cinnamon-session

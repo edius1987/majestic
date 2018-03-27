@@ -1,0 +1,12 @@
+authtoken: ngrokAuthKey
+tunnels:
+  meteor:
+    proto: http
+    addr: 3000
+    bind_tls: true
+    #subdomain: yourNgrokSubdomain
+  sistematico:
+    addr: 80
+    proto: http
+    host_header: sistematico.dev
+
