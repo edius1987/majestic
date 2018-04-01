@@ -18,10 +18,10 @@ rand=$(ls $dir/*.jpg | shuf -n 1)
 [ ! -f /etc/slim.conf.backup ] && cp /etc/slim.conf /etc/slim.conf.backup
 
 if [ "$EUID" == 0 ]; then
-    ln -sf $rand $dirslim/background.jpg
+    cp -f $rand $dirslim/background.jpg
 else
     if sudo true; then
-        sudo ln -sf $rand $dirslim/background.jpg
+        sudo cp -f $rand $dirslim/background.jpg
     else
         echo "Você precisa de permissões de root."
     fi

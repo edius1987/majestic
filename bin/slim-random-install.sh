@@ -10,7 +10,7 @@
 dir="/usr/share/backgrounds/slim"
 uniturl="http://ix.io/15uO"
 unitfile="/etc/systemd/system/slimbackground.service"
-slimurl="http://ix.io/15vv"
+slimurl="http://ix.io/15xw"
 slimfile="/usr/local/bin/slim-random.sh"
 
 [ ! -f /etc/slim.conf ] && echo "SLiM não encontrado, abortando..." && exit 1
@@ -35,6 +35,7 @@ if [ "$EUID" == 0 ]; then
     curl -s -L -o $unitfile "$uniturl"
     echo "Instalando o script $(basename $slimfile) em $(dirname $slimfile)..."
     curl -s -L -o $slimfile "$slimurl"
+    chmod +x $slimfile
     systemctl daemon-reload
     sed -i "0,/^current_theme.*/s//current_theme random/" /etc/slim.conf
     systemctl disable lightdm gdm nodm kdm
@@ -57,7 +58,8 @@ else
 	    echo "Instalando a unit $(basename $unitfile) em $(dirname $unitfile)..."
 	    sudo curl -s -L -o $unitfile "$uniturl"
 	    echo "Instalando o script $(basename $slimfile) em $(dirname $slimfile)..."
-	    sudo curl -s -L -o $slimfile "$slimurl"  
+	    sudo curl -s -L -o $slimfile "$slimurl" 
+	    chmod +x $slimfile
 	    sudo systemctl daemon-reload
 	    sed -i "0,/^current_theme.*/s//current_theme random/" /etc/slim.conf
 	    sudo systemctl disable lightdm gdm nodm kdm
