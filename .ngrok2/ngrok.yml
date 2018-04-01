@@ -1,4 +1,4 @@
-authtoken: ngrokAuthKey
+authtoken: API_KEY
 tunnels:
   meteor:
     proto: http
@@ -9,4 +9,7 @@ tunnels:
     addr: 80
     proto: http
     host_header: sistematico.dev
-
+  openssh:
+    addr: 22000
+    proto: tcp
+    #remote_addr: 1.tcp.ngrok.io:12345
