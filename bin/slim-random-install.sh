@@ -8,7 +8,7 @@
 # Última Atualização: 01/04/2018 15:45:29
 
 uniturl="http://ix.io/15uO"
-unitfile="/etc/systemd/system/slim-background.service"
+unitfile="/etc/systemd/system/slimbackground.service"
 slimurl="http://ix.io/15vv"
 slimfile="/usr/local/bin/slim-random.sh"
 
