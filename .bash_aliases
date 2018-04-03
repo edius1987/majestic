@@ -21,4 +21,4 @@ alias lostfiles='sudo lostfiles strict | egrep -vi "/usr/local/bin|/usr/share/(t
 alias yay='yay --noconfirm'
 alias ue='systemctl list-unit-files | grep enabled'
 alias uue='systemctl --user list-unit-files | grep enabled'
-alias stpshr='systemctl --user stop dropbox google-drive onedrive yandex'
+alias stpshr='systemctl --user stop ngrok dropbox google-drive onedrive yandex && sudo systemctl stop cronie nginx php-fpm sshd ddclient && touch ~/github/majestic/.noup ~/github/sistematico.github.io/.noup'
