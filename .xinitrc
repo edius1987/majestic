@@ -33,7 +33,7 @@ export EDITOR=nano
 #ibus-daemon -drx
 #eval $(dbus-launch --sh-syntax)
 
-session=${1:-mate}
+session=${1:-i3}
 
 case $session in
 	bspwm)
