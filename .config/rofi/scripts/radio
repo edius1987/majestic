@@ -5,7 +5,6 @@
 # Criado em: 21/01/2018 00:09:35
 # Última Alteração: 21/01/2018 00:09:46
 
-tema="${HOME}/.local/share/rofi/themes/dark.rasi"
 cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
 backend="mpv" # mpd ou mpv
 
@@ -86,7 +85,7 @@ if [ ! $1 ]; then
 	fi
 
 	opts='-width 10'
-	ESTACAO=$(echo -e "${m}$(listar)" | rofi -theme $tema $opts -dmenu -p "Selecione a estacao:")
+	ESTACAO=$(echo -e "${m}$(listar)" | rofi $opts -dmenu -p "Selecione a estacao:")
 
 	if [ "$ESTACAO" ]; then
 		if [ "$ESTACAO" == "Matar" ]; then

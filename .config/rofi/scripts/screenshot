@@ -8,7 +8,6 @@ extensao=".png"
 atraso=10
 tipo="image/png"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
-tema="~/.local/share/rofi/themes/dark.rasi"
 editor="gimp"
 
 command -v $app >/dev/null 2>&1 || { echo >&2 "Instale o programa: $app antes. Abortando..."; exit 1; }
@@ -56,10 +55,10 @@ function screens {
 	    tipo="image/gif"
 
 	    duracao=$(echo "5;10;15;30;45;60;90;120" | \
-	    rofi -theme "$tema" -sep ";" -dmenu -p "Duração(segundos):" -bw 0 -lines 8 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+	    rofi -sep ";" -dmenu -p "Duração(segundos):" -bw 0 -lines 8 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 	    atraso=$(echo "0;1;2;3;5;10;15;30;45;60" | \
-	    rofi -theme "$tema" -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 10 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+	    rofi -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 10 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 	    if [ -z $atraso ]; then
 	    	atraso=2
@@ -84,10 +83,10 @@ function screens {
 	notify-send -i $icone "ScreenShot" "$msg"
 }
 
-res=$(echo "Tela;Janela;Area;Editar" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi Screenshot" -bw 0 -lines 4 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+res=$(echo "Tela;Janela;Area;Editar" | rofi -sep ";" -dmenu -p "Rofi Screenshot" -bw 0 -lines 4 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
 if [ $res ]; then
-	atraso=$(echo "1;2;3;5;10;15;30" | rofi -theme "$tema" -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 7 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+	atraso=$(echo "1;2;3;5;10;15;30" | rofi -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 7 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 fi
 
 if [ $res ]; then
@@ -106,7 +105,7 @@ if [ $res ]; then
 		;;					
 
 		#reiniciar)
-		#	confirma=$(echo -e "Sim\nNão" | rofi -theme "$tema" -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
+		#	confirma=$(echo -e "Sim\nNão" | rofi -dmenu -p "Confirma?" -bw 0 -lines 2 -separator-style none -location 0 -width 7 -hide-scrollbar -padding 5)
 		#	[ $confirma = "Sim" ] && systemctl reboot
 		#;;
 		*)

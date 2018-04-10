@@ -1,6 +1,5 @@
 #!/bin/bash
 
-tema="~/.local/share/rofi/themes/dark.rasi"
 editor="subl"
 
 configs=(
@@ -16,17 +15,17 @@ configs=(
 'home'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -theme "$tema" -dmenu -p "Rofi Config" -bw 0 -lines 10 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines 10 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
 		'bspwm') $editor ~/.config/bspwm/bspwmrc ;;
 		'sxhkd') $editor ~/.config/sxhkd/sxhkdrc ;;
 		'polybar')
-			polyconfig=$(echo "Config;Temas;Apps;Launcher" | rofi -theme "$tema" -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			polyconfig=$(echo "Config;Temas;Apps;Launcher" | rofi -sep ";" -dmenu -p "Polybar" -bw 0 -lines 4 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$polyconfig" = "Apps" ]; then
-				app=$( ls ${HOME}/.config/polybar/scripts/*.{sh,py} | rofi -theme "$tema" -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				app=$( ls ${HOME}/.config/polybar/scripts/*.{sh,py} | rofi -dmenu -p "Polybar Apps" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					$editor "${app}"
 				fi
@@ -34,7 +33,7 @@ if [ "$res" ]; then
 				for t in ${HOME}/.config/polybar/config.*; do
 					tem+=($(basename $t));
 				done
-				temas=$( printf '%s\n' "${tem[@]}" | rofi -theme "$tema" -dmenu -p "Polybar Temas" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+				temas=$( printf '%s\n' "${tem[@]}" | rofi -dmenu -p "Polybar Temas" -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 				if [ $temas ]; then
 					ln -sf "${HOME}/.config/polybar/${temas}" ${HOME}/.config/polybar/config
 					i3-msg restart
@@ -49,15 +48,15 @@ if [ "$res" ]; then
 		'dunst') $editor ~/.config/dunst/dunstrc ;;
 		'compton') $editor ~/.config/compton.conf ;;
 		'rofi')
-			roficonfig=$(echo "Config;Apps;Themes" | rofi -theme "$tema" -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
+			roficonfig=$(echo "Config;Apps;Themes" | rofi -sep ";" -dmenu -p "Rofi" -bw 0 -lines 3 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 
 			if [ "$roficonfig" = "Apps" ]; then
-				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -theme "$tema" -dmenu -p "Rofi Apps" -bw 0 -lines 8 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+				app=$( ls "${HOME}/.config/rofi/scripts/" | rofi -dmenu -p "Rofi Apps" -bw 0 -lines 8 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					$editor "${HOME}/.config/rofi/scripts/${app}"
 				fi
 			elif [ "$roficonfig" = "Themes" ]; then
-				tema=$( ls "${HOME}/.local/share/rofi/themes/" | rofi -theme "$tema" -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+				tema=$( ls "${HOME}/.local/share/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $tema ]; then
 					$editor "${HOME}/.local/share/rofi/themes/${tema}"
 				fi
@@ -66,7 +65,7 @@ if [ "$res" ]; then
 			fi
 		;;
 		'lightdm')
-			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -theme "$tema" -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+			ldm=$(echo "lightdm;lightdm-gtk-greeter" | rofi -sep ";" -dmenu -p "LightDM" -bw 0 -lines 2 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 			if [ $ldm ]; then
 				sudo $editor "/etc/lightdm/${ldm}.conf"
@@ -76,15 +75,15 @@ if [ "$res" ]; then
 		    $editor "${HOME}/.config/ncmpcpp/config"
 		;;
 		'home')
-			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin;.bin;.hyper.js" | rofi -theme "$tema" -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
+			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;bin;.bin;.hyper.js" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
 
 			if [ "$homefiles" = "bin" ]; then
-				binfiles=$(ls "${HOME}/bin/" | rofi -theme "$tema" -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
 				if [ $binfiles ]; then
 					$editor ~/bin/${binfiles}
 				fi
             elif [ "$homefiles" = ".bin" ]; then
-				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -theme "$tema" -dmenu -p "~/.local/bin" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
 				if [ $dotbinfiles ]; then
 					$editor ~/.local/bin/${dotbinfiles}
 				fi

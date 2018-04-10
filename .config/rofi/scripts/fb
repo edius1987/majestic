@@ -7,8 +7,8 @@ PREV_LOC_FILE=~/.rofi_fb_prevloc
 # Read last location, otherwise we default to PWD.
 if [ -f "${PREV_LOC_FILE}" ]
 then
-    CUR_DIR=$(cat "${PREV_LOC_FILE}") 
-fi 
+    CUR_DIR=$(cat "${PREV_LOC_FILE}")
+fi
 
 # Handle argument.
 if [ -n "$@" ]

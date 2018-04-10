@@ -25,7 +25,6 @@ done
 audio="${HOME}/.alarme.mp3"
 audio_web="https://github.com/sistematico/majestic/raw/master/home/lucas/audio/alarme.mp3"
 icone="/usr/share/icons/Arc/mimetypes/24@2x/stock_calendar.png"
-tema="${HOME}/.local/share/rofi/themes/dark.rasi"
 
 if [ ! -f $audio ]; then
 	curl -L -s $audio_web > $audio
@@ -36,9 +35,9 @@ if [ ! -f $tema ]; then
 fi
 
 if [ -f /tmp/rofi-alarme.pid ]; then
-	hora=$(echo -e "Existe um alarme em progresso para:\n$(cat /tmp/rofi-alarme.log)\nDeseja cancelar?\nSim\nNão" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+	hora=$(echo -e "Existe um alarme em progresso para:\n$(cat /tmp/rofi-alarme.log)\nDeseja cancelar?\nSim\nNão" | rofi -p "Rofi Alarme: " -dmenu -bw 0 -lines 5 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 else
-	hora=$(echo -e "Digite a hora no formato: HH:MM" | rofi -p "Rofi Alarme: " -theme "$tema" -dmenu -bw 0 -lines 1 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
+	hora=$(echo -e "Digite a hora no formato: HH:MM" | rofi -p "Rofi Alarme: " -dmenu -bw 0 -lines 1 -separator-style none -location 0 -width 400 -hide-scrollbar -padding 5)
 fi
 
 if [ $hora ]; then

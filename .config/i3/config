@@ -127,10 +127,6 @@ set $default_gaps_outer 0
 gaps inner $default_gaps_inner
 gaps outer $default_gaps_outer
 
-#workspace $workspace1 gaps inner 0
-#workspace $workspace1 gaps outer 0
-#workspace $workspace2 gaps inner 0
-#workspace $workspace2 gaps outer 0
 #workspace $workspace3 gaps inner 0
 #workspace $workspace3 gaps outer 0
 
