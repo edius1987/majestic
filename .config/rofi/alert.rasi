@@ -136,4 +136,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseD1";*/
 }
 
-/* @import "~/.local/share/rofi/themes/config.rasi" */
+/* @import "~/.config/rofi/themes/config.rasi" */

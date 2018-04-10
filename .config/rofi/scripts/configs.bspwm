@@ -56,9 +56,9 @@ if [ "$res" ]; then
 					$editor "${HOME}/.config/rofi/scripts/${app}"
 				fi
 			elif [ "$roficonfig" = "Themes" ]; then
-				tema=$( ls "${HOME}/.local/share/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+				tema=$( ls "${HOME}/.config/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 				if [ $tema ]; then
-					$editor "${HOME}/.local/share/rofi/themes/${tema}"
+					$editor "${HOME}/.config/rofi/themes/${tema}"
 				fi
 			elif [ $roficonfig ]; then
 				$editor ~/.config/rofi/config.rasi

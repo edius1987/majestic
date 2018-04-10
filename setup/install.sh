@@ -77,12 +77,12 @@ else
 	mkdir -p ${HOME}/.config/rofi/scripts
 fi
 
-[ ! -d ${HOME}/.local/share/rofi/themes/ ] && mkdir -p ${HOME}/.local/share/rofi/themes/
+[ ! -d ${HOME}/.config/rofi/themes/ ] && mkdir -p ${HOME}/.config/rofi/themes/
 
 curl -s -o ${HOME}/.config/rofi/config.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/rofi/config.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/lateral.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/rofi/themes/lateral.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/rofi/themes/dark.rasi'
-curl -s -o ${HOME}/.local/share/rofi/themes/default.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/rofi/themes/default.rasi'
+curl -s -o ${HOME}/.config/rofi/themes/lateral.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/rofi/themes/lateral.rasi'
+curl -s -o ${HOME}/.config/rofi/themes/dark.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/rofi/themes/dark.rasi'
+curl -s -o ${HOME}/.config/rofi/themes/default.rasi 'https://raw.githubusercontent.com/sistematico/majestic/master/.config/rofi/themes/default.rasi'
 
 rscripts=("alarme" "apps" "configs" "configs.bspwm" "drun" "fap" "git" "janelas" "power" "power.bspwm" "run" "screenshot")
 for rscript in ${rscripts[@]}; do

@@ -13,7 +13,6 @@ nome="ss-${data}"
 extensao=".png"
 atraso=10
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
-tema="~/.local/share/rofi/themes/dark.rasi"
 tipo="image/png"
 #msg="A screenshot <b>$arquivo</b> foi salva em <b>$dir</b>..."
 msg="Imagem salva em <b>$dir</b>..."
@@ -37,10 +36,10 @@ elif [ "$1" == "-g" ]; then
     tipo="image/gif"
 
     duracao=$(echo "5;10;15;30;45;60;90;120" | \
-    rofi -theme "$tema" -sep ";" -dmenu -p "Duração(segundos):" -bw 0 -lines 8 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+    rofi -sep ";" -dmenu -p "Duração(segundos):" -bw 0 -lines 8 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
     atraso=$(echo "0;1;2;3;5;10;15;30;45;60" | \
-    rofi -theme "$tema" -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 10 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
+    rofi -sep ";" -dmenu -p "Atraso(segundos):" -bw 0 -lines 10 -separator-style none -location 0 -width 10 -hide-scrollbar -padding 5)
 
     if [ -z $atraso ]; then
     	atraso=2

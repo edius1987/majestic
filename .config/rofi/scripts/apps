@@ -1,7 +1,5 @@
 #!/bin/bash
 
-tema="~/.local/share/rofi/themes/dark.rasi"
-
 res=$(echo "firefox;firefox-beta;firefox-dev;firefox;termite;pcmanfm;telegram;whatsie;pluma;atom;sublime;lxtask;deluge;popcorntime;stremio" | rofi -sep ";" -dmenu -p "Rofi Apps" -bw 0 -lines 15 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 1)
 
 if [ ! -z $res ]; then

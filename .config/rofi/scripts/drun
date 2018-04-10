@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rofi -lines 0 -show drun -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
+rofi -theme "$HOME/.config/rofi/themes/lateral.rasi" -lines 0 -show drun -opacity "80" -lines 8 -line-margin 4 -width 20 -padding 16
 
 

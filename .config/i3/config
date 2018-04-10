@@ -40,8 +40,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 # Rofi
-bindsym $mod+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/dark.rasi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
-#bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -theme ~/.local/share/rofi/themes/dark.rasi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://duckduckgo.com/?q={}
+bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
+#bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://duckduckgo.com/?q={}
 bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
 
 bindsym $mod+Shift+w exec --no-startup-id ~/.config/rofi/scripts/janelas

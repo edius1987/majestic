@@ -47,9 +47,9 @@ if [ "$res" ]; then
 			fi
 		;;
 		'Rofi Themes')
-			tema=$( ls "${HOME}/.local/share/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
+			tema=$( ls "${HOME}/.config/rofi/themes/" | rofi -dmenu -p "Rofi Themes" -bw 0 -lines 20 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5)
 			if [ $tema ]; then
-				i3-msg exec pluma "${HOME}/.local/share/rofi/themes/${tema}"
+				i3-msg exec pluma "${HOME}/.config/rofi/themes/${tema}"
 			fi
 		;;
 		'LightDM')
