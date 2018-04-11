@@ -1,12 +1,13 @@
 #!/bin/bash
 #
-# Script para alterar o papel de parede e o background do lightdm
-# com uma imagem aleatória de unsplash.com
+# 
+# unsplash.sh - Script para alterar o papel de parede e o background 
+# do lightdm com uma imagem aleatória de unsplash.com
 #
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Criado em: 20/12/2017 19:27:31 
-# Última Atualização: 02/01/2018 12:37:36
+# Última Atualização: 11/04/2018 06:03:05
 
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
@@ -44,6 +45,7 @@ function unsplash {
         if [ "$DESKTOP_SESSION" == "mate" ]; then 
             gsettings set org.mate.background picture-filename "$arquivo"
         elif [ "$DESKTOP_SESSION" == "i3" ]; then
+            sed "/feh /c\\${arquivo}/" ~/.config/i3/configsssss
             which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
         elif [ "$DESKTOP_SESSION" == "bspwm" ]; then
             which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
