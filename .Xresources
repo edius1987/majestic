@@ -41,6 +41,10 @@
 *fadeColor: nord3
 *fading: 35
 
+*.polybarbg: #0D3b4252
+*.polybarfg: #a6a6a6
+*.transparente: #003b4252
+
 *.color0: nord1
 *.color1: nord11
 *.color2: nord14
