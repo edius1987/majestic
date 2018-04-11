@@ -8,7 +8,7 @@
 
 homedir="${HOME}/.local/share/applications"
 sysdir="/usr/share/applications"
-apps=("caja." "gnome" "cinnamon" "qt4" "mate" "zenmap" "mpv" "links" "avahi-discover" "bssh" "bvnc" "-floaters" "elementary" "munch" "cosmos")
+apps=("cmake" "xfce4-about" "caja." "gnome" "cinnamon" "qt4" "mate" "zenmap" "mpv" "links" "avahi-discover" "bssh" "bvnc" "-floaters" "elementary" "munch" "cosmos" "thunar-settings" "qv4l2")
 nd='NoDisplay'
 
 function uso {
@@ -71,18 +71,19 @@ if [ $1 ] && [ $1 != "-a" ] && [ $1 != "-c" ]; then
 		echo
 		echo "Copiando $(basename $1) para ${homedir}/screensavers/..."
 		cp "${sysdir}/screensavers/$(basename $1)" "${homedir}/screensavers/"
-		nodisp "${homedir}/screensavers/$(basename $1)"		
+		nodisp "${homedir}/screensavers/$(basename $1)"
 	fi
 
 elif [ "$1" = "-a" ]; then
+	[ ! -d $homedir ] && mkdir -p $homedir
 	todos=($(find $sysdir $homedir -type f | egrep .desktop))
 	for app in ${apps[@]}; do
-		echo 
+		echo
 		echo "Procurando o regex *${app}*..."
     	for element in ${todos[@]}; do
         	if [[ $element == *"$app"* ]]; then
             	nome=$(basename $element)
-            	echo 
+            	echo
 				echo "O nome $nome coincide com ${app}..."
 
     			if [ ! -f "${homedir}/${nome}" ]; then
@@ -92,23 +93,23 @@ elif [ "$1" = "-a" ]; then
     		   		if [ -f "${sysdir}/screensavers/${nome}" ]; then
     		   			echo
     		       		echo "$nome existe em ${sysdir}/screensavers, copiando para ${homedir}/screensavers/${nome}"
-    		       		cp "${sysdir}/screensavers/${nome}" "${homedir}/screensavers/"    		   			
+    		       		cp "${sysdir}/screensavers/${nome}" "${homedir}/screensavers/"
     		   		elif [ -f "${sysdir}/${nome}" ]; then
     		   			echo
     		       		echo "$nome existe em ${sysdir}, copiando para ${homedir}/${nome}"
     		       		cp "${sysdir}/${nome}" "${homedir}/"
     		   		fi
     			fi
-				if [ -f "${homedir}/${nome}" ]; then 
+				if [ -f "${homedir}/${nome}" ]; then
 					nodisp "${homedir}/${nome}"
-				elif [ -f "${homedir}/screensavers/${nome}" ]; then 
+				elif [ -f "${homedir}/screensavers/${nome}" ]; then
 					nodisp "${homedir}/screensavers/${nome}"
 				fi
         	fi
     	done
 	done
 elif [ "$1" = "-c" ]; then
-	echo 
+	echo
 	echo "Procurando por arquivos com NoDisplay em *${homedir}*..."
 	echo "-----------------------------------------------------------"
 	echo
