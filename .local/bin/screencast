@@ -8,11 +8,12 @@
 # Última Atualização: 16/01/2018 01:20:47
 
 preset="ultrafast" # ultrafast,superfast,veryfast,faster,fast,medium,slow,slower,veryslow,placebo
-cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
+#cor=$(awk -F# '/destaque/{print $2;exit}' ${HOME}/.config/polybar/config)
+cor="bf616a"
 lixeira="${HOME}/.local/share/Trash"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 
-if [ -f ~/.config/user-dirs.dirs ]; then 
+if [ -f ~/.config/user-dirs.dirs ]; then
     source ~/.config/user-dirs.dirs
     caminho="${XDG_VIDEOS_DIR}/screencast/"
 else
@@ -29,16 +30,19 @@ fi
 
 if pgrep -x "ffmpeg" > /dev/null
 then
-    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "" && exit
+    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "" && exit
     if [ ! $1 ]; then
         killall ffmpeg
-        notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi terminado."
+        #notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi terminado."
+        notify-send -i $icone "ScreenCast" "Vídeo terminado."
         exit 0
     fi
 else
-    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
+    [ "$(pgrep -x polybar)" ] && [ "$1" == "status" ] && echo "%{F#${cor}}%{F-}" && exit
     if [ ! "$1" ]; then
-        notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi iniciado..."
+        #notify-send -i $icone "ScreenCast" "O vídeo <b>$arquivo</b> foi iniciado..."
+        notify-send -i $icone "ScreenCast" "Vídeo iniciado..."
+
         #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -crf 0 -threads 0 -probesize 10M $arquivo
         #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
         #ffmpeg -f x11grab -r 25 -s $resolucao -i :0.0 -f pulse -i default -preset $preset -c:v libx264 -c:a aac -b:a 128k -probesize 50M $arquivo
@@ -55,10 +59,10 @@ else
         #ffmpeg -f x11grab -s $resolucao -i :0 -f pulse -ac 2 -i default -preset $preset -c:v mpeg4 -c:a libmp3lame $arquivo
 
 		#ffmpeg -f x11grab -s $resolucao -i :0 -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental -b:a 128k -movflags faststart $arquivo
-   
+
         ffmpeg -f x11grab -s $resolucao -i :0 -f pulse -ac 2 -i default -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -ac 2 -strict experimental -b:a 128k -movflags faststart $arquivo   
-        
-    elif [ "$1" == "clear" ]; then        
+
+    elif [ "$1" == "clear" ]; then
         icone="/usr/share/icons/Arc/places/24@2x/user-trash.png"
         listagem=(${caminho}*)
         if [ ${#listagem[@]} -gt 1 ]; then 
@@ -68,7 +72,7 @@ else
             notify-send -i $icone "ScreenCast" "Pasta de screencasts já está limpa!"
         fi
         exit 0
-    fi       
+    fi
 fi
 
 if [ -f $arquivo ]; then
