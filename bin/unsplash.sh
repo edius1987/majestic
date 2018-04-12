@@ -45,7 +45,8 @@ function unsplash {
         if [ "$DESKTOP_SESSION" == "mate" ]; then 
             gsettings set org.mate.background picture-filename "$arquivo"
         elif [ "$DESKTOP_SESSION" == "i3" ]; then
-            sed "/feh /c\\${arquivo}/" ~/.config/i3/configsssss
+            # sed "/feh /c\\${arquivo}/" ~/.config/i3/configsssss
+            # tac .config/i3/config | sed "1,/feh /c\feh --bg-fill \${arquivo}/" | tac
             which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
         elif [ "$DESKTOP_SESSION" == "bspwm" ]; then
             which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
