@@ -1,17 +1,17 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "300x5-25+35"
+    geometry = "250x5-25-25"
     indicate_hidden = yes
     shrink = no
     transparency = 0
     notification_height = 0
-    separator_height = 2
+    separator_height = 5
     padding = 8
     horizontal_padding = 8
-    frame_width = 0
+    frame_width = 2
     frame_color = "#aaaaaa"
-    separator_color = 000000
+    #separator_color = "#2e3440"
     sort = yes
     #idle_threshold = 120
     idle_threshold = 0
