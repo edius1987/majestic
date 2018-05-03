@@ -12,56 +12,43 @@
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
 
-nome="unsplash-$(date +'%Y-%m-%d').jpg"
+mask=$(date +'%Y-%m-%d_%H%M%S')
+nome="unsplash-${mask}"
 dir="${HOME}/img/wallpapers/unsplash"
-ultima=$(ls -t1 "$dir" | tail -1)
-arquivo="${dir}/${nome}"
+arquivo="${dir}/${nome}.jpg"
 x=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $3}')
 y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
+max=3
+clean=1
 
-function unsplash_grab {
-    [ ! -d $dir ] && mkdir -p $dir
-    [ ! -f /tmp/$nome ] && curl -L -s "https://unsplash.it/${x}/${y}?random" > /tmp/${nome}
-    
-    if [ -f $arquivo ]; then
-        while : ; do
-            if [ -f $arquivo ]; then
-                i=$(($i+1))
-                arquivo="${dir}/unsplash-$(date +'%Y-%m-%d')-${i}.jpg"
-                #echo "Existe, renomeando para ${arquivo}..."
-            else
-                break
-            fi
-        done
-    fi
-    [ -f /tmp/$nome ] && mv /tmp/${nome} $arquivo
-    echo $arquivo > ~/.unsplash
-}
+[ ! -d $dir ] && mkdir -p $dir
 
-function unsplash {
-    [ -f ~/.unsplash ] && arquivo=$(cat ~/.unsplash)
-
-    if [ -f $arquivo ]; then
-        if [ "$DESKTOP_SESSION" == "mate" ]; then 
-            gsettings set org.mate.background picture-filename "$arquivo"
-        elif [ "$DESKTOP_SESSION" == "i3" ]; then
-            # sed "/feh /c\\${arquivo}/" ~/.config/i3/configsssss
-            # tac .config/i3/config | sed "1,/feh /c\feh --bg-fill \${arquivo}/" | tac
-            which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
-        elif [ "$DESKTOP_SESSION" == "bspwm" ]; then
-            which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
-        fi  
-    fi  
-}
-
-if [ "$1" == "-u" ]; then
-    unsplash_grab
-    unsplash
-else
-    unsplash
+if [ "$1" != "--flush" ] && [ $clean == 1 ]; then
+if [ $(ls -1 $dir | wc -l) -gt $max ]; then
+	echo "Mais que $max"
+	echo "Apagando o último: $(ls -Lt1 $dir | tail -1)"
+	rm $dir/$(ls -Lt1 $dir | tail -1)
+fi
 fi
 
+if [ "$1" == "--download" ]; then
+	curl -L -s "https://unsplash.it/${x}/${y}?random" > $arquivo
+	echo $arquivo > ~/.unsplash
+elif [ "$1" == "--random" ]; then
+	arquivo=$dir/$(ls -t1 "$dir" | shuf -n1)
+	[ -f $arquivo ] && echo $arquivo > ~/.unsplash
+elif [ "$1" == "--flush" ]; then
+	rm -f $dir/*
+else
+	if [ -f ~/.unsplash ]; then
+		arquivo=$(cat ~/.unsplash)
+	fi
+fi
 
-
-
-
+if [ -f $arquivo ]; then
+	if [ "$DESKTOP_SESSION" == "mate" ]; then 
+   		gsettings set org.mate.background picture-filename "$arquivo"
+	else
+   		which feh >/dev/null 2>&1 && { feh --bg-fill "$arquivo"; }
+    fi  
+fi
