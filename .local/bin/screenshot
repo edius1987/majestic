@@ -7,7 +7,6 @@ else
 	dir="${HOME}/img/shots/"
 fi
 
-
 app="maim -u"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"
@@ -19,6 +18,18 @@ lixeira="${HOME}/.local/share/Trash"
 
 [ ! -d $dir ] && mkdir -p $dir
 [ ! -d $lixeira ] && mkdir -p $lixeira
+
+command -v $app >/dev/null 2>&1 || { 
+	msg="O aplicativo $app não está instalado. Abortando." 
+
+	command -v notify-send >/dev/null 2>&1 && {
+		notify-send "ERRO" "$msg";
+	} || { 
+		echo $msg;
+	} 
+
+exit 1; 
+}
 
 if [ $1 ]; then
 	icone="/usr/share/icons/Arc/places/24@2x/user-trash.png"
