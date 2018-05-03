@@ -1,4 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env sh
+#
+# git-cron - Script para enviar automaticamente mudanças ao Github
+# LEMBRE-SE DE CONFIGURAR CORRETAMENTE SEU GIT SEM SENHA!!!
+#
+# Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
+#
+# Sugestão de crontab: 
+# */15 * * * * sh -c "~/.local/bin/git-cron" > /dev/null 2>&1
+#
+# Criado em: 20/12/2017 19:27:31 
+# Última Atualização: 03/05/2018 17:38:14
 
 dir="${HOME}/github"
 repos=('majestic' 'sistematico.github.io')

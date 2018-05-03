@@ -1,13 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
-# 
-# unsplash.sh - Script para alterar o papel de parede e o background 
-# do lightdm com uma imagem aleatória de unsplash.com
+# unsplash.sh - Script para alterar o papel de parede uma imagem aleatória do site unsplash.com
 #
 # Desenvolvido por Lucas Saliés Brum <lucas@archlinux.com.br>
 #
 # Criado em: 20/12/2017 19:27:31 
-# Última Atualização: 11/04/2018 06:03:05
+# Última Atualização: 03/05/2018 17:36:08
 
 which xdpyinfo >/dev/null 2>&1 || { echo >&2 "O programa xdpyinfo não está instalado. Abortando."; exit 1; }
 which file >/dev/null 2>&1 || { echo >&2 "O programa file não está instalado. Abortando."; exit 1; }
@@ -18,7 +16,7 @@ dir="${HOME}/img/wallpapers/unsplash"
 arquivo="${dir}/${nome}.jpg"
 x=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $3}')
 y=$(xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}')
-max=3
+max=100
 clean=1
 
 [ ! -d $dir ] && mkdir -p $dir

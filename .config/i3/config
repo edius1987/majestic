@@ -1,18 +1,8 @@
 #############################################################
 ############### M A I N #####################################
 #############################################################
-set $mod Mod4
-
-#hide_edge_borders both
-force_display_urgency_hint 0
-#workspace_auto_back_and_forth yes
 new_window pixel 3
-
-# smart|urgent|focus|none
-#focus_on_window_activation focus
-#focus_follows_mouse no
-
-#font pango:Source Code Pro, icomoon, Material Icons, FontAwesome 10
+set $mod Mod4
 font pango:Source Code Pro 10
 
 #############################################################
@@ -29,30 +19,26 @@ client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
-floating_modifier $mod
-
 #############################################################
 ############### B I N D I N G S #############################
 #############################################################
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
+# start a terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+c exec --no-startup-id subl $HOME/.config/i3/config $HOME/.config/polybar/slim/config
+
+# kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
-# Rofi
-bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
-#bindsym $mod+Shift+g exec --no-startup-id echo "" | rofi -dmenu -p "DuckDuckGo: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://duckduckgo.com/?q={}
-bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
-
-bindsym $mod+Shift+w exec --no-startup-id ~/.config/rofi/scripts/janelas
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/drun
-bindsym Mod1+F2 exec --no-startup-id ~/.config/rofi/scripts/run
-bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/configs
-bindsym $mod+a exec --no-startup-id ~/.config/rofi/scripts/apps
-bindsym $mod+Shift+e exec --no-startup-id ~/.config/rofi/scripts/power
-
-#bindsym $mod+Shift+x exec i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z | amixer -q -D pulse sset Master mute
-bindsym $mod+Shift+x exec ~/.local/bin/lockscreen
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Media Hotkeys
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
@@ -62,184 +48,137 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master 1+ tog
 bindsym $mod+Mod1+Left exec --no-startup-id mpc prev
 bindsym $mod+Mod1+Right exec --no-startup-id mpc next
 
-#bindsym Print exec --no-startup-id ~/bin/screenshot.sh
-bindsym Print exec --no-startup-id ~/.config/rofi/scripts/screenshot
-bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
-bindsym --release Mod1+Sys_Req exec --no-startup-id ~/bin/screenshot.sh -s
-bindsym $mod+Print exec --no-startup-id ~/bin/screenshot.sh -d
-bindsym $mod+Shift+Print exec --no-startup-id ~/bin/screenshot.sh -g
-
+# change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
+# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# move focused window
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
+# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+Shift+c move position center
-
+# split in horizontal orientation
 bindsym $mod+h split h
+
+# split in vertical orientation
 bindsym $mod+v split v
 
+# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Shift+s sticky toggle
+# focus the parent container
+bindsym $mod+a focus parent
 
-bindsym $mod+Shift+a focus parent
-bindsym $mod+Shift+d focus child
+# focus the child container
+#bindsym $mod+d focus child
 
-#############################################################
-############### W O R K S P A C E S #########################
-#############################################################
-set $workspace1 "1:"
-set $workspace2 "2:"
-set $workspace3 "3:"
-set $workspace4 "4:"
-set $workspace5 "5:"
-set $workspace6 "6:"
-set $workspace7 "7:"
-set $workspace8 "8:"
-set $workspace9 "9:"
-set $workspace10 "10:"
-
-set $default_gaps_inner 10
-set $default_gaps_outer 0
-gaps inner $default_gaps_inner
-gaps outer $default_gaps_outer
-
-#workspace $workspace3 gaps inner 0
-#workspace $workspace3 gaps outer 0
-
-# Alt+TAB & Alt+Shift+TAB	
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+#    
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
-# move to workspaces
-bindsym $mod+Control+Right workspace next
-bindsym $mod+Control+Left workspace prev
-
+# reload the configuration file
 #bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Menu de Sessão do i3' -b 'Desligar' 'systemctl poweroff' -b 'Reiniciar' 'systemctl reboot' -b 'Sair' 'i3-msg exit'"
 
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-# move [absolute] position <pos_x> [px] <pos_y> [px]
-# 1920 x 1080
-# move position center
-
-#############################################################
-############### R U L E S ###################################
-#############################################################
-for_window [urgent="latest"] focus
-
-for_window [window_role="pop-up"] floating enable, move position center
-for_window [window_role="bubble"] floating enable, move position center
-for_window [window_role="task_dialog"] floating enable, move position center
-for_window [window_role="Preferences"] floating enable, move position center
-for_window [window_type="dialog"] floating enable, move position center
-for_window [window_type="menu"] floating enable, move position center
-
-for_window [class="(Mate-font-viewer|mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator|YAD)"] floating enable, move position center
-for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
-for_window [class="^VirtualBox" title="*Executando*"] floating enable
-for_window [title="^Governo do Estado de Mato Grosso do Sul|^Mail do iCloud - Enc|Filtros de mensagens|^etcher-electron|^Skype"] floating enable
-for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird)"] floating enable
-for_window [title="(Biblioteca|Library|About|Amigos|Steam|Sobre o Mozilla Firefox|VideoCut|dagor2)"] floating enable, move position center
-for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $workspace10, floating enable, move position center, border pixel 1
-for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
-for_window [title="(screencast$|^DownThemAll|DownThemAll!$)"] move window to scratchpad
-
-assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $workspace1
-assign [class="(Termite|Tilix)"] $workspace2
-assign [class="(^Code*|Pluma|Sublime_text|Atom)"] $workspace3
-assign [class="^(Thunar|Pcmanfm)"] $workspace4
-assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $workspace5
-assign [class="(^Steam)"] $workspace6
-assign [class="(Gtkman|MedleyText)"] $workspace7
-assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $workspace8
-assign [class="(^Telegram|^Hexchat)"] $workspace9
-assign [class="(dontstarve_steam)"] $workspace10
-#assign [title="War Thunder"] $workspace10
-
-
-#############################################################
-############### G R O U P S #################################
-#############################################################
-mode "[s]air, [d]esligar, [r]einiciar, [s]uspender" {
-	bindsym s exec i3-msg exit
-	bindsym d exec systemctl poweroff
-	bindsym r exec systemctl reboot
-	bindsym s exec systemctl suspend
-
-	bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Mod1+e mode "[s]air, [d]esligar, [r]einiciar, [s]uspender"
-
+# resize window (you can also use the mouse for that)
 mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
 
+        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
+        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 #############################################################
 ############### G A P S #####################################
 #############################################################
+set $default_gaps_inner 10
+set $default_gaps_outer 0
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+
 set $mode_gaps gaps
 set $mode_gaps_outer outer gaps
 set $mode_gaps_inner inner gaps
@@ -287,20 +226,53 @@ mode "$mode_gaps_outer" {
 }
 
 #############################################################
+############### R U L E S ###################################
+#############################################################
+for_window [urgent="latest"] focus
+
+for_window [window_role="pop-up"] floating enable, move position center
+for_window [window_role="bubble"] floating enable, move position center
+for_window [window_role="task_dialog"] floating enable, move position center
+for_window [window_role="Preferences"] floating enable, move position center
+for_window [window_type="dialog"] floating enable, move position center
+for_window [window_type="menu"] floating enable, move position center
+
+for_window [class="(Mate-font-viewer|mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator|YAD)"] floating enable, move position center
+for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
+for_window [class="^VirtualBox" title="*Executando*"] floating enable
+for_window [title="^Governo do Estado de Mato Grosso do Sul|^Mail do iCloud - Enc|Filtros de mensagens|^etcher-electron|^Skype"] floating enable
+for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird)"] floating enable
+for_window [title="(Biblioteca|Library|About|Amigos|Steam|Sobre o Mozilla Firefox|VideoCut|dagor2)"] floating enable, move position center
+for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $ws10, floating enable, move position center, border pixel 1
+for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
+for_window [title="(screencast$|^DownThemAll|DownThemAll!$)"] move window to scratchpad
+
+assign [class="^(qutebrowser|Epiphany|Chromium|Firefox|firefox-developer)"] $ws1
+assign [class="(Termite|Tilix)"] $ws2
+assign [class="(^Code*|Pluma|Sublime_text|Atom)"] $ws3
+assign [class="^(Thunar|Pcmanfm)"] $ws4
+assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $ws5
+assign [class="(^Steam)"] $ws6
+assign [class="(Gtkman|MedleyText)"] $ws7
+assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $ws8
+assign [class="(^Telegram|^Hexchat)"] $ws9
+assign [class="(dontstarve_steam)"] $ws10
+#assign [title="War Thunder"] $ws10
+
+#############################################################
 ############### I N I T #####################################
 #############################################################
-set $polybar ~/.config/polybar/launch.sh
-exec_always --no-startup-id $polybar
-#exec_always --no-startup-id feh --bg-fill "$(cat ~/.wall)"
-exec_always --no-startup-id feh --bg-fill ~/.local/share/backgrounds/antony-xia-522597-unsplash.jpg
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id feh --bg-fill $(cat $HOME/.unsplash) &
+exec_always --no-startup-id $HOME/bin/unsplash.sh --download
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id clipit
-exec --no-startup-id sudo headsetcontrol 64
+#exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id numlockx on
-exec --no-startup-id ~/.local/bin/xautolock
+#exec --no-startup-id ~/.local/bin/xautolock
 # exec --no-startup-id xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off' &
 #exec --no-startup-id xautolock -time 120 -locker "systemctl suspend"
 exec --no-startup-id xrdb ~/.Xresources
