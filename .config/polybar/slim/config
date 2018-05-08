@@ -36,7 +36,7 @@ font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
 modules-left = i3
-modules-center = window sep firefox thunar termite sep screencast screenshot
+modules-center = window sep firefox thunar termite telegram sep screencast screenshot
 modules-right = mpd filesystem cpu ram temp date vol1 power
 
 ;tray-position = right
@@ -310,10 +310,7 @@ menu-4-0-exec = systemctl poweroff
 [module/firefox]
 type = custom/text
 content = 
-;content-foreground = ${colors.destaque}
 click-left = firefox &
-;click-middle = ~/.config/rofi/scripts/drun &
-;click-right = ~/.config/rofi/scripts/drun &
 
 [module/thunar]
 type = custom/text
@@ -324,6 +321,11 @@ click-left = thunar &
 type = custom/text
 content = 
 click-left = termite &
+
+[module/telegram]
+type = custom/text
+content = 
+click-left = telegram-desktop &
 
 [module/sep]
 type = custom/text
