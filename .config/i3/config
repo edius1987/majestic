@@ -301,7 +301,7 @@ exec --no-startup-id clipit
 exec --no-startup-id xset r rate 300 75
 exec --no-startup-id thunar --daemon
 exec --no-startup-id numlockx on
-#exec --no-startup-id ~/.local/bin/xautolock
+exec --no-startup-id ~/.local/bin/xautolock
 # exec --no-startup-id xautolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off' &
 #exec --no-startup-id xautolock -time 120 -locker "systemctl suspend"
 exec --no-startup-id xrdb ~/.Xresources
