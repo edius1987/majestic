@@ -40,6 +40,13 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Screenshot & Screencast
+bindsym Print exec --no-startup-id ~/.config/rofi/scripts/screenshot
+bindsym Control+Print exec --no-startup-id ~/bin/screenshot.sh -w
+bindsym --release Mod1+Sys_Req exec --no-startup-id ~/bin/screenshot.sh -s
+bindsym $mod+Print exec --no-startup-id ~/bin/screenshot.sh -d
+bindsym $mod+Shift+Print exec --no-startup-id ~/bin/screenshot.sh -g
+
 # Media Hotkeys
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ unmute
@@ -283,7 +290,7 @@ assign [class="(dontstarve_steam)"] $ws10
 #############################################################
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec_always --no-startup-id feh --bg-fill $(cat $HOME/.unsplash) &
-exec_always --no-startup-id hsetroot -solid #2e3440
+exec_always --no-startup-id hsetroot -solid "#2e3440"
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id clipit

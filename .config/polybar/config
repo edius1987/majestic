@@ -16,6 +16,10 @@ destaque = #bf616a
 primary = #ffb52a
 secondary = #e60053
 
+preto = #000
+rosa = #e60053
+
+
 [bar/majestic]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -84,7 +88,7 @@ strip-wsnumbers = true
 label-mode = %mode%
 label-mode-padding = 2
 label-mode-foreground = #000
-label-mode-background = #e60053
+label-mode-background = ${colors.rosa}
 
 label-focused = %name%
 label-focused-padding = 2
@@ -98,11 +102,8 @@ label-visible-foreground = ${colors.unfocused}
 label-visible-padding = 2
 
 label-urgent = %name%
-label-urgent-foreground = ${colors.urgente}
+label-urgent-background = ${colors.rosa}
 label-urgent-padding = 2
-
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
 
 ;----------------------------------------------------------
 ;		        W I N D O W
@@ -144,7 +145,7 @@ click-right = ~/.local/bin/screenshot clear &
 ;----------------------------------------------------------
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
 
 icon-prev = 
 icon-stop = 
