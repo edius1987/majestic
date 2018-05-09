@@ -143,10 +143,17 @@ bindsym $mod+Shift+c move position center
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Menu de Sessão do i3' -b 'Desligar' 'systemctl poweroff' -b 'Reiniciar' 'systemctl reboot' -b 'Sair' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Menu de Sessão do i3' -b 'Desligar' 'systemctl poweroff' -b 'Reiniciar' 'systemctl reboot' -b 'Sair' 'i3-msg exit'"
 
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+#############################################################
+############### G R O U P S #################################
+#############################################################
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode "Redimensionar" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -169,8 +176,19 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+bindsym $mod+r mode "Redimensionar"
 
-bindsym $mod+r mode "resize"
+set $desligar "[s]air, [d]esligar, [r]einiciar, [s]uspender"
+mode $desligar {
+	bindsym s exec i3-msg exit
+	bindsym d exec systemctl poweroff
+	bindsym r exec systemctl reboot
+	bindsym s exec systemctl suspend
+
+	bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Mod1+e mode $desligar
 
 #############################################################
 ############### G A P S #####################################

@@ -81,8 +81,10 @@ strip-wsnumbers = true
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
+label-mode = %mode%
 label-mode-padding = 2
 label-mode-foreground = #000
+label-mode-background = #e60053
 
 label-focused = %name%
 label-focused-padding = 2
@@ -92,11 +94,15 @@ label-unfocused-foreground = ${colors.unfocused}
 label-unfocused-padding = 2
 
 label-visible = %name%
+label-visible-foreground = ${colors.unfocused}
 label-visible-padding = 2
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.urgente}
 label-urgent-padding = 2
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 ;----------------------------------------------------------
 ;		        W I N D O W
