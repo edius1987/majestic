@@ -138,7 +138,8 @@ tail = true
 type = custom/text
 content = 
 click-left = ~/.local/bin/screenshot &
-click-right = ~/.local/bin/screenshot clear &
+click-right = ~/.local/bin/screenshot -w &
+click-middle = ~/.local/bin/screenshot -c &
 
 ;----------------------------------------------------------
 ;		        M P D
