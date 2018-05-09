@@ -7,7 +7,8 @@ else
 	dir="${HOME}/img/shots/"
 fi
 
-app="maim -u"
+app="maim"
+params="-u"
 data=$(date +%Y-%m-%d_%H-%M-%S)
 nome="ss-${data}"
 extensao=".png"
@@ -31,7 +32,7 @@ command -v $app >/dev/null 2>&1 || {
 	exit 1; 
 }
 
-if [ $1 ]; then
+if [ "$1" == "-c" ]; then
 	icone="/usr/share/icons/Arc/places/24@2x/user-trash.png"
 	listagem=(${dir}*)
 	if [ ${#listagem[@]} -gt 0 ]; then 
@@ -40,9 +41,25 @@ if [ $1 ]; then
 	else
 		msg="Pasta de screenshots já está vazia!"
 	fi
+
+elif [ "$1" == "-w" ]; then
+	params="$params -w"
+	arquivo="${nome}-window${extensao}"
+	$app $params ${arquivo}
+	msg="A screenshot <b>$arquivo</b> salva em <b>$dir</b>..."
+elif [ "$1" == "-s" ]; then
+	params="$params -s"
+	arquivo="${nome}-sel${extensao}"
+	$app $params ${arquivo}
+	msg="A screenshot <b>$arquivo</b> salva em <b>$dir</b>..."	
+elif [ "$1" == "-d" ]; then
+	params="$params -d"
+	arquivo="${nome}-delay${extensao}"
+	$app $params ${arquivo}
+	msg="A screenshot <b>$arquivo</b> salva em <b>$dir</b>..."	
 else
 	arquivo="${nome}${extensao}"
-	$app ${arquivo}
+	$app $params ${arquivo}
 	msg="A screenshot <b>$arquivo</b> salva em <b>$dir</b>..."
 fi
 
@@ -51,6 +68,10 @@ if [ ! -z $arquivo ]; then
 		mv $arquivo $dir
 	fi
 	xclip -selection c -t $tipo -i $dir$arquivo
+fi
+
+if [ "$1" == "-e" ]; then
+	viewnior $dir$arquivo
 fi
 
 notify-send -i $icone "ScreenShot" "$msg"

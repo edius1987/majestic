@@ -40,12 +40,15 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Lock
+bindsym $mod+Shift+x exec ~/.local/bin/lockscreen
+
 # Screenshot & Screencast
 bindsym Print exec --no-startup-id $HOME/.local/bin/screenshot
 bindsym Control+Print exec --no-startup-id $HOME/.local/bin/screenshot -w
 bindsym --release Mod1+Sys_Req exec --no-startup-id $HOME/.local/bin/screenshot -s
-bindsym $mod+Print exec --no-startup-id ~/bin/screenshot.sh -d
-#bindsym $mod+Shift+Print exec --no-startup-id ~/bin/screenshot.sh -g
+bindsym $mod+Print exec --no-startup-id $HOME/.local/bin/screenshot -d
+bindsym $mod+Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot -e
 
 # Media Hotkeys
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle

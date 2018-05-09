@@ -21,8 +21,8 @@ else
 fi
 
 cp ${HOME}/.local/share/backgrounds/firefox1.png /tmp/
-#convert -gravity center -geometry +0-63 /tmp/firefox1.png ~/.local/share/i3lock/icons/lock.png -composite /tmp/firefox1.png
-convert -gravity center /tmp/firefox1.png ~/.local/share/i3lock/icons/lock.png -composite /tmp/firefox1.png
+#convert -gravity center -geometry +0-63 /tmp/firefox1.png ~/.local/share/i3lock/lock.png -composite /tmp/firefox1.png
+convert -gravity center /tmp/firefox1.png ~/.local/share/i3lock/lock.png -composite /tmp/firefox1.png
 
 # change layout to us
 #setxkbmap us
