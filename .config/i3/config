@@ -266,7 +266,7 @@ for_window [window_role="Preferences"] floating enable, move position center
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
-for_window [class="(Mate-font-viewer|mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator|YAD)"] floating enable, move position center
+for_window [class="(Mate-font-viewer|mpv|Catfish|Engrampa|File-roller|Notes|Agave|Viewnior|Pavucontrol|Galculator|YAD)"] move to workspace $ws6, floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
 for_window [title="^Governo do Estado de Mato Grosso do Sul|^Mail do iCloud - Enc|Filtros de mensagens|^etcher-electron|^Skype"] floating enable
@@ -281,7 +281,7 @@ assign [class="(Chromium)"] $ws2
 assign [class="(Termite|Tilix)"] $ws3
 assign [class="^(^Code*|Pluma|Sublime_text|Atom)"] $ws4
 assign [class="(Thunar|Pcmanfm)"] $ws5
-assign [class="(Pavucontrol|Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $ws6
+assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $ws6
 assign [class="(^Steam)"] $ws7
 assign [class="(Whatsie|Whatsapp|whatsapp-desktop)"] $ws8
 assign [class="(^Telegram|^Hexchat)"] $ws9
