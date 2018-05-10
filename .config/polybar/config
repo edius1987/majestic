@@ -350,7 +350,7 @@ type = custom/text
 ;   
 content = 
 content-foreground = ${colors.rosa}
-click-left = ~/.config/polybar/scripts/janela.sh -c &
+click-middle = ~/.config/polybar/scripts/janela.sh -c &
 
 [module/sep]
 type = custom/text
