@@ -29,7 +29,7 @@ if [ $(ls -1 $dir | wc -l) -gt $max ]; then
 fi
 fi
 
-if [ "$1" == "--download" ]; then
+if [ "$1" == "-d" ]; then
 	curl -L -s "https://unsplash.it/${x}/${y}?random" > $arquivo
 	echo $arquivo > ~/.unsplash
 elif [ "$1" == "--random" ]; then

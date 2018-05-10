@@ -15,13 +15,11 @@ urgente = #bf616a
 destaque = #bf616a
 primary = #ffb52a
 secondary = #e60053
-
 preto = #000
 rosa = #e60053
 
-
 [bar/majestic]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
 height = 27
 fixed-center = true
@@ -40,24 +38,14 @@ font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
 modules-left = i3
-modules-center = window sep firefox thunar termite telegram sep screencast screenshot
-modules-right = mpd filesystem cpu ram temp date vol2 power
+;modules-center = window sep firefox thunar termite telegram sep screencast screenshot
+modules-center = title sep firefox thunar termite telegram sep screencast screenshot
+modules-right = mpd filesystem cpu ram temp date vol1 power
 
 ;tray-position = right
-;tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
+;cursor-click = pointer
+;cursor-scroll = ns-resize
 
 ;----------------------------------------------------------
 ;		        I 3
@@ -87,7 +75,7 @@ strip-wsnumbers = true
 
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = ${colors.preto}
 label-mode-background = ${colors.rosa}
 
 label-focused = %name%
@@ -104,6 +92,20 @@ label-visible-padding = 2
 label-urgent = %name%
 label-urgent-background = ${colors.rosa}
 label-urgent-padding = 2
+
+;----------------------------------------------------------
+;		       T I T L E
+;----------------------------------------------------------
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-background = #f00
+format-foreground = #000
+format-padding = 4
+
+label = %title%
+label-maxlen = 50
 
 ;----------------------------------------------------------
 ;		        W I N D O W

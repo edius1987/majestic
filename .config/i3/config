@@ -9,7 +9,8 @@ font pango:Source Code Pro 10
 ############### C O L O R S #################################
 #############################################################
 set_from_resource $fg i3wm.foreground #D8DEE9
-set_from_resource $bg i3wm.background #2E3440
+#set_from_resource $bg i3wm.background #2E3440
+set_from_resource $bg i3wm.background #FFF
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
