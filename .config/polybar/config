@@ -37,7 +37,7 @@ font-0 = Fira:size=10;3
 font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
-modules-left = i3
+modules-left = i3 sep weather
 ;modules-center = window sep firefox thunar termite telegram sep screencast screenshot
 modules-center = title sep firefox thunar termite telegram sep screencast screenshot
 modules-right = mpd filesystem cpu ram temp date vol1 power
@@ -92,6 +92,14 @@ label-visible-padding = 2
 label-urgent = %name%
 label-urgent-background = ${colors.rosa}
 label-urgent-padding = 2
+
+;----------------------------------------------------------
+;		       W E A T H E R
+;----------------------------------------------------------
+[module/weather]
+type = custom/script
+interval = 300
+exec = ~/.config/polybar/scripts/weather.py
 
 ;----------------------------------------------------------
 ;		       T I T L E
