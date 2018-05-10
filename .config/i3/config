@@ -8,14 +8,21 @@ font pango:Source Code Pro 10
 #############################################################
 ############### C O L O R S #################################
 #############################################################
-set_from_resource $fg i3wm.foreground #D8DEE9
-#set_from_resource $bg i3wm.background #2E3440
-set_from_resource $bg i3wm.background #FFF
+set_from_resource $fg i3wm.foreground 	#D8DEE9
+set_from_resource $bg i3wm.background 	#2E3440
+set_from_resource $ba i3wm.cinza4 		#4c566a
+set_from_resource $bi i3wm.cinza2 		#3b4252
+
+#*.cinza1: #2e3440
+#*.cinza2: #3b4252
+#*.cinza3: #434c5e
+#*.cinza4: #4c566a
+
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.focused          $bg     $bg     $fg  $bg       $ba
+client.focused_inactive $bg     $bg     $fg  $bg       $bi
+client.unfocused        $bg     $bg     $fg  $bg       $bi
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg

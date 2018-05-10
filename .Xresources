@@ -35,8 +35,8 @@
 #define nord16 #a8adb5
 
 *.foreground: nord4
-!*.background: nord0
-*.background: #ffffff
+*.background: nord0
+*.border: nord3
 *.cursorColor: nord4
 *.urgent: nord11
 *fadeColor: nord3
