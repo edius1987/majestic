@@ -37,8 +37,8 @@ font-0 = Fira:size=10;3
 font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
-modules-left = i3 sep weather
-;modules-center = window sep firefox thunar termite telegram sep screencast screenshot
+modules-left = i3 fechar sep weather
+;modules-center = window fechar sep firefox thunar termite telegram sep screencast screenshot
 modules-center = title sep firefox thunar termite telegram sep screencast screenshot
 modules-right = mpd filesystem cpu ram temp date vol1 power
 
@@ -347,8 +347,9 @@ click-left = telegram-desktop &
 
 [module/fechar]
 type = custom/text
-; 
-content = 
+;   
+content = 
+content-foreground = ${colors.rosa}
 click-left = ~/.config/polybar/scripts/janela.sh -c &
 
 [module/sep]
