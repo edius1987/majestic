@@ -41,7 +41,7 @@ font-2 = Fira:size=8;1
 
 modules-left = i3
 modules-center = window sep firefox thunar termite telegram sep screencast screenshot
-modules-right = mpd filesystem cpu ram temp date vol1 power
+modules-right = mpd filesystem cpu ram temp date vol2 power
 
 ;tray-position = right
 ;tray-padding = 2
