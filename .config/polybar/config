@@ -327,6 +327,7 @@ menu-4-0-exec = systemctl poweroff
 type = custom/text
 content = 
 click-left = firefox &
+click-middle = qutebrowser &
 click-right = chromium &
 
 [module/thunar]
