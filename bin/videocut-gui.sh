@@ -6,11 +6,12 @@ if [ $? = 1 ]; then
 	exit
 fi
 
-#video=$1
+video=$1
 
-#total=$(ffprobe -i $video -show_entries format=duration -v quiet -of csv="p=0")
+t=$(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv="p=0")
+total="$(($t / 3600)):$(($t / 60 % 60)):$(($t % 60))"
 
-eval $(yad --width=400 --form --field=input:FL --field=start --field=end --field=output:SFL "" "00:00:00" "00:00:00" "" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
+eval $(yad --width=400 --form --field=input:FL --field=start --field=end --field=output:SFL "" "00:00:00" "$total" "" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
 [[ -z $INPUT || -z $START || -z $END || -z $OUTPUT ]] && exit 1
 
 DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
