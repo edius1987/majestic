@@ -1,5 +1,11 @@
 #!/bin/bash
 
+command -v yad 1> /dev/null 2> /dev/null 
+if [ $? = 1 ]; then 
+	echo "yad não instalado."
+	exit
+fi
+
 #video=$1
 
 #total=$(ffprobe -i $video -show_entries format=duration -v quiet -of csv="p=0")
