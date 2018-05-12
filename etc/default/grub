@@ -7,8 +7,8 @@ GRUB_DISTRIBUTOR="Arch"
 #ipv6.disable_ipv6=1
 
 # SystemD Debug
-GRUB_CMDLINE_LINUX_DEFAULT="systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on enforcing=0"
-#GRUB_CMDLINE_LINUX_DEFAULT="quiet net.ifnames=0"
+#GRUB_CMDLINE_LINUX_DEFAULT="systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on enforcing=0"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nomodeset nowatchdog net.ifnames=0"
 GRUB_CMDLINE_LINUX=""
 
 # Preload both GPT and MBR modules so that they are not missed
