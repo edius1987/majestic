@@ -25,10 +25,8 @@ atualiza() {
         	git commit -m "$m"
         	git push
 			if [ "$DESKTOP_SESSION" == "i3" ]; then
-				notify-send "Git Cron" "Repo $(basename $1) atualizado."
+				notify-send "Git Cron" "Repo <b>$(basename $1)</b> atualizado."
 			fi
-		else
-			notify-send "Git Cron" "Repo <b>$(basename $1)</b> atualizado."
     	fi
 	fi
 }
