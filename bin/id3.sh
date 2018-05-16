@@ -16,7 +16,11 @@ if [ $? != 0 ]; then
 fi
 
 extensao="mp3"
-dir="$1"
+if [ -d "$1" ]; then
+	dir="$1"
+else
+	dir="$(pwd)"
+fi
 
 ls $dir/*.${extensao} 1> /dev/null 2> /dev/null
 if [ $? != 0 ]; then

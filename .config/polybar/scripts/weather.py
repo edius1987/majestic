@@ -94,7 +94,8 @@ try:
                 ICON = ""
             else:
                 ICON = ""
-        print("%%{F#FFF}%s %%{F-}%s,  %i°%s  %s%%  %s  %skm/h  %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, HUMIDADE, DIRECAO, VELOCIDADE, PRESSAO)) # Icon with description
+        print("%%{F#FFF}%s %%{F-}%s  %i°%s  %s%%  %s  %skm/h  %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, HUMIDADE, DIRECAO, VELOCIDADE, PRESSAO)) # Icon with description
 
 except requests.exceptions.RequestException:  # This is the correct syntax
-    print("%{F#66ffffff}erro%{F-}")
+    #print("%{F#66ffffff}Erro%{F-}")
+    print("%%{F#FFF}%s%%{F-} Erro ao recuperar clima." % (ICON)) # Icon with description
