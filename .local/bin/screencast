@@ -76,7 +76,8 @@ else
 fi
 
 if [ -f $arquivo ]; then
-    xclip -selection c -t 'video/mp4' -i $arquivo
+    #xclip -selection c -t 'video/mp4' -i $arquivo
+    xclip -selection c -i "$arquivo"
     exit 0
 fi
 
