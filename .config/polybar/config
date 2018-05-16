@@ -62,7 +62,7 @@ bottom = true
 background = ${colors.transparente}
 foreground = ${colors.foreground}
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
@@ -183,7 +183,7 @@ click-middle = ~/.local/bin/screenshot -c &
 ;----------------------------------------------------------
 [module/mpd]
 type = internal/mpd
-format-online = <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online =  <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
 
 icon-prev = 
 icon-stop = 
@@ -191,7 +191,7 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
-label-song-maxlen = 25
+label-song-maxlen = 50
 label-song-ellipsis = true
 
 ;----------------------------------------------------------
