@@ -41,7 +41,7 @@ font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
 modules-left = i3 fechar sep weather
-modules-center = title sep screencast screenshot
+modules-center = window sep screencast screenshot
 modules-right = mpd filesystem cpu ram temp date vol1 wallpaper power
 
 ;tray-position = right
