@@ -42,7 +42,7 @@ font-2 = Fira:size=8;1
 
 modules-left = i3 sep fechar
 modules-center = window sep screencast screenshot
-modules-right = filesystem cpu ram temp date vol1 wallpaper power
+modules-right = filesystem cpu ram network temp date vol1 wallpaper power
 
 ;tray-position = right
 
@@ -121,6 +121,30 @@ label-visible-padding = 2
 label-urgent = %name%
 label-urgent-background = ${colors.rosa}
 label-urgent-padding = 2
+
+;----------------------------------------------------------
+;		        N E T W O R K
+;----------------------------------------------------------
+[module/network]
+type = internal/network
+interface = wlp6s0u2
+interval = 3.0
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+format-connected-prefix = " "
+format-disconnected-prefix = " "
+format-connected-prefix-foreground = ${colors.destaque}
+format-disconnected-prefix-foreground = ${colors.destaque}
+
+;label-connected = "%signal%% %{F#F1F1F1} %{F-}%downspeed% %{F#F1F1F1} %{F-}%upspeed%"
+label-connected = %signal%%
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = desconectado
+;label-disconnected = 
+;label-disconnected-foreground = #66ffffff
 
 ;----------------------------------------------------------
 ;		       W E A T H E R
