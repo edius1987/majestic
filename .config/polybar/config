@@ -42,7 +42,7 @@ font-2 = Fira:size=8;1
 
 modules-left = i3 fechar sep weather
 modules-center = title sep screencast screenshot
-modules-right = mpd filesystem cpu ram temp date vol1 power
+modules-right = mpd filesystem cpu ram temp date vol1 wallpaper power
 
 ;tray-position = right
 
@@ -242,8 +242,24 @@ label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-1 = 
+ramp-2 = 
+
+;----------------------------------------------------------
+;		        D A T E
+;----------------------------------------------------------
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "%d-%m-%Y"
+
+time = %H:%M
+;time-alt = %H:%M:%S
+
+format-prefix = 
+label = %date% %time%
 
 ;----------------------------------------------------------
 ;		        V O L U M E 1
@@ -291,20 +307,16 @@ bar-volume-empty-font = 1
 ;bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ;----------------------------------------------------------
-;		        D A T E
+;		        W A L L P A P E R
 ;----------------------------------------------------------
-[module/date]
-type = internal/date
-interval = 5
-
-date =
-date-alt = "%d-%m-%Y"
-
-time = %H:%M
-;time-alt = %H:%M:%S
-
-format-prefix = 
-label = %date% %time%
+[module/wallpaper]
+type = custom/text
+content = 
+click-left = ~/.config/polybar/scripts/wallpaper.sh p &
+click-middle = ~/.config/rofi/scripts/wallpaper &
+click-right = ~/.config/polybar/scripts/wallpaper.sh a &
+scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
+scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
 
 ;----------------------------------------------------------
 ;		        P O W E R 

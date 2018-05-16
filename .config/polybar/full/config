@@ -297,7 +297,7 @@ exec = ~/.config/rofi/scripts/radio status
 ;----------------------------------------------------------
 [module/wallpaper]
 type = custom/text
-content = 
+content = 
 content-foreground = ${colors.destaque}
 click-left = ~/.config/polybar/scripts/wallpaper.sh p &
 click-middle = ~/.config/rofi/scripts/wallpaper &

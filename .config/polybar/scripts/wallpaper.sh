@@ -2,9 +2,9 @@
 
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
-default="${XDG_PICTURES_DIR:-${HOME}/.local/share/backgrounds}"
-dir="/home/lucas/img/wallpapers/elementary"
-ultima="/home/lucas/img/wallpapers/elementary/wallpaper-2906553.jpg"
+default="${XDG_PICTURES_DIR/wallpapers:-${HOME}/.local/share/backgrounds}"
+dir="${XDG_PICTURES_DIR:-${HOME}/img/wallpapers}"
+ultima=""
 modo="--bg-fill"
 indice=0
 i=0
@@ -49,8 +49,7 @@ elif [ "$1" == "r" ]; then
 	img=${imagens[$RANDOM % ${#imagens[@]}]}
 fi
 
-#echo "$img"
-#echo "$img" > ~/.wall
+echo "$img"
 sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
 
 if [ -f "$img" ]; then
