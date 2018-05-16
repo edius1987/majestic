@@ -2,20 +2,24 @@
 
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
-default="${XDG_PICTURES_DIR/wallpapers:-${HOME}/.local/share/backgrounds}"
 dir="${XDG_PICTURES_DIR:-${HOME}/img/wallpapers}"
-ultima=""
+ultima="/home/lucas/img/wallpapers/unsplash/wes-hicks-464614-unsplash.jpg"
 modo="--bg-fill"
 indice=0
 i=0
 
 [ $2 ] && dir=$2
+[ ! -d $dir ] && mkdir -p $dir
+
+if ! ls $dir/* 1> /dev/null 2>&1; then
+	curl -s -L 'https://unsplash.com/photos/mEV-IXdk5Zc/download?force=true' > $dir/alex-block-354270-unsplash.jpg
+	curl -s -L 'https://unsplash.com/photos/qNri0Cz_zkQ/download?force=true' > $dir/desmond-simon-468218-unsplash.jpg
+fi
 
 while read linha; do
     imagens[$i]="$linha"
     ((i++))
 done < <(find "$dir" -type f \( -iname \*.jpg -o -iname \*.png -o -iname \*.jpeg \))
-#done < <(ls -1 $dir/*{jpg,png})
 
 cont=${#imagens[@]}
 total=$(($cont-1))
@@ -49,7 +53,6 @@ elif [ "$1" == "r" ]; then
 	img=${imagens[$RANDOM % ${#imagens[@]}]}
 fi
 
-echo "$img"
 sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
 
 if [ -f "$img" ]; then
