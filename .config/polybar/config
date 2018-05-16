@@ -389,7 +389,7 @@ click-left = telegram-desktop &
 [module/fechar]
 type = custom/text
 ;   
-content = 
+content = 
 content-foreground = ${colors.rosa}
 click-middle = ~/.config/polybar/scripts/janela.sh -c &
 
