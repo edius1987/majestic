@@ -98,4 +98,4 @@ try:
 
 except requests.exceptions.RequestException:  # This is the correct syntax
     #print("%{F#66ffffff}Erro%{F-}")
-    print("%%{F#FFF}%s%%{F-} Erro ao recuperar clima." % (ICON)) # Icon with description
+    print("Erro ao recuperar clima.") # Icon with description
