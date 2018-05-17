@@ -3,7 +3,8 @@
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
-ultima="/home/lucas/img/wallpapers/unsplash/sergey-pesterev-328200-unsplash.jpg"
+default="$dir/alex-block-354270-unsplash.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/wes-hicks-464614-unsplash.jpg"
 modo="--bg-fill"
 indice=0
 i=0
@@ -18,10 +19,7 @@ else
 	fi
 fi
 
-if ! ls $dir/* 1> /dev/null 2>&1; then
-	curl -s -L 'https://unsplash.com/photos/mEV-IXdk5Zc/download?force=true' > $dir/alex-block-354270-unsplash.jpg
-	curl -s -L 'https://unsplash.com/photos/qNri0Cz_zkQ/download?force=true' > $dir/desmond-simon-468218-unsplash.jpg
-fi
+[ ! -f $default ] && curl -s -L 'https://unsplash.com/photos/mEV-IXdk5Zc/download?force=true' > $dir/alex-block-354270-unsplash.jpg
 
 if [ "$1" == "d" ]; then
 	img="$dir/unsplash-$$.jpg"
@@ -47,7 +45,15 @@ else
 	exit 1
 fi
 
-if [ "$1" == "rr" ]; then
+if [ "$1" == "dd" ]; then
+	apagar=$(echo -e "Sim\nNão" | rofi -p "Apagar $(basename $(cat ~/.wall))?" -dmenu -bw 0 -lines 2 -width 400 -separator-style none -location 0 -hide-scrollbar -padding 5)
+	if [ "$apagar" == "Sim" ]; then
+		rm $(cat ~/.wall)
+		notify-send "Sucesso" "Imagem <b>$(basename $(cat ~/.wall))</b> apagada."
+		hsetroot -solid "#2e3440"
+		echo $default > $HOME/.wall
+	fi
+elif [ "$1" == "rr" ]; then
 	if [ ! -f $HOME/.wall ] || [ ! -f $(cat $HOME/.wall) ]; then
 		echo $default > $HOME/.wall
 	fi
