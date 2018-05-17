@@ -82,3 +82,4 @@ function mma() {
 
 # Com cor
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
