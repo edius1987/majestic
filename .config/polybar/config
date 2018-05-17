@@ -306,8 +306,8 @@ bar-volume-empty-font = 1
 [module/wallpaper]
 type = custom/text
 content = 
-click-left = ~/.config/polybar/scripts/wallpaper.sh p &
-click-middle = ~/.config/rofi/scripts/wallpaper r &
+click-left = ~/.config/polybar/scripts/wallpaper.sh x &
+click-middle = ~/.config/rofi/scripts/wallpaper dd &
 click-right = ~/.config/polybar/scripts/wallpaper.sh d &
 scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
 scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
