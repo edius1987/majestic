@@ -1,15 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
-ultima="/home/lucas/img/wallpapers/unsplash/wes-hicks-464614-unsplash.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/christin-hume-588780-unsplash.jpg"
 modo="--bg-fill"
 indice=0
 i=0
 
-[ $2 ] && dir=$2
-[ ! -d $dir ] && mkdir -p $dir
+if [ "$2" ]; then
+	if [ -d $2 ]; then
+		dir=$2
+	fi
+else
+	if [ ! -d $dir ]; then 
+		mkdir -p $dir
+	fi
+fi
 
 if ! ls $dir/* 1> /dev/null 2>&1; then
 	curl -s -L 'https://unsplash.com/photos/mEV-IXdk5Zc/download?force=true' > $dir/alex-block-354270-unsplash.jpg
@@ -40,7 +47,14 @@ else
 	exit 1
 fi
 
-if [ "$1" == "a" ]; then
+if [ "$1" == "rr" ]; then
+	if [ ! -f $HOME/.wall ] || [ ! -f $(cat $HOME/.wall) ]; then
+		echo $default > $HOME/.wall
+	fi
+	img="$(cat $HOME/.wall)"
+elif [ "$1" == "x" ]; then
+	hsetroot -solid "#2e3440"
+elif [ "$1" == "a" ]; then
 	if [ $indice -gt 0 ]; then
 		((indice--))
 	else
@@ -54,10 +68,8 @@ elif [ "$1" == "p" ]; then
 		indice=0
 	fi
 	img=${imagens[$indice]}
-else
-	if [ "$1" != "d" ]; then
-		img=${imagens[$RANDOM % ${#imagens[@]}]}	
-	fi
+elif [ "$1" != "d" ]; then
+	img=${imagens[$RANDOM % ${#imagens[@]}]}	
 fi
 
 if [ -f "$img" ]; then
