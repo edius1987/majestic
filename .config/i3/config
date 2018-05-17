@@ -9,7 +9,7 @@
 new_window pixel 3
 set $mod Mod4
 font pango:Source Code Pro 10
-focus_on_window_activation focus
+#focus_on_window_activation focus
 
 #############################################################
 ############### C O L O R S #################################
@@ -18,12 +18,6 @@ set_from_resource $fg i3wm.foreground 	#D8DEE9
 set_from_resource $bg i3wm.background 	#2E3440
 set_from_resource $ba i3wm.cinza4 		#4c566a
 set_from_resource $bi i3wm.cinza2 		#3b4252
-
-#*.cinza1: #2e3440
-#*.cinza2: #3b4252
-#*.cinza3: #434c5e
-#*.cinza4: #4c566a
-
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $ba
@@ -307,8 +301,8 @@ assign [class="(^Telegram|^Hexchat)"] $ws9
 #############################################################
 ############### I N I T #####################################
 #############################################################
-exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh x 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh x 
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id clipit
