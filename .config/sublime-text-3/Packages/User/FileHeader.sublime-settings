@@ -1,0 +1,7 @@
+{ 
+	"custom_template_header_path": "~/.config/fileheader/", 
+	"Default": {
+	    "author": "Lucas Saliés Brum",
+        "email": "lucas@archlinux.com.br"
+    }
+}
