@@ -16,7 +16,7 @@ fi
 
 export GH=~/github/majestic
 export TERMINAL=termite
-export BROWSER=firefox-developer-edition
+export BROWSER=chromium
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=ibus

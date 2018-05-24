@@ -10,13 +10,15 @@ foreground = ${xrdb:color7:#D8DEE9}
 foreground-alt = #555
 background = ${xrdb:color0:#2E3440}
 background-alt = #444
-unfocused = #a8adb5
+unfocused = #85888f
 urgente = #bf616a
 destaque = #bf616a
 primary = #ffb52a
 secondary = #e60053
 preto = #000
+branco = #FFFFFF
 rosa = #e60053
+
 
 ;----------------------------------------------------------
 ;		        B A R / T O P
@@ -40,7 +42,7 @@ font-0 = Fira:size=10;3
 font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
-modules-left = i3 sep fechar
+modules-left = i3
 modules-center = window sep screencast screenshot
 modules-right = filesystem cpu ram network temp date vol1 wallpaper power
 
@@ -68,12 +70,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Fira:size=10;3
+font-0 = Fira:size=10;4
 font-1 = feather:pixelsize=11;3
-font-2 = Fira:size=8;1
+font-2 = feather:pixelsize=14;2
 
 modules-left = weather
-modules-center = firefox thunar termite telegram
+modules-center = firefox thunar termite telegram steam sep vbox
 modules-right = mpd
 
 ;----------------------------------------------------------
@@ -93,7 +95,7 @@ ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
-ws-icon-6 = 7;
+ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
 ws-icon-9 = 10;
@@ -120,7 +122,7 @@ label-visible-foreground = ${colors.unfocused}
 label-visible-padding = 2
 
 label-urgent = %name%
-label-urgent-background = ${colors.rosa}
+label-urgent-foreground = ${colors.rosa}
 label-urgent-padding = 2
 
 ;----------------------------------------------------------
@@ -168,8 +170,8 @@ tail = true
 type = custom/text
 content = 
 click-left = ~/.local/bin/screenshot &
-click-right = ~/.local/bin/screenshot -w &
-click-middle = ~/.local/bin/screenshot -c &
+click-middle = ~/.local/bin/screenshot -w &
+click-right = ~/.local/bin/screenshot -c &
 
 ;----------------------------------------------------------
 ;		        F I L E S Y S T E M
@@ -386,9 +388,9 @@ label-song-ellipsis = true
 [module/firefox]
 type = custom/text
 content = 
-click-left = firefox &
+click-left = chromium &
 click-middle = qutebrowser &
-click-right = chromium &
+click-right = firefox &
 
 [module/thunar]
 type = custom/text
@@ -405,11 +407,20 @@ type = custom/text
 content = 
 click-left = telegram-desktop &
 
+[module/steam]
+type = custom/text
+content = 
+click-left = steam-runtime &
+
+[module/vbox]
+type = custom/text
+content = 
+click-left = ~/.config/rofi/scripts/virtualbox
+
 [module/fechar]
 type = custom/text
-;   
 content = 
-content-foreground = ${colors.rosa}
+content-foreground = ${colors.branco}
 click-middle = ~/.config/polybar/scripts/janela.sh -c &
 
 [module/sep]
@@ -418,10 +429,6 @@ content = 
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
 
 ;[global/wm]
 ;margin-top = 5

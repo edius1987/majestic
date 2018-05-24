@@ -56,7 +56,7 @@ if [ "$res" ]; then
 			if [ "$dunstconfig" = "Reload" ]; then
 				killall dunst && dunst &
 			elif [ $dunstconfig ]; then
-				i3-msg exec $editor ~/.config/conky/conky.conf
+				i3-msg exec $editor ~/.config/dunst/dunstrc
 			fi
 		;;
 		'Compton')
