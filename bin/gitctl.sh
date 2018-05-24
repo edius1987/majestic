@@ -5,7 +5,7 @@
 # Feito por Lucas Saliés Brum, lucas@archlinux.com.br
 #
 # Criado em: 2018-05-24 16:09:58
-# Última alteração: 2018-05-24 16:12:48
+# Última alteração: 2018-05-24 16:19:17
 #
 # Source: https://gist.github.com/alexpchin/dc91e723d4db5018fef8
 #
@@ -25,4 +25,10 @@ existente() {
 	git push -u origin master
 }
 
-curl "https://api.github.com/users/sistematico/repos?per_page=100" | grep -o 'git@[^"]*'
+ends=$(curl -s "https://api.github.com/users/sistematico/repos?per_page=100" | grep -o 'git@[^"]*')
+
+for repo in $ends; do
+	#echo ${repo##*/}
+	r=$(basename "$repo")
+	echo ${r%.*}
+done
