@@ -410,7 +410,7 @@ click-left = telegram-desktop &
 [module/steam]
 type = custom/text
 content = 
-click-left = steam-runtime &
+click-left = /usr/bin/steam > /dev/null 2> /dev/null &
 
 [module/vbox]
 type = custom/text
