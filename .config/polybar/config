@@ -46,8 +46,6 @@ modules-left = i3
 modules-center = window sep screencast screenshot
 modules-right = filesystem cpu ram network temp date vol1 wallpaper power
 
-;tray-position = right
-
 ;cursor-click = pointer
 ;cursor-scroll = ns-resize
 
@@ -77,6 +75,8 @@ font-2 = feather:pixelsize=14;2
 modules-left = weather
 modules-center = firefox thunar termite telegram steam sep vbox
 modules-right = mpd
+
+tray-position = right
 
 ;----------------------------------------------------------
 ;		        I 3
