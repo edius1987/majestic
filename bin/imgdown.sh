@@ -7,43 +7,43 @@ pasta="$(pwd)" 	# Diretório para salvar os arquivos.
 min='100000' 	# Em bytes
 lixeira="${HOME}/.local/share/Trash"
 atual=$(date +'%s')
+subpasta=$(find $pasta -type d | wc -l)
 
 #[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
+[ "$(ls -ld $pasta/$subpasta)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
 
-ajuda () {
+mkdir -p $pasta/$subpasta
+
+if [ "$1" == "-h" ]; then
     echo "Uso: $(basename $0) \"http://site.com/pagina\""
     echo "$(basename $0) \"http://site.com/pagina\""
     echo "$(basename $0) \"http://site.com/pagina\""
 	exit
-}
+fi
 
 if [ $1 ]; then
-
 	for u in $@; do
 		echo "Baixando todos os arquivos com a extensão $ext de $u..."
-		#url="$1"
-		#[[ $u =~ ^http?(s)://.* ]] || echo "Erro, a url deve conter http:// ou https://" ; exit
-		#[[ $u !~ ^http* ]] && echo "Erro, a url deve conter http:// ou https://" && exit
 		dominio=$(echo "$u" | awk -F/ '{print $3}')
 		wget --quiet -P $pasta -nd -r -l 1 -H -D $dominio -A $ext "$u"
 	done
-
-else
-	ajuda
 fi
 
 for a in $pasta/*.$ext; do
 	if [ -f $a ]; then
 		tamanho=$(stat --printf="%s" $a)
 		mod=$(stat -c "%Y" $a)
-		#if [[ $tamanho -lt $min ]]; then
+		if [[ $tamanho -lt $min ]]; then
 			echo "$a tem $tamanho (mínimo: $min), checando data..."
-			if [[ $mod -gt $atual ]]; then
+			if [ $mod -ge $atual ]; then
 				echo "$a ($mod) é mais novo que $atual, apagando..."
-				#mv $a $lixeira
+				mv $a $lixeira
 			else
-				echo "$a ($mod) é mais velho que $atual, mantendo..."
+				echo "$a ($mod) é mais velho que $atual"
 			fi
-		#fi
+		else
+			echo "Movendo $a para $subpasta..."
+			mv $a $subpasta/
+		fi
 	fi
 done
