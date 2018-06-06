@@ -8,8 +8,7 @@ min='100000' 	# Em bytes
 lixeira="${HOME}/.local/share/Trash"
 atual=$(date +'%s')
 
-#[ "$(ls -A $pasta)" ] && echo "Not Empty" || echo "Empty"
-[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
+#[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
 
 ajuda () {
     echo "Uso: $(basename $0) \"http://site.com/pagina\""
@@ -23,7 +22,8 @@ if [ $1 ]; then
 	for u in $@; do
 		echo "Baixando todos os arquivos com a extensão $ext de $u..."
 		#url="$1"
-		[[ "$u" = ^http?(s)://.* ]] || echo "Erro, a url deve conter http:// ou https://" && exit
+		#[[ $u =~ ^http?(s)://.* ]] || echo "Erro, a url deve conter http:// ou https://" ; exit
+		#[[ $u !~ ^http* ]] && echo "Erro, a url deve conter http:// ou https://" && exit
 		dominio=$(echo "$u" | awk -F/ '{print $3}')
 		wget --quiet -P $pasta -nd -r -l 1 -H -D $dominio -A $ext "$u"
 	done
