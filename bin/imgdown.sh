@@ -3,9 +3,12 @@
 # https://gist.github.com/tayfie/6dad43f1a452440fba7ea1c06d1b603a
 
 ext="jpg"  	# Separadas por virgula.
-pasta='.' 	# Diretório para salvar os arquivos.
+pasta="$(pwd)" 	# Diretório para salvar os arquivos.
 min='100000' 	# Em bytes
 lixeira="${HOME}/.local/share/Trash"
+
+#[ "$(ls -A $pasta)" ] && echo "Not Empty" || echo "Empty"
+[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
 
 ajuda () {
     echo "Uso: $(basename $0) \"http://site.com/pagina\""
@@ -15,11 +18,14 @@ ajuda () {
 }
 
 if [ $1 ]; then
-	url="$1"
-	#[[ ! "$url" = ^https?(s)://.* ]] && ajuda
-	rm -f $pasta/*.tmp
-	dominio=$(echo "$1" | awk -F/ '{print $3}')
-	wget -P $pasta -nd -r -l 1 -H -D $dominio -A $ext "$url"
+
+	for u in $@; do
+		echo "Baixando todos os arquivos com a extensão $ext de $u..."
+		#url="$1"
+		[[ "$u" = ^http?(s)://.* ]] || echo "Erro, a url deve conter http:// ou https://" && exit
+		dominio=$(echo "$u" | awk -F/ '{print $3}')
+		wget --quiet -P $pasta -nd -r -l 1 -H -D $dominio -A $ext "$u"
+	done
 else
 	ajuda
 fi
