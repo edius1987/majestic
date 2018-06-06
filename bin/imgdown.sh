@@ -12,8 +12,6 @@ subpasta=$(find $pasta -type d | wc -l)
 #[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
 [ "$(ls -ld $pasta/$subpasta 2> /dev/null)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
 
-mkdir -p $pasta/$subpasta
-
 if [ "$1" == "-h" ]; then
     echo "Uso: $(basename $0) \"http://site.com/pagina\""
     echo "$(basename $0) \"http://site.com/pagina\""
@@ -31,19 +29,18 @@ fi
 
 for a in $pasta/*.$ext; do
 	if [ -f $a ]; then
+		mkdir -p $pasta/$subpasta
 		tamanho=$(stat --printf="%s" $a)
 		mod=$(stat -c "%Y" $a)
-		if [[ $tamanho -lt $min ]]; then
-			echo "$a tem $tamanho (mínimo: $min), checando data..."
-			if [ $mod -ge $atual ]; then
-				echo "$a ($mod) é mais novo que $atual, apagando..."
+		if [ $mod -ge $atual ]; then
+			echo "$a ($mod) é mais novo que $atual, checando tamanho..."
+			if [ $tamanho -lt $min ]; then
+				echo "$a tem $tamanho (mínimo: $min), apagando..."
 				mv $a $lixeira
 			else
-				echo "$a ($mod) é mais velho que $atual"
-			fi
-		else
-			echo "Movendo $a para $subpasta..."
-			mv $a $subpasta/
+				echo "Movendo $a para $subpasta..."
+				mv $a $subpasta/		
+			fi			
 		fi
 	fi
 done
