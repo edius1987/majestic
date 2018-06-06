@@ -32,15 +32,20 @@ for a in $pasta/*.$ext; do
 		mkdir -p $pasta/$subpasta
 		tamanho=$(stat --printf="%s" $a)
 		mod=$(stat -c "%Y" $a)
+		echo
+		echo "------------------------------- $a -------------------------------"
 		if [ $mod -ge $atual ]; then
 			echo "$a ($mod) é mais novo que $atual, checando tamanho..."
-			if [ $tamanho -lt $min ]; then
+			if [ $tamanho -le $min ]; then
 				echo "$a tem $tamanho (mínimo: $min), apagando..."
 				mv $a $lixeira
 			else
 				echo "Movendo $a para $subpasta..."
 				mv $a $subpasta/		
 			fi			
+		else
+			echo "$a ($mod) é velho que $atual, ignorando..."
 		fi
+
 	fi
 done
