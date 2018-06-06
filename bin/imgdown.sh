@@ -34,9 +34,9 @@ for a in $pasta/*.$ext; do
 		mod=$(stat -c "%Y" $a)
 		echo
 		echo "------------------------------- $a -------------------------------"
-		if [ $mod -ge $atual ]; then
+		if [[ $mod > $atual ]]; then
 			echo "$a ($mod) é mais novo que $atual, checando tamanho..."
-			if [ $tamanho -le $min ]; then
+			if [[ $tamanho < $min ]]; then
 				echo "$a tem $tamanho (mínimo: $min), apagando..."
 				mv $a $lixeira
 			else
@@ -44,7 +44,7 @@ for a in $pasta/*.$ext; do
 				mv $a $subpasta/		
 			fi			
 		else
-			echo "$a ($mod) é velho que $atual, ignorando..."
+			echo "$a ($mod) é mais velho que $atual, ignorando..."
 		fi
 
 	fi
