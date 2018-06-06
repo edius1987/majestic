@@ -10,7 +10,7 @@ atual=$(date +'%s')
 subpasta=$(find $pasta -type d | wc -l)
 
 #[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
-[ "$(ls -ld $pasta/$subpasta)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
+[ "$(ls -ld $pasta/$subpasta 2> /dev/null)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
 
 mkdir -p $pasta/$subpasta
 
