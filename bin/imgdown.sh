@@ -17,6 +17,7 @@ ajuda () {
 if [ $1 ]; then
 	url="$1"
 	#[[ ! "$url" = ^https?(s)://.* ]] && ajuda
+	rm -f $pasta/*.tmp
 	dominio=$(echo "$1" | awk -F/ '{print $3}')
 	wget -P $pasta -nd -r -l 1 -H -D $dominio -A $ext "$url"
 else
@@ -24,9 +25,11 @@ else
 fi
 
 for a in $pasta/*.$ext; do
-	tamanho=$(stat --printf="%s" $a)
-	if [[ $tamanho -lt $min ]]; then
-		echo "$a tem $tamanho (mínimo: $min), apagando..."
-		mv $a $lixeira
+	if [ -f $a ]; then
+		tamanho=$(stat --printf="%s" $a)
+		if [[ $tamanho -lt $min ]]; then
+			echo "$a tem $tamanho (mínimo: $min), apagando..."
+			mv $a $lixeira
+		fi
 	fi
 done
