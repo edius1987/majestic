@@ -31,7 +31,7 @@ for a in $pasta/*.$ext; do
 	if [ -f $a ]; then
 		mkdir -p $pasta/$subpasta
 		tamanho=$(stat --printf="%s" $a)
-		mod=$(stat -c "%Y" $a)
+		mod=$(stat --printf="%Y" $a)
 		echo
 		echo "------------------------------- $a -------------------------------"
 		if [[ $mod > $atual ]]; then
