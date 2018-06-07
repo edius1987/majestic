@@ -144,8 +144,8 @@ label-maxlen = 50
 type = custom/script
 interval = 1
 format-prefix = " "
-;label = %output:0:45:...%  %{B- -o -u}
-label = %output:50:50%
+label = %output:0:45:...%  %{B- -o -u}
+;label = %output:0:40:...%
 click-left = ~/.config/polybar/scripts/janela.sh -i
 click-middle = ~/.config/polybar/scripts/janela.sh -c
 click-right = ~/.config/polybar/scripts/janela.sh -w
@@ -219,7 +219,7 @@ format-disconnected = <label-disconnected>
 format-connected-prefix = " "
 format-disconnected-prefix = " "
 
-label-connected = %signal:3:3%% %{F#F1F1F1} %{F-}%downspeed:3:3% %{F#F1F1F1} %{F-}%upspeed:3:3%
+label-connected = %signal:3%% %{F#F1F1F1} %{F-}%downspeed:5% %{F#F1F1F1} %{F-}%upspeed:5%
 label-disconnected = desconectado
 
 ;----------------------------------------------------------
@@ -265,14 +265,18 @@ label = %date% %time%
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage:6%%
+label-volume = %percentage:3%%
 
 format-volume-muted = <label-muted>
 label-muted = 
 
-ramp-volume-0 = 
-ramp-volume-1 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
 ramp-volume-2 = 
+
+;ramp-volume-0 = 
+;ramp-volume-1 = 
+;ramp-volume-2 = 
 
 ;----------------------------------------------------------
 ;		        V O L U M E 2
