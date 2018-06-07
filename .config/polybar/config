@@ -74,7 +74,7 @@ font-2 = feather:pixelsize=14;2
 
 modules-left = weather
 modules-center = firefox thunar termite telegram steam sep vbox
-modules-right = mpd
+modules-right = mpd network
 
 tray-position = right
 
@@ -209,7 +209,7 @@ label = %percentage_used%%
 ;----------------------------------------------------------
 [module/network]
 type = internal/network
-interface = wlp6s0u2
+interface = wlp6s0u1
 interval = 3.0
 
 format-connected = <label-connected>
