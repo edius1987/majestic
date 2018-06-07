@@ -63,6 +63,8 @@ try:
             CURRENT = "Chuva leve"
         elif CURRENT == "Light intensity shower rain":
             CURRENT = "Chuva leve"
+        elif CURRENT == "Mist":
+            CURRENT = "Névoa"            
 
         if ID >= 200 and ID <= 232:
             ICON = ""
@@ -75,7 +77,7 @@ try:
         elif ID >= 600 and ID <= 622:
             ICON = ""
         elif ID >= 701 and ID <= 761:
-            ICON = ""
+            ICON = ""
         elif ID >= 801 and ID <= 804:
             if HOUR >= 6 and HOUR <= 19:
                 ICON = ""
@@ -97,5 +99,4 @@ try:
         print("%%{F#FFF}%s %%{F-}%s  %i°%s  %s%%  %s  %skm/h  %shPa " % (ICON, CURRENT, TEMP, UNIT_KEY, HUMIDADE, DIRECAO, VELOCIDADE, PRESSAO)) # Icon with description
 
 except requests.exceptions.RequestException:  # This is the correct syntax
-    #print("%{F#66ffffff}Erro%{F-}")
-    print("Erro ao recuperar clima.") # Icon with description
+    print("Recuperando condições do clima.") # Icon with description
