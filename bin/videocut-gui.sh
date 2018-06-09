@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-06-09 07:37:00
+# Última alteração: 2018-06-09 07:57:06
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -18,8 +18,6 @@
 #	<patterns>*</patterns>
 #	<video-files/>
 #</action>
-
-
 
 command -v yad 1> /dev/null 2> /dev/null 
 if [ $? = 1 ]; then 
