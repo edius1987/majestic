@@ -41,11 +41,11 @@ fi
 ##### Sources ####
 ##################
 if [[ -f /etc/cores.inc ]]; then
- 	source /etc/cores.inc
+	source /etc/cores.inc
 fi
 
 if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
- 	source /usr/share/doc/pkgfile/command-not-found.bash
+	source /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
 if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
@@ -83,3 +83,8 @@ function mma() {
 # Com cor
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+echo
+fortune brasil
+echo
+
