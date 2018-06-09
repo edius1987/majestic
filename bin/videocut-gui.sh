@@ -32,7 +32,7 @@ nome() {
 }
 
 function show_time () {
-    num=$(LC_ALL=C; echo $(printf '%.*f\n' 0 '475.229000'))
+    num=$(LC_ALL=C; echo $(printf '%.*f\n' 0 "$1"))
     min=0
     hour=0
     day=0
