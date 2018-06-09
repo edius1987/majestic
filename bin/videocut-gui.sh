@@ -1,4 +1,25 @@
 #!/usr/bin/env bash
+#
+# Arquivo: videocut-gui.sh
+# Descrição: Script usando o YAD e ffmpeg para cortar arquivos de vídeo.
+#
+# Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
+#
+# Criado em:        2018-06-09 19:39:27
+# Última alteração: 2018-06-09 07:37:00
+
+# ~/.config/Thunar/uca.xml
+#<action>
+#	<icon>camera-video</icon>
+#	<name>VideoCut</name>
+#	<unique-id>1528543845224954-1</unique-id>
+#	<command>videocut-gui.sh %F</command>
+#	<description></description>
+#	<patterns>*</patterns>
+#	<video-files/>
+#</action>
+
+
 
 command -v yad 1> /dev/null 2> /dev/null 
 if [ $? = 1 ]; then 
