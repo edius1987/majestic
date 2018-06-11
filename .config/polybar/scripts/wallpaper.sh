@@ -4,10 +4,20 @@
 
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
 default="$dir/alex-block-354270-unsplash.jpg"
-ultima="/home/lucas/img/wallpapers/unsplash/max-saeling-563216-unsplash.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-15056.jpg"
 modo="--bg-fill"
 indice=0
 i=0
+
+ajustar() {
+	img="$1"
+	if [ -f "$img" ]; then
+		sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
+		feh $modo "$img"
+		echo "$img" > ~/.wall
+	fi
+	exit
+}
 
 if [ "$2" ]; then
 	if [ -d $2 ]; then
@@ -24,6 +34,8 @@ fi
 if [ "$1" == "d" ]; then
 	img="$dir/unsplash-$$.jpg"
 	curl -L -s "https://unsplash.it/${x}/${y}?random" > $img
+	notify-send "Sucesso" "Imagem <b>$(basename $(cat ~/.wall))</b> baixada."
+	ajustar "$img"
 fi
 
 while read linha; do
@@ -57,7 +69,8 @@ elif [ "$1" == "rr" ]; then
 	if [ ! -f $HOME/.wall ] || [ ! -f $(cat $HOME/.wall) ]; then
 		echo $default > $HOME/.wall
 	fi
-	img="$(cat $HOME/.wall)"
+	#img="$(cat $HOME/.wall)"
+	img=$default
 elif [ "$1" == "x" ]; then
 	hsetroot -solid "#2e3440"
 elif [ "$1" == "a" ]; then
@@ -78,8 +91,4 @@ elif [ "$1" != "d" ]; then
 	img=${imagens[$RANDOM % ${#imagens[@]}]}	
 fi
 
-if [ -f "$img" ]; then
-	sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
-	feh $modo "$img"
-	echo "$img" > ~/.wall
-fi
+ajustar "$img"
