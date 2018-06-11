@@ -4,19 +4,19 @@
 
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
 default="$dir/alex-block-354270-unsplash.jpg"
-ultima="/home/lucas/img/wallpapers/unsplash/unsplash-15056.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-21694.jpg"
 modo="--bg-fill"
 indice=0
 i=0
+x=$(xdpyinfo | grep dimensions | awk '{print $2}' | awk -F'x' '{print $1}')
+y=$(xdpyinfo | grep dimensions | awk '{print $2}' | awk -F'x' '{print $2}')
 
 ajustar() {
-	img="$1"
-	if [ -f "$img" ]; then
-		sed -i "s|^ultima=.*|ultima=\"${img}\"|g" $0
-		feh $modo "$img"
-		echo "$img" > ~/.wall
+	if [ -f "$1" ]; then
+		sed -i "s|^ultima=.*|ultima=\"${1}\"|g" $0
+		feh --bg-fill ${1}
+		echo "$1" > ~/.wall
 	fi
-	exit
 }
 
 if [ "$2" ]; then
@@ -30,13 +30,6 @@ else
 fi
 
 [ ! -f $default ] && curl -s -L 'https://unsplash.com/photos/mEV-IXdk5Zc/download?force=true' > $dir/alex-block-354270-unsplash.jpg
-
-if [ "$1" == "d" ]; then
-	img="$dir/unsplash-$$.jpg"
-	curl -L -s "https://unsplash.it/${x}/${y}?random" > $img
-	notify-send "Sucesso" "Imagem <b>$(basename $(cat ~/.wall))</b> baixada."
-	ajustar "$img"
-fi
 
 while read linha; do
     imagens[$i]="$linha"
@@ -57,7 +50,11 @@ else
 	exit 1
 fi
 
-if [ "$1" == "dd" ]; then
+if [ "$1" == "d" ]; then
+	img="$dir/unsplash-$$.jpg"
+	curl -L -s "https://unsplash.it/${x}/${y}?random" > $img
+	notify-send "Sucesso" "Imagem <b>$img</b> baixada."
+elif [ "$1" == "dd" ]; then
 	apagar=$(echo -e "Sim\nNão" | rofi -p "Apagar $(basename $(cat ~/.wall))?" -dmenu -bw 0 -lines 2 -width 400 -separator-style none -location 0 -hide-scrollbar -padding 5)
 	if [ "$apagar" == "Sim" ]; then
 		rm $(cat ~/.wall)
