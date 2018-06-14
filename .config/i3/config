@@ -316,7 +316,7 @@ assign [class="(^Telegram|^Hexchat)"] $ws9
 ############### I N I T #####################################
 #############################################################
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r 
+exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id clipit

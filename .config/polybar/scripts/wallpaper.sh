@@ -4,7 +4,7 @@
 
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
 default="$dir/alex-block-354270-unsplash.jpg"
-ultima="/home/lucas/img/wallpapers/unsplash/unsplash-7951.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-25278.jpg"
 modo="--bg-fill"
 indice=0
 i=0
@@ -84,6 +84,11 @@ elif [ "$1" == "p" ]; then
 		indice=0
 	fi
 	img=${imagens[$indice]}
+elif [ "$1" == "r" ]; then
+	if [ ! -f $HOME/.wall ] || [ ! -f $(cat $HOME/.wall) ]; then
+		echo $default > $HOME/.wall
+	fi
+	img=$(cat $HOME/.wall)
 elif [ "$1" != "d" ]; then
 	img=${imagens[$RANDOM % ${#imagens[@]}]}	
 fi
