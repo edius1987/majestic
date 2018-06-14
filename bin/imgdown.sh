@@ -9,7 +9,6 @@ lixeira="${HOME}/.local/share/Trash"
 atual=$(date +'%s')
 subpasta=$(find $pasta -type d | wc -l)
 
-#[ "$(ls -A $pasta)" ] && echo "Diretório não-vazio. Abortando..." && exit
 [ "$(ls -ld $pasta/$subpasta 2> /dev/null)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
 
 if [ "$1" == "-h" ]; then
@@ -41,8 +40,8 @@ for a in $pasta/*.$ext; do
 				mv $a $lixeira
 			else
 				echo "Movendo $a para $subpasta..."
-				mv $a $subpasta/		
-			fi			
+				mv $a $subpasta/
+			fi
 		else
 			echo "$a ($mod) é mais velho que $atual, ignorando..."
 		fi
