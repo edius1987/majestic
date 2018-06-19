@@ -84,7 +84,5 @@ function mma() {
 PS1="\[${Purple}\][\[${Color_Off}\]\u@\h \W\[${Purple}\]]\[${Color_Off}\]:\$ "
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-echo
 fortune brasil
 echo
-
