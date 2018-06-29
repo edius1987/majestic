@@ -322,7 +322,7 @@ exec --no-startup-id dunst
 exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
-exec --no-startup-id thunar --daemon
+#exec --no-startup-id thunar --daemon
 exec --no-startup-id numlockx on
 exec --no-startup-id $HOME/.local/bin/xautolock
 exec --no-startup-id xrdb ~/.Xresources
