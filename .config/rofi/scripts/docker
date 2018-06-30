@@ -9,14 +9,13 @@ container=$(echo "${containers}" | rofi -dmenu -p "$titulo" -bw 0 -lines $numero
 if [ "$container" ]; then
 
 	if [ ! "$(docker ps -a -q -f name=$container)" ]; then
-		res=$(echo "Parar" | rofi -dmenu -p "$titulo - $container" -sep '|' -bw 0 -lines 1 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+		res=$(echo "Parar" | rofi -dmenu -p "$titulo" -sep '|' -bw 0 -lines 1 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 	else
-		res=$(echo "Iniciar" | rofi -dmenu -p "$titulo - $container" -sep '|' -bw 0 -lines 1 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+		res=$(echo "Iniciar" | rofi -dmenu -p "$titulo" -sep '|' -bw 0 -lines 1 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 	fi
 
 	case $res in
 		'Iniciar') vboxmanage startvm "$maquina" --type gui ;;
-		'Headless') vboxmanage startvm "$maquina" --type headless ;;
 		'Parar') vboxmanage controlvm "$maquina" poweroff ;;
 		'Reiniciar') vboxmanage controlvm "$maquina" reset ;;
 	esac
