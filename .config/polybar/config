@@ -2,9 +2,9 @@
 ;		        I C O N E S
 ;----------------------------------------------------------
 ;                    
-;                      
-;                      
-;                      
+;                     
+;                     
+;                     
 ;                     
 ;                     
 ;                     
@@ -89,7 +89,7 @@ font-1 = feather:pixelsize=11;3
 font-2 = feather:pixelsize=14;2
 
 modules-left = weather
-modules-center = firefox thunar termite subl telegram steam sep vbox
+modules-center = firefox thunar termite subl telegram whatsie steam sep vbox docker
 modules-right = mpd
 
 ;tray-position = right
@@ -430,6 +430,11 @@ type = custom/text
 content = 
 click-left = telegram-desktop &
 
+[module/whatsie]
+type = custom/text
+content = 
+click-left = whatsie &
+
 [module/steam]
 type = custom/text
 content = 
@@ -439,6 +444,11 @@ click-left = /usr/bin/steam > /dev/null 2> /dev/null &
 type = custom/text
 content = 
 click-left = ~/.config/rofi/scripts/virtualbox
+
+[module/docker]
+type = custom/text
+content = 
+click-left = ~/.config/rofi/scripts/docker
 
 [module/subl]
 type = custom/text
