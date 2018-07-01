@@ -32,7 +32,8 @@ set -x -g LESS_TERMCAP_us (printf "\e[01;32m")
 #################
 # Cria um arquivo de 1GB
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
-alias cp='acp -ivg'
+#alias cp='acp -ivg'
+alias cp='cp -iv'
 alias rm='rm -Iv'
 alias mv='amv -ivg'
 alias ls='ls --color=auto --group-directories-first'
@@ -49,10 +50,10 @@ alias pacman-clean="sudo pacman -Rns (pacman -Qtdq)"
 alias paclean="sudo pacman -Rns (pacman -Qtdq)"
 alias copiar='xclip -sel clip <'
 alias autogit="git add . ; git commit -m 'Alterações automáticas...' ; git push origin master"
-alias g930='sudo G930Sidetone'
 alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
+alias rehash='source ~/.config/fish/config.fish'
 
 # Yay
 alias yay='yay --noconfirm'
