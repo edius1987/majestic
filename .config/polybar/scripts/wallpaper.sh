@@ -2,9 +2,10 @@
 
 [ -f ~/.config/user-dirs.dirs ] && source ~/.config/user-dirs.dirs
 
-dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
+dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers"
+unsplash_dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
 default="$dir/alex-block-354270-unsplash.jpg"
-ultima="/home/lucas/img/wallpapers/unsplash/unsplash-6293.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-16520.jpg"
 modo="--bg-fill"
 indice=0
 i=0
@@ -24,9 +25,13 @@ if [ "$2" ]; then
 		dir=$2
 	fi
 else
-	if [ ! -d $dir ]; then 
+	if [ ! -d $dir ]; then
 		mkdir -p $dir
 	fi
+fi
+
+if [ ! -d $unsplash_dir ]; then
+	mkdir -p $unsplash_dir
 fi
 
 [ ! -f $default ] && curl -s -L 'https://unsplash.com/photos/mEV-IXdk5Zc/download?force=true' > $dir/alex-block-354270-unsplash.jpg
@@ -51,7 +56,7 @@ else
 fi
 
 if [ "$1" == "d" ]; then
-	img="$dir/unsplash-$$.jpg"
+	img="$unsplash_dir/unsplash-$$.jpg"
 	curl -L -s "https://unsplash.it/${x}/${y}?random" > $img
 	notify-send "Sucesso" "Imagem <b>$img</b> baixada."
 elif [ "$1" == "dd" ]; then
