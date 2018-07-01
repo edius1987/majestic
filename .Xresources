@@ -34,6 +34,19 @@
 #define nord15 #B48EAD
 #define nord16 #a8adb5
 
+#define tmr0 #2d2d2d
+#define tmr1 #393939
+#define tmr2 #515151
+#define tmr3 #cccccc
+#define tmr4 #999999
+#define tmr5 #f2777a
+#define tmr6 #f99157
+#define tmr7 #ffcc66
+#define tmr8 #99cc99
+#define tmr9 #66cccc
+#define tmr10 #6699cc
+#define tmr11 #cc99cc
+
 *.foreground: nord4
 *.background: nord0
 *.border: nord3
