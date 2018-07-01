@@ -34,6 +34,10 @@ shell () {
   cor-echo 'SH' "$shell"
 }
 
+terminal () {
+	cor-echo 'TR' $TERMINAL
+}
+
 cpu () {
   arm=$(grep ARM /proc/cpuinfo)    # ARM procinfo uses different format
   if [[ "$arm" != "" ]]; then
@@ -86,8 +90,9 @@ echo -en "  █▀▀▀▀▀▀▀▀▀▀▀█   |  " && distro
 echo -en "  █           █   |  " && wm
 echo -en "  █           █   |  " && uptime
 echo -en "  █   █   █   █   |  " && shell
-echo -en "  █           █   |  " && kernel
-echo -en "  ▀█▄▄▄▄▄▄▄▄▄█▀   |  " && pacotes
+echo -en "  █           █   |  " && terminal
+echo -en "  ▀█▄▄▄▄▄▄▄▄▄█▀   |  " && kernel
+echo -en "                  |  " && pacotes
 echo -en "                  |  " && cores
 echo
 #sleep 10

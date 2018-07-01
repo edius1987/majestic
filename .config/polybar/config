@@ -89,7 +89,7 @@ font-1 = feather:pixelsize=11;3
 font-2 = feather:pixelsize=14;2
 
 modules-left = weather
-modules-center = firefox thunderbird thunar termite subl telegram whatsie steam sep vbox docker
+modules-center = firefox thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
 modules-right = mpd
 
 ;tray-position = right
@@ -425,10 +425,10 @@ type = custom/text
 content = 
 click-left = thunar &
 
-[module/termite]
+[module/terminal]
 type = custom/text
 content = 
-click-left = termite &
+click-left = $TERMINAL &
 
 [module/telegram]
 type = custom/text

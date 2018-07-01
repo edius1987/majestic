@@ -303,7 +303,7 @@ for_window [title="Lista de amigos"] floating enable, move absolute position 166
 for_window [title="(screencast$|^DownThemAll|DownThemAll!$)"] move window to scratchpad
 
 assign [class="^(Chromium|qutebrowser|Epiphany|Firefox|firefox-developer)"] $ws1
-assign [class="(Termite|Tilix)"] $ws2
+assign [class="(Termite|Tilix|st-256color)"] $ws2
 assign [class="^(^Code*|Pluma|Sublime_text|Atom)"] $ws3
 assign [class="(Thunar|Pcmanfm)"] $ws4
 assign [class="(Lxappearance|^Pamac*|Notes|Lxtask|^Mate-disk-usage-analyzer)"] $ws5
@@ -317,13 +317,14 @@ assign [class="(^Telegram|^Hexchat)"] $ws9
 #############################################################
 #exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r
 exec_always --no-startup-id feh --bg-fill $HOME/img/wallpapers/linux-1530467311987-6946.jpg
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec --no-startup-id hsetroot -solid '#2E3440'
 exec --no-startup-id compton -b
-#exec --no-startup-id dunst
-#exec --no-startup-id clipit
-exec --no-startup-id sudo headsetcontrol 64
+exec --no-startup-id dunst
+exec --no-startup-id clipit
+#exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 #exec --no-startup-id thunar --daemon
 exec --no-startup-id numlockx on
 #exec --no-startup-id $HOME/.local/bin/xautolock
 exec --no-startup-id xrdb ~/.Xresources
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh

@@ -23,7 +23,9 @@ set -x -g LESS_TERMCAP_us (printf "\e[01;32m")
 #################
 ### OPTIONS   ###
 #################
-set fish_greeting ""
+#set fish_greeting ""
+# ou 
+# set -U fish_greeting (uma vez só)
 
 #################
 ### ALIASES   ###
@@ -32,7 +34,7 @@ set fish_greeting ""
 alias lixo='dd if=/dev/zero of=file.txt count=1024 bs=1048576'
 alias cp='acp -ivg'
 alias rm='rm -Iv'
-alias mv='amv -ivg' 
+alias mv='amv -ivg'
 alias ls='ls --color=auto --group-directories-first'
 alias e='exit'
 alias s='sudo su'
@@ -52,11 +54,14 @@ alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
 alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
 
+# Yay
+alias yay='yay --noconfirm'
+
 # Pacman alias examples
 alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
 alias pacdl='pacman -Sw'		# Download specified package(s) as .tar.xz ball
 alias pacin='sudo pacman -S'		# Install specific package(s) from the repositories
-alias pacins='sudo pacman -U'		# Install specific package not from the repositories but from a file 
+alias pacins='sudo pacman -U'		# Install specific package not from the repositories but from a file
 alias pacre='sudo pacman -R'		# Remove the specified package(s), retaining its configuration(s) and required dependencies
 alias pacrem='sudo pacman -Rns'		# Remove the specified package(s), its configuration(s) and unneeded dependencies
 alias pacrep='pacman -Si'		# Display information about a given package in the repositories
@@ -67,7 +72,7 @@ alias paclo="pacman -Qdt"		# List all packages which are orphaned
 alias pacc="sudo pacman -Scc"		# Clean cache - delete all the package files in the cache
 alias paclf="pacman -Ql"		# List all files installed by a given package
 alias pacown="pacman -Qo"		# Show package(s) owning the specified file(s)
-alias pacexpl="pacman -D --asexp"	# Mark one or more installed packages as explicitly installed 
+alias pacexpl="pacman -D --asexp"	# Mark one or more installed packages as explicitly installed
 alias pacimpl="pacman -D --asdep"	# Mark one or more installed packages as non explicitly installed
 # Additional pacman alias examples
 alias pacupd='sudo pacman -Sy ; sudo abs'         # Update and refresh the local package and ABS databases against repositories
@@ -91,7 +96,7 @@ alias mc='env LD_PRELOAD=/usr/lib/libtrash.so.3.3 mc'
 #################
 function fish_greeting
     echo
-	fortune vimtips    
+	fortune vimtips
 	#fortune brasil
     echo
 end
@@ -101,17 +106,17 @@ function goo
     curl 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyBHZxWX6xn7kQSpS3wuAqjUj4fzaDpzr34' \
 	-H 'Content-Type: application/json' \
 	-d '{"longUrl": {$argv}}'
-end  
+end
 
 # ix.io
-function ix
-    cat {$argv} | curl -F 'f:1=<-' ix.io
-end
+#function ix
+#    cat {$argv} | curl -F 'f:1=<-' ix.io
+#end
 
 # Delete
-function ixdel
-    curl -n -X DELETE ix.io/{$argv}
-end
+#function ixdel
+#    curl -n -X DELETE ix.io/{$argv}
+#end
 
 function gitio
     curl -i https://git.io -F "url={$argv}"
