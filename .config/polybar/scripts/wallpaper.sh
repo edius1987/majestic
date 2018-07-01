@@ -4,7 +4,7 @@
 
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
 default="$dir/alex-block-354270-unsplash.jpg"
-ultima="/home/lucas/img/wallpapers/unsplash/unsplash-25601.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-18012.jpg"
 modo="--bg-fill"
 indice=0
 i=0
