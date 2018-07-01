@@ -293,10 +293,10 @@ for_window [window_role="Preferences"] floating enable, move position center
 for_window [window_type="dialog"] floating enable, move position center
 for_window [window_type="menu"] floating enable, move position center
 
-for_window [class="(Mate-font-viewer|Catfish|Notes|Pavucontrol|Galculator|YAD)"] move to workspace $ws5, floating enable, move position center
+for_window [class="(Mate-font-viewer|Catfish|Notes|Pavucontrol|YAD)"] move to workspace $ws5, floating enable, move position center
 for_window [class="Lxtask" title="Gerenciador de tarefas"] floating enable, resize set 800 px 600 px, move position center
 for_window [class="^VirtualBox" title="*Executando*"] floating enable
-for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird)"] floating enable
+for_window [title="(.*Reiniciar dispositivo.*|Preferências do Thunderbird|Galculator)"] floating enable, move position center
 for_window [title="(Engrampa|File-roller|Agave|mpv|Biblioteca|Library|About|Amigos|Sobre o Mozilla Firefox|VideoCut|dagor2)"] floating enable, move position center
 for_window [class="dagor2" title="(War Thunder|War Thunder (Configurações))"] move to workspace $ws10, floating enable, move position center, border pixel 1
 for_window [title="Lista de amigos"] floating enable, move absolute position 1667 px 0 px, resize set 250 px 400 px
