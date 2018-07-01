@@ -55,7 +55,12 @@ pacotes () {
 }
 
 wm () {
-	cor-echo 'WM' $DESKTOP_SESSION
+	if [ -z $DESKTOP_SESSION ]; then
+		WM="i3-gaps"
+	else
+		WM=$DESKTOP_SESSION
+	fi
+	cor-echo 'WM' $WM
 }
 
 distro () {
@@ -85,4 +90,4 @@ echo -en "  █           █   |  " && kernel
 echo -en "  ▀█▄▄▄▄▄▄▄▄▄█▀   |  " && pacotes
 echo -en "                  |  " && cores
 echo
-sleep 10
+#sleep 10

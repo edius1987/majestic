@@ -315,14 +315,15 @@ assign [class="(^Telegram|^Hexchat)"] $ws9
 #############################################################
 ############### I N I T #####################################
 #############################################################
+#exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r
+exec_always --no-startup-id feh --bg-fill $HOME/img/wallpapers/linux-1530467311987-6946.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r
 exec --no-startup-id compton -b
-exec --no-startup-id dunst
-exec --no-startup-id clipit
+#exec --no-startup-id dunst
+#exec --no-startup-id clipit
 exec --no-startup-id sudo headsetcontrol 64
 exec --no-startup-id xset r rate 300 75
 #exec --no-startup-id thunar --daemon
 exec --no-startup-id numlockx on
-exec --no-startup-id $HOME/.local/bin/xautolock
+#exec --no-startup-id $HOME/.local/bin/xautolock
 exec --no-startup-id xrdb ~/.Xresources
