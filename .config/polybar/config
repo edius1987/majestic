@@ -172,9 +172,9 @@ exec = ~/.config/polybar/scripts/janela.sh
 type = custom/script
 interval = 1
 label = %output%
-click-left = $TERMINAL -e ~/.local/bin/screencast &
+click-left = termite -e ~/.local/bin/screencast &
 click-right = ~/.local/bin/screencast clear &
-exec = ~/.local/bin/screencast status 
+exec = ~/.local/bin/screencast status
 tail = true
 
 ;----------------------------------------------------------
