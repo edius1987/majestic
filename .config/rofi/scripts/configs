@@ -15,9 +15,11 @@ configs=(
 'ncmpcpp'
 'StartPage'
 'Home'
+'Termite'
+'st'
 )
 
-res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines 12 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
+res=$(printf "%s\n" "${configs[@]}" | rofi -dmenu -p "Rofi Config" -bw 0 -lines "${#configs[@]}" -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 
 if [ "$res" ]; then
 	case $res in
@@ -97,35 +99,37 @@ if [ "$res" ]; then
 		'qutebrowser') i3-msg exec $editor ~/.config/qutebrowser/config.py ;;
 		'StartPage')
 		    i3-msg exec $editor "${HOME}/.config/startpage/*.html"
-		;;		
+		;;
 		'Home')
 			homefiles=$(echo ".Xresources;.xinitrc;.xprofile;.Xdefaults;.bashrc;.bash_aliases;.bash_profile;.vimrc;mimeapps;bin;.bin" | rofi -sep ";" -dmenu -p "Home Files" -bw 0 -lines 11 -separator-style none -location 0 -width 190 -hide-scrollbar -padding 5)
-			
+
 			if [ "$homefiles" = ".Xresources" ]; then
-				resfiles=$( echo "Config;Cores" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				resfiles=$( echo "Config;Cores" | rofi -sep ";" -dmenu -p "~/.Xresources" -bw 0 -lines 2 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)
 				if [ "$resfiles" == "Config" ]; then
 					i3-msg exec $editor ~/.Xresources
 				elif [ "$resfiles" == "Cores" ]; then
-					colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -lines 10 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)	
+					colorfiles=$(ls "${HOME}/.colors/" | rofi -dmenu -p "Xresources Colors" -bw 0 -lines 10 -separator-style none -location 0 -width 160 -hide-scrollbar -padding 5)
 					if [ $colorfiles ]; then
-						i3-msg exec $editor ~/.colors/${colorfiles} 
+						i3-msg exec $editor ~/.colors/${colorfiles}
 					fi
 				fi
 			elif [ "$homefiles" = "bin" ]; then
-				binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)	
+				binfiles=$(ls "${HOME}/bin/" | rofi -dmenu -p "~/bin" -bw 0 -lines 10 -separator-style none -location 0 -width 150 -hide-scrollbar -padding 5)
 				if [ $binfiles ]; then
-					i3-msg exec $editor ~/bin/${binfiles} 
+					i3-msg exec $editor ~/bin/${binfiles}
 				fi
             elif [ "$homefiles" = ".bin" ]; then
-				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)	
+				dotbinfiles=$(ls "${HOME}/.local/bin/" | rofi -dmenu -p "~/.local/bin" -bw 0 -lines 11 -separator-style none -location 0 -width 180 -hide-scrollbar -padding 5)
 				if [ $dotbinfiles ]; then
-					i3-msg exec $editor ~/.local/bin/${dotbinfiles} 
+					i3-msg exec $editor ~/.local/bin/${dotbinfiles}
 				fi
 			elif [ "$homefiles" = "mimeapps" ]; then
 				i3-msg exec $editor ~/.config/mimeapps.list
 			elif [ $homefiles ]; then
-				i3-msg exec $editor ~/${homefiles} 
+				i3-msg exec $editor ~/${homefiles}
 			fi
 		;;
+		'Termite') i3-msg exec $editor ~/.config/termite/config ;;
+		'st') i3-msg exec $editor ~/aur/st-scrollback-git/config.h ;;
 	esac
 fi
