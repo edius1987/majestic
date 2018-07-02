@@ -132,7 +132,8 @@ function mma
 end
 
 function mm
-    mpv --profile=ytb2 ytdl://ytsearch10:"$argv"
+    mpv ytdl://ytsearch10:"$argv"
+    #mpv --profile=ytb2 ytdl://ytsearch10:"$argv"
 end
 
 
