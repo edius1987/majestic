@@ -17,7 +17,7 @@ fi
 
 export TERMINAL=st
 export EDITOR=nano
-export BROWSER=chromium
+export BROWSER=firefox-developer-edition
 
 session=${1:-i3}
 

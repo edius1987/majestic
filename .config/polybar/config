@@ -89,7 +89,7 @@ font-1 = feather:pixelsize=11;3
 font-2 = feather:pixelsize=14;2
 
 modules-left = weather
-modules-center = firefox thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
+modules-center = browser thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
 modules-right = mpd
 
 ;tray-position = right
@@ -408,10 +408,10 @@ label-song-ellipsis = true
 ;----------------------------------------------------------
 ;			A P P S
 ;----------------------------------------------------------
-[module/firefox]
+[module/browser]
 type = custom/text
 content = 
-click-left = chromium &
+click-left = $BROWSER &
 click-middle = qutebrowser &
 click-right = firefox &
 
