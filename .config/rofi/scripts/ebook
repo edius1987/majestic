@@ -1,17 +1,32 @@
 #!/bin/bash
 
 app="atril"
+#app="xdg-open"
 dir="${HOME}/docs"
 [ ! -d $dir ] && echo "Diretório $dir não encontrado." && exit 0
 
-#arquivos=()
-#while IFS=  read -r -d $'\0'; do
-#	arquivos+=("$REPLY")
-#done < <(find $dir -name "*.pdf" -print0)
+readarray -t arquivos <<< "$(find $dir -type f -iname '*.pdf')"
+declare -A livros
 
-readarray -t arquivos < <(find $dir -type f -iname "*.pdf")
-entrada=$(find $dir -iname "*.pdf" -printf '%f\n' | rofi -dmenu -p "E-Books" -lines "$(find $dir -iname '*.pdf' | wc -l)" -show run -opacity "80" -width 20 -padding 16)
+livros() {
+    for i in "${!arquivos[@]}"; do
+        caminho=${arquivos[$i]}
+        arquivo=$(basename "${arquivos[$i]}")
+        livros+=(["$arquivo"]="$caminho")
+    done
+}
 
-if [ "$entrada" ]; then
-	$app "$entrada"
-fi
+lista() {
+    for i in "${!livros[@]}"; do
+      echo "$i"
+    done
+}
+
+lista
+#livro=$( (lista) | rofi -dmenu -i -fuzzy -only-match -location 0 -p "E-book > " )
+livro=$( (lista) | rofi -dmenu -p "E-book > " )
+#[ "$livro" ] && $app "${livros[$livro]}"
+echo "${livros[$livro]}"
+#entrada=$(find $dir -iname "*.pdf" -printf '%f\n' | rofi -dmenu -p "E-Books" -lines "$(find $dir -iname '*.pdf' | wc -l)" -show run -opacity "80" -width 20 -padding 16)
+
+exit 0
