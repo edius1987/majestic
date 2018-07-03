@@ -19,7 +19,7 @@ export TERMINAL=st
 export EDITOR=nano
 export BROWSER=chromium
 
-session=${1:-mate}
+session=${1:-i3}
 
 case $session in
 	bspwm)
