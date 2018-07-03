@@ -108,7 +108,7 @@ ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6;
+ws-icon-5 = 6;
 ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
@@ -145,7 +145,7 @@ label-urgent-padding = 2
 [module/title]
 type = internal/xwindow
 
-format-prefix = " " 
+format-prefix = " "
 format = <label>
 
 label = %title%
@@ -339,7 +339,7 @@ scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
 scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
 
 ;----------------------------------------------------------
-;		        P O W E R 
+;		        P O W E R
 ;----------------------------------------------------------
 [module/power]
 type = custom/menu
