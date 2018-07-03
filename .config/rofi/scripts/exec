@@ -1,0 +1,12 @@
+#!/bin/bash
+
+app="atril"
+dir="${HOME}/docs"
+
+[ ! -d $dir ] && echo "Diretório $dir não encontrado." && exit 0
+
+entrada=$(find $dir -iname "*.pdf" -printf '"%f"\n' | rofi -dmenu -input /dev/null -p "E-Books" -lines "$(find $dir -iname '*.pdf')" -show run -opacity "80" -width 20 -padding 16)
+
+if [ "$entrada" ]; then
+	$app "$entrada"
+fi

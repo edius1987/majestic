@@ -59,9 +59,11 @@ bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
 bindsym $mod+Shift+w exec --no-startup-id ~/.config/rofi/scripts/janelas
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/drun
 bindsym Mod1+F2 exec --no-startup-id ~/.config/rofi/scripts/run
+bindsym Control+F2 exec --no-startup-id ~/.config/rofi/scripts/exec
 bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/configs
 bindsym $mod+a exec --no-startup-id ~/.config/rofi/scripts/apps
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/rofi/scripts/power
+bindsym $mod+b exec --no-startup-id ~/.config/rofi/scripts/ebook
 
 # Lock
 bindsym $mod+Shift+x exec --no-startup-id ~/.local/bin/lockscreen

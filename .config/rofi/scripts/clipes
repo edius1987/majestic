@@ -1,6 +1,9 @@
 #!/bin/bash
 
 dir="${HOME}/video/clipes"
+
+[ ! -d $dir ] && echo "Diretório $dir não encontrado." && exit 0
+
 entrada=$(rofi -dmenu -input /dev/null -p "Video: " -lines 0 -show run -opacity "80" -width 20 -padding 16)
 
 :> /tmp/fap.txt
