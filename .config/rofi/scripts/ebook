@@ -2,9 +2,14 @@
 
 app="atril"
 dir="${HOME}/docs"
-
 [ ! -d $dir ] && echo "Diretório $dir não encontrado." && exit 0
 
+#arquivos=()
+#while IFS=  read -r -d $'\0'; do
+#	arquivos+=("$REPLY")
+#done < <(find $dir -name "*.pdf" -print0)
+
+readarray -t arquivos < <(find $dir -type f -iname "*.pdf")
 entrada=$(find $dir -iname "*.pdf" -printf '%f\n' | rofi -dmenu -p "E-Books" -lines "$(find $dir -iname '*.pdf' | wc -l)" -show run -opacity "80" -width 20 -padding 16)
 
 if [ "$entrada" ]; then
