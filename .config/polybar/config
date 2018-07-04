@@ -186,6 +186,7 @@ content = 
 click-left = ~/.local/bin/screenshot &
 click-middle = ~/.local/bin/screenshot -w &
 click-right = ~/.local/bin/screenshot -c &
+scroll-down = ~/.local/bin/screenshot -e &
 
 ;----------------------------------------------------------
 ;		        F I L E S Y S T E M
