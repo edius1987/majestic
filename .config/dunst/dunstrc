@@ -191,12 +191,12 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-[telegram]
-    #appname = telegram-desktop
-    summary = "*"
-    body = "*"
-    script = ~/.local/bin/oldspice.sh
-    urgency = critical
+#[telegram]
+#    appname = telegram-desktop
+#    summary = "*"
+#    body = "*"
+#    script = ~/.local/bin/oldspice.sh
+#    urgency = critical
 
 #[galdino]
 #    appname = telegram-desktop
