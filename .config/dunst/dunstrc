@@ -192,7 +192,7 @@
 # to find fitting options for rules.
 
 [telegram]
-    appname = telegram-desktop
+    #appname = telegram-desktop
     summary = "*"
     body = "*"
     script = ~/.local/bin/oldspice.sh
