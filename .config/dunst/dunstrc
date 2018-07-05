@@ -195,8 +195,15 @@
     appname = telegram-desktop
     summary = "*"
     body = "*"
-    script = ~/.local/bin/notification.sh
+    script = ~/.local/bin/oldspice.sh
     urgency = critical
+
+#[galdino]
+#    appname = telegram-desktop
+#    summary = "*Jσα̃σ Pεɔяσ*"
+#    body = "*"
+#    script = ~/.local/bin/oldspice.sh
+#    urgency = critical
 
 #[espeak]
 #    summary = "*"
