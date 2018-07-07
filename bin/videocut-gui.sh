@@ -19,8 +19,8 @@
 #	<video-files/>
 #</action>
 
-command -v yad 1> /dev/null 2> /dev/null 
-if [ $? = 1 ]; then 
+command -v yad 1> /dev/null 2> /dev/null
+if [ $? = 1 ]; then
 	echo "yad não instalado."
 	exit
 fi
@@ -70,7 +70,7 @@ else
 	total="00:00:00"
 fi
 
-eval $(yad --width=400 --form --field=input:SFL --field=start --field=end --field=output "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
+eval $(yad --title "VideoCut" --width=400 --form --field=input:SFL --field=start --field=end --field=output "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
 [[ -z $INPUT || -z $START || -z $END || -z $OUTPUT ]] && exit 1
 
 DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
