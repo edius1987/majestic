@@ -5,7 +5,7 @@
 dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers"
 unsplash_dir="${XDG_PICTURES_DIR:-${HOME}/img}/wallpapers/unsplash"
 default="$dir/alex-block-354270-unsplash.jpg"
-ultima="/home/lucas/img/wallpapers/linux-1530467311987-6946.jpg"
+ultima="/home/lucas/img/wallpapers/unsplash/unsplash-9498.jpg"
 modo="--bg-fill"
 indice=0
 i=0
@@ -15,6 +15,8 @@ y=$(xdpyinfo | grep dimensions | awk '{print $2}' | awk -F'x' '{print $2}')
 ajustar() {
 	if [ -f "$1" ]; then
 		sed -i "s|^ultima=.*|ultima=\"${1}\"|g" $0
+		# PyWal
+		wal -n -i "${1}"
 		feh --bg-fill ${1}
 		echo "$1" > ~/.wall
 	fi

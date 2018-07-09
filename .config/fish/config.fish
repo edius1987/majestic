@@ -137,4 +137,13 @@ function mm
     #mpv --profile=ytb2 ytdl://ytsearch10:"$argv"
 end
 
+#################
+### PYWAL     ###
+#################
+function wal-tile
+	wal -n -i "$argv"
+	feh --bg-fill "$(< "${HOME}/.cache/wal/wal")"
+end
 
+# PyWal
+(cat ~/.cache/wal/sequences &)

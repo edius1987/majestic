@@ -15,7 +15,8 @@ fi
 [ -d ${HOME}/apps ] && export PATH=${PATH}:${HOME}/apps
 [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services" ] && mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
 
-export TERMINAL=st
+#export TERMINAL=st
+export TERMINAL=termite
 export EDITOR=nano
 export BROWSER=firefox-developer-edition
 
@@ -27,6 +28,7 @@ case $session in
 		exec bspwm
 	;;
 	i3|i3wm)
+		#wal -R
 		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec i3
 	;;
