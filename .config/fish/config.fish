@@ -142,7 +142,7 @@ end
 #################
 function wal-tile
 	wal -n -i "$argv"
-	feh --bg-fill "$(< "${HOME}/.cache/wal/wal")"
+	feh --bg-fill <({$HOME}/.cache/wal/wal)
 end
 
 # PyWal
