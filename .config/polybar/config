@@ -455,7 +455,8 @@ click-left = whatsie &
 [module/steam]
 type = custom/text
 content = 
-click-left = /usr/bin/steam > /dev/null 2> /dev/null &
+;click-left = /usr/bin/steam > /dev/null 2> /dev/null &
+click-left = wal_steam -w
 
 [module/vbox]
 type = custom/text

@@ -28,7 +28,7 @@ case $session in
 		exec bspwm
 	;;
 	i3|i3wm)
-		#wal -R
+		wal -R
 		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec i3
 	;;
