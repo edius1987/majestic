@@ -23,18 +23,29 @@
 
 [colors]
 transparente = #00000000
-foreground = ${xrdb:color7:#D8DEE9}
-foreground-alt = #555
-background = ${xrdb:color0:#2E3440}
+
+;foreground = ${xrdb:color7:#D8DEE9}
+;foreground-alt = #555
+;background = ${xrdb:color0:#2E3440}
+
 background-alt = #444
 unfocused = #85888f
 urgente = #bf616a
 destaque = #bf616a
-primary = #ffb52a
-secondary = #e60053
+
+;primary = #ffb52a
+;secondary = #e60053
+
 preto = #000
 branco = #FFFFFF
 rosa = #e60053
+
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
 
 ;----------------------------------------------------------
 ;		        B A R / T O P

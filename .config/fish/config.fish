@@ -141,8 +141,9 @@ end
 ### PYWAL     ###
 #################
 function wal-tile
+	setenv wall (cat {$HOME}/.cache/wal/wal)
 	wal -n -i "$argv"
-	feh --bg-fill <({$HOME}/.cache/wal/wal)
+	feh --bg-fill $wall
 end
 
 # PyWal

@@ -50,6 +50,7 @@ configuration {
 	click-to-exit: true;
 /*	show-match: true;*/
 /*	theme: Arc.rasi; */
+	theme: "~/.cache/wal/colors-rofi-dark.rasi";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -136,4 +137,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseD1";*/
 }
 
-@import "~/.config/rofi/themes/dark.rasi" 
+/* @import "~/.config/rofi/themes/dark.rasi" */
