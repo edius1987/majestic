@@ -14,7 +14,7 @@ lixeira="${HOME}/.local/share/Trash"
 icone="/usr/share/icons/Arc/devices/24@2x/video-display.png"
 
 resolucao=$(xrandr | grep '*' | awk 'NR==1{print $1}')
-audio=$(pacmd list-sinks | grep -A 1 'index: 1' | awk 'NR==2{print $2}' | awk '{print substr($0,2,length($0)-2)}') # list-sources, list-sinks
+audio=$(pacmd list-sinks | grep -A 1 'index: 0' | awk 'NR==2{print $2}' | awk '{print substr($0,2,length($0)-2)}') # list-sources, list-sinks
 
 if [ -f ~/.config/user-dirs.dirs ]; then
     source ~/.config/user-dirs.dirs
