@@ -10,8 +10,8 @@
     padding = 8
     horizontal_padding = 8
     frame_width = 2
-    frame_color = "#aaaaaa"
-    separator_color = "#002e3440"
+    #frame_color = "#aaaaaa"
+    #separator_color = "#002e3440"
     sort = yes
     #idle_threshold = 120
     idle_threshold = 0
