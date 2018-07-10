@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+#
+# Arquivo: alarme.sh
+#
+# Feito por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
+#
+# Criado em: 10/07/2018 14:25:18
+# Última alteração: 10/07/2018 14:25:27
 
 editor="subl"
 
@@ -43,7 +50,7 @@ if [ "$res" ]; then
 			if [ "$polyconfig" = "Reload" ]; then
 				~/.config/polybar/launch.sh
 			elif [ "$polyconfig" = "Apps" ]; then
-				app=$( ls "${HOME}/.config/polybar/scripts/" | egrep ".sh|.py"  | rofi -dmenu -p "Polybar Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/polybar/scripts/ | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
+				app=$( ls "${HOME}/.config/polybar/scripts/" | egrep "\.sh|\.py" | rofi -dmenu -p "Polybar Apps" -bw 0 -lines "$(ls -1 ${HOME}/.config/polybar/scripts/ | egrep "\.sh|\.py" | wc -l)" -separator-style none -location 0 -width 240 -hide-scrollbar -padding 5)
 				if [ $app ]; then
 					i3-msg exec $editor "${HOME}/.config/polybar/scripts/${app}"
 				fi
