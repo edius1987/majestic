@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 USER=$1
 HOST=$2
@@ -7,30 +7,26 @@ OPTIONS="allow_other"
 MONT="${HOME}/sshfs/${HOST}"
 RPATH="/home/${USER}"
 
-if [ ! -d $MONT ]
-then
+if [ ! -d $MONT ]; then
 	mkdir -p $MONT
 fi
 
-if [ "$3" ]
-then
+if [ "$3" ]; then
 	RPATH=$3
-fi 
+fi
 
-if [ "$4" ]
-then
+if [ "$4" ]; then
 	PORT=$4
-fi 
+fi
 
-if [ "$5" ]
-then
+if [ "$5" ]; then
     OPTIONS=$5
 fi
 
 versao() {
 	echo "$(basename $0) v0.1"
 	echo
-	echo "Por Lucas Saliés Brum" 
+	echo "Por Lucas Saliés Brum"
 	echo "a.k.a. sistematico <lucas at archlinux dot com dot br>"
 }
 
@@ -50,12 +46,10 @@ uso() {
 	echo "$(basename $0) -u site.com"
 }
 
-if [ "$1" == "-u" ]
-then
-	if [ "$#" == 2 ] 
-	then
+if [ "$1" == "-u" ]; then
+	if [ "$#" == 2 ]; then
 		fusermount -u ${MONT}
-		exit 0	
+		exit 0
 	else
 		echo
 		erro
@@ -63,24 +57,21 @@ then
 		uso
 		echo
 		exit 0
-	fi 
-elif [ "$1" == "-h" ] 
-then
+	fi
+elif [ "$1" == "-h" ]; then
 	echo
 	uso
 	echo
 	exit 0
-elif [ "$1" == "-v" ] 
-then
+elif [ "$1" == "-v" ]; then
 	echo
 	versao
 	echo
-	exit 0	
-else 
-	if [ "$#" -gt 1 ] 
-	then
+	exit 0
+else
+	if [ "$#" -gt 1 ]; then
 		sshfs ${USER}@${HOST}:${RPATH} ${MONT} -C -p $PORT -o $OPTIONS
-	else 
+	else
 		echo
 		erro
 		echo
