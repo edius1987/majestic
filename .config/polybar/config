@@ -69,7 +69,7 @@ font-0 = Fira:size=10;3
 font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
-modules-left = i3 sep arch
+modules-left = i3
 modules-center = window sep screencast screenshot
 modules-right = filesystem cpu ram network temp date pavu vol wallpaper power
 
