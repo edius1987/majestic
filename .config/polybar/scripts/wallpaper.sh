@@ -16,7 +16,7 @@ ajustar() {
 	if [ -f "$1" ]; then
 		sed -i "s|^ultima=.*|ultima=\"${1}\"|g" $0
 		# PyWal
-		wal -n -g -i "${1}"
+		#wal -n -g -i "${1}"
 		feh --bg-fill ${1}
 		echo "$1" > ~/.wall
 	fi

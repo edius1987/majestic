@@ -326,7 +326,7 @@ assign [class="(^Telegram|^Hexchat)"] $ws9
 #############################################################
 ############### I N I T #####################################
 #############################################################
-#exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r
+exec_always --no-startup-id $HOME/.config/polybar/scripts/wallpaper.sh r
 #exec_always --no-startup-id feh --bg-fill $HOME/img/wallpapers/linux-1530467311987-6946.jpg
 #exec --no-startup-id hsetroot -solid '#2E3440'
 exec --no-startup-id compton -b
