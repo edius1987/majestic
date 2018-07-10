@@ -69,7 +69,7 @@ font-0 = Fira:size=10;3
 font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
-modules-left = i3
+modules-left = i3 sep arch
 modules-center = window sep screencast screenshot
 modules-right = filesystem cpu ram network temp date pavu vol wallpaper power
 
@@ -149,6 +149,10 @@ label-visible-padding = 2
 label-urgent = %name%
 label-urgent-foreground = ${colors.rosa}
 label-urgent-padding = 2
+
+;----------------------------------------------------------
+;		       A R C H  U P D A T E S
+;----------------------------------------------------------
 
 ;----------------------------------------------------------
 ;		       T I T L E
