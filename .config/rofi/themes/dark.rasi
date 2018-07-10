@@ -40,7 +40,7 @@
 
 #message {
     border: 2px 0px 0px;
-    border-color: @border-color;
+    /* border-color: @border-color; */
     padding: 1px;
 }
 
@@ -62,7 +62,7 @@ textbox-prompt-colon {
 #listview {
     fixed-height: 0;
     border: 2px 0px 0px;
-    border-color: @border-color;
+    /* border-color: @border-color; */
     spacing: 2px;
     scrollbar: true;
     padding: 2px 0px 0px;
@@ -127,7 +127,7 @@ textbox-prompt-colon {
 
 #sidebar {
     border: 2px 0px 0px;
-    border-color: @border-color;
+    /* border-color: @border-color; */
 }
 
 #button {
