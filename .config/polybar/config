@@ -153,6 +153,15 @@ label-urgent-padding = 2
 ;----------------------------------------------------------
 ;		       A R C H  U P D A T E S
 ;----------------------------------------------------------
+[module/arch]
+type = custom/script
+interval = 300
+format = <label>
+format-prefix = " "
+tail = true
+click-left = ~/.config/polybar/scripts/arch.sh --check &
+click-right = ~/.config/polybar/scripts/arch.sh --list &
+exec = ~/.config/polybar/scripts/arch.sh
 
 ;----------------------------------------------------------
 ;		       T I T L E
