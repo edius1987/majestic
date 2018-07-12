@@ -63,6 +63,10 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
+# Apps
+bindsym $mod+Shift+f exec --no-startup-id firefox
+bindsym $mod+Shift+t exec --no-startup-id thunar
+
 # Rofi
 bindsym $mod+g exec --no-startup-id echo "" | rofi -dmenu -p "Google: " -bw 0 -lines 1 -separator-style none -location 0 -width 250 -hide-scrollbar -padding 5 | xargs -I{} $BROWSER https://www.google.com.br/search?q={}
 bindsym --release Mod1+g exec --no-startup-id exec ~/.config/rofi/scripts/git
