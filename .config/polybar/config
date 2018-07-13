@@ -436,9 +436,9 @@ label-song-ellipsis = true
 [module/browser]
 type = custom/text
 content = 
-click-left = $BROWSER &
-click-middle = qutebrowser &
-click-right = firefox &
+click-left = qutebrowser &
+click-middle = firefox &
+click-right = $BROWSER &
 
 [module/thunderbird]
 type = custom/text

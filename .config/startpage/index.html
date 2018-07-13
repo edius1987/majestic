@@ -22,7 +22,8 @@
 			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls</span></p>
 			<div class="links">
 				<p style="display: inline;">
-					<span class="blue-text spaced-link"><a href="https://duckduckgo.com/?q=qutebrowser+cheatsheet&ia=cheatsheet&iax=1" target="_blank">qutebrowser</a></span>
+					<span class="blue-text spaced-link"><a href="https://duckduckgo.com/?q=qutebrowser+cheatsheet&ia=cheatsheet&iax=1" target="_blank">qutebrowser cheats</a></span>
+					<span class="blue-text spaced-link"><a href="https://duckduckgo.com/?q=vim+cheatsheet&ia=cheatsheet&iax=cheatsheet" target="_blank">vim cheats</a></span>
 					<span class="blue-text spaced-link"><a href="https://wiki.archlinux.org" target="_blank">archwiki</a></span>
 					<span class="blue-text spaced-link"><a href="https://github.com/" target="_blank">github</a></span>
 					<span class="blue-text spaced-link"><a href="https://mail.google.com" target="_blank">gmail</a></span>
@@ -58,6 +59,8 @@
 			<p style="display: inline;"><span class="magenta-text">❯</span> <span class="green-text">ls projects</span></p>
 			<div class="links">
 				<p style="display: inline;">
+					<span class="blue-text spaced-link"><a href="https://bruminformatica.com.br">brum informática</a></span>
+					<span class="blue-text spaced-link"><a href="https://bruminformatica.com.br/admin">brum informática adm</a></span>
 					<span class="blue-text spaced-link"><a href="https://github.com/archlinux-br-dev/magico">magico</a></span>
 					<span class="blue-text spaced-link"><a href="https://github.com/archlinux-br-dev/cabron">cabron</a></span>
 					<span class="blue-text spaced-link"><a href="https://github.com/archlinux-br-dev/cabron-bot">cabron-bot</a></span>
@@ -105,11 +108,11 @@
 					} else {
 						$('#pesquisa input:last').prop('name', 'search');
 					}
-					
+
 					$('#terminal').animate({height: '550px'}).promise().then(function(){
 						$('#pesquisa').fadeIn(1000);
 					});
- 					
+
  					$('#pesquisa').attr('action', $(this).attr('href'));
  					$('#pesquisa input:last').prop('placeholder', 'Pesquisar no ' + $(this).attr('alt'));
 
@@ -119,7 +122,7 @@
 				$('#pesquisa').focusout(function() {
 					if ($('#pesquisa').val() == '') {
 						$('#pesquisa').fadeOut(1000).promise().then(function(){
-							$('#terminal').animate({height: '500px'});						
+							$('#terminal').animate({height: '500px'});
 						});
 					}
 				});
