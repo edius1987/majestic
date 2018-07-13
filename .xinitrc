@@ -16,7 +16,7 @@ fi
 [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services" ] && mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
 
 #export TERMINAL=st
-export TERMINAL=termite
+export TERMINAL=st
 export EDITOR=nano
 export BROWSER=firefox-developer-edition
 
