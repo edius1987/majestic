@@ -53,7 +53,7 @@ alias copiar='xclip -sel clip <'
 alias autogit="git add . ; git commit -m 'Alterações automáticas...' ; git push origin master"
 alias showip='curl icanhazip.com'
 alias baixarmp3='youtube-dl --extract-audio --audio-format mp3'
-alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel"}'
+alias fullsync='rsync -aAXvz --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/tmp/","/lost+found",".vzfifo",".cpt_hardlink*",".autorelabel","var/cache/yum"}'
 alias rehash='source ~/.config/fish/config.fish'
 
 # Yay
