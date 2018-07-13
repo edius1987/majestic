@@ -3,5 +3,3 @@
 #tema="~/.config/rofi/themes/lateral.rasi"
 
 rofi -show run -width 20 -padding 16
-
-
