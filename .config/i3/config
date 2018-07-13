@@ -34,21 +34,20 @@ set_from_resource $bi i3wm.cinza2       #3b4252
 
 # PyWal
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
-
-client.background       $bg
-
-# class                 border  backgr. text indicator child_border
-#client.focused          $bg     $bg     $fg  $ba       $ba
-#client.focused_inactive $bg     $bg     $fg  $bi       $bi
-#client.unfocused        $bg     $bg     $fg  $bi       $bi
+#client.focused          $bg     $bg     $fg  $bg       $bg
+#client.focused_inactive $bg     $bg     $fg  $bg       $bg
+#client.unfocused        $bg     $bg     $fg  $bg       $bg
 #client.urgent           $bg     $bg     $fg  $bg       $bg
 #client.placeholder      $bg     $bg     $fg  $bg       $bg
 #client.background       $bg
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $ba       $ba
+client.focused_inactive $bg     $bg     $fg  $bi       $bi
+client.unfocused        $bg     $bg     $fg  $bi       $bi
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.background       $bg
 
 #############################################################
 ############### B I N D I N G S #############################
