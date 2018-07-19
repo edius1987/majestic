@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-19 18:10:18
+# Última alteração: 2018-07-19 18:28:51
 
 titulo="Video Resize"
 
@@ -26,7 +26,7 @@ caminho() {
     echo $(dirname "${1}")
 }
 
-video=$(yad --title "$titulo" --width=400 --form --field=input:SFL)
+video=$(yad --title "$titulo" --separator=" " --width=400 --form --field=input:SFL | awk '{$1=$1};1')
 [[ -z $video ]] && exit 1
 
 novo=$(nome "$video" "resize")
@@ -34,7 +34,8 @@ novo_caminho=$(caminho "$video")
 largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width' | cut -d "=" -f 2)
 altura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^height' | cut -d "=" -f 2)
 
-resolucao=$(yad --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-ok:0" --button="gtk-close:1" --text "Resolução:" --entry-text "720" "640" "480")
+resolucao=$(yad --form --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --text "Resolução:" --field="ComboBox:CB" "720" "640" "480" | awk '{$1=$1};1')
 [[ -z $resolucao ]] && exit 1
 
-ffmpeg -i "${novo_caminho}/${video}" -filter:v scale=${resolucao}: -c:a copy "${novo_caminho}/${novo}"
+[ -f $novo ] && mv $novo $novo/$$
+ffmpeg -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo_caminho}/${novo}"
