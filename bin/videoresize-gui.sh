@@ -6,18 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-19 17:57:04
-
-# ~/.config/Thunar/uca.xml
-#<action>
-#	<icon>camera-video</icon>
-#	<name>VideoCut</name>
-#	<unique-id>1528543845224954-1</unique-id>
-#	<command>videocut-gui.sh %F</command>
-#	<description></description>
-#	<patterns>*</patterns>
-#	<video-files/>
-#</action>
+# Última alteração: 2018-07-19 18:10:18
 
 titulo="Video Resize"
 
@@ -33,27 +22,19 @@ nome() {
 	echo "${fl%.*}.$2.${ext}"
 }
 
+caminho() {
+    echo $(dirname "${1}")
+}
+
 video=$(yad --title "$titulo" --width=400 --form --field=input:SFL)
 [[ -z $video ]] && exit 1
 
-echo $video
-
-novo=$(nome $video "resize")
-
+novo=$(nome "$video" "resize")
+novo_caminho=$(caminho "$video")
 largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width' | cut -d "=" -f 2)
 altura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^height' | cut -d "=" -f 2)
 
-opt=$(yad --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-ok:0" --button="gtk-close:1" --text "Resolução:" --entry-text $altura $largura)
+resolucao=$(yad --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-ok:0" --button="gtk-close:1" --text "Resolução:" --entry-text "720" "640" "480")
+[[ -z $resolucao ]] && exit 1
 
-#[[ -z $opt || -z $res ]] && exit 1
-[[ -z $opt ]] && exit 1
-
-#DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
-#OFFSET=""$(($DIFF / 3600)):$(($DIFF / 60 % 60)):$(($DIFF % 60))
-#offset="$(show_time $DIFF)"
-
-
-#ffmpeg -ss "$START" -t "$offset" -i "$INPUT" "$OUTPUT"
-#echo "$START -t $OFFSET -i" "$(basename -- "$INPUT")" "$(basename -- "$OUTPUT")"
-
-echo $opt
+ffmpeg -i "${novo_caminho}/${video}" -filter:v scale=${resolucao}: -c:a copy "${novo_caminho}/${novo}"
