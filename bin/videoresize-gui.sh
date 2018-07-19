@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-19 17:43:41
+# Última alteração: 2018-07-19 17:57:04
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -33,23 +33,17 @@ nome() {
 	echo "${fl%.*}.$2.${ext}"
 }
 
-video=$(yad --title "$titulo" --width=400 --form --field=input:SFL --field=output "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nOUTPUT=\"%s\"\n", $1, $2}')
+video=$(yad --title "$titulo" --width=400 --form --field=input:SFL)
 [[ -z $video ]] && exit 1
 
-largura=$(ffprobe -v quiet -show_format -show_streams "$video" | grep '^width' | cut -d "=" -f 2)
-altura=$(ffprobe -v quiet -show_format -show_streams "$video" | grep '^height' | cut -d "=" -f 2)
+echo $video
 
-# eval $(yad --title "VideoCut" --width=400 --form --field=input:SFL --field=start --field=end --field=output "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
+novo=$(nome $video "resize")
 
-opt=$(yad --width 300 --entry --title "$titulo" \
-      --image=gnome-shutdown                        \
-      --button="gtk-ok:0" --button="gtk-close:1"    \
-      --text "Resolução:"                       \
-      --entry-text                                  \
-      "$altura" "$largura")
+largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width' | cut -d "=" -f 2)
+altura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^height' | cut -d "=" -f 2)
 
-echo "$altura"
-echo "$largura"
+opt=$(yad --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-ok:0" --button="gtk-close:1" --text "Resolução:" --entry-text $altura $largura)
 
 #[[ -z $opt || -z $res ]] && exit 1
 [[ -z $opt ]] && exit 1
