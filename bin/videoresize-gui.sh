@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-20 12:12:47
+# Última alteração: 2018-07-20 12:26:27
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -40,12 +40,23 @@ for r in ${resolucoes[@]}; do
     fi
 done
 
-resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$1=$1};1')" | awk -F'|' '{printf "saida=\"%s\"\nresolucao=\"%s\"", $1, $2}')
+resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$1=$1};1')")
 [[ -z $resolucao ]] && exit 1
+
+ #| awk -F'!' '{printf "saida=\"%s\"\nre=%s", $1, $2}'
+
+saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
+resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
 #[ -f $novo ] && mv "$novo" "$(dirname $novo)/$(nome $novo $$)"
 #ffmpeg -vn -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" 2>&1 | yad --progress --pulsate
-#ffmpeg -vn -y -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" | yad --title "$titulo" --text="Redimensionando video..." --width=300 --progress --pulsate --auto-close
 
-yad --text "$resolucao" --button=gtk-no:1
+ffmpeg -vn -y -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" | yad --title "$titulo" --text="Redimensionando video..." --width=400 --progress --pulsate --auto-close
+
+if [ $? -eq 0 ]; then
+	yad --text "Video: $saida redimensionado com sucesso." --button=gtk-no:1
+else
+	yad --text "Falha no redimensionamento de: ${saida}." --button=gtk-no:1
+fi
+
 
