@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-20 10:59:54
+# Última alteração: 2018-07-20 11:14:53
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -28,7 +28,7 @@ caminho() {
 }
 
 echo "$(echo "${res}" | awk '{$1=$1};1')"
-video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" | awk '{$1=$1};1')
+video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" "$1" | awk '{$1=$1};1')
 [[ -z $video ]] && exit 1
 
 novo=$(dirname "${video}")/$(nome "$video" "resize")
@@ -44,4 +44,5 @@ resolucao=$(yad --form --width 300 --entry --title "$titulo" --image=gnome-shutd
 [[ -z $resolucao ]] && exit 1
 
 #[ -f $novo ] && mv "$novo" "$(dirname $novo)/$(nome $novo $$)"
-ffmpeg -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}"
+ffmpeg -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" -progress 2>&1 | yad --progress --pulsate
+
