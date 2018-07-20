@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-20 11:59:50
+# Última alteração: 2018-07-20 12:12:47
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -36,14 +36,16 @@ largura=$(ffprobe -v quiet -show_format -show_streams "${video}" | grep '^width'
 
 for r in ${resolucoes[@]}; do
     if [ $r -lt $largura ]; then
-        res+="${r} "
+        res+="${r}!"
     fi
 done
 
-resolucao=$(yad --form --width=400 --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" "$novo" --field="Resolução:CB" $(echo $res | awk '{$1=$1};1'))
+resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Arquivo:SFL" --field="Resolução:CB" "$novo" "$(echo ${res%?} | awk '{$1=$1};1')" | awk -F'|' '{printf "saida=\"%s\"\nresolucao=\"%s\"", $1, $2}')
 [[ -z $resolucao ]] && exit 1
 
 #[ -f $novo ] && mv "$novo" "$(dirname $novo)/$(nome $novo $$)"
 #ffmpeg -vn -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" 2>&1 | yad --progress --pulsate
-ffmpeg -vn -y -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" | yad --title "$resolucao" --text="Redimensionando video..." --width=800 --progress --pulsate --auto-close
+#ffmpeg -vn -y -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" | yad --title "$titulo" --text="Redimensionando video..." --width=300 --progress --pulsate --auto-close
+
+yad --text "$resolucao" --button=gtk-no:1
 
