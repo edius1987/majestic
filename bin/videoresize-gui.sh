@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-19 18:34:23
+# Última alteração: 2018-07-20 10:28:24
 
 titulo="Video Resize"
 
@@ -26,7 +26,7 @@ caminho() {
     echo $(dirname "${1}")
 }
 
-video=$(yad --title "$titulo" --separator=" " --width=400 --form --field=input:SFL | awk '{$1=$1};1')
+video=$(yad --title "$titulo" --separator=" " --width=400 --form --text "Arquivo:" --field=input:SFL | awk '{$1=$1};1')
 [[ -z $video ]] && exit 1
 
 novo=$(dirname "${video}")/$(nome "$video" "resize")
