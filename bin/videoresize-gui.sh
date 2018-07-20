@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-20 11:14:53
+# Última alteração: 2018-07-20 11:25:48
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -40,9 +40,10 @@ for r in ${resolucoes[@]}; do
     fi
 done
 
-resolucao=$(yad --form --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --field="Resolução:CB" $(echo $res | awk '{$1=$1};1'))
+resolucao=$(yad --form --width 300 --entry --title "$titulo" --image=gnome-shutdown --button="gtk-close:1" --button="gtk-ok:0" --entry --field="Arquivo:SFL" "$novo" --column --field="Resolução:CB" $(echo $res | awk '{$1=$1};1'))
 [[ -z $resolucao ]] && exit 1
 
 #[ -f $novo ] && mv "$novo" "$(dirname $novo)/$(nome $novo $$)"
-ffmpeg -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" -progress 2>&1 | yad --progress --pulsate
+#ffmpeg -vn -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" 2>&1 | yad --progress --pulsate
+ffmpeg -vn -y -i "${video}" -filter:v scale=${resolucao}:-1 -c:a copy "${novo}" | yad --title "$titulo" --text="Redimensionando video..." --width 300 --progress --pulsate --auto-close
 
