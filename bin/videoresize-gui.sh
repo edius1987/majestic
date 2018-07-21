@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-20 12:50:56
+# Última alteração: 2018-07-21 19:29:21
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -46,7 +46,11 @@ resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gno
 saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
 resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
-ffmpeg -vn -y -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --text="Redimensionando video..." --width=400 --progress --pulsate --auto-close
+#ffmpeg -vn -y -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --text="Redimensionando video..." --width=400 --progress --pulsate --auto-close
+
+ffmpeg -y -n -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" | tee >(yad --title "$titulo" --progress --pulsate --auto-close) > ~/videoresize.log
+
+#| tee >(zenity --progress --pulsate)
 
 #ff_length1=( $(ffmpeg -i "$video" 2>&1 | sed -n "s/.* Duration: \([^,]*\), start: .*/\1/p") )
 #ff_length=( $(echo "$ff_length1" | awk -F':'  '{ print $1*3600 + $2*60 + $3 }'))
@@ -58,9 +62,10 @@ ffmpeg -vn -y -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2
 #		yad --progress --auto-kill --auto-close --title="$titulo"--width=550
 
 if [ $? -eq 0 ]; then
-	yad --text "Video: $saida redimensionado com sucesso." --button=gtk-no:1
+	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
+	rm ~/videoresize.log
 else
-	yad --text "Falha no redimensionamento de: ${saida}." --button=gtk-no:1
+	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
 fi
 
 
