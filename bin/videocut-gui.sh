@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-06-09 07:57:06
+# Última alteração: 2018-07-21 19:40:32
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -70,7 +70,7 @@ else
 	total="00:00:00"
 fi
 
-eval $(yad --title "VideoCut" --width=400 --form --field=input:SFL --field=start --field=end --field=output "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
+eval $(yad --title "VideoCut" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
 [[ -z $INPUT || -z $START || -z $END || -z $OUTPUT ]] && exit 1
 
 DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))

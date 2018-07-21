@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-21 19:29:21
+# Última alteração: 2018-07-21 19:38:53
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -48,7 +48,7 @@ resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
 #ffmpeg -vn -y -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --text="Redimensionando video..." --width=400 --progress --pulsate --auto-close
 
-ffmpeg -y -n -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" | tee >(yad --title "$titulo" --progress --pulsate --auto-close) > ~/videoresize.log
+yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..." && ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}"
 
 #| tee >(zenity --progress --pulsate)
 
@@ -63,7 +63,6 @@ ffmpeg -y -n -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" | 
 
 if [ $? -eq 0 ]; then
 	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
-	rm ~/videoresize.log
 else
 	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
 fi
