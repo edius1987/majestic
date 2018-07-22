@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-21 19:40:32
+# Última alteração: 2018-07-21 19:57:25
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -26,9 +26,9 @@ if [ $? = 1 ]; then
 fi
 
 nome() {
-	fl=$(basename -- "$1")
-	ext="${fl##*.}"
-	echo "${fl%.*}.$2.${ext}"
+    fl=$(basename -- "$1")
+    ext="${fl##*.}"
+    echo "${fl%.*}.$2.$$.${ext}"
 }
 
 function show_time () {
@@ -63,6 +63,7 @@ function show_time () {
 }
 
 if [ "$1" ]; then
+    novo=$(dirname "${1}")/$(nome "$1" "cut")
 	t=$(ffprobe -i "$1" -show_entries format=duration -v quiet -of csv="p=0")
 	total="$(show_time $t)"
 	nome=$(nome "$1" "novo")
@@ -70,7 +71,7 @@ else
 	total="00:00:00"
 fi
 
-eval $(yad --title "VideoCut" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$1" "00:00:00" "$total" "$nome" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
+eval $(yad --title "VideoCut" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$1" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
 [[ -z $INPUT || -z $START || -z $END || -z $OUTPUT ]] && exit 1
 
 DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
@@ -78,5 +79,11 @@ DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
 offset="$(show_time $DIFF)"
 
 
-ffmpeg -ss "$START" -t "$offset" -i "$INPUT" "$OUTPUT"
+yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..." && ffmpeg -ss "$START" -t "$offset" -i "$INPUT" "$OUTPUT"
 #echo "$START -t $OFFSET -i" "$(basename -- "$INPUT")" "$(basename -- "$OUTPUT")"
+
+if [ $? -eq 0 ]; then
+    yad --info --title "$titulo" --text "Video: $saida cortado com sucesso." --button=gtk-ok:1
+else
+    yad --error --title "$titulo" --text "Falha no corte de: ${saida}." --button=gtk-ok:1
+fi
