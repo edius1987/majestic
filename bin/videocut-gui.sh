@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-21 20:29:12
+# Última alteração: 2018-07-21 20:41:51
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -81,11 +81,11 @@ DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
 offset="$(show_time $DIFF)"
 
 
-yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo..." && ffmpeg -ss "$START" -t "$offset" -i "$INPUT" "$OUTPUT"
+(yad --title "$titulo" --progress --pulsate --auto-close --auto-kill --progress-text "Convertendo..." ; ffmpeg -ss "$START" -t "$offset" -i "$INPUT" "$OUTPUT" )
 #echo "$START -t $OFFSET -i" "$(basename -- "$INPUT")" "$(basename -- "$OUTPUT")"
 
 if [ $? -eq 0 ]; then
-    yad --info --title "$titulo" --text "Video: $saida cortado com sucesso." --button=gtk-ok:1
+    yad --info --title "$titulo" --text "Video: ${OUTPUT} cortado com sucesso." --button=gtk-ok:1
 else
-    yad --error --title "$titulo" --text "Falha no corte de: ${saida}." --button=gtk-ok:1
+    yad --error --title "$titulo" --text "Falha no corte de: ${OUTPUT}." --button=gtk-ok:1
 fi
