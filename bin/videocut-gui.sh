@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-21 20:41:51
+# Última alteração: 2018-07-21 20:58:29
 
 # ~/.config/Thunar/uca.xml
 #<action>
@@ -73,19 +73,16 @@ else
 	total="00:00:00"
 fi
 
-eval $(yad --title "VideoCut" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$1" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "INPUT=\"%s\"\nSTART=%s\nEND=%s\nOUTPUT=\"%s\"\n", $1, $2, $3, $4}')
-[[ -z $INPUT || -z $START || -z $END || -z $OUTPUT ]] && exit 1
+eval $(yad --title "VideoCut" --width=400 --form --field="Arquivo\::SFL" --field="Início:" --field="Fim:" --field="Saída:" "$1" "00:00:00" "$total" "$novo" | awk -F'|' '{printf "entrada=\"%s\"\ninicio=%s\nfim=%s\nsaida=\"%s\"\n", $1, $2, $3, $4}')
+[[ -z $entrada || -z $inicio || -z $fim || -z $saida ]] && exit 1
 
-DIFF=$(($(date +%s --date="$END")-$(date +%s --date="$START")))
-#OFFSET=""$(($DIFF / 3600)):$(($DIFF / 60 % 60)):$(($DIFF % 60))
+DIFF=$(($(date +%s --date="$fim")-$(date +%s --date="$inicio")))
 offset="$(show_time $DIFF)"
 
-
-(yad --title "$titulo" --progress --pulsate --auto-close --auto-kill --progress-text "Convertendo..." ; ffmpeg -ss "$START" -t "$offset" -i "$INPUT" "$OUTPUT" )
-#echo "$START -t $OFFSET -i" "$(basename -- "$INPUT")" "$(basename -- "$OUTPUT")"
+(ffmpeg -ss "$inicio" -t "$offset" -i "$entrada" "$saida"  2>&1 | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo...")
 
 if [ $? -eq 0 ]; then
-    yad --info --title "$titulo" --text "Video: ${OUTPUT} cortado com sucesso." --button=gtk-ok:1
+    yad --info --title "$titulo" --text "Video: $(basename ${saida}) cortado com sucesso." --button=gtk-ok:1
 else
-    yad --error --title "$titulo" --text "Falha no corte de: ${OUTPUT}." --button=gtk-ok:1
+    yad --error --title "$titulo" --text "Falha no corte de: $(basename ${saida})." --button=gtk-ok:1
 fi
