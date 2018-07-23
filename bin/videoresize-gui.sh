@@ -6,7 +6,7 @@
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
 #
 # Criado em:        2018-06-09 19:39:27
-# Última alteração: 2018-07-21 20:56:40
+# Última alteração: 2018-07-22 21:14:18
 
 titulo="Video Resize"
 resolucoes=("1280" "1080" "720" "640" "480" "320")
@@ -27,7 +27,7 @@ caminho() {
     echo $(dirname "${1}")
 }
 
-echo "$(echo "${res}" | awk '{$1=$1};1')"
+#echo "$(echo "${res}" | awk '{$1=$1};1')"
 video=$(yad --title "$titulo" --separator=" " --width=400 --form --field="Arquivo:SFL" "$1" | awk '{$1=$1};1')
 [[ -z $video ]] && exit 1
 
