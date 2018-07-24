@@ -9,6 +9,10 @@
 # Última alteração: 2018-07-22 21:14:18
 
 titulo="Video Resize"
+
+#    4:3 aspect ratio resolutions: 640×480, 800×600, 960×720, 1024×768, 1280×960, 1400×1050, 1440×1080 , 1600×1200, 1856×1392, 1920×1440, and 2048×1536.
+#    16:10 aspect ratio resolutions: - 1280×800, 1440×900, 1680×1050, 1920×1200 and 2560×1600.
+#    16:9 aspect ratio resolutions: 1024×576, 1152×648, 1280×720, 1366×768, 1600×900, 1920×1080, 2560×1440 and 3840×2160.
 resolucoes=("1280" "1080" "720" "640" "480" "320")
 
 command -v yad 1> /dev/null 2> /dev/null
@@ -46,6 +50,7 @@ resolucao=$(yad --form --width=400 --separator="!" --title "$titulo" --image=gno
 saida=$(echo $resolucao | awk -F'!' '{printf "%s", $1}')
 resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 
+# -vf "scale=iw/2:ih/2"
 (ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo...")
 
 
