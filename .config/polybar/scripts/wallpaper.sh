@@ -97,7 +97,7 @@ elif [ "$1" == "r" ]; then
 	fi
 	img=$(cat $HOME/.wall)
 elif [ "$1" != "d" ]; then
-	img=${imagens[$RANDOM % ${#imagens[@]}]}	
+	img=${imagens[$RANDOM % ${#imagens[@]}]}
 fi
 
 ajustar "$img"
