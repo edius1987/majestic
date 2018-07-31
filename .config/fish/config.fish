@@ -97,12 +97,12 @@ alias mc='env LD_PRELOAD=/usr/lib/libtrash.so.3.3 mc'
 #################
 ### FUNCTIONS ###
 #################
-function fish_greeting
-    echo
-	fortune vimtips
+#function fish_greeting
+    #echo
+	#fortune vimtips
 	#fortune brasil
-    echo
-end
+    #echo
+#end
 
 # goo.gl
 function goo
@@ -148,4 +148,4 @@ function wal-tile
 end
 
 # PyWal
-eval (cat ~/.cache/wal/sequences &)
+#eval (cat ~/.cache/wal/sequences &)
