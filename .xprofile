@@ -26,7 +26,7 @@ export BROWSER=chromium
 #export GNOME_KEYRING_PID
 
 case $DESKTOP_SESSION in
-    i3|i3wm|bspwm|openbox)
+    i3|i3wm|bspwm|openbox|herbsluftwm)
         ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
     cinnamon|cinnamon-session)

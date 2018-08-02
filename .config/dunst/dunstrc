@@ -1,7 +1,13 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "250x5-11-37"
+
+    # i3
+	#geometry = "250x5-11-37"
+
+	# herbsluftwm
+	geometry = "250x5-15-15"
+
     indicate_hidden = yes
     shrink = no
     transparency = 0
