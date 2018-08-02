@@ -1,0 +1,509 @@
+;----------------------------------------------------------
+;		        I C O N E S
+;----------------------------------------------------------
+;                    
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;                     
+;               
+
+;----------------------------------------------------------
+;		        C O R E S
+;----------------------------------------------------------
+; 100%: FF - 95%: F2 - 90%: E6 - 85%: D9 - 80%: CC - 75%: BF - 70%: B3 - 65%: A6 - 60%: 99 - 55%: 8C 
+; 50%: 80 - 45%: 73 - 40%: 66 - 35%: 59 - 30%: 4D - 25%: 40 - 20%: 33 - 15%: 26 - 10%: 1A - 5%: 0D - 0%: 00
+
+[colors]
+transparente = #00000000
+
+;foreground = ${xrdb:color7:#D8DEE9}
+;foreground-alt = #555
+;background = ${xrdb:color0:#2E3440}
+
+background-alt = #444
+unfocused = #85888f
+urgente = #bf616a
+destaque = #bf616a
+
+;primary = #ffb52a
+;secondary = #e60053
+
+preto = #000
+branco = #FFFFFF
+rosa = #e60053
+
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+
+;----------------------------------------------------------
+;		        B A R / T O P
+;----------------------------------------------------------
+[bar/top]
+;monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 27
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Fira:size=10;3
+font-1 = feather:pixelsize=11;3
+font-2 = Fira:size=8;1
+
+modules-left = i3
+modules-center = window sep screencast screenshot
+modules-right = filesystem cpu ram network temp date pavu vol wallpaper power
+
+;cursor-click = pointer
+;cursor-scroll = ns-resize
+
+;----------------------------------------------------------
+;		        B A R / B O T T O M
+;----------------------------------------------------------
+[bar/bottom]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 27
+fixed-center = true
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Fira:size=10;4
+font-1 = feather:pixelsize=11;3
+font-2 = feather:pixelsize=14;2
+
+modules-left = weather
+modules-center = browser thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
+modules-right = mpd
+
+;tray-position = right
+
+;----------------------------------------------------------
+;		        I 3
+;----------------------------------------------------------
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+strip-wsnumbers = true
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = ${colors.preto}
+label-mode-background = ${colors.rosa}
+
+label-focused = %name%
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.unfocused}
+label-unfocused-padding = 2
+
+label-visible = %name%
+label-visible-foreground = ${colors.unfocused}
+label-visible-padding = 2
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.rosa}
+label-urgent-padding = 2
+
+;----------------------------------------------------------
+;		       A R C H  U P D A T E S
+;----------------------------------------------------------
+[module/arch]
+type = custom/script
+interval = 300
+format = <label>
+format-prefix = " "
+tail = true
+click-left = ~/.config/polybar/scripts/arch.sh --check &
+click-right = ~/.config/polybar/scripts/arch.sh --list &
+exec = ~/.config/polybar/scripts/arch.sh
+
+;----------------------------------------------------------
+;		       T I T L E
+;----------------------------------------------------------
+[module/title]
+type = internal/xwindow
+
+format-prefix = " "
+format = <label>
+
+label = %title%
+label-maxlen = 50
+
+;----------------------------------------------------------
+;		        W I N D O W
+;----------------------------------------------------------
+[module/window]
+type = custom/script
+interval = 1
+format-prefix = " "
+;label = %output:0:45:...%  %{B- -o -u}
+label = %output:0:40:...%
+click-left = ~/.config/polybar/scripts/janela.sh -i
+click-middle = ~/.config/polybar/scripts/janela.sh -c
+click-right = ~/.config/polybar/scripts/janela.sh -w
+exec = ~/.config/polybar/scripts/janela.sh
+
+;----------------------------------------------------------
+;			S C R E E N C A S T
+;----------------------------------------------------------
+[module/screencast]
+type = custom/script
+interval = 1
+label = %output%
+click-left = termite -e ~/.local/bin/screencast &
+click-right = ~/.local/bin/screencast clear &
+exec = ~/.local/bin/screencast status
+tail = true
+
+;----------------------------------------------------------
+;			S C R E E N S H O T
+;----------------------------------------------------------
+[module/screenshot]
+type = custom/text
+content = 
+click-left = ~/.local/bin/screenshot &
+click-middle = ~/.local/bin/screenshot -w &
+click-right = ~/.local/bin/screenshot -c &
+scroll-down = ~/.local/bin/screenshot -e &
+
+;----------------------------------------------------------
+;		        F I L E S Y S T E M
+;----------------------------------------------------------
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =  %percentage_used:3:3%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+;----------------------------------------------------------
+;		        C P U
+;----------------------------------------------------------
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = 
+label = %percentage:3:3%%
+
+;----------------------------------------------------------
+;		        R A M
+;----------------------------------------------------------
+[module/ram]
+type = internal/memory
+interval = 2
+format-prefix = " "
+label = %percentage_used%%
+
+;----------------------------------------------------------
+;		        N E T W O R K
+;----------------------------------------------------------
+[module/network]
+type = internal/network
+;interface = wlp6s0u1
+interface = eno1
+interval = 3.0
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+;      
+;format-connected-prefix = " "
+;format-disconnected-prefix = " "
+format-connected-prefix = " "
+format-disconnected-prefix = " "
+
+;label-connected = %signal:3%% %{F#F1F1F1} %{F-}%downspeed:5% %{F#F1F1F1} %{F-}%upspeed:5%
+;label-connected = %local_ip%  %downspeed%  %upspeed%
+label-connected =  %downspeed%  %upspeed%
+label-disconnected = desconectado
+
+;----------------------------------------------------------
+;		        T E M P
+;----------------------------------------------------------
+[module/temp]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+;----------------------------------------------------------
+;		        D A T E
+;----------------------------------------------------------
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "%d-%m-%Y"
+
+time = %H:%M
+;time-alt = %H:%M:%S
+
+format-prefix = 
+label = %date% %time%
+
+;----------------------------------------------------------
+;		        V O L U M E
+;----------------------------------------------------------
+[module/vol]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3%%
+
+format-volume-muted = <label-muted>
+label-muted = 
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+;ramp-volume-0 = 
+;ramp-volume-1 = 
+;ramp-volume-2 = 
+
+;----------------------------------------------------------
+;		        V O L U M E 2
+;----------------------------------------------------------
+[module/vol2]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = 
+
+format-muted-prefix = " "
+label-muted = mudo
+
+bar-volume-width = 4
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 3
+bar-volume-fill = ─
+bar-volume-fill-font = 1
+bar-volume-empty = " "
+bar-volume-empty-font = 1
+;bar-volume-empty-foreground = ${colors.foreground-alt}
+
+;----------------------------------------------------------
+;		        W A L L P A P E R
+;----------------------------------------------------------
+[module/wallpaper]
+type = custom/text
+content = 
+click-left = ~/.config/polybar/scripts/wallpaper.sh x &
+click-middle = ~/.config/polybar/scripts/wallpaper.sh dd &
+click-right = ~/.config/polybar/scripts/wallpaper.sh d &
+scroll-up = ~/.config/polybar/scripts/wallpaper.sh p &
+scroll-down = ~/.config/polybar/scripts/wallpaper.sh a &
+
+;----------------------------------------------------------
+;		        P O W E R
+;----------------------------------------------------------
+[module/power]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+;label-open-foreground = ${colors.secondary}
+label-close = 
+label-close-foreground = ${colors.secondary}
+;label-separator = |
+label-separator = 
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = "sair"
+menu-0-0-exec = menu-open-1
+
+menu-0-1 = "suspender"
+menu-0-1-exec = menu-open-2
+
+menu-0-2 = "reiniciar"
+menu-0-2-exec = menu-open-3
+
+menu-0-3 = "desligar"
+menu-0-3-exec = menu-open-4
+
+
+menu-1-0 = "SAIR!?"
+menu-1-0-exec = i3-msg exit
+
+menu-2-0 = "SUSPENDER!?"
+menu-2-0-exec = systemctl suspend
+
+menu-3-0 = "REINICIAR!?"
+menu-3-0-exec = systemctl reboot
+
+menu-4-0 = "DESLIGAR!?"
+menu-4-0-exec = systemctl poweroff
+
+;----------------------------------------------------------
+;		       W E A T H E R
+;----------------------------------------------------------
+[module/weather]
+type = custom/script
+interval = 60
+exec = ~/.config/polybar/scripts/weather.py
+
+;----------------------------------------------------------
+;		        M P D
+;----------------------------------------------------------
+[module/mpd]
+type = internal/mpd
+format-online =  <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 50
+label-song-ellipsis = true
+
+;----------------------------------------------------------
+;			A P P S
+;----------------------------------------------------------
+[module/browser]
+type = custom/text
+content = 
+click-left = firefox &
+click-middle = qutebrowser &
+click-right = chromium &
+
+[module/thunderbird]
+type = custom/text
+content = 
+click-left = thunderbird &
+
+[module/thunar]
+type = custom/text
+content = 
+click-left = thunar &
+
+[module/terminal]
+type = custom/text
+content = 
+click-left = $TERMINAL &
+
+[module/telegram]
+type = custom/text
+content = 
+click-left = telegram-desktop &
+
+[module/whatsie]
+type = custom/text
+content = 
+click-left = whatsie &
+
+[module/steam]
+type = custom/text
+content = 
+;click-left = /usr/bin/steam > /dev/null 2> /dev/null &
+click-left = wal_steam -w
+
+[module/vbox]
+type = custom/text
+content = 
+click-left = ~/.config/rofi/scripts/virtualbox
+
+[module/docker]
+type = custom/text
+content = 
+click-left = ~/.config/rofi/scripts/docker
+
+[module/subl]
+type = custom/text
+content = 
+click-left = subl &
+
+[module/pavu]
+type = custom/text
+content = 
+click-left = pavucontrol &
+
+[module/fechar]
+type = custom/text
+content = 
+content-foreground = ${colors.branco}
+click-middle = ~/.config/polybar/scripts/janela.sh -c &
+
+[module/sep]
+type = custom/text
+content = 
+
+[settings]
+screenchange-reload = true
+
+;[global/wm]
+;margin-top = 5
+;margin-bottom = 5
