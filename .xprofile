@@ -14,9 +14,9 @@ fi
 [ -d ${HOME}/bin ] && export PATH=$PATH:$HOME/bin
 [ -d ${HOME}/apps ] && export PATH=${PATH}:${HOME}/apps
 
-#dbus-update-activation-environment --systemd DISPLAY
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-#export SSH_AUTH_SOCK
+dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
 
 export GH=~/github/majestic
 export TERMINAL=termite
