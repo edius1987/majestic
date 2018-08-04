@@ -35,5 +35,8 @@ case $DESKTOP_SESSION in
 	mate)
 		ln -sfT "/usr/share/dbus-1/services/org.freedesktop.mate.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
     ;;
+	xfce)
+		ln -sfT "/usr/share/dbus-1/services/org.xfce.xfce4-notifyd.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+	;;
 esac
 
