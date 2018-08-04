@@ -4,17 +4,18 @@
 #
 
 interval=30
-lock="/tmp/heartbeat.lck"
-[ -f $lock ] && rm -f $lock && exit
 
-for pid in $(pidof -x $0); do
-    if [ $pid != $$ ]; then
-        kill -9 $pid
-		echo "Já existe uma instancia."
-    fi
-done
+killPid () {
+	for pid in $(ps aux | grep $(basename $0) | egrep -v grep | awk '{print $2}'); do
+    	if [ $pid != $$ ]; then
+        	kill -9 $pid 2> /dev/null
+    	fi
+	done
+}
 
-echo $$ > $lock
+[ "$1" == "stop" ] && killPid && exit
+
+killPid
 
 while :
 do
