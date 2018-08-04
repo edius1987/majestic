@@ -14,9 +14,12 @@ fi
 [ -d ${HOME}/bin ] && export PATH=$PATH:$HOME/bin
 [ -d ${HOME}/apps ] && export PATH=${PATH}:${HOME}/apps
 
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+
 export GH=~/github/majestic
 export TERMINAL=termite
 export BROWSER=chromium
+
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=ibus
@@ -24,6 +27,7 @@ export BROWSER=chromium
 #export GPG_AGENT_INFO
 #export GNOME_KEYRING_CONTROL
 #export GNOME_KEYRING_PID
+#export SSH_AUTH_SOCK
 
 case $DESKTOP_SESSION in
     i3|i3wm|bspwm|openbox|herbsluftwm)
