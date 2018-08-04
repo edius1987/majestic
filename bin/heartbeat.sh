@@ -13,7 +13,10 @@ killPid () {
 	done
 }
 
-[ "$1" == "stop" ] && killPid && exit
+if [ "$1" == 'stop' ]; then
+	killPid
+	exit 0
+fi
 
 killPid
 
@@ -22,8 +25,6 @@ do
 	# grep RUNNING /proc/asound/card0/pcm0p/sub0/status
     if [[ ! -z $(pacmd list-sink-inputs | grep RUNNING) ]] ; then
         xdotool key shift ;
-    else
-		break
 	fi
 
     sleep $interval
