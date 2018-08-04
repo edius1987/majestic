@@ -12,7 +12,7 @@
 # Última Atualização: 03/05/2018 17:38:14
 
 dir="${HOME}/github"
-repos=('majestic' 'sistematico.github.io' 'oc-cli' 'cabron-bot')
+repos=('majestic' 'sistematico.github.io' 'oc-cli' 'cabron-bot' 'pollen')
 
 atualiza() {
 	if [ ! -f $1/.noup ]; then
