@@ -3,24 +3,29 @@
 # Source: http://askubuntu.com/a/721919
 #
 
-[ $(pidof -x $0) ] && echo rodando && exit
+interval=30
+lock="/tmp/heartbeat.lck"
+[ -f $lock ] && rm -f $lock && exit
 
-#for pid in $(pidof -x my_script.sh); do
-#    if [ $pid != $$ ]; then
-#        kill -9 $pid
-#    fi
-#done
+for pid in $(pidof -x $0); do
+    if [ $pid != $$ ]; then
+        kill -9 $pid
+		echo "Já existe uma instancia."
+    fi
+done
+
+echo $$ > $lock
 
 while :
 do
+	# grep RUNNING /proc/asound/card0/pcm0p/sub0/status
     if [[ ! -z $(pacmd list-sink-inputs | grep RUNNING) ]] ; then
-	#if [[ ! -z $(grep RUNNING /proc/asound/card0/pcm0p/sub0/status) ]] ; then
         xdotool key shift ;
-    fi
+    else
+		break
+	fi
 
-    #if [[ ! -z $(grep RUNNING /proc/asound/card1/pcm7p/sub0/status) ]] ; then
-    #    xdotool key shift ;
-    #fi
-
-    sleep 60
+    sleep $interval
 done
+
+exit 0
