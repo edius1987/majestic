@@ -22,6 +22,10 @@ export BROWSER=firefox
 session=${1:-xfce}
 
 case $session in
+    xfce)
+        #ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
+        exec startxfce4
+    ;;
 	bspwm)
 		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec bspwm
@@ -31,7 +35,7 @@ case $session in
 		ln -sfT "/usr/share/dbus-1/services/org.knopwob.dunst.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
 		exec i3
 	;;
-mate)
+	mate)
         ln -sfT "/usr/share/dbus-1/services/org.freedesktop.Notifications.service" "${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services/org.freedesktop.Notifications.service"
         exec mate-session
     ;;
