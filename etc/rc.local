@@ -5,25 +5,6 @@
 # Make sure that the script will "exit 0" on success or any other
 # value on error.
 
-#rm -f /usr/share/backgrounds/default
-ln -sf $(find /usr/share/backgrounds/macos/ -type f | shuf -n1) /usr/share/backgrounds/default
-
-disabled="/usr/share/xsessions-disabled/"
-
-wms=(
-	"i3-with-shmlog"
-	"cinnamon2d"
-)
-
-if [ ! -d "$disabled" ]; then
-	mkdir -p $disabled
-fi
-
-for wm in ${wms[@]} ; do
-	caminho="/usr/share/xsessions/${wm}.desktop"
-	if [ -f "$caminho" ]; then
-    	mv $caminho $disabled
-	fi
-done
+ln -sf $(find /home/lucas/img/wallpapers/unsplash/ -type f | shuf -n1) /usr/share/backgrounds/default
 
 exit 0
