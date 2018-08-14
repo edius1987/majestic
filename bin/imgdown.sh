@@ -33,7 +33,7 @@ for a in $pasta/*.$ext; do
 		mod=$(stat --printf="%Y" $a)
 		echo
 		echo "------------------------------- $a -------------------------------"
-		if [[ $mod > $atual ]]; then
+		if [[ $mod < $atual ]]; then
 			echo "$a ($mod) é mais novo que $atual, checando tamanho..."
 			if [[ $tamanho < $min ]]; then
 				echo "$a tem $tamanho (mínimo: $min), apagando..."
@@ -48,3 +48,5 @@ for a in $pasta/*.$ext; do
 
 	fi
 done
+
+rm -rf $pasta/robots.txt*
