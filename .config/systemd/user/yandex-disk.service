@@ -1,12 +1,17 @@
 [Unit]
-Description=Yandex-Disk service for %i
+Description=Yandex-Disk service
 After=local-fs.target network.target
-ConditionPathExists=%h/.config/yandex-disk/%i.cfg
  
 [Service]
+#Type=simple
+#Type=oneshot
 Type=forking
-ExecStart=/usr/bin/yandex-disk start -c %h/.config/yandex-disk/%i.cfg
-ExecStop=/usr/bin/yandex-disk stop -c %h/.config/yandex-disk/%i.cfg
+#ExecStart=/bin/sh -c "/usr/bin/yandex-disk --no-daemon $(cat %h/.config/yandex-disk/config.cfg | grep '=' | xargs -l1 -I0 echo -n '--0 ')"
+#ExecReload=/usr/bin/killall -qw yandex-disk
+ExecStart=/usr/bin/yandex-disk start
+ExecStop=/usr/bin/yandex-disk stop
+RestartSec=60
+Restart=always
  
 [Install]
 WantedBy=default.target
