@@ -38,7 +38,7 @@ mkdir $subpasta && mkdir $temp
 
 for u in $urls; do
 	dominio=$(echo "$u" | awk -F/ '{print $3}')
-	(wget --quiet -P "$temp" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --wrap --width=300 --auto-close --window-icon=gnome-shutdown --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
+	(wget --quiet -P "$temp" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --wrap --width=300 --auto-close --auto-kill --window-icon=gnome-shutdown --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
 	#(wget -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | sed -u 's/.*\ \([0-9]\+%\)\ \+\([0-9.]\+\ [KMB\/s]\+\)$/\1\n# Downloading \2/' | yad --title "IMGdown" --progress --wrap --width=350 --auto-close --window-icon=gnome-shutdown --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
 done
 
