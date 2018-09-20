@@ -2,7 +2,7 @@
 #
 # Arquivo: imgdown-gui.sh
 # Descrição: Script usando o YAD, xclip e wget
-# para baixar múltiplos arquivos de uma determinada 
+# para baixar múltiplos arquivos de uma determinada
 # extensão em um(ou vários) site(s).
 #
 # Feito por Lucas Saliés Brum, a.k.a. sistematico <lucas@archlinux.com.br>
