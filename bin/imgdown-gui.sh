@@ -28,6 +28,8 @@ if [ $? = 1 ]; then
 	exit
 fi
 
+mkdir $subpasta
+
 command -v xclip 1> /dev/null 2> /dev/null
 if [ $? = 0 ]; then
 	turl="$(xclip -o)"
@@ -40,8 +42,6 @@ for u in $urls; do
 	dominio=$(echo "$u" | awk -F/ '{print $3}')
 	(wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --pulsate --auto-close --progress-text "Baixando todos os arquivos com a extensão $ext de<br>$u...")
 done
-
-mkdir $subpasta
 
 for a in *.$ext; do
 	#tamanho=$(stat --printf="%s" $a)
