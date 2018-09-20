@@ -28,8 +28,6 @@ if [ $? = 1 ]; then
 	exit
 fi
 
-mkdir $subpasta
-
 command -v xclip 1> /dev/null 2> /dev/null
 if [ $? = 0 ]; then
 	turl="$(xclip -o)"
@@ -40,8 +38,10 @@ eval $(yad --title "IMGdown" --width=400 --form --field="URLs" --field="Resoluç
 
 for u in $urls; do
 	dominio=$(echo "$u" | awk -F/ '{print $3}')
-	(wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --pulsate --auto-close --progress-text "Baixando todos os arquivos com a extensão $ext de<br>$u...")
+	(wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --wrap --width=300 --auto-close --window-icon=gnome-shutdown --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
 done
+
+mkdir $subpasta
 
 for a in *.$ext; do
 	#tamanho=$(stat --printf="%s" $a)

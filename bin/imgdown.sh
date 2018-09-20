@@ -30,7 +30,8 @@ if [ "$1" == "-g" ]; then
 
 	for u in $urls; do
 		dominio=$(echo "$u" | awk -F/ '{print $3}')
-		(wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --pulsate --auto-close --progress-text "Baixando todos os arquivos com a extensão $ext de $u...")
+		#(wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --progress --pulsate --auto-close --progress-text "Baixando todos os arquivos com a extensão $ext de $u...")
+		(wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "IMGdown" --wrap --auto-close --info-text "Baixando todos os arquivos com a extensão" --info-text "$ext de $u...")
 	done
 
 else
