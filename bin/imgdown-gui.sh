@@ -45,8 +45,8 @@ for u in $urls; do
 	#(wget -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | sed -u 's/.*\ \([0-9]\+%\)\ \+\([0-9.]\+\ [KMB\/s]\+\)$/\1\n# Downloading \2/' | yad --title "IMGdown" --progress --wrap --width=350 --auto-close --window-icon=gnome-shutdown --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
 done
 
-#mkdir $subpasta ;
-mkdir $temp2
+mkdir $subpasta
+#mkdir $temp2
 
 for a in $temp/*.$ext; do
 	#tamanho=$(stat --printf="%s" $a)
@@ -54,7 +54,7 @@ for a in $temp/*.$ext; do
 	if [[ $res -lt $min ]]; then
 		mv $a $lixeira
 	else
-		mv $a $temp2
+		mv $a $subpasta
 	fi
 done
 
