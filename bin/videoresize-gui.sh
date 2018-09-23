@@ -55,7 +55,7 @@ resolucao=$(echo $resolucao | awk -F'!' '{printf "%s", $2}')
 (ffmpeg -i "${video}" -filter:v scale=$resolucao:-1 -c:a copy "${saida}" 2>&1 | yad --title "$titulo" --progress --pulsate --auto-close --progress-text "Convertendo...")
 
 
-if [ $? -eq 0 ]; then
+if [ $? = 0 ]; then
 	yad --info --title "$titulo" --text "Video: $saida redimensionado com sucesso." --button=gtk-ok:1
 else
 	yad --error --title "$titulo" --text "Falha no redimensionamento de: ${saida}." --button=gtk-ok:1
