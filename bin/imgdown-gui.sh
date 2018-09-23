@@ -19,7 +19,7 @@ pasta="$(pwd)" 	# Diretório para salvar os arquivos.
 min='300' 		# Resolução Vertical(em pixels)
 lixeira="${HOME}/.local/share/Trash"
 #subpasta=$(find "$pasta" -type d | egrep -v 'tmp-' | wc -l)
-subpasta=$$
+subpasta="$$"
 icone="gnome-shutdown"
 i=$(ps aux | grep $(basename $0) | egrep -v grep | wc -l)
 ((ins=i-1))
@@ -35,8 +35,8 @@ if [ $? = 0 ]; then
 	turl="$(xclip -o)"
 fi
 
-eval $(yad --title "$titulo" --window-icon=$icone --width=400 --form --field="URLs" --field="Resolução Vertical Mínima:" --field="Instancias:" "$turl" "$min" "$ins" | awk -F'|' '{printf "urls=\"%s\"\nmin=\"%s\"\nins=\"%s\"\n", $1, $2, $3}')
-[[ -z $urls || -z $res ]] && exit 1
+eval $(yad --title "$titulo" --window-icon=$icone --width=400 --form --field="URLs" --field="Resolução Mínima" --field="Instancias" "$turl" "$min" "$ins" | awk -F'|' '{printf "urls=\"%s\"\nmin=%s\n", $1, $2}')
+[[ -z $urls || -z $min ]] && exit 1
 
 mkdir $subpasta
 
