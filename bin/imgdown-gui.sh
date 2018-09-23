@@ -35,7 +35,7 @@ if [ $? = 0 ]; then
 	turl="$(xclip -o)"
 fi
 
-eval $(yad --title "$titulo" --window-icon=$icone --width=400 --form --field="URLs" --field="Resolução Mínima" --field="Instancias" "$turl" "$min" "$ins" | awk -F'|' '{printf "urls=\"%s\"\nmin=%s\n", $1, $2}')
+eval $(yad --title "$titulo" --window-icon=$icone --width=400 --form --field="URLs" --field="Sub-pasta" --field="Resolução" --field="Instancias" "$turl" "$subpasta" "$min" "$ins" | awk -F'|' '{printf "urls=\"%s\"\nsubpasta=\"%s\"\nmin=%s\n", $1, $2, $3}')
 [[ -z $urls || -z $min ]] && exit 1
 
 mkdir $subpasta
