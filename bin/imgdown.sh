@@ -6,7 +6,7 @@ ext="jpg"  		# Separadas por virgula.
 pasta="$(pwd)" 	# Diretório para salvar os arquivos.
 min='100000' 	# Em bytes
 lixeira="${HOME}/.local/share/Trash"
-pasta="$HOME/tmp/"
+pasta="$HOME/tmp"
 
 #[ "$(ls -ld $pasta/$subpasta 2> /dev/null)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
 
@@ -24,29 +24,21 @@ if [ $1 ]; then
 		dominio=$(echo "$u" | awk -F/ '{print $3}')
 		wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u"
 	done
+else
+	command -v xclip 1> /dev/null 2> /dev/null
+	if [ $? = 0 ]; then
+		turl="$(xclip -o)"
+	fi
+
+	#dominio=$(echo "$turl" | awk -F/ '{print $3}')
+	dominio=$(echo "$turl" | sed -e "s/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/" | sed "s/^www\.//")
+	wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$turl"
 fi
 
-# for a in $pasta/*.$ext; do
-for a in *.$ext; do
-
-		#mkdir -p $pasta/$subpasta
-		tamanho=$(stat --printf="%s" $a)
-		mod=$(stat --printf="%Y" $a)
-		echo
-		echo "------------------------------- $a -------------------------------"
-		if [[ $mod < $atual ]]; then
-			echo "$a ($mod) é mais novo que $atual, checando tamanho..."
-			if [[ $tamanho < $min ]]; then
-				echo "$a tem $tamanho (mínimo: $min), apagando..."
-				mv $a $lixeira
-			else
-				echo "Movendo $a para $subpasta..."
-				mv $a $subpasta/
-			fi
-		else
-			echo "$a ($mod) é mais velho que $atual, ignorando..."
-		fi
-
+for a in $pasta/*.$ext; do
+	if [[ $(convert $a -print "%h" /dev/null) -lt $min ]]; then
+		mv $a $lixeira
+	fi
 done
 
-rm -f robots.txt*
+rm -rf $pasta/robots.txt*
