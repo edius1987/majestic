@@ -6,35 +6,17 @@ ext="jpg"  		# Separadas por virgula.
 pasta="$(pwd)" 	# Diretório para salvar os arquivos.
 min='300' 		# Em pixels verticais
 lixeira="${HOME}/.local/share/Trash"
-pasta="$HOME/tmp/$$"
+pasta="${HOME}/tmp/$$"
+turl="$(xclip -o)"
 
-[ ! -f $pasta ] && mkdir -p $pasta
-
-if [ "$1" == "-h" ] || [ ! $1 ]; then
-    echo "Uso: $(basename $0) \"http://site.com/pagina\""
-    echo "$(basename $0) \"http://site.com/pagina\""
-    echo "$(basename $0) \"http://site.com/pagina\""
+if [ ! -f $pasta ]; then
+	mkdir -p $pasta
+else
 	exit
 fi
 
-
-if [ $1 ]; then
-	for u in $@; do
-		echo "Baixando todos os arquivos com a extensão $ext de $u..."
-		#dominio=$(echo "$u" | awk -F/ '{print $3}')
-		dominio=$(echo "$turl" | sed -e "s/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/" | sed "s/^www\.//")
-		wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u"
-	done
-else
-	command -v xclip 1> /dev/null 2> /dev/null
-	if [ $? = 0 ]; then
-		turl="$(xclip -o)"
-	fi
-
-	#dominio=$(echo "$turl" | awk -F/ '{print $3}')
-	dominio=$(echo "$turl" | sed -e "s/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/" | sed "s/^www\.//")
-	wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$turl"
-fi
+dominio=$(echo "$turl" | sed -e "s/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/" | sed "s/^www\.//")
+wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$turl"
 
 for a in $pasta/*.$ext; do
 	if [[ $(convert $a -print "%h" /dev/null) -lt $min ]]; then
