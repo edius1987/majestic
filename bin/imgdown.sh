@@ -4,11 +4,11 @@
 
 ext="jpg"  		# Separadas por virgula.
 pasta="$(pwd)" 	# Diretório para salvar os arquivos.
-min='100000' 	# Em bytes
+min='300' 		# Em pixels verticais
 lixeira="${HOME}/.local/share/Trash"
-pasta="$HOME/tmp"
+pasta="$HOME/tmp/$$"
 
-#[ "$(ls -ld $pasta/$subpasta 2> /dev/null)" ] && echo "O diretório $pasta/$subpasta já existe. Abortando..." && exit
+[ ! -f $pasta ] && mkdir -p $pasta
 
 if [ "$1" == "-h" ] || [ ! $1 ]; then
     echo "Uso: $(basename $0) \"http://site.com/pagina\""
@@ -21,7 +21,8 @@ fi
 if [ $1 ]; then
 	for u in $@; do
 		echo "Baixando todos os arquivos com a extensão $ext de $u..."
-		dominio=$(echo "$u" | awk -F/ '{print $3}')
+		#dominio=$(echo "$u" | awk -F/ '{print $3}')
+		dominio=$(echo "$turl" | sed -e "s/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/" | sed "s/^www\.//")
 		wget --quiet -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u"
 	done
 else
