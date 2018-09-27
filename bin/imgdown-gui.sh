@@ -41,7 +41,8 @@ eval $(yad --title "$titulo" --window-icon=$icone --width=400 --form --field="UR
 mkdir $subpasta
 
 for u in $urls; do
-	dominio=$(echo "$u" | awk -F/ '{print $3}')
+	#dominio=$(echo "$u" | awk -F/ '{print $3}')
+	dominio=$(echo "$u" | sed -e "s/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/" | sed "s/^www\.//")
 	#(wget --quiet -P "$subpasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | yad --title "$titulo" --progress --wrap --width=400 --auto-close --auto-kill --window-icon=$icone --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
 	#(wget -P "$pasta" -nd -r -l 1 -H -D $dominio -A $ext "$u" 2>&1 | sed -u 's/.*\ \([0-9]\+%\)\ \+\([0-9.]\+\ [KMB\/s]\+\)$/\1\n# Downloading \2/' | yad --title "IMGdown" --progress --wrap --width=350 --auto-close --window-icon=gnome-shutdown --button="gtk-close:0" --image=gnome-shutdown --text "Baixando todos os arquivos com a extensão $ext de $u")
 	wget --quiet -P "$subpasta" -nd -r -l 1 -H -D $dominio -A $ext "$u"
