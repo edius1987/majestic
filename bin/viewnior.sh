@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
+oldpwd="$(pwd)"
+
 if [ $1 ]; then
-	dir="$1"
-else
-	dir="$(pwd)"
+	cd "$1"
 fi
 
-echo ${dir}
+DISPLAY=:0.0 ; viewnior $(find . -iname '*.jpg')
 
-viewnior "$(find \"${dir}\" -iname '*.jpg')"
+cd "$oldpwd"
