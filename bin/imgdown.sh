@@ -8,6 +8,7 @@ min='300' 		# Em pixels verticais
 lixeira="${HOME}/.local/share/Trash"
 pasta="${HOME}/tmp/$$"
 turl="$(xclip -o)"
+icone='/usr/share/icons/Arc/places/24@2x/folder-pictures.png'
 
 if [ ! -f $pasta ]; then
 	mkdir -p $pasta
@@ -25,3 +26,5 @@ for a in $pasta/*.$ext; do
 done
 
 rm -rf $pasta/robots.txt*
+
+notify-send -i $icone "IMGdown" "Transferencia $$ finalizada."
