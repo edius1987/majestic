@@ -56,6 +56,9 @@ URL_sh       = sh -c '%s'
 URL_aur      = ${Browser} https://aur.archlinux.org/packages/?O=0&SeB=nd&K="%s"&outdated=&SB=n&SO=a&PP=50&do_Search=Go
 URL_imgur    = ${Browser} http://imgur.com/search?q='%s'
 URL_pkg      = ${Browser} https://www.archlinux.org/packages/?sort=&q='%s'&maintainer=&flagged=
+URL_t 		 = ${TermExec} 'torrench %s'
+URL_torrent	 = ${TermExec} 'torrench %s'
+URL_torrents = ${TermExec} 'torrench %s'
 
 # extension handlers
 EXT:avi,mp4,mkv,wmv,mpg = mpv %s
