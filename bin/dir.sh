@@ -2,17 +2,14 @@
 
 dia=$(date +'%d')
 mes=$(date +'%m')
-ano=$(date +'%y')
+ano=$(date +'%Y')
 dir="${ano}/${mes}/${dia}/"
 
 if [ "$1" == "-d" ]; then
-	if [ $2 ]; then
-		dir="${2}${dir}"
-	fi
-
-	mkdir -p $dir
-
-	if [ $3 ]; then
-		mv $3 $dir
-	fi
+	[ $2 ] && [ "$2" != "" ] && dir="${2}/${dir}"
+	[ ! -d $dir ] && mkdir -p $dir
+	[ $3 ] && [ -f $3 ] || [ -d $3 ] && [ "$3" != "" ] && mv $3 $dir
 fi
+
+echo $2 > ~/desk/erro.txt
+echo $3 >> ~/desk/erro.txt
