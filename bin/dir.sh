@@ -8,7 +8,7 @@ dir="${ano}/${mes}/${dia}/"
 if [ "$1" == "-d" ]; then
 	[ $2 ] && [ "$2" != "" ] && dir="${2}/${dir}"
 	[ ! -d $dir ] && mkdir -p $dir
-	[ $3 ] && [ -f $3 ] || [ -d $3 ] && [ "$3" != "" ] && mv $3 $dir
+	[ $3 ] && mv \'$3\' $dir
 fi
 
 echo $2 > ~/desk/erro.txt
