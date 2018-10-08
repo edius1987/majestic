@@ -5,6 +5,8 @@
 #i3lock-fancy -f "Iosevka-Thin" -t "Arch Linux" -p -g -- scrot -z
 
 wallpapers="${HOME}/.local/share/backgrounds"
+[ ! -d $wallpapers ] && mkdir -p $wallpapers
+
 
 if [ $1 ]; then
 	if [ "$1" = "off" ]; then
@@ -16,7 +18,7 @@ else
 	if ! ls $wallpapers/firefox*.png 1> /dev/null 2>&1; then
 		curl -s -L -o $wallpapers/firefox1.png https://i.imgur.com/99TRx5U.png
 		curl -s -L -o $wallpapers/firefox2.png https://i.imgur.com/XLSVgfc.png
-	fi	
+	fi
 	lockbg=$(find $wallpapers/firefox*.png -type f | shuf -n 1)
 fi
 
