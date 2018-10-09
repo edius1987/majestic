@@ -3,10 +3,10 @@
     follow = mouse
 
     # i3
-	#geometry = "250x5-21-37"
+	#geometry = "250x5-11-37"
 
 	# herbsluftwm
-	geometry = "250x5-15-15"
+	geometry = "250x5-15-28"
 
     indicate_hidden = yes
     shrink = no
