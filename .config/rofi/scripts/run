@@ -1,5 +1,5 @@
 #!/bin/bash
 
-tema="~/.config/rofi/themes/dark.rasi"
+tema="-theme ~/.config/rofi/themes/dark.rasi"
 
-rofi -theme $tema -show run -width 20 -padding 16
+rofi $tema -show run -width 20 -padding 16
