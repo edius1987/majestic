@@ -4,7 +4,7 @@
 #
 # Criado por Lucas Saliés Brum a.k.a. sistematico, <lucas@archlinux.com.br>
 # Em 		14/09/2016 18:12:13 AMT
-# Alterado: 14/09/2016 18:34:36 AMT
+# Alterado: 20/10/2018 21:00:20 AMT
 
 if [ "$(id -u)" != "0" ]; then
    echo "Este script precisa ser usado como root." 1>&2
@@ -13,7 +13,7 @@ fi
 
 apps=( "ufw" "dialog" )
 
-for app in ${apps[@]} 
+for app in ${apps[@]}
 do
 	which $app 1> /dev/null 2> /dev/null
 	if [ $? != 0 ]; then
