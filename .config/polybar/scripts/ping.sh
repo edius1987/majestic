@@ -19,7 +19,7 @@ function pingar {
 	ping -q -c$r $h > /dev/null 2> /dev/null
 	if [ $? -eq 0 ]; then
 		if [ $v == 1 ]; then
-			echo 
+			echo "%{F#8fbcbb}%{F-}"
 		fi
 
 		if [ ! -f ~/.ping.lock ]; then
@@ -28,7 +28,7 @@ function pingar {
 		fi
 	else
 		if [ $v == 1 ]; then
-			echo 
+			echo "%{F#bf616a}%{F-}"
 		fi
 
 		[ ! -f ~/.ping.lock ] && rm -f ~/.ping.lock

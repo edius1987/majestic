@@ -99,7 +99,7 @@ font-2 = feather:pixelsize=14;2
 
 modules-left = weather
 modules-center = browser thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
-modules-right = mpd
+modules-right = mpcdel mpd
 
 ;tray-position = right
 ;tray-padding = 1
@@ -500,6 +500,16 @@ click-left = subl &
 type = custom/text
 content = 
 click-left = pavucontrol &
+
+[module/mpcrebuild]
+type = custom/text
+content = 
+click-left = mpc ls | mpc add &
+
+[module/mpcdel]
+type = custom/text
+content = 
+click-left = mpc del 0 &
 
 [module/fechar]
 type = custom/text
