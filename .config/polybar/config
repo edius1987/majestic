@@ -24,9 +24,10 @@
 [colors]
 transparente = #00000000
 
-;foreground = ${xrdb:color7:#D8DEE9}
-;foreground-alt = #555
+foreground = ${xrdb:color7:#D8DEE9}
+foreground-alt = #555
 ;background = ${xrdb:color0:#2E3440}
+background = #00000000
 
 background-alt = #444
 unfocused = #85888f
@@ -40,9 +41,6 @@ preto = #000
 branco = #FFFFFF
 rosa = #e60053
 
-background = ${xrdb:color0:#222}
-foreground = ${xrdb:color7:#222}
-foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
@@ -69,9 +67,9 @@ font-0 = Fira:size=10;3
 font-1 = feather:pixelsize=11;3
 font-2 = Fira:size=8;1
 
-modules-left = i3
+modules-left = i3 sep ping
 modules-center = window sep screencast screenshot
-modules-right = filesystem cpu ram network temp date pavu vol wallpaper power
+modules-right = filesystem cpu ram network temp pavu vol date wallpaper power
 
 ;cursor-click = pointer
 ;cursor-scroll = ns-resize
@@ -104,6 +102,8 @@ modules-center = browser thunderbird thunar terminal subl telegram whatsie steam
 modules-right = mpd
 
 ;tray-position = right
+;tray-padding = 1
+;tray-detached = true
 
 ;----------------------------------------------------------
 ;		        I 3
@@ -149,6 +149,15 @@ label-visible-padding = 2
 label-urgent = %name%
 label-urgent-foreground = ${colors.rosa}
 label-urgent-padding = 2
+
+;----------------------------------------------------------
+;		       P I N G
+;----------------------------------------------------------
+[module/ping]
+type = custom/script
+interval = 60
+exec = ~/.config/polybar/scripts/ping.sh
+tail = true
 
 ;----------------------------------------------------------
 ;		       A R C H  U P D A T E S
@@ -287,22 +296,6 @@ ramp-1 = 
 ramp-2 = 
 
 ;----------------------------------------------------------
-;		        D A T E
-;----------------------------------------------------------
-[module/date]
-type = internal/date
-interval = 5
-
-date =
-date-alt = "%d-%m-%Y"
-
-time = %H:%M
-;time-alt = %H:%M:%S
-
-format-prefix = 
-label = %date% %time%
-
-;----------------------------------------------------------
 ;		        V O L U M E
 ;----------------------------------------------------------
 [module/vol]
@@ -350,6 +343,23 @@ bar-volume-fill-font = 1
 bar-volume-empty = " "
 bar-volume-empty-font = 1
 ;bar-volume-empty-foreground = ${colors.foreground-alt}
+
+;----------------------------------------------------------
+;		        D A T E
+;----------------------------------------------------------
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "%d-%m-%Y"
+
+time = %H:%M
+;time-alt = %H:%M:%S
+
+format-prefix = 
+label = %date% %time%
+
 
 ;----------------------------------------------------------
 ;		        W A L L P A P E R
@@ -436,9 +446,9 @@ label-song-ellipsis = true
 [module/browser]
 type = custom/text
 content = 
-click-left = firefox &
+click-left = chromium &
 click-middle = qutebrowser &
-click-right = chromium &
+click-right = firefox &
 
 [module/thunderbird]
 type = custom/text
@@ -463,7 +473,7 @@ click-left = telegram-desktop &
 [module/whatsie]
 type = custom/text
 content = 
-click-left = whatsie &
+click-left = whatsdesk &
 
 [module/steam]
 type = custom/text

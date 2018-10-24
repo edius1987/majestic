@@ -66,18 +66,20 @@ try:
         elif CURRENT == "Mist":
             CURRENT = "Névoa"
         elif CURRENT == "Light intensity drizzle":
-            CURRENT = "Chuvisco leve"             
+            CURRENT = "Chuvisco leve"
+        elif CURRENT == "Thunderstorm with rain":
+            CURRENT = "Trovoada com chuva"
 
         if ID >= 200 and ID <= 232:
             ICON = ""
         elif ID == 300:
-            ICON = ""              
+            ICON = ""
         elif ID == 501 or ID == 500 or ID == 520:
             ICON = ""
         elif ID == 521:
             ICON = ""
         elif ID >= 310 and ID <= 531:
-            ICON = ""                  
+            ICON = ""
         elif ID >= 600 and ID <= 622:
             ICON = ""
         elif ID >= 701 and ID <= 761:
