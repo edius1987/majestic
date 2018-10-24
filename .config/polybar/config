@@ -99,7 +99,7 @@ font-2 = feather:pixelsize=14;2
 
 modules-left = weather
 modules-center = browser thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
-modules-right = mpcdel mpd
+modules-right = mpcrebuild mpcdel mpd lixo
 
 ;tray-position = right
 ;tray-padding = 1
@@ -439,6 +439,17 @@ icon-next = 
 
 label-song-maxlen = 50
 label-song-ellipsis = true
+
+;----------------------------------------------------------
+;		       L I X E I R A
+;----------------------------------------------------------
+[module/lixo]
+type = custom/script
+interval = 1
+tail = true
+click-middle = ~/.config/polybar/scripts/trash.sh -o &
+click-right = ~/.config/polybar/scripts/trash.sh -x &
+exec = ~/.config/polybar/scripts/trash.sh
 
 ;----------------------------------------------------------
 ;			A P P S
