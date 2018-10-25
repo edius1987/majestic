@@ -8,7 +8,7 @@ import datetime
 from weathercfg import *
 
 # Descomente e preencha (http://openweathermap.org/help/city_list.txt)
-CITY = "3467747"
+#CITY = "3467747"
 # Faça uma conta em https://home.openweathermap.org/users/sign_up e copia sua API aqui...
 #API_KEY = "SUA_API_KEY"
 UNITS = "Metric"
