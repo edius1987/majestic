@@ -101,7 +101,7 @@ modules-left = weather
 modules-center = browser thunderbird thunar terminal subl telegram whatsie steam sep vbox docker
 modules-right = mpcrebuild mpcdel mpd lixo
 
-;tray-position = right
+tray-position = right
 ;tray-padding = 1
 ;tray-detached = true
 
