@@ -94,7 +94,7 @@ fc-list | grep -i feather 1> /dev/null 2> /dev/null
 if [ $? -ne 0 ]; then
 	echo "Fonte FeatherIcons não encontrado, instalando..."
 	if [ ! -d ${HOME}/.local/share/fonts ]; then
-		mkdir ${HOME}/.local/share/fonts
+		mkdir -p ${HOME}/.local/share/fonts
 	fi
 	curl -s "https://raw.githubusercontent.com/sistematico/majestic/master/.local/share/fonts/feather.ttf" > ${HOME}/.local/share/fonts/feather.ttf
 	fc-cache -v -f
