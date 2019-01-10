@@ -9,4 +9,8 @@
 ::1			localhost.localdomain	localhost
 127.0.1.1	majestic.localdomain	majestic
 
+104.244.154.45 artemis
+172.97.66.117 hera
+192.168.0.2 hydrogen
+
 # End of file
